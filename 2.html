@@ -1,0 +1,232 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+
+<title>LOSSST</title>
+
+<body>
+
+<div id=perspective>
+
+  <div id=scene>
+    
+    <div id="snakecubemove0" class="snakecubemove">
+        <div id="cubesnake0" class="cube snakecube">
+          <div class="tongue">Y</div>
+          <div class="u eyes">👀</div>
+          <div class="f mouth">‿</div>
+          <div class=r></div>
+          <div class=l></div>
+          <div class=b></div>
+        </div>
+    </div>
+    
+    <div id="snakecubemove1" class="snakecubemove">
+        <div id="cubesnake1" class="cube snakecube">
+          <div class=u></div>
+          <div class=f></div>
+          <div class=r></div>
+          <div class=l></div>
+          <div class=b></div>
+        </div>
+    </div>
+    
+    <div id="snakecubemove2" class="snakecubemove">
+        <div id="cubesnake2" class="cube snakecube">
+          <div class=u></div>
+          <div class=f></div>
+          <div class=r></div>
+          <div class=l></div>
+          <div class=b></div>
+        </div>
+    </div>
+    
+    <div id="snakecubemove3" class="snakecubemove">
+        <div id="cubesnake3" class="cube snakecube">
+          <div class=u></div>
+          <div class=f></div>
+          <div class=r></div>
+          <div class=l></div>
+          <div class=b></div>
+        </div>
+    </div>
+    
+    <div id="snakecubemove4" class="snakecubemove">
+        <div id="cubesnake4" class="cube snakecube">
+          <div class=u></div>
+          <div class=f></div>
+          <div class=r></div>
+          <div class=l></div>
+          <div class=b></div>
+        </div>
+    </div>
+    
+  </div>
+</div>
+  
+  
+<style>
+.cube {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.cube > div {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.cube .u {
+  -moz-transform: rotateY(90deg)translateX(-100%)rotateY(-90deg);
+  -webkit-transform: rotateY(90deg)translateX(-100%)rotateY(-90deg);
+  transform: rotateY(90deg)translateX(-100%)rotateY(-90deg);
+}
+
+.cube .l {
+  -moz-transform: rotateX(-90deg)translateY(-50%)translateX(-50%)rotateY(-90deg);
+  -webkit-transform: rotateX(-90deg)translateY(-50%)translateX(-50%)rotateY(-90deg);
+  transform: rotateX(-90deg)translateY(-50%)translateX(-50%)rotateY(-90deg);
+}
+
+.cube .r {
+  -moz-transform: rotateX(-90deg)translateY(-50%)translateX(50%)rotateY(90deg);
+  -webkit-transform: rotateX(-90deg)translateY(-50%)translateX(50%)rotateY(90deg);
+  transform: rotateX(-90deg)translateY(-50%)translateX(50%)rotateY(90deg);
+}
+
+.cube .f {
+  -moz-transform: translateY(50%)rotateX(-90deg)translateY(-50%);
+  -webkit-transform: translateY(50%)rotateX(-90deg)translateY(-50%);
+  transform: translateY(50%)rotateX(-90deg)translateY(-50%);
+}
+.cube .b {
+  -moz-transform: translateY(-50%)rotateX(-90deg)translateY(-50%)rotateY(180deg);
+  -webkit-transform: translateY(-50%)rotateX(-90deg)translateY(-50%)rotateY(180deg);
+  transform: translateY(-50%)rotateX(-90deg)translateY(-50%)rotateY(180deg);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: 2.5vh/5.5vh arial,sans-serif;
+  vertical-align: middle;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+html, body {
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+  background: radial-gradient(#def 25%,#7ce);
+}
+
+#perspective {
+  width: 0;
+  height: 0;
+  -moz-perspective: 120vh;
+  -webkit-perspective: 120vh;
+  perspective: 120vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+#perspective * {
+  -moz-transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+#scene {
+  background: radial-gradient(#3F7D1F, #034301);
+  width: 80vh;
+  height: 80vh;
+  -moz-transform: translateX(-50%) translateY(-50%) rotateX(30deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) rotateX(30deg);
+  transform: translateX(-50%) translateY(-50%) rotateX(30deg);
+}
+
+.snakecubemove {
+  -moz-transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.snakecubemove {
+  width:7vh;
+  height:7vh;
+}
+
+#snakecubemove0 {
+  width:8vh;
+  height:8vh;
+}
+
+.cube.snakecube {
+  width: 100%;
+  height: 100%;
+}
+
+.cube.snakecube > div {
+  box-shadow: 0 0 0 .2vh #000 inset;
+  text-align: center;
+  background:  #b80;
+}
+
+.cube.snakecube .u {
+  background:  #fb3;
+}
+
+.cube.snakecube .f {
+  line-height: 3vh;
+  background:  #da2;
+}
+
+.cube.snakecube .tongue {
+  background:none;
+  box-shadow:none;
+  color:red;
+  font:5vh/4vh arial;
+  text-align:center;
+  transform:rotateZ(180deg)translateY(-4vh)translateZ(4vh);
+}
+
+.mouth {
+  font: 5vh/8vh a;
+}
+
+.eyes {
+  font: 5vh/8vh a;
+}
+</style>
+
+<script>
+t=0;
+setInterval(
+  function(){
+    t+=.04;
+    snakecubemove0.style.transform = `translateX(${40-3.5+Math.cos(t)*20}vh) translateY(${40-3.5+Math.sin(t)*20}vh) translateZ(.5vh) rotateZ(${t}rad)`;
+    snakecubemove1.style.transform = `translateX(${40-3.5+Math.cos(t-.5)*20}vh) translateY(${40-3.5+Math.sin(t-.5)*20}vh) translateZ(.5vh) rotateZ(${t-.5}rad)`;
+    snakecubemove2.style.transform = `translateX(${40-3.5+Math.cos(t-1)*20}vh) translateY(${40-3.5+Math.sin(t-1)*20}vh) translateZ(.5vh) rotateZ(${t-1}rad)`;
+    snakecubemove3.style.transform = `translateX(${40-3.5+Math.cos(t-1.5)*20}vh) translateY(${40-3.5+Math.sin(t-1.5)*20}vh) translateZ(.5vh) rotateZ(${t-1.5}rad)`;
+    snakecubemove4.style.transform = `translateX(${40-3.5+Math.cos(t-2)*20}vh) translateY(${40-3.5+Math.sin(t-2)*20}vh) translateZ(.5vh) rotateZ(${t-2}rad)`;
+  },
+  33
+)
+</script>
