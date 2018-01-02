@@ -1,4 +1,17 @@
-﻿<div id=perspective>
+﻿<!doctype html>
+<meta charset=utf-8>
+<meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+
+<title>LOSSST</title>
+
+<body>
+
+<div id=perspective>
 
   <div id=scene>
   
@@ -242,7 +255,7 @@ html, body {
 t=0;
 setInterval(
   function(){
-    t+=.02;
+    t+=.04;
     scene.style.transform=`translateX(-50%) translateY(-50%) rotateX(${t/2}rad)`;
     snakecubemove0.style.transform = `translateX(${40-3.5+Math.cos(t)*20}vh) translateY(${40-3.5+Math.sin(t)*20}vh) translateZ(.5vh) rotateZ(${t+Math.cos(t*5)/2}rad)`;
     snakecubemove1.style.transform = `translateX(${40-3.5+Math.cos(t-.5)*20}vh) translateY(${40-3.5+Math.sin(t-.5)*20}vh) translateZ(.5vh) rotateZ(${t-.5}rad)`;
@@ -250,6 +263,6 @@ setInterval(
     snakecubemove3.style.transform = `translateX(${40-3.5+Math.cos(t-1.5)*20}vh) translateY(${40-3.5+Math.sin(t-1.5)*20}vh) translateZ(.5vh) rotateZ(${t-1.5}rad)`;
     snakecubemove4.style.transform = `translateX(${40-3.5+Math.cos(t-2)*20}vh) translateY(${40-3.5+Math.sin(t-2)*20}vh) translateZ(.5vh) rotateZ(${t-2}rad)`;
   },
-  16
+  33
 )
 </script>
