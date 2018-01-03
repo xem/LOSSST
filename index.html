@@ -15,7 +15,7 @@
 
 <div id=perspective>
 
-  <div id=scene ontouchmove="mouseover(document.elementFromPoint(event.targetTouches[0].clientX, event.targetTouches[0].clientY))" onmousemove="mouseover(document.elementFromPoint(event.clientX, event.clientY))">
+  <div id=scene ontouchmove="event.preventDefault();event.stopPropagation();mouseover(document.elementFromPoint(event.targetTouches[0].clientX, event.targetTouches[0].clientY))" onmousemove="event.preventDefault();event.stopPropagation();mouseover(document.elementFromPoint(event.clientX, event.clientY))">
   
     <div id=puzzle>
     
@@ -84,6 +84,7 @@
 
 #log {
   position: fixed;
+  display: none;
 }
 
 .cube {
@@ -332,8 +333,8 @@ movesnake = function(){
 
 movesnake();
 
-/*ontouchstart = ontouchmove = ontouchend = onclick = ondblclick = onscroll = function(e){
-  //e.preventDefault();
+ontouchstart = ontouchmove = ontouchend = onclick = ondblclick = onscroll = function(e){
+  e.preventDefault();
 }
 
 ontouchstart=function(e){
@@ -357,5 +358,4 @@ onmouseup = ontouchend = e => {
 oncontextmenu = e => {
   e.preventDefault();
 };
-*/
 </script>
