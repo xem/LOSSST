@@ -251,7 +251,7 @@ headangle = 0;
 for(i=0;i<11;i++){
   for(j=0;j<11;j++){
     scene.innerHTML += 
-    '<div onmouseover=mouseover(this,'+i+','+j+') onmouseout=mouseout(this,'+i+','+j+') ontouchstart=mouseover(this,'+i+','+j+')  ontoucmove=mouseover(this,'+i+','+j+') ontouchend=mouseout(this,'+i+','+j+') class="cell '+(i<3||i>7||j<3||j>7 ? "blank": "") + '" style="top:'+(i*10)+'vh;left:'+(j*10)+'vh"></div>';
+    '<div onmouseover=mouseover(this,'+i+','+j+') onmouseout=mouseout(this,'+i+','+j+') ontouchstart=mouseover(this,'+i+','+j+')  ontouchmove=mouseover(this,'+i+','+j+') ontouchend=mouseout(this,'+i+','+j+') class="cell '+(i<3||i>7||j<3||j>7 ? "blank": "") + '" style="top:'+(i*10)+'vh;left:'+(j*10)+'vh"></div>';
   }
 }
 
