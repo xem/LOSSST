@@ -48,7 +48,7 @@
 * {
   margin: 0;
   padding: 0;
-  font: 2.5vh/5.5vh arial,sans-serif;
+  font: 2.5vmin/5.5vmin arial,sans-serif;
   vertical-align: middle;
   box-sizing: border-box;
   -webkit-touch-callout: none;
@@ -63,15 +63,14 @@ html, body {
   height: 100%;
   background: #000;
   overflow: hidden;
-  background: radial-gradient(#def 25%,#7ce);
 }
 
 #perspective {
   width: 0;
   height: 0;
-  -moz-perspective: 120vh;
-  -webkit-perspective: 120vh;
-  perspective: 120vh;
+  -moz-perspective: 120vmin;
+  -webkit-perspective: 120vmin;
+  perspective: 120vmin;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -84,17 +83,19 @@ html, body {
 }
 
 #scene {
+  width: 150vmin;
+  height: 150vmin;
+  border-radius: 5vmin;
+  border: .2vmin solid #000;
+  -moz-transform: translateX(-50%) translateY(-55%) translateZ(10vmin) rotateX(20deg);
+  -webkit-transform: translateX(-50%) translateY(-55%) translateZ(10vmin) rotateX(20deg);
+  transform: translateX(-50%) translateY(-55%) translateZ(10vmin) rotateX(20deg);
   background: radial-gradient(#3F7D1F, #034301);
-  width: 110vh;
-  height: 110vh;
-  -moz-transform: translateX(-50%) translateY(-55%) translateZ(30vh) rotateX(20deg);
-  -webkit-transform: translateX(-50%) translateY(-55%) translateZ(30vh) rotateX(20deg);
-  transform: translateX(-50%) translateY(-55%) translateZ(30vh) rotateX(20deg);
 }
 
 #snake {
   position: absolute;
-  top:0;
+  top: 0;
 }
 
 #snake, #snake * {
@@ -113,16 +114,24 @@ html, body {
 }
 
 .snakecubemove {
-  width:8vh;
-  height:8vh;
-  -moz-transition: -moz-transform .1s;
-  -webkit-transition: -webkit-transform .1s;
-  transition: transform .1s;
+  width:8vmin;
+  height:8vmin;
+  -moz-transition: -moz-transform .15s;
+  -webkit-transition: -webkit-transform .15s;
+  transition: transform .15s;
+}
+
+.snakeshadow {
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.25);
+  transform:translateX(14%) translateY(14%) translateZ(-.25vh);
 }
 
 #snakecubemove0 {
-  width:8.5vh;
-  height:8.5vh;
+  width: 8.5vmin;
+  height: 8.5vmin;
 }
 
 .cube.snakecube {
@@ -131,7 +140,7 @@ html, body {
 }
 
 .cube.snakecube > div {
-  box-shadow: 0 0 0 .2vh #000 inset;
+  box-shadow: 0 0 0 .2vmin #000 inset;
   text-align: center;
   background:  #b80;
 }
@@ -141,7 +150,7 @@ html, body {
 }
 
 .cube.snakecube .f {
-  line-height: 3vh;
+  line-height: 3vmin;
   background:  #da2;
 }
 
@@ -149,17 +158,17 @@ html, body {
   background:none;
   box-shadow:none;
   color:red;
-  font:5vh/4vh arial;
+  font:5vmin/4vmin arial;
   text-align:center;
-  transform: rotateZ(180deg)translateY(-4vh)translateZ(4vh);
+  transform: rotateZ(180deg) translateY(-4vmin) translateZ(4vmin);
 }
 
 .mouth {
-  font: 5vh/8vh a;
+  font: 5vmin/8vmin a;
 }
 
 .eyes {
-  font: 5vh/8vh a;
+  font: 5vmin/8vmin a;
 }
 
 #puzzle {
@@ -168,11 +177,11 @@ html, body {
 }
 
 .cell {
-  width: 10vh;
-  height: 10vh;
+  width: 10vmin;
+  height: 10vmin;
   position: absolute;
   background: #fff;
-  border: 1px solid #000;
+  border: .3vmin solid #000;
 }
 
 .cell.blank {
