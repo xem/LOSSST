@@ -31,16 +31,18 @@ for(i=0;i<11;i++){
 // Pointer events
 
 scene.ontouchmove = e => {
+  e.preventDefault();
+  e.stopPropagation();
   mousemove(e.targetTouches[0]);
 }
 
 scene.onmousemove = e => {
+  e.preventDefault();
+  e.stopPropagation();
   mousemove(e);
 }
 
 mousemove = e => {
-  e.preventDefault();
-  e.stopPropagation();
   newcell = document.elementFromPoint(e.clientX, e.clientY);
   if(newcell.className.indexOf("cell") > -1){
     j = parseInt(newcell.style.left) / 10;
