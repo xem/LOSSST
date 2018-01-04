@@ -73,6 +73,16 @@
             <div class=b></div>
           </div>
       </div>
+      
+      <div id="snakecubemove5" class="snakecubemove">
+          <div id="cubesnake5" class="cube snakecube">
+            <div class=u></div>
+            <div class=f></div>
+            <div class=r></div>
+            <div class=l></div>
+            <div class=b></div>
+          </div>
+      </div>
     
     </div>
     
@@ -170,9 +180,9 @@ html, body {
   background: radial-gradient(#3F7D1F, #034301);
   width: 110vh;
   height: 110vh;
-  -moz-transform: translateX(-50%) translateY(-50%) rotateX(30deg);
-  -webkit-transform: translateX(-50%) translateY(-50%) rotateX(30deg);
-  transform: translateX(-50%) translateY(-50%) rotateX(30deg);
+  -moz-transform: translateX(-50%) translateY(-55%) translateZ(30vh) rotateX(30deg);
+  -webkit-transform: translateX(-50%) translateY(-55%) translateZ(30vh) rotateX(30deg);
+  transform: translateX(-50%) translateY(-55%) translateZ(30vh) rotateX(30deg);
 }
 
 #snake {
@@ -196,14 +206,16 @@ html, body {
 }
 
 .snakecubemove {
-  width:7vh;
-  height:7vh;
-  transition: transform .1s;
+  width:8vh;
+  height:8vh;
+  -moz-transition: -moz-transform .15s;
+  -webkit-transition: -webkit-transform .15s;
+  transition: transform .15s;
 }
 
 #snakecubemove0 {
-  width:8vh;
-  height:8vh;
+  width:8.5vh;
+  height:8.5vh;
 }
 
 .cube.snakecube {
@@ -263,20 +275,16 @@ html, body {
 </style>
 
 <script>
-snakepos = [[0,5],[0,5],[0,5],[0,5],[0,5]];
-headangle = 0;
+snakelength = 6;
+snakepos = [[5,2],[5,1],[5,0],[5,-1],[5,-2],[5,-3]];
+snakeangles = [-90];
+headangle = -90;
 
 for(i=0;i<11;i++){
   for(j=0;j<11;j++){
-    puzzle.innerHTML += '<div class="cell '+(i<3||i>7||j<3||j>7 ? "blank": "") + '" style="top:'+(i*10)+'vh;left:'+(j*10)+'vh"></div>';
+    puzzle.innerHTML += '<div id=cell'+i+'-'+j+' class="cell '+(i<3||i>7||j<3||j>7 ? "blank": "") + '" style="top:'+(i*10)+'vh;left:'+(j*10)+'vh"></div>';
   }
 }
-
-/*puzzle.onmouseover=e=>mouseover(e);
-puzzle.onmouseout=e=>mouseout(e);
-puzzle.ontouchstart=e=>mouseover(e.changedTouches);
-puzzle.ontouchmove=e=>mouseover(e.changedTouches);
-puzzle.ontouchend=e=>mouseout(e.changedTouches);*/
 
 lastcell = null;
 
@@ -297,7 +305,7 @@ mouseover = function(e){
     //log.innerHTML=e.layerX;
     e.style.background = "red";
     ok=1;
-    for(p in snakepos){
+    for(p=0; p < snakelength - 1; p++){
       if(i==snakepos[p][0] && j == snakepos[p][1]){
         ok = 0;
       }
@@ -319,15 +327,35 @@ mouseover = function(e){
       else return;
       
       snakepos.unshift([i,j]);
-      snakepos.length = 5;
+      snakeangles.unshift(headangle);
+      movesnake();
+    }
+    
+    // Go back
+    else if(i==snakepos[1][0] && j == snakepos[1][1]){
+      snakepos.shift();
+      snakeangles.shift();
+      headangle = snakeangles[0];
       movesnake();
     }
   }
 }
 
 movesnake = function(){
-  for(i=0;i<5;i++){
-    window["snakecubemove"+i].style.transform = "translateX("+(snakepos[i][1]*10+.5)+"vh) translateY("+(snakepos[i][0]*10+.5)+"vh) translateZ(.5vh) rotateZ(" + (i?0:headangle) + "deg)";
+  for(i=0;i<6;i++){
+    window["snakecubemove"+i].style.transform = "translateX("+(snakepos[i][1]*10+1)+"vh) translateY("+(snakepos[i][0]*10+1)+"vh) translateZ(.5vh) rotateZ(" + (i?0:headangle) + "deg)";
+    
+    cell = window["cell"+snakepos[i][0]+"-"+snakepos[i][1]];
+    if(cell && cell.className.indexOf("blank") == -1){
+      cell.style.background="red";
+    }
+  }
+  
+  if(snakepos[6]){
+    cell = window["cell"+snakepos[6][0]+"-"+snakepos[6][1]];
+    if(cell){
+      cell.style.background="";
+    }
   }
 }
 
