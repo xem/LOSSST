@@ -170,7 +170,7 @@ mousemove = e => {
       
       cell = window["cell" + snakepos[6][0] + "-" + snakepos[6][1]];
       if(cell && !cell.classList.contains("grass")){
-        cell.classList.add("red");
+        cell.classList.add(cell.classList.contains("black") ? "blue" : "red");
       }
       
       snakepos.shift();
@@ -204,18 +204,18 @@ movesnake = () => {
     }
   }
   
-  if(snakepos[6]){
-    cell = window["cell" + snakepos[6][0] + "-" + snakepos[6][1]];
-    if(cell){
-      cell.classList.remove("blue", "red");
-    }
-  }
-  
   if(inbounds && document.querySelectorAll(".cell.red").length == 0){
     console.log("won");
     for(i of document.querySelectorAll(".cell.blue")){
       i.classList.remove("blue");
       i.classList.add("green");
+    }
+  }
+  
+  if(snakepos[7]){
+    cell = window["cell" + snakepos[6][0] + "-" + snakepos[6][1]];
+    if(cell){
+      cell.classList.remove("blue", "red");
     }
   }
 }
