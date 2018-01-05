@@ -5,6 +5,18 @@ snakepos = [[7,3],[7,2],[7,1],[7,0],[7,-1],[7,-2]];
 snakeangles = [-90];
 headangle = -90;
 lastcell = null;
+inbounds = 0;
+grabbed = 0;
+
+
+
+// Puzzles
+
+puzzles = ["0000000110011000110000000"];
+currentpuzzle = 0;
+
+
+
 
 // DOM
 
@@ -25,9 +37,11 @@ for(i=0;i<6;i++){
 
 for(i = 0; i < 15; i++){
   for(j = 0; j < 15; j++){
-    puzzle.innerHTML += '<div id=cell' + i + '-' + j + ' class="cell '+ (i < 5 || i > 9 || j < 5 || j > 9 ? "blank" : "") + '" style="top:' + (i * 10) + 'vmin;left:' + (j * 10) + 'vmin"></div>';
+    puzzle.innerHTML += '<div id=cell' + i + '-' + j + ' class="cell '+ (i < 5 || i > 9 || j < 5 || j > 9 ? "grass " : +puzzles[currentpuzzle][(i-5)*5+(j-5)] ? "black" : "") + '" style="top:' + (i * 10) + 'vmin;left:' + (j * 10) + 'vmin"></div>';
   }
 }
+
+
 
 // Pointer events
 
@@ -44,8 +58,10 @@ scene.onmousemove = e => {
 }
 
 mousemove = e => {
+  var i, j, ok, x, y, headangle, cell, newcell;
+  
   newcell = document.elementFromPoint(e.clientX, e.clientY);
-  if(newcell.className.indexOf("cell") > -1){
+  if(newcell.classList.contains("cell")){
     j = parseInt(newcell.style.left) / 10;
     i = parseInt(newcell.style.top) / 10;   
     
@@ -56,24 +72,68 @@ mousemove = e => {
       }
     }
     
-    // Advance
+    // Advance to one of the fourth neighbours
     if(ok){
+      ok = 0;
       if((i == snakepos[0][0] - 1 && j == snakepos[0][1])){
         headangle = 180; // top
+        ok = grabbed = 1;
       }
       else if(i == snakepos[0][0] && j == snakepos[0][1] - 1){
         headangle = 90; // left
+        ok = grabbed = 1;
       }
       else if(i == snakepos[0][0] + 1 && j == snakepos[0][1]){
         headangle = 0; // bottom
+        ok = grabbed = 1;
       }
       else if(i == snakepos[0][0] && j == snakepos[0][1] + 1){
         headangle = -90; // right
+        ok = grabbed = 1;
       }
-      else return;
-      snakepos.unshift([i, j]);
-      snakeangles.unshift(headangle);
-      movesnake();
+      if(ok){
+        snakepos.unshift([i, j]);
+        snakeangles.unshift(headangle);
+        movesnake();
+      }
+      
+      // Try to advance multiple times at once if the pointer is too quick but the path inbetween is free
+      else if(grabbed){
+        
+        //console.log(snakepos[0][0], snakepos[0][1], i, j);
+        
+        x = snakepos[0][1];
+        y = snakepos[0][0];
+        
+        for(c = 0; c < 15; c++){
+          if(x != j && y != i){
+
+            x += (j - snakepos[0][1]) / 15;
+            y += (i - snakepos[0][0]) / 15;
+              
+            ok = 1;
+            for(p = 0; p < snakelength - 1; p++){
+              if((~~x) == snakepos[p][1] && (~~y) == snakepos[p][0]){
+                ok = 0;
+              }
+            }
+              
+            if(ok){
+              headangle = -90;
+              snakepos.unshift([~~y, ~~x]);
+              snakeangles.unshift(headangle);
+              movesnake();
+            }
+            
+            else if((~~x) == snakepos[0][1] && (~~y) == snakepos[0][0]){
+              // continue
+            }
+            else {
+              break;
+            }
+          }
+        }
+      }
     }
     
     // Go back
@@ -81,7 +141,7 @@ mousemove = e => {
       
       cell = window["cell" + snakepos[0][0] + "-" + snakepos[0][1]];
       if(cell){
-        cell.style.background = "";
+        cell.classList.remove("blue", "red");
       }
       
       snakepos.shift();
@@ -92,28 +152,47 @@ mousemove = e => {
   }
 }
 
+
 movesnake = () => {
+  
+  var i, cell;
+  
   for(i = 0; i < 6; i++){
     window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][1] * 10 + 1) + "vmin) translateY(" + (snakepos[i][0] * 10 + 1) + "vmin) translateZ(.5vmin)";
 
-    window["snakecube" + i].style.transform = "rotateZ(" + (i ? 0 : headangle) + "deg)";
+    window["snakecube" + i].style.transform = "rotateZ(" + (i ? 0 : snakeangles[0]) + "deg)";
     
     cell = window["cell" + snakepos[i][0] + "-" + snakepos[i][1]];
-    if(cell && cell.className.indexOf("blank") == -1){
-      cell.style.background = "#56f";
+    
+    if(i == 0){
+      if(cell && !cell.classList.contains("grass")){
+        inbounds = 1;
+        cell.classList.add(cell.classList.contains("black") ? "blue" : "red");
+      }
+      else {
+        inbounds = 0;
+      }
     }
   }
   
   if(snakepos[6]){
     cell = window["cell" + snakepos[6][0] + "-" + snakepos[6][1]];
     if(cell){
-      cell.style.background = "";
+      cell.classList.remove("blue", "red");
+    }
+  }
+  
+  if(inbounds && document.querySelectorAll(".cell.red").length == 0){
+    console.log("won");
+    for(i of document.querySelectorAll(".cell.blue")){
+      i.classList.remove("blue");
+      i.classList.add("green");
     }
   }
 }
 
 movesnake();
 
-onmousedown = onmousemove = onmouseup = oncontextmenu = ontouchstart = ontouchmove = ontouchend = onclick = ondblclick = onscroll = function(e){
+onmousedown = onmousemove = onmouseup = /*oncontextmenu =*/ ontouchstart = ontouchmove = ontouchend = onclick = ondblclick = onscroll = function(e){
   e.preventDefault();
 }

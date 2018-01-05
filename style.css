@@ -87,9 +87,9 @@ html, body {
   height: 150vmin;
   border-radius: 5vmin;
   border: .2vmin solid #000;
-  -moz-transform: translateX(-50%) translateY(-55%) translateZ(10vmin) rotateX(20deg);
-  -webkit-transform: translateX(-50%) translateY(-55%) translateZ(10vmin) rotateX(20deg);
-  transform: translateX(-50%) translateY(-55%) translateZ(10vmin) rotateX(20deg);
+  -moz-transform: translateX(-50%) translateY(-52%) translateZ(30vmin) rotateX(20deg);
+  -webkit-transform: translateX(-50%) translateY(-52%) translateZ(30vmin) rotateX(20deg);
+  transform: translateX(-50%) translateY(-52%) translateZ(30vmin) rotateX(20deg);
   background: radial-gradient(#3F7D1F, #034301);
 }
 
@@ -184,7 +184,23 @@ html, body {
   border: .3vmin solid #000;
 }
 
-.cell.blank {
+.cell.grass {
   background: none;
   border: none;
+}
+
+.cell.black {
+  background: #000;
+}
+
+.cell.blue {
+  background: #2af;
+}
+
+.cell.red {
+  background: red;
+}
+
+.cell.green {
+  background: #2d4;
 }
