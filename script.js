@@ -97,7 +97,7 @@ mousemove = e => {
         movesnake();
       }
       
-      // Try to advance multiple times at once if the pointer is too quick but the path inbetween is free
+      // Try to advance multiple times at once if the pointer is too quick but the path inbetween is free, without going in diagonal
       else if(grabbed){
         
         //console.log(snakepos[0][0], snakepos[0][1], i, j);
@@ -105,11 +105,11 @@ mousemove = e => {
         x = snakepos[0][1];
         y = snakepos[0][0];
         
-        for(c = 0; c < 15; c++){
+        for(c = 0; c < 100; c++){
           if(x != j && y != i){
 
-            x += (j - snakepos[0][1]) / 15;
-            y += (i - snakepos[0][0]) / 15;
+            x += (j - snakepos[0][1]) / 100;
+            y += (i - snakepos[0][0]) / 100;
               
             ok = 1;
             for(p = 0; p < snakelength - 1; p++){
@@ -118,11 +118,35 @@ mousemove = e => {
               }
             }
               
-            if(ok){
-              headangle = -90;
-              snakepos.unshift([~~y, ~~x]);
-              snakeangles.unshift(headangle);
-              movesnake();
+            if(ok && (Math.abs((~~x) - snakepos[0][1]) + Math.abs((~~y) - snakepos[0][0])) == 1){
+              ok = 0;
+              if((~~x == snakepos[0][0] - 1 && ~~y == snakepos[0][1])){
+                headangle = 180; // top
+                ok = 1;
+              }
+              else if(~~x == snakepos[0][0] && ~~y == snakepos[0][1] - 1){
+                headangle = 90; // left
+                ok = 1;
+              }
+              else if(~~x == snakepos[0][0] + 1 && ~~y == snakepos[0][1]){
+                headangle = 0; // bottom
+                ok = 1;
+              }
+              else if(~~x == snakepos[0][0] && ~~y == snakepos[0][1] + 1){
+                headangle = -90; // right
+                ok = 1;
+              }
+              
+              
+              if(ok){
+                headangle = -90;
+                snakepos.unshift([~~y, ~~x]);
+                snakeangles.unshift(headangle);
+                movesnake();
+              }
+              else {
+                break;
+              }
             }
             
             else if((~~x) == snakepos[0][1] && (~~y) == snakepos[0][0]){
