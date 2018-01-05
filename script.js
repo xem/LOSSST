@@ -105,11 +105,11 @@ mousemove = e => {
         x = snakepos[0][1];
         y = snakepos[0][0];
         
-        for(c = 0; c < 100; c++){
+        for(c = 0; c < 30; c++){
           if(x != j && y != i){
 
-            x += (j - snakepos[0][1]) / 100;
-            y += (i - snakepos[0][0]) / 100;
+            x += (j - snakepos[0][1]) / 30;
+            y += (i - snakepos[0][0]) / 30;
               
             ok = 1;
             for(p = 0; p < snakelength - 1; p++){
@@ -166,6 +166,11 @@ mousemove = e => {
       cell = window["cell" + snakepos[0][0] + "-" + snakepos[0][1]];
       if(cell){
         cell.classList.remove("blue", "red");
+      }
+      
+      cell = window["cell" + snakepos[6][0] + "-" + snakepos[6][1]];
+      if(cell && !cell.classList.contains("grass")){
+        cell.classList.add("red");
       }
       
       snakepos.shift();
