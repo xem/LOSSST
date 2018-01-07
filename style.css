@@ -87,11 +87,24 @@ html, body {
   height: 150vmin;
   border-radius: 5vmin;
   border: .2vmin solid #000;
-  -moz-transform: translateX(-50%) translateY(-52%) translateZ(20vmin) rotateX(15deg);
-  -webkit-transform: translateX(-50%) translateY(-52%) translateZ(20vmin) rotateX(15deg);
-  transform: translateX(-50%) translateY(-52%) translateZ(20vmin) rotateX(15deg);
+  -moz-transform: translateX(-50%) translateY(-52%) translateZ(30vmin) rotateX(15deg);
+  -webkit-transform: translateX(-50%) translateY(-52%) translateZ(30vmin) rotateX(15deg);
+  transform: translateX(-50%) translateY(-52%) translateZ(30vmin) rotateX(15deg);
   background: radial-gradient(#3F7D1F, #034301);
+  -moz-transition: -moz-transform 1s;
+  -webkit-transition: -webkit-transform 1s;
+  transition: transform 1s;
 }
+
+
+@media screen and (orientation: portrait) {
+  #scene {
+    -moz-transform: translateX(-50%) translateY(-52%) rotateZ(90deg) translateZ(30vmin) rotateY(-15deg);
+    -webkit-transform: translateX(-50%) translateY(-52%) rotateZ(90deg) translateZ(30vmin) rotateY(-15deg);
+    transform: translateX(-50%) translateY(-52%) rotateZ(90deg) translateZ(30vmin) rotateY(-15deg);
+  }
+}
+
 
 #snake {
   position: absolute;
