@@ -61,8 +61,11 @@
 
 html, body {
   height: 100%;
-  background: #000;
   overflow: hidden;
+}
+
+body {
+  background: radial-gradient(circle, #5F9D3F, #034301);
 }
 
 #perspective {
@@ -84,13 +87,11 @@ html, body {
 
 #scene {
   width: 150vmin;
-  height: 150vmin;
+  height: 110vmin;
   border-radius: 5vmin;
-  border: .2vmin solid #000;
   -moz-transform: translateX(-50%) translateY(-52%) translateZ(30vmin) rotateX(15deg);
   -webkit-transform: translateX(-50%) translateY(-52%) translateZ(30vmin) rotateX(15deg);
   transform: translateX(-50%) translateY(-52%) translateZ(30vmin) rotateX(15deg);
-  background: radial-gradient(#3F7D1F, #034301);
   -moz-transition: -moz-transform 1s;
   -webkit-transition: -webkit-transform 1s;
   transition: transform 1s;

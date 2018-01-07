@@ -1,6 +1,6 @@
 ﻿// Globals
 snakelength = 6;
-snakepos = [[3,7],[2,7],[1,7],[0,7],[-1,7],[-2,7]];
+snakepos = [[3,5],[2,5],[1,5],[0,5],[-1,5],[-2,5]];
 snakeangles = [-90];
 headangle = -90;
 lastcell = null;
@@ -28,8 +28,8 @@ for(i=0;i<6;i++){
 }
 
 for(x = 0; x < 15; x++){
-  for(y = 0; y < 15; y++){
-    puzzle.innerHTML += '<div data-x=' + x + ' data-y=' + y + ' id=cell' + x + '-' + y + ' class="cell '+ (x < 5 || x > 9 || y < 5 || y > 9 ? "grass " : +puzzles[currentpuzzle][(x-5)*5+(y-5)] ? "black" : "") + '" style="left:' + (x * 10) + 'vmin;top:' + (y * 10) + 'vmin"></div>';
+  for(y = 0; y < 11; y++){
+    puzzle.innerHTML += '<div data-x=' + x + ' data-y=' + y + ' id=cell' + x + '-' + y + ' class="cell '+ (x < 5 || x > 9 || y < 3 || y > 7 ? "grass " : +puzzles[currentpuzzle][(x-5)*5+(y-3)] ? "black" : "") + '" style="left:' + (x * 10) + 'vmin;top:' + (y * 10) + 'vmin"></div>';
   }
 }
 
@@ -161,6 +161,7 @@ movesnake = () => {
     }
   }
   for(i = 0; i < 6; i++){
+    
     window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(.5vmin)";
     window["snakecube" + i].style.transform = "rotateZ(" + (i ? 0 : snakeangles[0]) + "deg)";
     cell = window["cell" + snakepos[i][0] + "-" + snakepos[i][1]];
