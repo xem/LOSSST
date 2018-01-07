@@ -87,9 +87,9 @@ html, body {
   height: 150vmin;
   border-radius: 5vmin;
   border: .2vmin solid #000;
-  -moz-transform: translateX(-50%) translateY(-52%) translateZ(30vmin) rotateX(20deg);
-  -webkit-transform: translateX(-50%) translateY(-52%) translateZ(30vmin) rotateX(20deg);
-  transform: translateX(-50%) translateY(-52%) translateZ(30vmin) rotateX(20deg);
+  -moz-transform: translateX(-50%) translateY(-52%) translateZ(20vmin) rotateX(15deg);
+  -webkit-transform: translateX(-50%) translateY(-52%) translateZ(20vmin) rotateX(15deg);
+  transform: translateX(-50%) translateY(-52%) translateZ(20vmin) rotateX(15deg);
   background: radial-gradient(#3F7D1F, #034301);
 }
 
