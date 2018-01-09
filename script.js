@@ -5,6 +5,7 @@ snakeangles = [-90];
 headangle = -90;
 lastcell = null;
 inbounds = 0;
+mousedown = 0;
 grabbed = 0;
 
 // Puzzles
@@ -34,10 +35,16 @@ for(x = 0; x < 15; x++){
 }
 
 // Pointer events
-scene.ontouchmove = e => {
+scene.ontouchstart = scene.ontouchmove = e => {
   e.preventDefault();
   e.stopPropagation();
+  mousedown = 1;
   mousemove(document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY), 1);
+}
+
+scene.onmousedown = e => {
+  mousedown = 1;
+  scene.onmousemove();
 }
 
 scene.onmousemove = e => {
@@ -46,10 +53,17 @@ scene.onmousemove = e => {
   mousemove(document.elementFromPoint(e.clientX, e.clientY), 1);
 }
 
+scene.ontouchend = scene.onmouseup = e => {
+  grabbed = 0;
+  mousedown = 0;
+}
+
 mousemove = (cell, pathfinding) => {
+  if(!mousedown) return;
+  
   var newx, newy, tilex, tiley, ok, headangle, newcell, c;
 
-  if(cell.classList.contains("cell")){
+  if(cell && cell.classList && cell.classList.contains("cell")){
     tilex = +cell.dataset.x;
     tiley = +cell.dataset.y;
     ok = 1;
