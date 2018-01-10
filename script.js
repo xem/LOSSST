@@ -216,18 +216,19 @@ movesnake = () => {
       cell.classList.remove("blue", "red");
     }
   }
+  
+  inbounds = 1;
   for(i = 0; i < snakelength; i++){
     
     window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(.5vmin)";
     window["snakecube" + i].style.transform = "rotateZ(" + (i ? 0 : snakeangles[0]) + "deg)";
     cell = window["cell" + snakepos[i][0] + "-" + snakepos[i][1]];
-    if(i == 0){
-      if(cell && !cell.classList.contains("grass")){
-        inbounds = 1;
-        cell.classList.add(cell.classList.contains("black") ? "blue" : "red");
-      }
-      else {
+    if(cell){
+      if(cell.classList.contains("grass")){
         inbounds = 0;
+      }
+      else{
+        cell.classList.add(cell.classList.contains("black") ? "blue" : "red");
       }
     }
   }
