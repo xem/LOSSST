@@ -7,7 +7,7 @@ lastcell = null;
 inbounds = 0;
 mousedown = 0;
 grabbed = 0;
-nomusic = 1;
+nextlevelwait = 0;
 
 // Puzzles
 puzzles = [
@@ -28,6 +28,13 @@ puzzles = [
 01110\
 01110\
 00000",
+
+"00000\
+00000\
+00000\
+00000\
+00000",
+
 ];
 
 currentpuzzle = 0;
@@ -225,28 +232,27 @@ movesnake = () => {
     }
   }
   if(inbounds && document.querySelectorAll(".cell.red").length == 0){
-    console.log("won");
-    for(i of document.querySelectorAll(".cell.blue")){
-      i.classList.remove("blue");
-      i.classList.add("green");
-    }
-    if(currentpuzzle < puzzles.length - 1){
-      setTimeout(
-        e => {
-          currentpuzzle++;
-          nomusic = 1;
-          draw();
-          grabbed = 0;
-        }, 500 
-      );
+    if(!nextlevelwait){
+      console.log("won");
+      for(i of document.querySelectorAll(".cell.blue")){
+        i.classList.remove("blue");
+        i.classList.add("green");
+      }
+      if(currentpuzzle < puzzles.length - 1){
+          nextlevelwait = 1;
+          setTimeout(
+            e => {
+              currentpuzzle++;
+              inbounds = 0;
+              nextlevelwait = 0;
+              draw();
+              grabbed = 0;
+            },
+            500 
+          );
+      }
     }
   }
-  
-  if(!nomusic){
-    // play music
-  }
-  nomusic = 1;
-  setTimeout("nomusic=0",50);
 }
 
 onmousedown = onmousemove = onmouseup = /*oncontextmenu =*/ ontouchstart = ontouchmove = ontouchend = onclick = ondblclick = onscroll = function(e){
