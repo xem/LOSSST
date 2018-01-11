@@ -87,14 +87,21 @@ body {
 
 #scene {
   width: 150vmin;
-  height: 110vmin;
   border-radius: 5vmin;
-  -moz-transform: translateX(-50%) translateY(-52%) translateZ(30vmin) rotateX(10deg);
-  -webkit-transform: translateX(-50%) translateY(-52%) translateZ(30vmin) rotateX(10deg);
-  transform: translateX(-50%) translateY(-52%) translateZ(30vmin) rotateX(10deg);
+  -moz-transform: translateX(-50%) translateY(-51%) translateZ(30vmin) rotateX(5deg);
+  -webkit-transform: translateX(-50%) translateY(-51%) translateZ(30vmin) rotateX(5deg);
+  transform: translateX(-50%) translateY(-51%) translateZ(30vmin) rotateX(5deg);
   -moz-transition: -moz-transform 1s;
   -webkit-transition: -webkit-transform 1s;
   transition: transform 1s;
+}
+
+#scene.even {
+  height: 120vmin;
+}
+
+#scene.odd {
+  height: 110vmin;
 }
 
 
@@ -112,7 +119,7 @@ body {
   top: 0;
 }
 
-#snake, #snake * {
+#snake, #snake *, #wraps {
   -moz-pointer-events: none;
   -webkit-pointer-events: none;
   pointer-events: none;
@@ -195,7 +202,7 @@ body {
   height: 10vmin;
   position: absolute;
   background: #fff;
-  border: .3vmin solid #000;
+  border: .4vmin solid #000 ;
 }
 
 .cell.grass {
@@ -217,4 +224,18 @@ body {
 
 .cell.green {
   background: #2d4;
+}
+
+#wraps {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: linear-gradient(45deg, rgba(0,0,0,.5), rgba(255,255,255,.5));
+  border: .5vmin solid #000;
 }
