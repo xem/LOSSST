@@ -25,15 +25,16 @@ puzzles = [
 ],
 
 [
-5, // size
+6, // size
 1, // wrap
 1, // ground
 0, // wall
-"01000\
-11000\
-00000\
-11001\
-01000",
+"010000\
+110000\
+000000\
+000000\
+110001\
+010000",
 ],
 
 [
@@ -118,13 +119,13 @@ draw = e => {
   // Wraps
   wraps.innerHTML = "";
   if(puzzles[currentpuzzle][1]){
-    wraps.innerHTML += "<div class='wrap back' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX(50vmin)translateY(20vmin) translateZ(10vmin)rotateX(-90deg)'></div>";
+    wraps.innerHTML += "<div class='wrap back' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX(50vmin)translateY("+((5.5 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5) - puzzles[currentpuzzle][0] / 2) * 10)+"vmin) translateZ(10vmin)rotateX(-90deg)'></div>";
     
-    wraps.innerHTML += "<div class='wrap back' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX(75vmin)translateY(45vmin) translateZ(10vmin)rotateX(-90deg)rotateY(-90deg)'></div>";
+    wraps.innerHTML += "<div class='wrap right' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX("+((5 + puzzles[currentpuzzle][0] / 2) * 10)+"vmin)translateY("+((5.5 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5)) * 10)+"vmin) translateZ(10vmin)rotateX(-90deg)rotateY(-90deg)'></div>";
     
-    wraps.innerHTML += "<div class='wrap back' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX(25vmin)translateY(45vmin) translateZ(10vmin)rotateX(-90deg)rotateY(90deg)'></div>";
+    wraps.innerHTML += "<div class='wrap left' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX("+((5 - puzzles[currentpuzzle][0] / 2) * 10)+"vmin)translateY("+((5.5 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5)) * 10)+"vmin) translateZ(10vmin)rotateX(-90deg)rotateY(90deg)'></div>";
     
-    wraps.innerHTML += "<div class='wrap back' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX(50vmin)translateY(70vmin) translateZ(10vmin)rotateX(-90deg)rotateY(180deg)'></div>";
+    wraps.innerHTML += "<div class='wrap front' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX(50vmin)translateY("+((5.5 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5) + puzzles[currentpuzzle][0] / 2) * 10)+"vmin) translateZ(10vmin)rotateX(-90deg)rotateY(180deg)'></div>";
   }
 
   // Puzzle
@@ -221,31 +222,31 @@ mousemove = (cell, pathfinding) => {
       if(puzzles[currentpuzzle][1] && inbounds[0]){
       
         console.log("check wrap");
-        if((tilex == 4 && tiley == snakepos[0][1])){
+        if((tilex == (7.5 - puzzles[currentpuzzle][0]/2 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5)) && tiley == snakepos[0][1])){
           headangle = 90; // left
           ok = grabbed = 1;
-          tilex = 9;
+          tilex = 7.5 + puzzles[currentpuzzle][0]/2 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5);
           grabbed = 0;
           mousedown = 0;
         }
-        else if(tilex == snakepos[0][0] && tiley == 2){
+        else if(tilex == snakepos[0][0] && tiley == (5.5 - puzzles[currentpuzzle][0]/2 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5))){
           headangle = 180; // top
           ok = grabbed = 1;
-          tiley = 7;
+          tiley = 5.5 + puzzles[currentpuzzle][0]/2 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5);;
           grabbed = 0;
           mousedown = 0;
         }
-        else if(tilex == 10 && tiley == snakepos[0][1]){
+        else if(tilex == (7.5 + 1 + puzzles[currentpuzzle][0]/2 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5)) && tiley == snakepos[0][1]){
           headangle = -90; // right
           ok = grabbed = 1;
-          tilex = 5;
+          tilex = 7.5 - puzzles[currentpuzzle][0]/2 + 1 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5);
           grabbed = 0;
           mousedown = 0;
         }
-        else if(tilex == snakepos[0][0] && tiley == 8){
+        else if(tilex == snakepos[0][0] && tiley == (5.5 + 1 + puzzles[currentpuzzle][0]/2 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5))){
           headangle = 0; // bottom
           ok = grabbed = 1;
-          tiley = 3;
+          tiley = 5.5 - puzzles[currentpuzzle][0]/2 + 1 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5);;
           grabbed = 0;
           mousedown = 0;
         }

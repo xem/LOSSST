@@ -88,9 +88,9 @@ body {
 #scene {
   width: 150vmin;
   border-radius: 5vmin;
-  -moz-transform: translateX(-50%) translateY(-51%) translateZ(30vmin) rotateX(5deg);
-  -webkit-transform: translateX(-50%) translateY(-51%) translateZ(30vmin) rotateX(5deg);
-  transform: translateX(-50%) translateY(-51%) translateZ(30vmin) rotateX(5deg);
+  -moz-transform: translateX(-50%) translateY(-50%) translateZ(25vmin) rotateX(5deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) translateZ(25vmin) rotateX(5deg);
+  transform: translateX(-50%) translateY(-50%) translateZ(25vmin) rotateX(5deg);
   -moz-transition: -moz-transform 1s;
   -webkit-transition: -webkit-transform 1s;
   transition: transform 1s;
@@ -107,9 +107,9 @@ body {
 
 @media screen and (orientation: portrait) {
   #scene {
-    -moz-transform: translateX(-50%) translateY(-52%) rotateZ(90deg) translateZ(30vmin) rotateY(-10deg);
-    -webkit-transform: translateX(-50%) translateY(-52%) rotateZ(90deg) translateZ(30vmin) rotateY(-10deg);
-    transform: translateX(-50%) translateY(-52%) rotateZ(90deg) translateZ(30vmin) rotateY(-10deg);
+    -moz-transform: translateX(-50%) translateY(-50%) rotateZ(90deg) translateZ(25vmin) rotateY(-10deg);
+    -webkit-transform: translateX(-50%) translateY(-50%) rotateZ(90deg) translateZ(25vmin) rotateY(-10deg);
+    transform: translateX(-50%) translateY(-50%) rotateZ(90deg) translateZ(25min) rotateY(-10deg);
   }
 }
 
@@ -238,4 +238,8 @@ body {
   left: 0;
   background: linear-gradient(45deg, rgba(0,0,0,.5), rgba(255,255,255,.5));
   border: .5vmin solid #000;
+}
+
+.wrap div {
+  transform-origin: center center;
 }
