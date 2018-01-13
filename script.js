@@ -2,40 +2,19 @@
 snakelength = 7;
 snakepos = [];
 snakeangles = [];
+wrap = [];
 headangle = 0;
 lastcell = null;
 inbounds = [];
 mousedown = 0;
 grabbed = 0;
 nextlevelwait = 0;
+won = 0;
+goingback = 0;
 
 // Puzzles
 puzzles = [
 
-[
-5, // size
-1, // wrap
-1, // ground
-0, // wall
-"01010\
-01110\
-00000\
-00010\
-00010",
-],
-
-[
-6, // size
-1, // wrap
-1, // ground
-0, // wall
-"010000\
-110000\
-000000\
-000000\
-110001\
-010000",
-],
 
 [
 5, // size
@@ -76,14 +55,42 @@ puzzles = [
 
 [
 5, // size
-0, // wrap
+1, // wrap
 1, // ground
 0, // wall
-"00000\
+"01010\
+01110\
 00000\
-00000\
-00000\
-00000"
+00010\
+00010",
+],
+
+[
+6, // size
+1, // wrap
+1, // ground
+0, // wall
+"010000\
+110000\
+000000\
+000000\
+110001\
+010000",
+],
+
+
+[
+7, // size
+1, // wrap
+1, // ground
+0, // wall
+"1000011\
+0000000\
+0000000\
+0000000\
+0000000\
+0000010\
+1000011",
 ]
 
 ];
@@ -95,7 +102,8 @@ currentpuzzle = 0;
 draw = e => {
 
   // snake
-  snakepos = [[3,5],[2,5],[1,5],[0,5],[-1,5],[-2,5],[-3,5]];
+  snakepos = [[2,5],[1,5],[0,5],[-1,5],[-2,5],[-3,5],[-4,5]];
+  wrap = [];
   inbounds = [0,0,0,0,0,0,0];
   snakeangles = [-90];
   headangle = -90;
@@ -119,13 +127,13 @@ draw = e => {
   // Wraps
   wraps.innerHTML = "";
   if(puzzles[currentpuzzle][1]){
-    wraps.innerHTML += "<div class='wrap back' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX(50vmin)translateY("+((5.5 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5) - puzzles[currentpuzzle][0] / 2) * 10)+"vmin) translateZ(10vmin)rotateX(-90deg)'></div>";
+    wraps.innerHTML += "<div class='wrap back' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX("+[0,0,0,0,0,50,50,40][puzzles[currentpuzzle][0]]+"vmin)translateY("+((5.5 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5) - puzzles[currentpuzzle][0] / 2) * 10)+"vmin) translateZ(10vmin)rotateX(-90deg)'></div>";
     
-    wraps.innerHTML += "<div class='wrap right' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX("+((5 + puzzles[currentpuzzle][0] / 2) * 10)+"vmin)translateY("+((5.5 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5)) * 10)+"vmin) translateZ(10vmin)rotateX(-90deg)rotateY(-90deg)'></div>";
+    wraps.innerHTML += "<div class='wrap right' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX("+[0,0,0,0,0,25,20,5][puzzles[currentpuzzle][0]]+"vmin)translateY("+((5.5 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5)) * 10)+"vmin) translateZ(10vmin)rotateX(90deg)rotateY(-90deg)'></div>";
     
-    wraps.innerHTML += "<div class='wrap left' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX("+((5 - puzzles[currentpuzzle][0] / 2) * 10)+"vmin)translateY("+((5.5 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5)) * 10)+"vmin) translateZ(10vmin)rotateX(-90deg)rotateY(90deg)'></div>";
+    wraps.innerHTML += "<div class='wrap left' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX("+[0,0,0,0,0,75,80,75][puzzles[currentpuzzle][0]]+"vmin)translateY("+((5.5 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5)) * 10)+"vmin) translateZ(10vmin)rotateX(90deg)rotateY(90deg)'></div>";
     
-    wraps.innerHTML += "<div class='wrap front' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX(50vmin)translateY("+((5.5 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5) + puzzles[currentpuzzle][0] / 2) * 10)+"vmin) translateZ(10vmin)rotateX(-90deg)rotateY(180deg)'></div>";
+    wraps.innerHTML += "<div class='wrap front' style='width:"+(puzzles[currentpuzzle][0] * 10) + "vmin;height:20vmin;transform:translateX("+[0,0,0,0,0,50,50,40][puzzles[currentpuzzle][0]]+"vmin)translateY("+((5.5 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5) + puzzles[currentpuzzle][0] / 2) * 10)+"vmin) translateZ(10vmin)rotateX(-90deg)rotateY(180deg)'></div>";
   }
 
   // Puzzle
@@ -179,6 +187,7 @@ scene.ontouchend = scene.onmouseup = e => {
 
 mousemove = (cell, pathfinding) => {
   if(!mousedown) return;
+  if(won) return;
   
   var newx, newy, tilex, tiley, ok, headangle, newcell, c;
 
@@ -228,6 +237,7 @@ mousemove = (cell, pathfinding) => {
           tilex = 7.5 + puzzles[currentpuzzle][0]/2 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5);
           grabbed = 0;
           mousedown = 0;
+          wrap.unshift(1);
         }
         else if(tilex == snakepos[0][0] && tiley == (5.5 - puzzles[currentpuzzle][0]/2 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5))){
           headangle = 180; // top
@@ -235,6 +245,7 @@ mousemove = (cell, pathfinding) => {
           tiley = 5.5 + puzzles[currentpuzzle][0]/2 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5);;
           grabbed = 0;
           mousedown = 0;
+          wrap.unshift(1);
         }
         else if(tilex == (7.5 + 1 + puzzles[currentpuzzle][0]/2 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5)) && tiley == snakepos[0][1]){
           headangle = -90; // right
@@ -242,6 +253,7 @@ mousemove = (cell, pathfinding) => {
           tilex = 7.5 - puzzles[currentpuzzle][0]/2 + 1 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5);
           grabbed = 0;
           mousedown = 0;
+          wrap.unshift(1);
         }
         else if(tilex == snakepos[0][0] && tiley == (5.5 + 1 + puzzles[currentpuzzle][0]/2 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5))){
           headangle = 0; // bottom
@@ -249,6 +261,10 @@ mousemove = (cell, pathfinding) => {
           tiley = 5.5 - puzzles[currentpuzzle][0]/2 + 1 + ((puzzles[currentpuzzle][0] % 2) ? -1 : -.5);;
           grabbed = 0;
           mousedown = 0;
+          wrap.unshift(1);
+        }
+        else {
+          wrap.unshift(0);
         }
         
         // Check collisions after wrap
@@ -263,29 +279,34 @@ mousemove = (cell, pathfinding) => {
         snakepos.unshift([tilex, tiley]);
         snakeangles.unshift(headangle);
         movesnake();
+        goingback = 0;
         return true;
       }
       
       // Try to go in diagonals in 2 steps
       if((tilex == snakepos[0][0] - 1 && tiley == snakepos[0][1] - 1)){
+        goingback = 0;
         return (
           mousemove(window["cell" + (snakepos[0][0] - 1) + '-' + (snakepos[0][1])], 0)
           || mousemove(window["cell" + (snakepos[0][0]) + '-' + (snakepos[0][1] - 1)], 0)
         )
       }
       else if(tilex == snakepos[0][0] - 1 && tiley == snakepos[0][1] + 1){
+        goingback = 0;
         return (
           mousemove(window["cell" + (snakepos[0][0] - 1) + '-' + (snakepos[0][1])], 0) 
           || mousemove(window["cell" + (snakepos[0][0]) + '-' + (snakepos[0][1] + 1)], 0)
         )
       }
       else if(tilex == snakepos[0][0] + 1 && tiley == snakepos[0][1] - 1){
+        goingback = 0;
         return (
           mousemove(window["cell" + (snakepos[0][0] + 1) + '-' + (snakepos[0][1])], 0) 
           || mousemove(window["cell" + (snakepos[0][0]) + '-' + (snakepos[0][1] - 1)], 0)
         )
       }
       else if(tilex == snakepos[0][0] + 1 && tiley == snakepos[0][1] + 1){
+        goingback = 0;
         return (
           mousemove(window["cell" + (snakepos[0][0] + 1) + '-' + (snakepos[0][1])], 0) 
           || mousemove(window["cell" + (snakepos[0][0]) + '-' + (snakepos[0][1] + 1)], 0)
@@ -317,7 +338,9 @@ mousemove = (cell, pathfinding) => {
       }
       snakepos.shift();
       snakeangles.shift();
+      wrap.shift();
       headangle = snakeangles[0];
+      goingback = 1;
       movesnake();
       return true;
     }
@@ -342,16 +365,27 @@ movesnake = () => {
   
   // Check if cube is in bounds, if yes, color the cell in blue or red
   for(i = 0; i < snakelength; i++){
-    inbounds[i] = 1;
-    window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(.5vmin)";
-    window["snakecube" + i].style.transform = "rotateZ(" + (i ? 0 : snakeangles[0]) + "deg)";
-    cell = window["cell" + snakepos[i][0] + "-" + snakepos[i][1]];
-    if(cell){
-      if(cell.classList.contains("grass")){
-        inbounds[i] = 0;
-      }
-      else{
-        cell.classList.add(cell.classList.contains("black") ? "blue" : "red");
+    console.log(goingback);
+    if(wrap[i] && !goingback){
+      window["snakecubemove" + i].style.transform = window["snakecubemove" + i].style.transform + "scale(.1) scaleZ(.1)";
+      setTimeout('window["snakecubemove'+i+'"].style.transition = "none";', 150);
+      setTimeout('window["snakecubemove'+i+'"].style.transform = "translateX(" + (snakepos['+i+'][0] * 10 + 1) + "vmin) translateY(" + (snakepos['+i+'][1] * 10 + 1) + "vmin) translateZ(.5vmin) scale(.1) scaleZ(.1)"',160);
+      setTimeout('window["snakecube'+i+'"].style.transform = "rotateZ(" + ('+i+' ? 0 : snakeangles[0]) + "deg)"; cell = window["cell" + snakepos['+i+'][0] + "-" + snakepos['+i+'][1]]; if(cell){ if(cell.classList.contains("grass")){inbounds['+i+'] = 0;} else{cell.classList.add(cell.classList.contains("black") ? "blue" : "red");}}',170);
+      setTimeout('window["snakecubemove'+i+'"].style.transition = "";', 180);
+      setTimeout('window["snakecubemove'+i+'"].style.transform = "translateX(" + (snakepos['+i+'][0] * 10 + 1) + "vmin) translateY(" + (snakepos['+i+'][1] * 10 + 1) + "vmin) translateZ(.5vmin)"',190);
+    }
+    else {
+      inbounds[i] = 1;
+      window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(.5vmin)";
+      window["snakecube" + i].style.transform = "rotateZ(" + (i ? 0 : snakeangles[0]) + "deg)";
+      cell = window["cell" + snakepos[i][0] + "-" + snakepos[i][1]];
+      if(cell){
+        if(cell.classList.contains("grass")){
+          inbounds[i] = 0;
+        }
+        else{
+          cell.classList.add(cell.classList.contains("black") ? "blue" : "red");
+        }
       }
     }
   }
@@ -360,6 +394,7 @@ movesnake = () => {
   if(inbounds.indexOf(0) == -1 && document.querySelectorAll(".cell.red").length == 0){
     if(!nextlevelwait){
       console.log("won");
+      won = 1;
       for(i of document.querySelectorAll(".cell.blue")){
         i.classList.remove("blue");
         i.classList.add("green");
@@ -374,6 +409,7 @@ movesnake = () => {
               draw();
               grabbed = 0;
               mousedown = 0;
+              won = 0;
             },
             500 
           );
