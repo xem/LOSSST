@@ -107,7 +107,7 @@ mousemove = (cell) => {
       snakeangles.unshift(angle);
     }
     movesnake();
-    with(new AudioContext)with(createOscillator())connect(destination),frequency.value=440*1.06**(13-(z>12?z--:z)),start(0),stop(.1);
+    with(new AudioContext)with(createOscillator())connect(destination),frequency.value=440*1.06**(13-z),start(0),stop(.1);
     lock = 1;
     setTimeout("lock = 0", 100);
   }
