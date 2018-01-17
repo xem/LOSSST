@@ -1,0 +1,235 @@
+* {
+  margin: 0;
+  padding: 0;
+  font: 2.5vmin/5.5vmin arial,sans-serif;
+  vertical-align: middle;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(circle, #5F9D3F, #034301 200vmin);
+}
+
+#perspective {
+  width: 0;
+  height: 0;
+  perspective: 120vmin;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+#perspective * {
+  transform-style: preserve-3d;
+}
+
+#scene {
+  width: 300vmin;
+  height: 300vmin;
+  border-radius: 5vmin;
+  transform: translateX(0) translateY(0) translateZ(20vmin) rotateX(10deg);
+  transition: transform 1s;
+  xbackground: radial-gradient(circle, #5F9D3F, #034301 200vmin);
+}
+
+#snake {
+  position: absolute;
+  top: 0;
+}
+
+#snakecube, #snakecube *, #wraps {
+  -moz-pointer-events: none;
+  -webkit-pointer-events: none;
+  pointer-events: none;
+}
+
+.cube {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.cube > div {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.cube .u {
+  transform: rotateY(90deg)translateX(-100%)rotateY(-90deg);
+}
+
+.cube .l {
+  transform: rotateX(-90deg)translateY(-50%)translateX(-50%)rotateY(-90deg);
+}
+
+.cube .r {
+  transform: rotateX(-90deg)translateY(-50%)translateX(50%)rotateY(90deg);
+}
+
+.cube .f {
+  transform: translateY(50%)rotateX(-90deg)translateY(-50%);
+}
+.cube .b {
+  transform: translateY(-50%)rotateX(-90deg)translateY(-50%)rotateY(180deg);
+}
+
+.snakecubemove {
+  -moz-transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.snakecubemove {
+  width: 8vmin;
+  height: 8vmin;
+  transition: transform .15s;
+}
+
+.snakeshadow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.25);
+  transform: translateX(14%) translateY(14%) translateZ(-.25vh);
+}
+
+.snakecontrol {
+  width: 25vmin;
+  height: 25vmin;
+  background: #0af;
+  position: fixed;
+  transform: rotateZ(45deg);
+}
+
+.snakecontrol.front {
+  margin-top: -32vmin;
+  margin-left: -11vmin;
+}
+
+.snakecontrol.back {
+  margin-top: 13vmin;
+  margin-left: -10vmin;
+}
+
+.snakecontrol.left {
+  margin-top: -9vmin;
+  margin-left: -33vmin;
+}
+
+.snakecontrol.right {
+  margin-top: -10vmin;
+  margin-left: 12vmin;
+}
+
+#snakecubemove0 {
+  width: 8.5vmin;
+  height: 8.5vmin;
+}
+
+.cube.snakecube {
+  width: 100%;
+  height: 100%;
+}
+
+.cube.snakecube > div {
+  box-shadow: 0 0 0 .2vmin #000 inset;
+  text-align: center;
+  background: #b80;
+}
+
+.cube.snakecube .u {
+  background: #fb3;
+}
+
+.cube.snakecube .f {
+  line-height: 3vmin;
+  background: #da2;
+}
+
+.cube.snakecube .tongue {
+  background: none;
+  box-shadow: none;
+  color: red;
+  font: 5vmin/4vmin arial;
+  text-align: center;
+  transform: rotateZ(180deg) translateY(-4vmin) translateZ(4vmin);
+}
+
+.mouth {
+  font: 5vmin/8vmin a;
+}
+
+.eyes {
+  font: 5vmin/8vmin a;
+}
+
+#puzzle {
+  width: 100%;
+  height: 100%;
+}
+
+.cell {
+  width: 10.1vmin;
+  height: 10.1vmin;
+  position: absolute;
+  background: #fff;
+  border: .4vmin solid #000 ;
+}
+
+.cell.grass {
+  background: none;
+  border: none;
+}
+
+.cell.black {
+  background: #000;
+}
+
+.cell.blue {
+  background: #2af;
+}
+
+.cell.red {
+  background: red;
+}
+
+.cell.green {
+  background: #2d4;
+}
+
+#wraps {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: linear-gradient(45deg, rgba(0,0,0,.5), rgba(255,255,255,.5));
+  border: .5vmin solid #000;
+}
+
+.wrap div {
+  transform-origin: center center;
+}
+
+button {
+  width: 8vmin;
+  height: 8vmin;
+  font: 5vmin/6vmin arial;
+  position: absolute;
+}
