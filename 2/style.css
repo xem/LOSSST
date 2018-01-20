@@ -15,7 +15,8 @@
 html, body {
   height: 100%;
   overflow: hidden;
-  background: radial-gradient(circle, #5F9D3F, #034301 200vmin);
+  background: #000;
+  xbackground: radial-gradient(circle, #5F9D3F, #034301 200vmin);
 }
 
 #perspective {
@@ -35,9 +36,9 @@ html, body {
   width: 300vmin;
   height: 300vmin;
   border-radius: 5vmin;
-  transform: translateX(0) translateY(0) translateZ(20vmin) rotateX(10deg);
-  transition: transform 1s;
-  xbackground: radial-gradient(circle, #5F9D3F, #034301 200vmin);
+  transform: translateX(0) translateY(0) translateZ(20vmin) rotateX(30deg);
+  transition: .2s;
+  background: radial-gradient(circle, #5F9D3F, #034301 200vmin);
 }
 
 #snake {
@@ -109,6 +110,7 @@ html, body {
   width: 25vmin;
   height: 25vmin;
   background: #0af;
+  opacity: .1;
   position: fixed;
   transform: rotateZ(45deg);
 }
