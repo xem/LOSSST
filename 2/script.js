@@ -18,6 +18,7 @@ move_b =
 move_f = 
 move_l = 
 move_r = 0;
+cell = null;
 
 
 // Draw scene
@@ -51,78 +52,77 @@ draw = e => {
   
   movesnake();
   
-  control_f.ontouchstart = control_f.onmouseover = control_f.onmousedown = control_f.onmousemove = e => {
-    move_b = move_l = move_r = 0;
-    move_f = 1;
-    mousemove();
-  }
-
-  control_f.ontouchend = control_f.onmouseout = e => {
-    move_f = 0;
-  }
   
-  
-  control_b.ontouchstart = control_b.onmouseover = control_b.onmousedown = control_b.onmousemove = e => {
-    move_f= move_l = move_r = 0;
-    move_b = 1;
-    mousemove();
-  }
-
-  control_b.ontouchend = control_b.onmouseout = e => {
-    move_b = 0;
-  }
-  
-  
-  control_l.ontouchstart = control_l.onmouseover = control_l.onmousedown = control_l.onmousemove = e => {
-    move_f = move_b = move_r = 0;
-    move_l = 1;
-    mousemove();
-  }
-
-  control_l.ontouchend = control_l.onmouseout = e => {
-    move_l = 0;
-  }
-  
-  
-  control_r.ontouchstart = control_r.onmouseover = control_r.onmousedown = control_r.onmousemove = e => {
-    move_f = move_b = move_l = 0;
-    move_r = 1;
-    mousemove();
-  }
-
-  control_r.ontouchend = control_r.onmouseout = e => {
-    move_r = 0;
-  }
 }
 
-mousemove = (cell) => {
+// Pointer events
+scene.ontouchstart = scene.ontouchmove = e => {
+  e.preventDefault();
+  e.stopPropagation();
+  mousedown = 1;
+  mousemove(cell = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY), 1);
+}
+
+scene.onmousedown = scene.onmouseover = e => {
+  mousedown = 1;
+  scene.onmousemove(e);
+}
+
+scene.onmousemove = e => {
+  e.preventDefault();
+  e.stopPropagation();
+  mousemove(cell = document.elementFromPoint(e.clientX, e.clientY), 1);
+}
+
+scene.ontouchend = scene.onmouseup = e => {
+  grabbed = 0;
+  mousedown = 0;
+  cell = null;
+  move_b = move_f = move_l = move_r = 0;
+}
+
+
+mousemove = (el) => {
   //console.log(move_f);
+  
+  if(!el) return;
   
   if(!lock){
     
     pos = [snakepos[0][0], snakepos[0][1], snakepos[0][2]];
     
-    if(move_r){
+    if(el.id == "control_r"){
       pos[0]++;
       angle = -90;
+      move_r = 1;
+      move_b = move_f = move_l = 0;
     }
     
-    else if(move_l){
+    else if(el.id == "control_l"){
       pos[0]--;
       angle = 90;
+      move_l = 1;
+      move_b = move_f = move_r = 0;
     }
     
-    else if(move_f){
+    else if(el.id == "control_f"){
       pos[1]--;
       angle = 180;
+      move_f = 1;
+      move_b = move_l = move_r = 0;
     }
     
-    else if(move_b){
+    else if(el.id == "control_b"){
       pos[1]++;
       angle = 0;
+      move_b = 1;
+      move_f = move_l = move_r = 0;
     }
     
-    else return;
+    else {
+      move_b = move_f = move_l = move_r = 0;
+      return;
+    }
     
     found = 0;
     for(i=0; i<snakelength - 1; i++){
@@ -140,7 +140,7 @@ mousemove = (cell) => {
   }
 }
 
-setInterval(mousemove, 100);
+setInterval('mousemove(cell)', 100);
 
 movesnake = () => {
   var i, cell;
@@ -159,7 +159,7 @@ movesnake = () => {
   }
 }
 
-onmousedown = onmousemove = onmouseup = ontouchstart = ontouchmove = ontouchend = onclick = ondblclick = onscroll = function(e){
+onmousedown = onmousemove = onmouseup = /*oncontextmenu =*/ ontouchstart = ontouchmove = ontouchend = onclick = ondblclick = onscroll = function(e){
   e.preventDefault();
 }
 
