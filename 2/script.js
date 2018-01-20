@@ -51,7 +51,8 @@ draw = e => {
   
   movesnake();
   
-  control_f.ontouchstart = control_f.ontouchmove = control_f.onmouseover = control_f.onmousedown = control_f.onmousemove = e => {
+  control_f.ontouchstart = control_f.onmouseover = control_f.onmousedown = control_f.onmousemove = e => {
+    move_b = move_l = move_r = 0;
     move_f = 1;
     mousemove();
   }
@@ -61,7 +62,8 @@ draw = e => {
   }
   
   
-  control_b.ontouchstart = control_b.ontouchmove = control_b.onmouseover = control_b.onmousedown = control_b.onmousemove = e => {
+  control_b.ontouchstart = control_b.onmouseover = control_b.onmousedown = control_b.onmousemove = e => {
+    move_f= move_l = move_r = 0;
     move_b = 1;
     mousemove();
   }
@@ -71,7 +73,8 @@ draw = e => {
   }
   
   
-  control_l.ontouchstart = control_l.ontouchmove = control_l.onmouseover = control_l.onmousedown = control_l.onmousemove = e => {
+  control_l.ontouchstart = control_l.onmouseover = control_l.onmousedown = control_l.onmousemove = e => {
+    move_f = move_b = move_r = 0;
     move_l = 1;
     mousemove();
   }
@@ -81,7 +84,8 @@ draw = e => {
   }
   
   
-  control_r.ontouchstart = control_r.ontouchmove = control_r.onmouseover = control_r.onmousedown = control_r.onmousemove = e => {
+  control_r.ontouchstart = control_r.onmouseover = control_r.onmousedown = control_r.onmousemove = e => {
+    move_f = move_b = move_l = 0;
     move_r = 1;
     mousemove();
   }
