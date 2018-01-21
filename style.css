@@ -1,50 +1,3 @@
-
-#log {
-  position: fixed;
-  display: none;
-}
-
-.cube {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
-.cube > div {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-}
-
-.cube .u {
-  -moz-transform: rotateY(90deg)translateX(-100%)rotateY(-90deg);
-  -webkit-transform: rotateY(90deg)translateX(-100%)rotateY(-90deg);
-  transform: rotateY(90deg)translateX(-100%)rotateY(-90deg);
-}
-
-.cube .l {
-  -moz-transform: rotateX(-90deg)translateY(-50%)translateX(-50%)rotateY(-90deg);
-  -webkit-transform: rotateX(-90deg)translateY(-50%)translateX(-50%)rotateY(-90deg);
-  transform: rotateX(-90deg)translateY(-50%)translateX(-50%)rotateY(-90deg);
-}
-
-.cube .r {
-  -moz-transform: rotateX(-90deg)translateY(-50%)translateX(50%)rotateY(90deg);
-  -webkit-transform: rotateX(-90deg)translateY(-50%)translateX(50%)rotateY(90deg);
-  transform: rotateX(-90deg)translateY(-50%)translateX(50%)rotateY(90deg);
-}
-
-.cube .f {
-  -moz-transform: translateY(50%)rotateX(-90deg)translateY(-50%);
-  -webkit-transform: translateY(50%)rotateX(-90deg)translateY(-50%);
-  transform: translateY(50%)rotateX(-90deg)translateY(-50%);
-}
-.cube .b {
-  -moz-transform: translateY(-50%)rotateX(-90deg)translateY(-50%)rotateY(180deg);
-  -webkit-transform: translateY(-50%)rotateX(-90deg)translateY(-50%)rotateY(180deg);
-  transform: translateY(-50%)rotateX(-90deg)translateY(-50%)rotateY(180deg);
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -62,17 +15,12 @@
 html, body {
   height: 100%;
   overflow: hidden;
-}
-
-body {
-  background: radial-gradient(circle, #5F9D3F, #034301 200vmin);
+  background: #000;
 }
 
 #perspective {
   width: 0;
   height: 0;
-  -moz-perspective: 120vmin;
-  -webkit-perspective: 120vmin;
   perspective: 120vmin;
   position: absolute;
   top: 50%;
@@ -80,49 +28,65 @@ body {
 }
 
 #perspective * {
-  -moz-transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
 #scene {
-  width: 150vmin;
+  width: 210vmin;
+  height: 200vmin;
   border-radius: 5vmin;
-  -moz-transform: translateX(-50%) translateY(-50%) translateZ(15vmin) rotateX(5deg);
-  -webkit-transform: translateX(-50%) translateY(-50%) translateZ(15vmin) rotateX(5deg);
-  transform: translateX(-50%) translateY(-50%) translateZ(15vmin) rotateX(5deg);
-  -moz-transition: -moz-transform 1s;
-  -webkit-transition: -webkit-transform 1s;
-  transition: transform 1s;
+  transform:  rotateX(30deg) translateX(-100vmin) translateY(-100vmin) translateZ(40vmin);
+  transition: .2s;
+  background: radial-gradient(circle, #000 5vmin, #725d11 12vmin, #5F9D3F 15vmin, #034301 200vmin);
 }
-
-#scene.even {
-  height: 120vmin;
-}
-
-#scene.odd {
-  height: 110vmin;
-}
-
-
-@media screen and (orientation: portrait) {
-  #scene {
-    -moz-transform: translateX(-50%) translateY(-50%) rotateZ(90deg) translateZ(15vmin) rotateY(-10deg);
-    -webkit-transform: translateX(-50%) translateY(-50%) rotateZ(90deg) translateZ(15vmin) rotateY(-10deg);
-    transform: translateX(-50%) translateY(-50%) rotateZ(90deg) translateZ(15min) rotateY(-10deg);
-  }
-}
-
 
 #snake {
   position: absolute;
   top: 0;
 }
 
-#snake, #snake *, #wraps {
+.snakecubemove, #wraps {
   -moz-pointer-events: none;
   -webkit-pointer-events: none;
   pointer-events: none;
+}
+
+.snakecontrol {
+  -moz-pointer-events: all;
+  -webkit-pointer-events: all;
+  pointer-events: all;
+}
+
+.cube {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.cube > div {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.cube .u {
+  transform: rotateY(90deg)translateX(-100%)rotateY(-90deg);
+}
+
+.cube .l {
+  transform: rotateX(-90deg)translateY(-50%)translateX(-50%)rotateY(-90deg);
+}
+
+.cube .r {
+  transform: rotateX(-90deg)translateY(-50%)translateX(50%)rotateY(90deg);
+}
+
+.cube .f {
+  transform: translateY(50%)rotateX(-90deg)translateY(-50%);
+}
+
+.cube .b {
+  transform: translateY(-50%)rotateX(-90deg)translateY(-50%)rotateY(180deg);
 }
 
 .snakecubemove {
@@ -135,19 +99,46 @@ body {
 }
 
 .snakecubemove {
-  width:8vmin;
-  height:8vmin;
-  -moz-transition: -moz-transform .15s;
-  -webkit-transition: -webkit-transform .15s;
+  width: 8vmin;
+  height: 8vmin;
   transition: transform .15s;
 }
 
 .snakeshadow {
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,.25);
-  transform:translateX(14%) translateY(14%) translateZ(-.25vh);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.25);
+  transform: translateX(14%) translateY(14%) translateZ(-.25vh);
+}
+
+.snakecontrol {
+  width: 25vmin;
+  height: 25vmin;
+  background: #0af;
+  opacity: .1;
+  position: fixed;
+  transform: rotateZ(45deg);
+}
+
+.snakecontrol.front {
+  margin-top: -32vmin;
+  margin-left: -11vmin;
+}
+
+.snakecontrol.back {
+  margin-top: 13vmin;
+  margin-left: -10vmin;
+}
+
+.snakecontrol.left {
+  margin-top: -9vmin;
+  margin-left: -33vmin;
+}
+
+.snakecontrol.right {
+  margin-top: -10vmin;
+  margin-left: 12vmin;
 }
 
 #snakecubemove0 {
@@ -158,29 +149,43 @@ body {
 .cube.snakecube {
   width: 100%;
   height: 100%;
+  transition: .1s;
+}
+
+.cube.puzzlecube {
+  position: fixed;
+}
+
+.cube.puzzlecube > .d {
+  background: green;
+  position: relative;
+}
+
+.cube.puzzlecube > .d > div {
+  position: absolute;
 }
 
 .cube.snakecube > div {
   box-shadow: 0 0 0 .2vmin #000 inset;
   text-align: center;
-  background:  #b80;
+  background: #b80;
 }
 
 .cube.snakecube .u {
-  background:  #fb3;
+  background: #fb3;
 }
 
 .cube.snakecube .f {
   line-height: 3vmin;
-  background:  #da2;
+  background: #da2;
 }
 
 .cube.snakecube .tongue {
-  background:none;
-  box-shadow:none;
-  color:red;
-  font:5vmin/4vmin arial;
-  text-align:center;
+  background: none;
+  box-shadow: none;
+  color: red;
+  font: 5vmin/4vmin arial;
+  text-align: center;
   transform: rotateZ(180deg) translateY(-4vmin) translateZ(4vmin);
 }
 
@@ -245,8 +250,8 @@ body {
 }
 
 button {
-   width: 8vmin;
-   height: 8vmin;
-   font: 5vmin/6vmin arial;
-   position: absolute;
+  width: 8vmin;
+  height: 8vmin;
+  font: 5vmin/6vmin arial;
+  position: absolute;
 }

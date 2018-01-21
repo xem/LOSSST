@@ -8,15 +8,17 @@
 <meta name="msapplication-tap-highlight" content="no">
 <link rel="stylesheet" href="style.css">
 <title>LOSSST</title>
-<body>
+<body id=b>
+
 <div id=perspective>
   <div id=scene>
-    <button onclick="if(currentpuzzle > 0) { currentpuzzle--; inbounds = [0,0,0,0,0,0,0]; nextlevelwait = 0; draw(); grabbed = 0; mousedown = 0;}" style="transform:translateX(10vmin) translateY(20vmin) translateZ(1vmin)"><</button>
-    <button onclick="if(currentpuzzle < puzzles.length - 1) { currentpuzzle++; inbounds = [0,0,0,0,0,0,0]; nextlevelwait = 0; draw(); grabbed = 0; mousedown = 0; }" style="transform:translateX(20vmin) translateY(20vmin) translateZ(1vmin)">></button>
-    <button onclick="inbounds = [0,0,0,0,0,0,0]; nextlevelwait = 0; draw(); grabbed = 0; mousedown = 0;" style="transform:translateX(10vmin) translateY(30vmin) translateZ(1vmin); width: 18vmin">Reset</button>
-    <div id=puzzle></div>
-    <div id=wraps></div>
-    <div id=snake></div>
+    
   </div>
 </div>
-<script src="script.js"></script>
+
+<script src="init.js"></script>
+<script src="levels.js"></script>
+<script src="inputs.js"></script>
+<script src="render.js"></script>
+<script src="gameplay.js"></script>
+</body>

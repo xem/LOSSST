@@ -1,10 +1,9 @@
-snakelength = 5;
+snakelength = 7;
 snakepos = [];
 snakeangles = [];
 wrap = [];
 headangle = 0;
 lastcell = null;
-inbounds = [];
 mousedown = 0;
 grabbed = 0;
 nextlevelwait = 0;

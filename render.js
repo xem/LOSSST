@@ -2,7 +2,6 @@ render = () => {
 
   scene.innerHTML =
 `<div id=puzzles></div>
-<div id=wraps></div>
 <div id=snake></div>`;
 
   for(i = 0; i < snakelength; i++){
@@ -29,12 +28,17 @@ render = () => {
     puzzles.innerHTML +=
 `<div id="puzzle${i}" class="cube puzzlecube" style="width:${puzzle.size*10}vmin;height:${puzzle.size*10}vmin;left:${puzzle.x*10}vmin;top:${puzzle.y*10}vmin">
   <!--div class="u"></div-->
-  <div class="d"></div>
+  <div id="puzzleground${i}" class="d"></div>
   <!--div class="f"></div>
   <div class="r"></div>
   <div class="l"></div>
   <div class="b"></div-->
 </div>`;
+
+    for(j in puzzle.ground){
+      window["puzzleground"+i].innerHTML+=
+      `<div class="cell ${+(puzzle.ground[j])?"black":"white"}" style="left:${((+j)%puzzle.size) * 10}vmin;top:${~~((+j)/puzzle.size) * 10}vmin"></div>`;
+    }
 
   }
   
@@ -43,7 +47,7 @@ render = () => {
 
   movesnake();
   
-  snakepos[0][2] = 1;
+  snakepos[0][2] = 0;
   
   setTimeout(movesnake, 200);
 }

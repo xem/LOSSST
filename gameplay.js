@@ -11,7 +11,9 @@ mousemove = (el) => {
     
     // Turn right
     if(el.id == "control_r"){
-      pos[0]++;
+      if(snakepos[0][0] < levels[currentroom].width - 1){
+        pos[0]++;
+      }
       
       // From top
       if(angle % 360 == 180 || angle % 360 == -180) angle += 90;
@@ -24,7 +26,9 @@ mousemove = (el) => {
     
     // Turn left
     else if(el.id == "control_l"){
-      pos[0]--;
+      if(snakepos[0][0] > 0){
+        pos[0]--;
+      }
       
       // From top
       if(angle % 360 == 180 || angle % 360 == -180) angle -= 90;
@@ -37,7 +41,9 @@ mousemove = (el) => {
     
     // Turn top
     else if(el.id == "control_f"){
-      pos[1]--;
+      if(snakepos[0][1] > 0){
+        pos[1]--;
+      }
       
       // From left
       if(angle % 360 == 90 || angle % 360 == -270) angle += 90;
@@ -50,7 +56,9 @@ mousemove = (el) => {
     
     // Turn bottom
     else if(el.id == "control_b"){
-      pos[1]++;
+      if(snakepos[0][1] < levels[currentroom].height - 1){
+        pos[1]++;
+      }
       
       // From right
       if(angle % 360 == -90 || angle % 360 == 270) angle += 90;
@@ -67,19 +75,20 @@ mousemove = (el) => {
     }
     
     // Check collisions
-    found = 0;
+    collision = 0;
     for(i = 0; i < snakelength - 1; i++){
       if(snakepos[i][0] == pos[0] && snakepos[i][1] == pos[1] && snakepos[i][2] == pos[2]){
-        found = i;
+        collision = i;
       }
     }
-    if(!found){
+    
+    if(!collision){
       snakepos.unshift(pos);
       snakeangles.unshift(angle);
     }
     
     // Go back
-    if(found == 1){
+    if(collision == 1){
       snakepos.shift();
       snakeangles.shift();
     }
@@ -90,7 +99,7 @@ mousemove = (el) => {
   }
 }
 
-setInterval('mousemove(cell)', 100);
+setInterval('mousemove(cell)', 50);
 
 movesnake = () => {
   var i, cell;
@@ -100,12 +109,30 @@ movesnake = () => {
     window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin)";
     
     window["snakecube" + i].style.transform = "rotateZ(" + (snakeangles[i]) + "deg)";
+  }
+  
+  inbounds = 0;
+  currentpuzzle = null;
     
-    if(i == 0){
-      scene.style.transform0rigin = (snakepos[i][0] * 10 + 1) + "vmin " + (snakepos[i][1] * 10 + 1) + "vmin";
-      
-      scene.style.transform = "rotateX(30deg) translateX(" + (-snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (-snakepos[i][1] * 10 + 1) + "vmin) translateZ(40vmin)";
+  for(i in levels[currentroom].puzzles){
+    puzzle = levels[currentroom].puzzles[i];
+    if(snakepos[0][0] >= puzzle.x && snakepos[0][0] < puzzle.x + puzzle.size
+    && snakepos[0][1] >= puzzle.y && snakepos[0][1] < puzzle.y + puzzle.size){
+      inbounds = 1;
+      currentpuzzle = puzzle;
     }
+  }
+  
+  L(currentpuzzle);
+  
+  if(inbounds) {
+    scene.style.transition = ".5s";
+    scene.style.transform = "rotateX(10deg) translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .8) * 10) + "vmin)";
+  }
+  
+  else {
+    setTimeout('scene.style.transition = ""', 500);
+    scene.style.transform = "rotateX(30deg) translateX(" + (-snakepos[0][0] * 10 + 1) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1) + "vmin) translateZ(40vmin)";
   }
 }
 
