@@ -33,12 +33,12 @@ html, body {
 }
 
 #scene {
-  width: 300vmin;
-  height: 300vmin;
+  width: 210vmin;
+  height: 200vmin;
   border-radius: 5vmin;
-  transform: translateX(0) translateY(0) translateZ(20vmin) rotateX(30deg);
+  transform:  rotateX(30deg) translateX(-100vmin) translateY(-100vmin) translateZ(40vmin);
   transition: .2s;
-  background: radial-gradient(circle, #5F9D3F, #034301 200vmin);
+  background: radial-gradient(circle, #000 5vmin, #725d11 12vmin, #5F9D3F 15vmin, #034301 200vmin);
 }
 
 #snake {
@@ -46,10 +46,16 @@ html, body {
   top: 0;
 }
 
-#snakecube, #snakecube *, #wraps {
+.snakecubemove, #wraps {
   -moz-pointer-events: none;
   -webkit-pointer-events: none;
   pointer-events: none;
+}
+
+.snakecontrol {
+  -moz-pointer-events: all;
+  -webkit-pointer-events: all;
+  pointer-events: all;
 }
 
 .cube {
@@ -79,6 +85,7 @@ html, body {
 .cube .f {
   transform: translateY(50%)rotateX(-90deg)translateY(-50%);
 }
+
 .cube .b {
   transform: translateY(-50%)rotateX(-90deg)translateY(-50%)rotateY(180deg);
 }
@@ -143,6 +150,15 @@ html, body {
 .cube.snakecube {
   width: 100%;
   height: 100%;
+  transition: .1s;
+}
+
+.cube.puzzlecube {
+  position: fixed;
+}
+
+.cube.puzzlecube > .d {
+  background: green;
 }
 
 .cube.snakecube > div {
