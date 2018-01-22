@@ -122,23 +122,23 @@ html, body {
 }
 
 .snakecontrol.front {
-  margin-top: -32vmin;
+  margin-top: -30vmin;
   margin-left: -11vmin;
 }
 
 .snakecontrol.back {
-  margin-top: 13vmin;
+  margin-top: 11vmin;
   margin-left: -10vmin;
 }
 
 .snakecontrol.left {
   margin-top: -9vmin;
-  margin-left: -33vmin;
+  margin-left: -31vmin;
 }
 
 .snakecontrol.right {
   margin-top: -10vmin;
-  margin-left: 12vmin;
+  margin-left: 10vmin;
 }
 
 #snakecubemove0 {

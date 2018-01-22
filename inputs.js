@@ -6,6 +6,8 @@ scene.ontouchstart = scene.ontouchmove = e => {
 }
 
 scene.onmousedown = scene.onmouseover = e => {
+  e.preventDefault();
+  e.stopPropagation();
   mousedown = 1;
   scene.onmousemove(e);
 }
@@ -16,7 +18,7 @@ scene.onmousemove = e => {
   mousemove(cell = document.elementFromPoint(e.clientX, e.clientY), 1);
 }
 
-scene.ontouchend = scene.onmouseup = e => {
+b.onmouseover = b.ontouchstart = scene.ontouchend = scene.onmouseup = e => {
   grabbed = 0;
   mousedown = 0;
   cell = null;

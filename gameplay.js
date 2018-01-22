@@ -95,7 +95,7 @@ mousemove = (el) => {
     
     movesnake();
     lock = 1;
-    setTimeout("lock = 0", 100);
+    setTimeout("lock = 0", inbounds ? 300 : 150);
   }
 }
 
@@ -103,6 +103,8 @@ setInterval('mousemove(cell)', 50);
 
 movesnake = () => {
   var i, cell;
+  
+  clearpuzzle();
   
   // Check if cube is in bounds, if yes, color the cell in blue or red
   for(i = 0; i < snakelength; i++){
@@ -123,16 +125,65 @@ movesnake = () => {
     }
   }
   
-  L(currentpuzzle);
-  
   if(inbounds) {
-    scene.style.transition = ".5s";
+    scene.style.transition = ".75s";
     scene.style.transform = "rotateX(10deg) translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .8) * 10) + "vmin)";
   }
   
   else {
-    setTimeout('scene.style.transition = ""', 500);
+    setTimeout('scene.style.transition = ""', 750);
     scene.style.transform = "rotateX(30deg) translateX(" + (-snakepos[0][0] * 10 + 1) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1) + "vmin) translateZ(40vmin)";
+  }
+  
+  if(inbounds){
+    checkpuzzle();
+  }
+}
+
+clearpuzzle = () => {
+  if(currentpuzzle){
+    for(j in currentpuzzle.ground){
+      window[`cell${currentroom}-${currentpuzzle.index}-${j}`].classList.remove("red","blue");
+    }
+  }
+}
+
+checkpuzzle = () => {
+  if(!currentpuzzle.solved){
+    for(i = 0; i < snakelength; i++){
+      if(snakepos[i][0] >= currentpuzzle.x && snakepos[i][0] < currentpuzzle.x + currentpuzzle.size){
+        
+        cell = window[`cell${currentroom}-${currentpuzzle.index}-${(snakepos[i][1] - currentpuzzle.y) * currentpuzzle.size + (snakepos[i][0] - currentpuzzle.x)}`];
+        if(cell){
+          if(cell.classList.contains("black")){
+            cell.classList.add("blue");
+          }
+          else {
+            cell.classList.add("red");
+          }
+        }
+      }
+    }
+  }
+  
+  solved = 1;
+  if(currentpuzzle){
+    for(j in currentpuzzle.ground){
+      cell = window[`cell${currentroom}-${currentpuzzle.index}-${j}`];
+      if(cell && cell.classList.contains("red")){
+        solved = 0;
+      }
+    }
+  }
+  
+  if(solved){
+    currentpuzzle.solved = 1;
+    for(j in currentpuzzle.ground){
+      cell = window[`cell${currentroom}-${currentpuzzle.index}-${j}`];
+      if(cell.classList.contains("black")){
+        cell.classList.add("green");
+      }
+    }
   }
 }
 

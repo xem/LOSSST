@@ -25,8 +25,9 @@ render = () => {
   
   for(i in levels[currentroom].puzzles){
     puzzle = levels[currentroom].puzzles[i];
+    puzzle.index = i;
     puzzles.innerHTML +=
-`<div id="puzzle${i}" class="cube puzzlecube" style="width:${puzzle.size*10}vmin;height:${puzzle.size*10}vmin;left:${puzzle.x*10}vmin;top:${puzzle.y*10}vmin">
+`<div id="puzzle${currentroom}-${i}" class="cube puzzlecube" style="width:${puzzle.size*10}vmin;height:${puzzle.size*10}vmin;left:${puzzle.x*10}vmin;top:${puzzle.y*10}vmin">
   <!--div class="u"></div-->
   <div id="puzzleground${i}" class="d"></div>
   <!--div class="f"></div>
@@ -36,8 +37,8 @@ render = () => {
 </div>`;
 
     for(j in puzzle.ground){
-      window["puzzleground"+i].innerHTML+=
-      `<div class="cell ${+(puzzle.ground[j])?"black":"white"}" style="left:${((+j)%puzzle.size) * 10}vmin;top:${~~((+j)/puzzle.size) * 10}vmin"></div>`;
+      window["puzzleground" + i].innerHTML +=
+      `<div id="cell${currentroom}-${i}-${j}" class="cell ${+(puzzle.ground[j])?"black":"white"}" style="left:${((+j)%puzzle.size) * 10}vmin;top:${~~((+j)/puzzle.size) * 10}vmin"></div>`;
     }
 
   }
