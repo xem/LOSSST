@@ -141,6 +141,34 @@ html, body {
   margin-left: 10vmin;
 }
 
+.inbounds .snakecontrol {
+  width: 10vmin;
+  height: 10vmin;
+  transform: none;
+}
+
+.inbounds .snakecontrol.front {
+  margin-top: -11vmin;
+  margin-left: -1vmin;
+}
+
+.inbounds .snakecontrol.back {
+  margin-top: 9vmin;
+  margin-left: -1vmin;
+}
+
+.inbounds .snakecontrol.left {
+  margin-top: -1vmin;
+  margin-left: -11vmin;
+}
+
+.inbounds .snakecontrol.right {
+  margin-top: -1vmin;
+  margin-left: 9vmin;
+}
+
+
+
 #snakecubemove0 {
   width: 8.5vmin;
   height: 8.5vmin;

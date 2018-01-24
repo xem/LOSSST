@@ -126,11 +126,13 @@ movesnake = () => {
   }
   
   if(inbounds) {
+    scene.classList.add("inbounds");
     scene.style.transition = ".75s";
     scene.style.transform = "rotateX(10deg) translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .8) * 10) + "vmin)";
   }
   
   else {
+    scene.classList.remove("inbounds");
     setTimeout('scene.style.transition = ""', 750);
     scene.style.transform = "rotateX(30deg) translateX(" + (-snakepos[0][0] * 10 + 1) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1) + "vmin) translateZ(40vmin)";
   }
