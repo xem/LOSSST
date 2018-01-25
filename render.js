@@ -2,6 +2,7 @@ render = () => {
 
   scene.innerHTML =
 `<div id=puzzles></div>
+<div id=trees></div>
 <div id=snake></div>`;
 
   for(i = 0; i < snakelength; i++){
@@ -41,6 +42,13 @@ render = () => {
       `<div id="cell${currentroom}-${i}-${j}" class="cell ${+(puzzle.ground[j])?"black":"white"}" style="left:${((+j)%puzzle.size) * 10}vmin;top:${~~((+j)/puzzle.size) * 10}vmin"></div>`;
     }
 
+  }
+  
+  for(j in levels[currentroom].trees){
+    tree = levels[currentroom].trees[j];
+    window["trees"].innerHTML +=
+    `<div class="tree" style="margin-left:${tree[0] * 10}vmin;margin-bottom:-${tree[1] * 10}vmin"></div>;
+    <div class="treeshadow" style="margin-left:${tree[0] * 10}vmin;margin-bottom:-${tree[1] * 10}vmin"></div>`;
   }
   
   scene.style.width = levels[currentroom].width * 10 + "vmin";

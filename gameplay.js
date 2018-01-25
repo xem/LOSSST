@@ -11,9 +11,7 @@ mousemove = (el) => {
     
     // Turn right
     if(el.id == "control_r"){
-      if(snakepos[0][0] < levels[currentroom].width - 1){
-        pos[0]++;
-      }
+      pos[0]++;
       
       // From top
       if(angle % 360 == 180 || angle % 360 == -180) angle += 90;
@@ -26,9 +24,7 @@ mousemove = (el) => {
     
     // Turn left
     else if(el.id == "control_l"){
-      if(snakepos[0][0] > 0){
-        pos[0]--;
-      }
+      pos[0]--;
       
       // From top
       if(angle % 360 == 180 || angle % 360 == -180) angle -= 90;
@@ -41,9 +37,7 @@ mousemove = (el) => {
     
     // Turn top
     else if(el.id == "control_f"){
-      if(snakepos[0][1] > 0){
-        pos[1]--;
-      }
+      pos[1]--;
       
       // From left
       if(angle % 360 == 90 || angle % 360 == -270) angle += 90;
@@ -56,9 +50,8 @@ mousemove = (el) => {
     
     // Turn bottom
     else if(el.id == "control_b"){
-      if(snakepos[0][1] < levels[currentroom].height - 1){
-        pos[1]++;
-      }
+      
+      pos[1]++;
       
       // From right
       if(angle % 360 == -90 || angle % 360 == 270) angle += 90;
@@ -74,23 +67,43 @@ mousemove = (el) => {
       return;
     }
     
-    // Check collisions
     collision = 0;
+    
+    // Check collisions with itself
     for(i = 0; i < snakelength - 1; i++){
       if(snakepos[i][0] == pos[0] && snakepos[i][1] == pos[1] && snakepos[i][2] == pos[2]){
         collision = i;
       }
     }
     
-    if(!collision){
-      snakepos.unshift(pos);
-      snakeangles.unshift(angle);
+    // Collisions with trees 
+    for(i in levels[currentroom].trees){
+      tree = levels[currentroom].trees[i];
+      if(pos[0] == tree[0] && pos[1] == tree[1]){
+          collision = "tree";
+      };
     }
+    
+    // Collisions with bounds
+    if(
+         pos[0] < 0
+      || pos[0] >= levels[currentroom].width
+      || pos[1] < 0
+      || pos[1] >= levels[currentroom].height
+    ){
+      collision = "bounds";
+    }
+    
     
     // Go back
     if(collision == 1){
       snakepos.shift();
       snakeangles.shift();
+    }
+    
+    else if(!collision){
+      snakepos.unshift(pos);
+      snakeangles.unshift(angle);
     }
     
     movesnake();
@@ -102,6 +115,7 @@ mousemove = (el) => {
 setInterval('mousemove(cell)', 50);
 
 movesnake = () => {
+  
   var i, cell;
   
   clearpuzzle();

@@ -283,3 +283,30 @@ button {
   font: 5vmin/6vmin arial;
   position: absolute;
 }
+
+.tree {
+  width: 50vmin;
+  height: 60vmin;
+  transform-origin: center bottom;
+  transform:  translateY(6vmin) rotateX(-65deg);
+  background: url(tree.png) no-repeat;
+  background-size: 100%;
+  position: absolute;
+  bottom: 100%;
+  left: -20vh;
+  pointer-events: none;
+}
+
+.treeshadow {
+  width: 50vmin;
+  height: 60vmin;
+  transform-origin: center bottom;
+  transform: scaleX(-1) translateY(6vmin) rotateZ(318deg);
+  background: url(treeshadow.png) no-repeat;
+  opacity: .5;
+  background-size: 100%;
+  position: absolute;
+  bottom: 100%;
+  left: -20vh;
+  pointer-events: none;
+}
