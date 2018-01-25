@@ -119,7 +119,8 @@ movesnake = () => {
   for(i in levels[currentroom].puzzles){
     puzzle = levels[currentroom].puzzles[i];
     if(snakepos[0][0] >= puzzle.x && snakepos[0][0] < puzzle.x + puzzle.size
-    && snakepos[0][1] >= puzzle.y && snakepos[0][1] < puzzle.y + puzzle.size){
+    && snakepos[0][1] >= puzzle.y && snakepos[0][1] < puzzle.y + puzzle.size
+    && !puzzle.solved){
       inbounds = 1;
       currentpuzzle = puzzle;
     }
