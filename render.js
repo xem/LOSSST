@@ -1,7 +1,10 @@
 render = () => {
 
   scene.innerHTML =
-`<div id=puzzles></div>
+`<div id=scenedepth></div>
+<div id=puzzles></div>
+<div id=grass></div>
+<div id=stones></div>
 <div id=trees></div>
 <div id=snake></div>`;
 
@@ -9,6 +12,7 @@ render = () => {
     snake.innerHTML +=
 `<div id="snakecubemove${i}" class="snakecubemove">
   <div class="snakeshadow"></div>
+  <div id="snakegrass${i}" class="snakegrass"></div>
   ${i?'':'<div id="control_f" class="snakecontrol front"></div>'}
   ${i?'':'<div id="control_b" class="snakecontrol back"></div>'}
   ${i?'':'<div id="control_l" class="snakecontrol left"></div>'}
@@ -46,13 +50,19 @@ render = () => {
   
   for(j in levels[currentroom].trees){
     tree = levels[currentroom].trees[j];
-    window["trees"].innerHTML +=
-    `<div class="tree" style="margin-left:${tree[0] * 10}vmin;margin-bottom:-${tree[1] * 10}vmin"></div>;
+    trees.innerHTML +=
+    `<div id="tree${j}" class="tree" style="margin-left:${tree[0] * 10}vmin;margin-bottom:-${tree[1] * 10}vmin"><div id="treecontent${j}" class="treecontent"></div></div>;
     <div class="treeshadow" style="margin-left:${tree[0] * 10}vmin;margin-bottom:-${tree[1] * 10}vmin"></div>`;
   }
   
-  scene.style.width = levels[currentroom].width * 10 + "vmin";
-  scene.style.height = levels[currentroom].height * 10 + "vmin";
+  for(j in levels[currentroom].stones){
+    stone = levels[currentroom].stones[j];
+    stones.innerHTML +=
+    `<div class="stone" style="margin-left:${stone[0] * 10}vmin;margin-bottom:-${stone[1] * 10}vmin"></div>;`;
+  }
+  
+  scene.style.width = levels[currentroom].width * 10 + 2 + "vmin";
+  scene.style.height = levels[currentroom].height * 10 + 2 + "vmin";
 
   movesnake();
   

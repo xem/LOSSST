@@ -108,7 +108,7 @@ mousemove = (el) => {
     
     movesnake();
     lock = 1;
-    setTimeout("lock = 0", inbounds ? 300 : 150);
+    setTimeout("lock = 0", inbounds[0] ? 300 : 150);
   }
 }
 
@@ -120,40 +120,56 @@ movesnake = () => {
   
   clearpuzzle();
   
+  inbounds = [];
+  currentpuzzle = null;
+    
+  // Update inbounds status for each cube, and currentpuzzle
+  for(i in levels[currentroom].puzzles){
+    for(j in snakepos){
+      inbounds[j] = 0;
+      puzzle = levels[currentroom].puzzles[i];
+      if(snakepos[j][0] >= puzzle.x && snakepos[j][0] < puzzle.x + puzzle.size
+      && snakepos[j][1] >= puzzle.y && snakepos[j][1] < puzzle.y + puzzle.size){
+        inbounds[j] = 1;
+        if(j == 0){
+          currentpuzzle = puzzle;
+        }
+      }
+    }
+  }
+  
   // Check if cube is in bounds, if yes, color the cell in blue or red
   for(i = 0; i < snakelength; i++){
     window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin)";
     
     window["snakecube" + i].style.transform = "rotateZ(" + (snakeangles[i]) + "deg)";
-  }
-  
-  inbounds = 0;
-  currentpuzzle = null;
     
-  for(i in levels[currentroom].puzzles){
-    puzzle = levels[currentroom].puzzles[i];
-    if(snakepos[0][0] >= puzzle.x && snakepos[0][0] < puzzle.x + puzzle.size
-    && snakepos[0][1] >= puzzle.y && snakepos[0][1] < puzzle.y + puzzle.size
-    && !puzzle.solved){
-      inbounds = 1;
-      currentpuzzle = puzzle;
+    if(snakepos[i][2] == 0){
+      window["snakegrass" + i].style.backgroundPosition = -(snakepos[i][0] * 10 + (snakepos[i][1] * 100)) + "vmin bottom";
+      if(inbounds[i]){
+        window["snakegrass" + i].style.opacity = 0;
+      }
+      else {
+        window["snakegrass" + i].style.opacity = 1;
+      }
     }
   }
   
-  if(inbounds) {
+  for(i in levels[currentroom].trees){
+    window["treecontent" + i].style.transform = `rotateY(${Math.sin(snakepos[i][0] / 30)}rad)`;
+  }
+  
+  if(inbounds[0] && !currentpuzzle.solved) {
     scene.classList.add("inbounds");
     scene.style.transition = ".75s";
     scene.style.transform = "rotateX(10deg) translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .8) * 10) + "vmin)";
+    checkpuzzle();
   }
   
-  else {
+  else if(!inbounds[0] || currentpuzzle.solved){
     scene.classList.remove("inbounds");
     setTimeout('scene.style.transition = ""', 750);
     scene.style.transform = "rotateX(30deg) translateX(" + (-snakepos[0][0] * 10 + 1) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1) + "vmin) translateZ(40vmin)";
-  }
-  
-  if(inbounds){
-    checkpuzzle();
   }
 }
 
