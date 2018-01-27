@@ -124,9 +124,9 @@ movesnake = () => {
   currentpuzzle = null;
     
   // Update inbounds status for each cube, and currentpuzzle
-  for(i in levels[currentroom].puzzles){
-    for(j in snakepos){
-      inbounds[j] = 0;
+  for(j in snakepos){
+    inbounds[j] = 0;
+    for(i in levels[currentroom].puzzles){
       puzzle = levels[currentroom].puzzles[i];
       if(snakepos[j][0] >= puzzle.x && snakepos[j][0] < puzzle.x + puzzle.size
       && snakepos[j][1] >= puzzle.y && snakepos[j][1] < puzzle.y + puzzle.size){
