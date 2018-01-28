@@ -5,17 +5,27 @@ scene.ontouchstart = scene.ontouchmove = e => {
   mousemove(cell = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY), 1);
 }
 
-scene.onmousedown = scene.onmouseover = e => {
+scene.onmousedown = e => {
   e.preventDefault();
   e.stopPropagation();
   mousedown = 1;
   scene.onmousemove(e);
 }
 
+scene.onmouseover = e => {
+  e.preventDefault();
+  e.stopPropagation();
+  if(mousedown){
+    scene.onmousemove(e);
+  }
+}
+
 scene.onmousemove = e => {
   e.preventDefault();
   e.stopPropagation();
-  mousemove(cell = document.elementFromPoint(e.clientX, e.clientY), 1);
+  if(mousedown){
+    mousemove(cell = document.elementFromPoint(e.clientX, e.clientY), 1);
+  }
 }
 
 b.onmouseover = b.ontouchstart = scene.ontouchend = scene.onmouseup = e => {

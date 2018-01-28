@@ -4,7 +4,7 @@ levels = [
   {
   
     width: 21,
-    height: 27,
+    height: 21,
     hole: 1,
     puzzles: [
 
@@ -48,8 +48,8 @@ levels = [
       },
       
       {
-        x: 10,
-        y: 21,
+        x: 6,
+        y: 15,
         size: 4,
         wrap: 0,
         wall: "",
@@ -67,7 +67,7 @@ levels = [
     
     stones: [
       [5,10],
-      [10,17],
+      [11,17],
       [2,14],
     ]
     

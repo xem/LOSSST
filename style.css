@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font: 2.5vmin/5.5vmin arial,sans-serif;
+  font: 2.5.5vmin/5.5vmin arial,sans-serif;
   vertical-align: middle;
   box-sizing: border-box;
   -webkit-touch-callout: none;
@@ -19,9 +19,10 @@ html, body {
 }
 
 body {
-  background: url(sky.jpg);
+  background: url(sky.jpg) center center;
   background-size: 100vw;
   xanimation: scroll 100s linear infinite;
+  transition: 1s;
 }
 
 @keyframes scroll {
@@ -56,14 +57,11 @@ body {
   left: 3vmin;
   bottom: 0;
   width: 207vmin;
-  transform: rotateX(97deg) translateY(-169vmin) translateZ(-146vmin);
-  
-  
-  height: 300vmin;
-  background: linear-gradient(#fff 0%, transparent 200vmin), url(terre.jpg);
+  height: 200vmin;
+  transform: rotateX(121deg) translateY(-303vmin) translateZ(-169vmin);
+  background: linear-gradient(#fff 0%, transparent 180vmin), url(terre.jpg);
   background-size: 100%, 70vmin;
-  
-  
+  transform-origin: top center;
 }
 
 #snake {
@@ -75,12 +73,6 @@ body {
   -moz-pointer-events: none;
   -webkit-pointer-events: none;
   pointer-events: none;
-}
-
-.snakecontrol {
-  -moz-pointer-events: all;
-  -webkit-pointer-events: all;
-  pointer-events: all;
 }
 
 .cube {
@@ -148,7 +140,6 @@ body {
   transition: .15s;
 }
 
-
 .puzzlecube .puzzlegrass {
   position: absolute;
   top: 100%;
@@ -156,36 +147,41 @@ body {
   background: url(grassblades.png);
   background-size: 10vmin 4vmin;
   transform: translateY(-3vmin) translateZ(0vmin) rotateX(-90deg);
+  -moz-pointer-events: none;
+  -webkit-pointer-events: none;
   pointer-events: none;
 }
 
 .snakecontrol {
-  width: 25vmin;
-  height: 25vmin;
-  background: #0af;
-  opacity: .0;
+  width: 35vmin;
+  height: 35vmin;
+  xbackground: #0af;
+  xopacity: 0;
   position: fixed;
   transform: rotateZ(45deg);
+  -moz-pointer-events: all;
+  -webkit-pointer-events: all;
+  pointer-events: all;
 }
 
 .snakecontrol.front {
-  margin-top: -30vmin;
-  margin-left: -11vmin;
+  margin-top: -35vmin;
+  margin-left: -12vmin;
 }
 
 .snakecontrol.back {
-  margin-top: 11vmin;
-  margin-left: -10vmin;
+  margin-top: 13vmin;
+  margin-left: -12vmin;
 }
 
 .snakecontrol.left {
-  margin-top: -9vmin;
-  margin-left: -31vmin;
+  margin-top: -11vmin;
+  margin-left: -37vmin;
 }
 
 .snakecontrol.right {
-  margin-top: -10vmin;
-  margin-left: 10vmin;
+  margin-top: -11vmin;
+  margin-left: 13vmin;
 }
 
 .inbounds .snakecontrol {
@@ -341,7 +337,7 @@ button {
   width: 50vmin;
   height: 60vmin;
   transform-origin: center bottom;
-  transform: translateY(6vmin) rotateX(-65deg);
+  transform: translateY(6vmin) rotateX(-45deg);
   position: absolute;
   bottom: 100%;
   left: -20vh;

@@ -190,21 +190,23 @@ movesnake = () => {
   }
   
   for(i in levels[currentroom].trees){
-    if(!inbounds[0]){
+    if(!inbounds[0] && !puzzling){
       window["treecontent" + i].style.transform = `rotateY(${Math.sin(snakepos[i][0] / 30)}rad)`;
     }
   }
   
   if(puzzling && currentpuzzle) {
     scene.classList.add("inbounds");
-    scene.style.transition = ".75s";
+    scene.style.transition = "1s";
     scene.style.transform = "rotateX(10deg) translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin)";
+    b.style.backgroundPosition = "center -300vmin";
     checkpuzzle();
   }
   
   else if(!inbounds[0] || currentpuzzle.solved){
     scene.classList.remove("inbounds");
-    setTimeout('scene.style.transition = ""', 750);
+    b.style.backgroundPosition = "";
+    setTimeout('scene.style.transition = ""', 1000);
     scene.style.transform = "rotateX(30deg) translateX(" + (-snakepos[0][0] * 10 + 1) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1) + "vmin) translateZ(40vmin)";
   }
 }
