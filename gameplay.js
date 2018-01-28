@@ -145,6 +145,10 @@ movesnake = () => {
     }
   }
   
+  if(!inbounds.slice(1).includes(1)){
+    inbounds = 0;
+  }
+  
   // Check if cube is in bounds, if yes, color the cell in blue or red
   for(i = 0; i < snakelength; i++){
     window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin)";
@@ -221,12 +225,10 @@ checkpuzzle = () => {
   }
   
   solved = 1;
-  L("...");
   if(currentpuzzle){
     for(j in currentpuzzle.ground){
       cell = window[`cell${currentroom}-${currentpuzzle.index}-${j}`];
       if(cell && (cell.classList.contains("red") || (cell.classList.contains("black") && !cell.classList.contains("blue")))){
-        console.log(cell);
         solved = 0;
         break;
       }

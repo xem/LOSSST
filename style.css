@@ -263,8 +263,9 @@ body {
   font: 5vmin/8vmin a;
 }
 
-.eyes {
-  font: 5vmin/8vmin a;
+.cube.snakecube .u.eyes {
+  background: url(eyes.png) no-repeat center center #fb3;
+  background-size: 80%;
 }
 
 #puzzle {

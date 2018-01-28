@@ -1,4 +1,4 @@
-render = () => {
+﻿render = () => {
 
   scene.innerHTML =
 `<div id=scenedepth></div>
@@ -19,7 +19,7 @@ render = () => {
   ${i?'':'<div id="control_r" class="snakecontrol right"></div>'}
   <div id="snakecube${i}" class="cube snakecube">
     ${i?'':'<div class="tongue">Y</div>'}
-    ${i?'<div class="u"></div>':'<div class="u eyes">👀</div>'}
+    ${i?'<div class="u"></div>':'<div class="u eyes"></div>'}
     ${i?'<div class="f"></div>':'<div class="f mouth">‿</div>'}
     <div class="r"></div>
     <div class="l"></div>
