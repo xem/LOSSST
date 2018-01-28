@@ -1,156 +1,208 @@
-﻿mousemove = (el) => {
+﻿// When the mouse/finger moves over an element
+mousemove = (el) => {
   
-  if(!el) return;
+  // Nothing happens is the element doesn't exist or the controls are locked
+  if(!el || lock) return;
+    
+  // Save current head position and angle
+  pos = [snakepos[0][0], snakepos[0][1], snakepos[0][2]];
+  angle = snakeangles[0];
   
-  if(!lock){
+  // Turn right
+  if(el.id == "control_r"){
     
-    pos = [snakepos[0][0], snakepos[0][1], snakepos[0][2]];
-    angle = snakeangles[0];
+    // Update head x
+    pos[0]++;
     
-    // Turn right
-    if(el.id == "control_r"){
-      pos[0]++;
-      
-      // From top
-      if(angle % 360 == 180 || angle % 360 == -180) angle += 90;
-      // From bottom
-      else if(angle % 360 == 0) angle -= 90;
-      
-      move_r = 1;
-      move_b = move_f = move_l = 0;
+    // Update angle
+    
+    // From top
+    if(angle % 360 == 180 || angle % 360 == -180){
+      angle += 90;
     }
     
-    // Turn left
-    else if(el.id == "control_l"){
-      pos[0]--;
-      
-      // From top
-      if(angle % 360 == 180 || angle % 360 == -180) angle -= 90;
-      // From bottom
-      else if(angle % 360 == 0) angle += 90;
-
-      move_l = 1;
-      move_b = move_f = move_r = 0;
+    // From bottom
+    else if(angle % 360 == 0){
+      angle -= 90;
     }
     
-    // Turn top
-    else if(el.id == "control_f"){
-      pos[1]--;
-      
-      // From left
-      if(angle % 360 == 90 || angle % 360 == -270) angle += 90;
-      // From right
-      else if(angle % 360 == -90 || angle % 360 == 270) angle -= 90;
-      
-      move_f = 1;
-      move_b = move_l = move_r = 0;
-    }
-    
-    // Turn bottom
-    else if(el.id == "control_b"){
-      
-      pos[1]++;
-      
-      // From right
-      if(angle % 360 == -90 || angle % 360 == 270) angle += 90;
-      // From left
-      else if(angle % 360 == 90 || angle % 360 == -270) angle -= 90;
-      
-      move_b = 1;
-      move_f = move_l = move_r = 0;
-    }
-    
-    else {
-      move_b = move_f = move_l = move_r = 0;
-      return;
-    }
-    
-    collision = 0;
-    
-    // Check collisions with itself
-    for(i = 0; i < snakelength - 1; i++){
-      if(snakepos[i][0] == pos[0] && snakepos[i][1] == pos[1] && snakepos[i][2] == pos[2]){
-        collision = i;
-      }
-    }
-    
-    // Collisions with trees 
-    for(i in levels[currentroom].trees){
-      tree = levels[currentroom].trees[i];
-      if(pos[0] == tree[0] && pos[1] == tree[1]){
-          collision = "tree";
-      };
-    }
-    
-    // Collisions with bounds
-    if(
-         pos[0] < 0
-      || pos[0] >= levels[currentroom].width
-      || pos[1] < 0
-      || pos[1] >= levels[currentroom].height
-    ){
-      collision = "bounds";
-    }
-    
-    if(goingback > 0){
-      goingback--;
-    }
-    
-    // Go back
-    if(collision == 1){
-      snakepos.shift();
-      snakeangles.shift();
-      goingback++;
-      goingback++;
-    }
-    
-    else if(!collision){
-      snakepos.unshift(pos);
-      snakeangles.unshift(angle);
-    }
-    
-    movesnake();
-    lock = 1;
-    setTimeout(()=> {
-      lock = 0
-    }, (inbounds[0] && puzzling) ? 300 : 150);
+    // Save the current move
+    move_r = 1;
+    move_b = move_f = move_l = 0;
   }
+  
+  // Turn left
+  else if(el.id == "control_l"){
+    
+    // Update head x
+    pos[0]--;
+    
+    // Update angle
+    
+    // From top
+    if(angle % 360 == 180 || angle % 360 == -180){
+      angle -= 90;
+    }
+    
+    // From bottom
+    else if(angle % 360 == 0){
+      angle += 90;
+    }
+    
+    // Save the current move
+    move_l = 1;
+    move_b = move_f = move_r = 0;
+  }
+  
+  // Turn top
+  else if(el.id == "control_f"){
+    
+    // Update head y
+    pos[1]--;
+    
+    // Update angle
+    
+    // From left
+    if(angle % 360 == 90 || angle % 360 == -270){
+      angle += 90;
+    }
+    
+    // From right
+    else if(angle % 360 == -90 || angle % 360 == 270){
+      angle -= 90;
+    }
+    
+    // Save the current move
+    move_f = 1;
+    move_b = move_l = move_r = 0;
+  }
+  
+  // Turn bottom
+  else if(el.id == "control_b"){
+    
+    // Update head y
+    pos[1]++;
+    
+    // Update angle
+    
+    // From right
+    if(angle % 360 == -90 || angle % 360 == 270){
+      angle += 90;
+    }
+    
+    // From left
+    else if(angle % 360 == 90 || angle % 360 == -270){
+      angle -= 90;
+    }
+    
+    // Save the current move
+    move_b = 1;
+    move_f = move_l = move_r = 0;
+  }
+  
+  // If no control is pressed, cancel all moves
+  else {
+    move_b = move_f = move_l = move_r = 0;
+    return;
+  }
+  
+  // Reset collision
+  collision = 0;
+  
+  // Check collisions with snake
+  for(i = 0; i < snakelength - 1; i++){
+    if(snakepos[i][0] == pos[0] && snakepos[i][1] == pos[1] && snakepos[i][2] == pos[2]){
+      collision = i;
+    }
+  }
+  
+  // Check collisions with trees 
+  for(i in levels[currentroom].trees){
+    tree = levels[currentroom].trees[i];
+    if(pos[0] == tree[0] && pos[1] == tree[1]){
+        collision = "tree";
+    };
+  }
+  
+  // Collisions with bounds
+  if(
+       pos[0] < 0
+    || pos[0] >= levels[currentroom].width
+    || pos[1] < 0
+    || pos[1] >= levels[currentroom].height
+  ){
+    collision = "bounds";
+  }
+  
+  // Decrement the "going back" counter
+  if(goingback > 0){
+    goingback--;
+  }
+  
+  // If collision with cube 1, go back and increment counter 
+  if(collision == 1){
+    snakepos.shift();
+    snakeangles.shift();
+    goingback++;
+    goingback++;
+  }
+  
+  // If no collision happens, move (add the new head position/angle at the beginning of snakepos/snakeangle)
+  else if(!collision){
+    snakepos.unshift(pos);
+    snakeangles.unshift(angle);
+  }
+  
+  // Do all the animations
+  movesnake();
+  
+  // Lock the controls for 150ms (or 300 if we're in a puzzle)
+  lock = 1;
+  setTimeout(()=> {
+    lock = 0
+  }, (inbounds[0] && puzzling) ? 300 : 150);
 }
 
+// If mouse is down, call mousemove every 50ms to continue current move if possible
 setInterval(() => {
-  mousemove(cell);
+  if(mousedown){
+    mousemove(cell);
+  }
 }, 50);
 
+// Move snake and animate all the elements that move at each snake move
 movesnake = () => {
   
   var i, cell;
   
+  // Clear current puzzle
   clearpuzzle();
   
+  // Reset currentpuzzle, inbounds, puzzling flags
   if(!puzzling){
     currentpuzzle = null;
   }
-  inbounds = [];
   puzzling = 0;
     
-  // Update inbounds status for each cube, plus currentpuzzle, puzzling, zoom
-  for(j in snakepos){
-    inbounds[j] = 0;
-    for(i in levels[currentroom].puzzles){
-      puzzle = levels[currentroom].puzzles[i];
-      if(snakepos[j][0] >= puzzle.x && snakepos[j][0] < puzzle.x + puzzle.size
-      && snakepos[j][1] >= puzzle.y && snakepos[j][1] < puzzle.y + puzzle.size){
-        inbounds[j] = 1;
-        if(j == 0){
-          currentpuzzle = puzzle;
-        }
-        if(!puzzle.solved){
-          puzzling = 1;
-        }
+  // For each cube, update inbounds status, currentpuzzle (determined by the snake head) and puzzling
+  inbounds0 = 0;
+  for(i in levels[currentroom].puzzles){
+    puzzle = levels[currentroom].puzzles[i];
+    if(
+      snakepos[0][0] >= puzzle.x && snakepos[0][0] < puzzle.x + puzzle.size
+      && snakepos[0][1] >= puzzle.y && snakepos[0][1] < puzzle.y + puzzle.size
+    ){
+      inbounds0 = 1;
+      currentpuzzle = puzzle;
+      if(!puzzle.solved){
+        puzzling = 1;
       }
     }
   }
   
+  inbounds.unshift(inbounds0);
+  
+  // Stay zoomed if one of the first 4 cubes after the head is in the puzzle
   if(
     (!currentpuzzle || !currentpuzzle.solved)
     && (inbounds[0] || inbounds.slice(1, 4).includes(1))
@@ -161,7 +213,7 @@ movesnake = () => {
     puzzling = 0;
   }
   
-  // Check if cube is in bounds, if yes, color the cell in blue or red
+  // Check if each cube is in bounds, if yes, color the cell in blue or red
   for(i = 0; i < snakelength; i++){
     window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin)";
     
@@ -178,6 +230,7 @@ movesnake = () => {
     }
   }
   
+  // Set the trail after the snake (except if it's going back)
   if(!goingback){
     for(i = 0; i < 3; i++){
       if(snakepos[snakelength + i - 1] && snakepos[snakelength + i - 1][2] == 0){
@@ -189,12 +242,14 @@ movesnake = () => {
     }
   }
   
+  // If the snake moves on X axis, rotate the trees to face the camera
   for(i in levels[currentroom].trees){
     if(!inbounds[0] && !puzzling){
       window["treecontent" + i].style.transform = `rotateY(${Math.sin(snakepos[i][0] / 30)}rad)`;
     }
   }
   
+  // Zoom when inbounds (in a puzzle)
   if(puzzling && currentpuzzle) {
     scene.classList.add("inbounds");
     scene.style.transition = "1s";
@@ -203,6 +258,7 @@ movesnake = () => {
     checkpuzzle();
   }
   
+  // Dezoom when out of a puzzle
   else if(!inbounds[0] || currentpuzzle.solved){
     scene.classList.remove("inbounds");
     b.style.backgroundPosition = "";
@@ -211,6 +267,7 @@ movesnake = () => {
   }
 }
 
+// Clear a puzzle (remove blue and red tiles)
 clearpuzzle = () => {
   if(currentpuzzle){
     for(j in currentpuzzle.ground){
@@ -219,8 +276,10 @@ clearpuzzle = () => {
   }
 }
 
+// Check if a puzzle is solved
 checkpuzzle = () => {
 
+  // Color cells in red/blue
   if(!currentpuzzle.solved){
     for(i = 0; i < snakelength; i++){
       if(snakepos[i][0] >= currentpuzzle.x && snakepos[i][0] < currentpuzzle.x + currentpuzzle.size){
@@ -238,6 +297,7 @@ checkpuzzle = () => {
     }
   }
   
+  // Check solution
   solved = 1;
   if(currentpuzzle){
     for(j in currentpuzzle.ground){
@@ -248,20 +308,15 @@ checkpuzzle = () => {
       }
     }
   
+    // Color in green
     if(solved){
       currentpuzzle.solved = 1;
       for(j in currentpuzzle.ground){
         cell = window[`cell${currentroom}-${currentpuzzle.index}-${j}`];
         if(cell.classList.contains("black")){
           cell.classList.add("green");
-          //movesnake();
         }
       }
     }
-  
   }
-}
-
-onmousedown = onmousemove = onmouseup = /*oncontextmenu =*/ ontouchstart = ontouchmove = ontouchend = onclick = ondblclick = onscroll = function(e){
-  e.preventDefault();
 }

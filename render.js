@@ -73,5 +73,5 @@
   
   snakepos[0][2] = 0;
   
-  setTimeout(movesnake, 200);
+  setTimeout(movesnake, 500);
 }

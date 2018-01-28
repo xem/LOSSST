@@ -1,0 +1,69 @@
+#puzzle {
+  width: 100%;
+  height: 100%;
+}
+
+.puzzlecube .puzzlegrass {
+  position: absolute;
+  top: 100%;
+  height: 6vmin;
+  background: url(grassblades.png);
+  background-size: 10vmin 5vmin;
+  transform: translateY(-2.5vmin) translateZ(0vmin) rotateX(-45deg);
+  -moz-pointer-events: none;
+  -webkit-pointer-events: none;
+  pointer-events: none;
+}
+
+.cell {
+  width: 10.1vmin;
+  height: 10.1vmin;
+  position: absolute;
+  border: .4vmin solid #000;
+  background-size: 100%;
+}
+
+.cell.grass {
+  background: none;
+  border: none;
+}
+
+.cell.white {
+  background: #fff;
+  background-size: 100%;
+}
+
+.cell.black {
+  background: #000;
+  background-size: 100%;
+}
+
+.cell.blue {
+  background: #2af;
+}
+
+.cell.red {
+  background: red;
+}
+
+.cell.green {
+  background: #2d4;
+}
+
+#wraps {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: linear-gradient(45deg, rgba(0,0,0,.5), rgba(255,255,255,.5));
+  border: .5vmin solid #000;
+}
+
+.wrap div {
+  transform-origin: center center;
+}

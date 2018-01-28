@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  font: 2.5.5vmin/5.5vmin arial,sans-serif;
+  vertical-align: middle;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+body {
+  background: url(sky.jpg) center center;
+  background-size: 100vw;
+  transition: 1s;
+}
+
+#perspective {
+  width: 0;
+  height: 0;
+  perspective: 120vmin;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+#perspective * {
+  transform-style: preserve-3d;
+}
+
+.cube {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.cube > div {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.cube .u {
+  transform: rotateY(90deg)translateX(-100%)rotateY(-90deg);
+}
+
+.cube .l {
+  transform: rotateX(-90deg)translateY(-50%)translateX(-50%)rotateY(-90deg);
+}
+
+.cube .r {
+  transform: rotateX(-90deg)translateY(-50%)translateX(50%)rotateY(90deg);
+}
+
+.cube .f {
+  transform: translateY(50%)rotateX(-90deg)translateY(-50%);
+}
+
+.cube .b {
+  transform: translateY(-50%)rotateX(-90deg)translateY(-50%)rotateY(180deg);
+}
+
+button {
+  width: 8vmin;
+  height: 8vmin;
+  font: 5vmin/6vmin arial;
+  position: absolute;
+}

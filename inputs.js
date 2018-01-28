@@ -34,3 +34,8 @@ b.onmouseover = b.ontouchstart = scene.ontouchend = scene.onmouseup = e => {
   cell = null;
   move_b = move_f = move_l = move_r = 0;
 }
+
+// Avoid all default event behaviors
+onmousedown = onmousemove = onmouseup = /*oncontextmenu =*/ ontouchstart = ontouchmove = ontouchend = onclick = ondblclick = onscroll = function(e){
+  e.preventDefault();
+}
