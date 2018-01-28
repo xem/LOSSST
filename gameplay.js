@@ -143,6 +143,7 @@ mousemove = (el) => {
   if(collision == 1){
     snakepos.shift();
     snakeangles.shift();
+    inbounds.shift();
     goingback++;
     goingback++;
   }
@@ -200,7 +201,9 @@ movesnake = () => {
     }
   }
   
-  inbounds.unshift(inbounds0);
+  if(!goingback){
+    inbounds.unshift(inbounds0);
+  }
   
   // Stay zoomed if one of the first 4 cubes after the head is in the puzzle
   if(
