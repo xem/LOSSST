@@ -21,24 +21,32 @@
 }
 
 .tree {
-  width: 50vmin;
+  width: 42vmin;
   height: 60vmin;
-  transform-origin: center bottom;
-  transform: translateY(6vmin) rotateX(-45deg);
+  transform-origin: bottom center;
+  transform: translateX(-50%) translateY(3vmin) rotateX(-72deg);
   position: absolute;
   bottom: 100%;
-  left: -20vh;
+  left: 0;
+  -moz-pointer-events: none;
+  -webkit-pointer-events: none;
   pointer-events: none;
 }
 
-.stone {
+.treeshadow {
+  width: 42vmin;
+  height: 55vmin;
+  transform-origin: center bottom;
+  transform: translateX(-50%) scaleX(-1) translateY(0vmin) rotateZ(235deg);
+  background: url(treeshadow.png) no-repeat;
+  opacity: .2;
+  background-size: 100%;
   position: absolute;
-  width: 8vmin;
-  height: 6vmin;
   bottom: 100%;
   left: 0;
-  background: url(stone.png);
-  background-size: 100%;
+  -moz-pointer-events: none;
+  -webkit-pointer-events: none;
+  pointer-events: none;
 }
 
 .treecontent {
@@ -54,6 +62,16 @@
   transition: .15s;
 }
 
+.stone {
+  position: absolute;
+  width: 8vmin;
+  height: 6vmin;
+  bottom: 100%;
+  left: 0;
+  background: url(stone.png);
+  background-size: 100%;
+}
+
 .grass {
   width: 10vmin;
   height: 10vmin;
@@ -63,19 +81,7 @@
   background-size: 30vmin 10vmin;
   position: absolute;
   bottom: 100%;
-  pointer-events: none;
-}
-
-.treeshadow {
-  width: 50vmin;
-  height: 55vmin;
-  transform-origin: center bottom;
-  transform: scaleX(-1) translateY(6vmin) rotateZ(235deg);
-  background: url(treeshadow.png) no-repeat;
-  opacity: .2;
-  background-size: 100%;
-  position: absolute;
-  bottom: 100%;
-  left: -20vh;
+  -moz-pointer-events: none;
+  -webkit-pointer-events: none;
   pointer-events: none;
 }
