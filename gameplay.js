@@ -145,8 +145,8 @@ movesnake = () => {
     }
   }
   
-  if(!inbounds.slice(1).includes(1)){
-    inbounds = 0;
+  if(!currentpuzzle || currentpuzzle.solved || !inbounds.slice(1).includes(1)){
+    inbounds[0] = 0;
   }
   
   // Check if cube is in bounds, if yes, color the cell in blue or red

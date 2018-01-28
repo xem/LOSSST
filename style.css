@@ -21,7 +21,7 @@ html, body {
 body {
   background: url(sky.jpg);
   background-size: 100vw;
-  animation: scroll 100s linear infinite;
+  xanimation: scroll 100s linear infinite;
 }
 
 @keyframes scroll {
@@ -56,10 +56,14 @@ body {
   left: 3vmin;
   bottom: 0;
   width: 207vmin;
-  height: 300vmin;
   transform: rotateX(97deg) translateY(-169vmin) translateZ(-146vmin);
+  
+  
+  height: 300vmin;
   background: linear-gradient(#fff 0%, transparent 200vmin), url(terre.jpg);
-  background-size: 70vmin;
+  background-size: 100%, 70vmin;
+  
+  
 }
 
 #snake {
