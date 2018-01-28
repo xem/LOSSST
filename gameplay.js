@@ -1,6 +1,4 @@
-﻿//console.log(move_f);
-
-mousemove = (el) => {
+﻿mousemove = (el) => {
   
   if(!el) return;
   
@@ -94,11 +92,16 @@ mousemove = (el) => {
       collision = "bounds";
     }
     
+    if(goingback > 0){
+      goingback--;
+    }
     
     // Go back
     if(collision == 1){
       snakepos.shift();
       snakeangles.shift();
+      goingback++;
+      goingback++;
     }
     
     else if(!collision){
@@ -108,11 +111,15 @@ mousemove = (el) => {
     
     movesnake();
     lock = 1;
-    setTimeout("lock = 0", inbounds[0] ? 300 : 150);
+    setTimeout(()=> {
+      lock = 0
+    }, inbounds[0] ? 300 : 150);
   }
 }
 
-setInterval('mousemove(cell)', 50);
+setInterval(() => {
+  mousemove(cell);
+}, 50);
 
 movesnake = () => {
   
@@ -128,8 +135,8 @@ movesnake = () => {
     inbounds[j] = 0;
     for(i in levels[currentroom].puzzles){
       puzzle = levels[currentroom].puzzles[i];
-      if(snakepos[j][0] >= puzzle.x && snakepos[j][0] < puzzle.x + puzzle.size
-      && snakepos[j][1] >= puzzle.y && snakepos[j][1] < puzzle.y + puzzle.size){
+      if(snakepos[j][0] >= puzzle.x - 1 && snakepos[j][0] < puzzle.x + puzzle.size + 1
+      && snakepos[j][1] >= puzzle.y - 1 && snakepos[j][1] < puzzle.y + puzzle.size + 1){
         inbounds[j] = 1;
         if(j == 0){
           currentpuzzle = puzzle;
@@ -155,8 +162,21 @@ movesnake = () => {
     }
   }
   
+  if(!goingback){
+    for(i = 0; i < 3; i++){
+      if(snakepos[snakelength + i] && snakepos[snakelength + i][2] == 0){
+        window["snaketrail" + i].style.transform = "translateX(" + (snakepos[snakelength + i][0] * 10) + "vmin) translateY(" + (snakepos[snakelength + i][1] * 10) + "vmin)";
+      }
+      else {
+        window["snaketrail" + i].style.transform = "scale(.01)";
+      }
+    }
+  }
+  
   for(i in levels[currentroom].trees){
-    window["treecontent" + i].style.transform = `rotateY(${Math.sin(snakepos[i][0] / 30)}rad)`;
+    if(!inbounds[0]){
+      window["treecontent" + i].style.transform = `rotateY(${Math.sin(snakepos[i][0] / 30)}rad)`;
+    }
   }
   
   if(inbounds[0] && !currentpuzzle.solved) {
@@ -182,6 +202,7 @@ clearpuzzle = () => {
 }
 
 checkpuzzle = () => {
+
   if(!currentpuzzle.solved){
     for(i = 0; i < snakelength; i++){
       if(snakepos[i][0] >= currentpuzzle.x && snakepos[i][0] < currentpuzzle.x + currentpuzzle.size){
@@ -200,11 +221,14 @@ checkpuzzle = () => {
   }
   
   solved = 1;
+  L("...");
   if(currentpuzzle){
     for(j in currentpuzzle.ground){
       cell = window[`cell${currentroom}-${currentpuzzle.index}-${j}`];
-      if(cell && cell.classList.contains("red")){
+      if(cell && (cell.classList.contains("red") || (cell.classList.contains("black") && !cell.classList.contains("blue")))){
+        console.log(cell);
         solved = 0;
+        break;
       }
     }
   }

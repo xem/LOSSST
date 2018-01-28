@@ -28,6 +28,10 @@ render = () => {
 </div>`;
   }
   
+  for(i = 0; i < 3; i++){
+    snake.innerHTML += `<div id="snaketrail${i}" class="snaketrail"></div>`;
+  }
+  
   for(i in levels[currentroom].puzzles){
     puzzle = levels[currentroom].puzzles[i];
     puzzle.index = i;
@@ -39,6 +43,7 @@ render = () => {
   <div class="r"></div>
   <div class="l"></div>
   <div class="b"></div-->
+  <div class="puzzlegrass"></div>
 </div>`;
 
     for(j in puzzle.ground){
