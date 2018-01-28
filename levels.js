@@ -9,7 +9,7 @@ levels = [
     puzzles: [
 
       {
-        x: 3,
+        x: 4,
         y: 3,
         size: 5,
         wrap: 0,

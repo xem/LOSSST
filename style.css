@@ -407,13 +407,17 @@ button {
 }
 
 #snaketrail0 {
-  opacity: .1;
+  opacity: .11;
 }
 
 #snaketrail1 {
-  opacity: .063;
+  opacity: .1;
 }
 
 #snaketrail2 {
+  opacity: .066;
+}
+
+#snaketrail3 {
   opacity: .033;
 }

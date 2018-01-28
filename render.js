@@ -28,7 +28,7 @@
 </div>`;
   }
   
-  for(i = 0; i < 3; i++){
+  for(i = 0; i < 4; i++){
     snake.innerHTML += `<div id="snaketrail${i}" class="snaketrail"></div>`;
   }
   
