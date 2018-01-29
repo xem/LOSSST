@@ -4,8 +4,13 @@
   border-radius: 5vmin;
   transform: rotateX(30deg) translateX(-100vmin) translateY(-100vmin) translateZ(40vmin);
   transition: .2s;
-  background: /*radial-gradient(circle, #000 5vmin, #725d11 12vmin, transparent 15vmin) no-repeat center center,*/ url(grass.jpg); /* radial-gradient(circle, #000 5vmin, #725d11 12vmin, #5F9D3F 15vmin, #034301 200vmin); */
+  background: url(grass.jpg); 
   background-size: 70vmin;
+}
+
+.sd #scene {
+  background: radial-gradient(circle, #5F9D3F 15vmin, #034301 200vmin);
+  background-size: auto;
 }
 
 #scenedepth {
@@ -20,11 +25,15 @@
   transform-origin: top center;
 }
 
+.sd #scenedepth {
+  background: #965404;
+}
+
 .tree {
   width: 42vmin;
   height: 60vmin;
   transform-origin: bottom center;
-  transform: translateX(-50%) translateY(3vmin) rotateX(-50deg);
+  transform: translateX(-50%) translateY(3vmin) rotateX(-45deg);
   position: absolute;
   bottom: 100%;
   left: 0;
@@ -49,6 +58,10 @@
   pointer-events: none;
 }
 
+.sd .treeshadow {
+  display: none;
+}
+
 .treecontent {
   width: 50vmin;
   height: 60vmin;
@@ -62,6 +75,10 @@
   transition: .15s;
 }
 
+.sd .stone {
+  display: none;
+}
+
 .stone {
   position: absolute;
   width: 8vmin;
@@ -70,18 +87,4 @@
   left: 0;
   background: url(stone.png);
   background-size: 100%;
-}
-
-.grass {
-  width: 10vmin;
-  height: 10vmin;
-  transform-origin: center bottom;
-  transform: rotateX(-50deg);
-  background: url(grassblades.png) repeat-x;
-  background-size: 30vmin 10vmin;
-  position: absolute;
-  bottom: 100%;
-  -moz-pointer-events: none;
-  -webkit-pointer-events: none;
-  pointer-events: none;
 }

@@ -259,14 +259,18 @@ movesnake = () => {
     scene.classList.add("inbounds");
     scene.style.transition = "1s";
     scene.style.transform = "rotateX(10deg) translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin)";
-    b.style.backgroundPosition = "center -200vmin";
+    if(!sd){
+      b.style.backgroundPosition = "center -200vmin";
+    }
     checkpuzzle();
   }
   
   // Dezoom when out of a puzzle
   else if(!inbounds[0] || currentpuzzle.solved){
     scene.classList.remove("inbounds");
-    b.style.backgroundPosition = "";
+    if(!sd){
+      b.style.backgroundPosition = "";
+    }
     setTimeout('scene.style.transition = ""', 1000);
     scene.style.transform = "rotateX(30deg) translateX(" + (-snakepos[0][0] * 10 + 1) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1) + "vmin) translateZ(40vmin)";
   }

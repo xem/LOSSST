@@ -35,6 +35,10 @@
   transition: .15s;
 }
 
+.sd .snakegrass {
+  display: none;
+}
+
 .mobile .snakegrass {
   display: none;
 }
@@ -124,7 +128,7 @@
 .cube.snakecube > div {
   box-shadow: 0 0 0 .2vmin #000 inset;
   text-align: center;
-  background: /*url(snake.jpg); */ #b80;
+  background: #b80;
   background-size: 500%;
 }
 
@@ -162,6 +166,10 @@
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.sd .snaketrail {
+  display: none;
 }
 
 #snaketrail0 {

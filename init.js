@@ -1,3 +1,4 @@
+sd = 0;
 mobile = 0;
 snakelength = 7;
 snakepos = [];
@@ -42,6 +43,11 @@ if( navigator.userAgent.match(/Android/i)
 ){
   mobile = 1;
   b.classList.add("mobile");
+}
+
+details.onclick = details.ontouchstart = e => {
+  sd = 1 - sd;
+  b.classList.toggle("sd");
 }
 
 onload = e => {

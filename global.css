@@ -24,6 +24,10 @@ body {
   transition: 1s;
 }
 
+body.sd {
+  background: linear-gradient(#0090ff,#fff);
+}
+
 #perspective {
   width: 0;
   height: 0;
@@ -70,8 +74,13 @@ body {
 }
 
 button {
-  width: 8vmin;
-  height: 8vmin;
-  font: 5vmin/6vmin arial;
+  font: 3vmin/5vmin arial;
   position: absolute;
+}
+
+#details {
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+  transform: translateZ(1000px);
 }

@@ -39,3 +39,28 @@ b.onmouseover = b.ontouchstart = scene.ontouchend = scene.onmouseup = e => {
 onmousedown = onmousemove = onmouseup = /*oncontextmenu =*/ ontouchstart = ontouchmove = ontouchend = onclick = ondblclick = onscroll = function(e){
   e.preventDefault();
 }
+
+onkeydown = e => {
+  
+  mousedown = 1;
+  
+  if(e.keyCode == 37){
+    cell = control_l;
+  }
+  
+  if(e.keyCode == 38){
+    cell = control_f;
+  }
+  
+  if(e.keyCode == 39){
+    cell = control_r;
+  }
+  
+  if(e.keyCode == 40){
+    cell = control_b;
+  }
+}
+
+onkeyup = e => {
+  mousedown = 0;
+}

@@ -15,6 +15,10 @@
   pointer-events: none;
 }
 
+.sd .puzzlecube .puzzlegrass {
+  display: none;
+}
+
 .cell {
   width: 10.1vmin;
   height: 10.1vmin;
