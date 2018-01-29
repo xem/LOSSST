@@ -19,14 +19,14 @@
   top: 0;
   width: 207vmin;
   height: 120vmin;
-  transform: translateY(210vmin)rotateX(-45deg);
+  transform: translateY(210vmin) rotateX(-45deg);
   background: linear-gradient(transparent 20%, #fff), url(terre.jpg);
   background-size: 100%, 70vmin;
   transform-origin: top center;
 }
 
 .sd #scenedepth {
-  background: #965404;
+  background: linear-gradient(#725f1b, #fff);
 }
 
 .tree {
@@ -73,6 +73,11 @@
   left: 0;
   pointer-events: none;
   transition: .15s;
+}
+
+.sd .treecontent {
+  background: radial-gradient(circle at 50% 30%, #067201 15vmin, transparent 16vmin) left top, linear-gradient(90deg, transparent 45%, #685e06 45%, #685e06 55%, transparent 55%) no-repeat center bottom;
+  background-size: 100%, 100% 50%;
 }
 
 .sd .stone {

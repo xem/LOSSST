@@ -220,7 +220,9 @@ movesnake = () => {
   for(i = 0; i < snakelength; i++){
     window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin)";
     
-    window["snakecube" + i].style.transform = "rotateZ(" + (snakeangles[i]) + "deg)";
+    if((sd && i == 0) || !sd){
+      window["snakecube" + i].style.transform = "rotateZ(" + (snakeangles[i]) + "deg)";
+    }
     
     if(!mobile){
       if(snakepos[i][2] == 0){
@@ -248,9 +250,11 @@ movesnake = () => {
   }
   
   // If the snake moves on X axis, rotate the trees to face the camera
-  for(i in levels[currentroom].trees){
-    if(!inbounds[0] && !puzzling){
-      window["treecontent" + i].style.transform = `rotateY(${Math.sin(snakepos[i][0] / 30)}rad)`;
+  if(!sd){
+    for(i in levels[currentroom].trees){
+      if(!inbounds[0] && !puzzling){
+        window["treecontent" + i].style.transform = `rotateY(${Math.sin(snakepos[i][0] / 30)}rad)`;
+      }
     }
   }
   
