@@ -48,6 +48,7 @@ if( navigator.userAgent.match(/Android/i)
 details.onclick = details.ontouchstart = e => {
   sd = 1 - sd;
   b.classList.toggle("sd");
+  details.innerHTML = sd ? "HD" : "SD";
 }
 
 onload = e => {
