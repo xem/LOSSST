@@ -11,6 +11,7 @@ grabbed = 0;
 nextlevelwait = 0;
 won = 0;
 goingback = 0;
+back = 0;
 currentroom = 0;
 currentpuzzle = 0;
 lock = 0;

@@ -21,7 +21,7 @@ html, body {
 body {
   background: url(sky.jpg) center center;
   background-size: 100vw;
-  transition: 1s;
+  transition: background-position 1s;
 }
 
 body.sd {

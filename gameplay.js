@@ -135,17 +135,20 @@ mousemove = (el) => {
   }
   
   // Decrement the "going back" counter
-  if(goingback > 0){
-    goingback--;
+  if(back > 0){
+    back--;
   }
+  
+  goingback = 0;
   
   // If collision with cube 1, go back and increment counter 
   if(collision == 1){
     snakepos.shift();
     snakeangles.shift();
     inbounds.shift();
-    goingback++;
-    goingback++;
+    back++;
+    back++;
+    goingback = 1;
   }
   
   // If no collision happens, move (add the new head position/angle at the beginning of snakepos/snakeangle)
@@ -238,7 +241,7 @@ movesnake = () => {
   }
   
   // Set the trail after the snake (except if it's going back)
-  if(!goingback){
+  if(!back){
     for(i = 0; i < 3; i++){
       if(snakepos[snakelength + i - 1] && snakepos[snakelength + i - 1][2] == 0){
         window["snaketrail" + i].style.transform = "translateX(" + (snakepos[snakelength + i - 1][0] * 10) + "vmin) translateY(" + (snakepos[snakelength + i - 1][1] * 10) + "vmin)";
@@ -264,7 +267,7 @@ movesnake = () => {
     scene.style.transition = "1s";
     scene.style.transform = "rotateX(10deg) translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin)";
     if(!sd){
-      b.style.backgroundPosition = "center -200vmin";
+      b.style.backgroundPosition = "center -25%";
     }
     checkpuzzle();
   }

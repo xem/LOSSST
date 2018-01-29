@@ -3,7 +3,7 @@
   height: 200vmin;
   border-radius: 5vmin;
   transform: rotateX(30deg) translateX(-100vmin) translateY(-100vmin) translateZ(40vmin);
-  transition: .2s;
+  transition: transform .2s linear;
   background: url(grass.jpg); 
   background-size: 70vmin;
 }
@@ -72,7 +72,7 @@
   top: 0;
   left: 0;
   pointer-events: none;
-  transition: .15s;
+  transition: transform .15s linear;
 }
 
 .sd .treecontent {
