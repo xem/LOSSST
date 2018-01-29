@@ -222,13 +222,15 @@ movesnake = () => {
     
     window["snakecube" + i].style.transform = "rotateZ(" + (snakeangles[i]) + "deg)";
     
-    if(snakepos[i][2] == 0){
-      window["snakegrass" + i].style.backgroundPosition = -(snakepos[i][0] * 10 + (snakepos[i][1] * 100)) + "vmin bottom";
-      if(inbounds[i]){
-        window["snakegrass" + i].style.opacity = 0;
-      }
-      else {
-        window["snakegrass" + i].style.opacity = 1;
+    if(!mobile){
+      if(snakepos[i][2] == 0){
+        window["snakegrass" + i].style.backgroundPosition = -(snakepos[i][0] * 10 + (snakepos[i][1] * 100)) + "vmin bottom";
+        if(inbounds[i]){
+          window["snakegrass" + i].style.opacity = 0;
+        }
+        else {
+          window["snakegrass" + i].style.opacity = 1;
+        }
       }
     }
   }
@@ -257,7 +259,7 @@ movesnake = () => {
     scene.classList.add("inbounds");
     scene.style.transition = "1s";
     scene.style.transform = "rotateX(10deg) translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin)";
-    b.style.backgroundPosition = "center -250vmin";
+    b.style.backgroundPosition = "center -200vmin";
     checkpuzzle();
   }
   

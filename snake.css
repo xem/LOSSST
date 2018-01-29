@@ -35,6 +35,10 @@
   transition: .15s;
 }
 
+.mobile .snakegrass {
+  display: none;
+}
+
 .snakecontrol {
   width: 35vmin;
   height: 35vmin;

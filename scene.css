@@ -24,7 +24,7 @@
   width: 42vmin;
   height: 60vmin;
   transform-origin: bottom center;
-  transform: translateX(-50%) translateY(3vmin) rotateX(-72deg);
+  transform: translateX(-50%) translateY(3vmin) rotateX(-50deg);
   position: absolute;
   bottom: 100%;
   left: 0;
