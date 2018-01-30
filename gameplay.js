@@ -267,7 +267,7 @@ movesnake = () => {
     scene.style.transition = "1s";
     scene.style.transform = "rotateX(10deg) translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin)";
     if(!sd){
-      b.style.backgroundPosition = "center -25%";
+      b.style.backgroundPosition = "center -200vmin";
     }
     checkpuzzle();
   }

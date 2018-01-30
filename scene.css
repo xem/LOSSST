@@ -93,3 +93,12 @@
   background: url(stone.png);
   background-size: 100%;
 }
+
+.bridge {
+  position: absolute;
+  width: 90vmin;
+  height: 30vmin;
+  background: url("wood.jpg");
+  transform-origin: left center;
+  /*transform: rotateY(-90deg);*/
+}

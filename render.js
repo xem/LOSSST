@@ -2,6 +2,7 @@
 
   scene.innerHTML =
 `<div id=scenedepth></div>
+<div id=bridges></div>
 <div id=puzzles></div>
 <div id=grass></div>
 <div id=stones></div>
@@ -58,6 +59,13 @@
     trees.innerHTML +=
     `<div id="tree${j}" class="tree" style="margin-left:${tree[0] * 10}vmin;margin-bottom:-${tree[1] * 10}vmin"><div id="treecontent${j}" class="treecontent"></div></div>;
     <div class="treeshadow" style="margin-left:${tree[0] * 10}vmin;margin-bottom:-${tree[1] * 10}vmin"></div>`;
+  }
+  
+  
+  for(j in levels[currentroom].bridges){
+    bridge = levels[currentroom].bridges[j];
+    trees.innerHTML +=
+    `<div id="bridge${j}" class="bridge" style="margin-left:${bridge.x * 10}vmin;margin-top:${bridge.y * 10 + 10}vmin"></div>`;
   }
   
   for(j in levels[currentroom].stones){
