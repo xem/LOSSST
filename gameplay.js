@@ -172,7 +172,7 @@ setInterval(() => {
   if(mousedown){
     mousemove(cell);
   }
-}, 50);
+}, 100);
 
 // Move snake and animate all the elements that move at each snake move
 movesnake = () => {
@@ -223,9 +223,9 @@ movesnake = () => {
   for(i = 0; i < snakelength; i++){
     window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin)";
     
-    if((sd && i == 0) || !sd){
-      window["snakecube" + i].style.transform = "rotateZ(" + (snakeangles[i]) + "deg)";
-    }
+    //if((sd || mobile) && i == 0){
+    window["snakecube" + i].style.transform = "rotateZ(" + (snakeangles[i]) + "deg)";
+    //}
     
     if(!mobile){
       if(snakepos[i][2] == 0){
@@ -241,19 +241,21 @@ movesnake = () => {
   }
   
   // Set the trail after the snake (except if it's going back)
-  if(!back){
-    for(i = 0; i < 3; i++){
-      if(snakepos[snakelength + i - 1] && snakepos[snakelength + i - 1][2] == 0){
-        window["snaketrail" + i].style.transform = "translateX(" + (snakepos[snakelength + i - 1][0] * 10) + "vmin) translateY(" + (snakepos[snakelength + i - 1][1] * 10) + "vmin)";
-      }
-      else {
-        window["snaketrail" + i].style.transform = "scale(.01)";
+  if(!mobile && !sd){
+    if(!back){
+      for(i = 0; i < 3; i++){
+        if(snakepos[snakelength + i - 1] && snakepos[snakelength + i - 1][2] == 0){
+          window["snaketrail" + i].style.transform = "translateX(" + (snakepos[snakelength + i - 1][0] * 10) + "vmin) translateY(" + (snakepos[snakelength + i - 1][1] * 10) + "vmin)";
+        }
+        else {
+          window["snaketrail" + i].style.transform = "scale(.01)";
+        }
       }
     }
   }
   
   // If the snake moves on X axis, rotate the trees to face the camera
-  if(!sd){
+  if(!mobile && !sd){
     for(i in levels[currentroom].trees){
       if(!inbounds[0] && !puzzling){
         window["treecontent" + i].style.transform = `rotateY(${Math.sin(snakepos[i][0] / 30)}rad)`;
@@ -266,7 +268,7 @@ movesnake = () => {
     scene.classList.add("inbounds");
     scene.style.transition = "1s";
     scene.style.transform = "rotateX(10deg) translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin)";
-    if(!sd){
+    if(!mobile && !sd){
       b.style.backgroundPosition = "center -200vmin";
     }
     checkpuzzle();
@@ -275,7 +277,7 @@ movesnake = () => {
   // Dezoom when out of a puzzle
   else if(!inbounds[0] || currentpuzzle.solved){
     scene.classList.remove("inbounds");
-    if(!sd){
+    if(!mobile && !sd){
       b.style.backgroundPosition = "";
     }
     setTimeout('scene.style.transition = ""', 1000);

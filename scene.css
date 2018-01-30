@@ -76,7 +76,7 @@
 }
 
 .sd .treecontent {
-  background: radial-gradient(circle at 50% 30%, #067201 15vmin, transparent 16vmin) left top, linear-gradient(90deg, transparent 45%, #685e06 45%, #685e06 55%, transparent 55%) no-repeat center bottom;
+  background: radial-gradient(circle at 50% 30%, #067201, #014500 15vmin, transparent 15vmin) left top, linear-gradient(90deg, transparent 45%, #483e06 45%, #685e06 50%, #483e06 55%, transparent 55%) no-repeat center bottom;
   background-size: 100%, 100% 50%;
 }
 
@@ -96,9 +96,15 @@
 
 .bridge {
   position: absolute;
-  width: 90vmin;
+  width: 150vmin;
   height: 30vmin;
   background: url("wood.jpg");
   transform-origin: left center;
+  transform: translateZ(-.5vmin);
   /*transform: rotateY(-90deg);*/
+}
+
+.sd .bridge {
+  background: linear-gradient(90deg, #483e06, #685e06) repeat;
+  background-size: 10vmin 100%;
 }
