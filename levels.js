@@ -76,7 +76,8 @@ levels = [
         x: 21,
         y: 10,
         angle: 0,
-        opened: 1
+        opened: 1,
+        puzzles: 1
       }
     ],
     

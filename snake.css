@@ -49,6 +49,7 @@
   xbackground: #0af;
   xopacity: 0.5;
   position: fixed;
+  xborder: .4vmin solid #000;
   transform: rotateZ(45deg);
   -moz-pointer-events: all;
   -webkit-pointer-events: all;
@@ -82,23 +83,27 @@
 }
 
 .inbounds .snakecontrol.front {
-  margin-top: -11vmin;
+  margin-top: -31vmin;
   margin-left: -1vmin;
+  height: 30vmin;
 }
 
 .inbounds .snakecontrol.back {
   margin-top: 9vmin;
   margin-left: -1vmin;
+  height: 30vmin;
 }
 
 .inbounds .snakecontrol.left {
   margin-top: -1vmin;
-  margin-left: -11vmin;
+  margin-left: -31vmin;
+  width: 30vmin;
 }
 
 .inbounds .snakecontrol.right {
   margin-top: -1vmin;
   margin-left: 9vmin;
+  width: 30vmin;
 }
 
 #snakecubemove0 {

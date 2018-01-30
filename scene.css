@@ -4,12 +4,12 @@
   border-radius: 5vmin;
   transform: rotateX(30deg) translateX(-100vmin) translateY(-100vmin) translateZ(40vmin);
   transition: transform .2s linear;
-  background: url(grass.jpg); 
-  background-size: 70vmin;
+  background: radial-gradient(circle, #000 2vmin, rgba(86, 66, 37, .75) 5vmin, transparent 6vmin) no-repeat -1vmin -2vmin, url(grass.jpg); 
+  background-size: 100%, 70vmin;
 }
 
 .sd #scene {
-  background: radial-gradient(circle, #5F9D3F 15vmin, #034301 200vmin);
+  background: radial-gradient(circle, #000 2vmin, rgba(86, 66, 37, .75) 5vmin, #5F9D3F 6vmin, #034301 200vmin) -1vmin -2vmin;
   background-size: auto;
 }
 
@@ -33,7 +33,7 @@
   width: 42vmin;
   height: 60vmin;
   transform-origin: bottom center;
-  transform: translateX(-50%) translateY(3vmin) rotateX(-45deg);
+  transform: translateX(-50%) translateY(5vmin) rotateX(-45deg);
   position: absolute;
   bottom: 100%;
   left: 0;
@@ -67,7 +67,7 @@
   height: 60vmin;
   transform-origin: center bottom;
   background: url(tree.png) no-repeat;
-  background-size: 100%;
+  background-size: 100% 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -100,8 +100,12 @@
   height: 30vmin;
   background: url("wood.jpg");
   transform-origin: left center;
-  transform: translateZ(-.5vmin);
-  /*transform: rotateY(-90deg);*/
+  transform: rotateY(90deg) translateZ(-.5vmin);
+  transition: transform 2s;
+}
+
+.bridge.open {
+  transform: rotateY(0deg) translateZ(-.5vmin);
 }
 
 .sd .bridge {

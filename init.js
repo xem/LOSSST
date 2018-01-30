@@ -1,4 +1,7 @@
 sd = 0;
+if(sd){
+  b.className = "sd";
+}
 mobile = 0;
 snakelength = 7;
 snakepos = [];
@@ -22,6 +25,9 @@ move_l =
 move_r = 0;
 cell = null;
 
+localStorage["totalpuzzles"] = localStorage["totalpuzzles"] || 0;
+totalpuzzles = 0;
+
 snakepos = [[10,10,-1],[10,10,-1],[10,10,-1],[10,10,-1],[10,10,-1],[10,10,-1],[10,10,-1]];
 inbounds = [0];
 puzzling = 0;
@@ -42,6 +48,11 @@ details.onclick = details.ontouchstart = e => {
   sd = 1 - sd;
   b.classList.toggle("sd");
   details.innerHTML = sd ? "HD" : "SD";
+}
+
+reset.onclick = reset.ontouchstart = e => {
+  localStorage.clear();
+  location = location;
 }
 
 onload = e => {

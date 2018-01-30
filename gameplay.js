@@ -326,13 +326,22 @@ checkpuzzle = () => {
       }
     }
   
-    // Color in green
+    // Color in green, save
     if(solved){
       currentpuzzle.solved = 1;
       for(j in currentpuzzle.ground){
         cell = window[`cell${currentroom}-${currentpuzzle.index}-${j}`];
         if(cell.classList.contains("black")){
           cell.classList.add("green");
+        }
+      }
+      localStorage[currentroom+"-"+currentpuzzle.index] = 1;
+      localStorage["totalpuzzles"] = totalpuzzles = +localStorage["totalpuzzles"] + 1;
+      
+      for(i in levels[currentroom].bridges){
+        bridge = levels[currentroom].bridges[i];
+        if(totalpuzzles >= bridge.puzzles){
+          window["bridge" + i].classList.add("open");
         }
       }
     }
