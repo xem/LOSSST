@@ -230,11 +230,11 @@ movesnake = () => {
     if(!mobile){
       if(snakepos[i][2] == 0){
         window["snakegrass" + i].style.backgroundPosition = -(snakepos[i][0] * 10 + (snakepos[i][1] * 100)) + "vmin bottom";
-        if(inbounds[i]){
-          window["snakegrass" + i].style.opacity = 0;
+        if(inbounds[i] || puzzling){
+          window["snakegrass" + i].style.display = "none";
         }
         else {
-          window["snakegrass" + i].style.opacity = 1;
+          window["snakegrass" + i].style.display = "";
         }
       }
     }
@@ -265,7 +265,7 @@ movesnake = () => {
   
   // Zoom when inbounds (in a puzzle)
   if(puzzling && currentpuzzle) {
-    scene.classList.add("inbounds");
+    b.classList.add("inbounds");
     scene.style.transition = "1s";
     scene.style.transform = "rotateX(10deg) translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin)";
     if(!mobile && !sd){
@@ -276,7 +276,7 @@ movesnake = () => {
   
   // Dezoom when out of a puzzle
   else if(!inbounds[0] || currentpuzzle.solved){
-    scene.classList.remove("inbounds");
+    b.classList.remove("inbounds");
     if(!mobile && !sd){
       b.style.backgroundPosition = "";
     }

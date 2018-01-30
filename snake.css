@@ -44,10 +44,10 @@
 }
 
 .snakecontrol {
-  width: 35vmin;
-  height: 35vmin;
+  width: 50vmin;
+  height: 50vmin;
   xbackground: #0af;
-  xopacity: 0;
+  xopacity: 0.5;
   position: fixed;
   transform: rotateZ(45deg);
   -moz-pointer-events: all;
@@ -56,23 +56,23 @@
 }
 
 .snakecontrol.front {
-  margin-top: -35vmin;
-  margin-left: -12vmin;
+  margin-top: -55vmin;
+  margin-left: -20vmin;
 }
 
 .snakecontrol.back {
-  margin-top: 13vmin;
-  margin-left: -12vmin;
+  margin-top: 15vmin;
+  margin-left: -20vmin;
 }
 
 .snakecontrol.left {
-  margin-top: -11vmin;
-  margin-left: -37vmin;
+  margin-top: -20vmin;
+  margin-left: -55vmin;
 }
 
 .snakecontrol.right {
-  margin-top: -11vmin;
-  margin-left: 13vmin;
+  margin-top: -20vmin;
+  margin-left: 15vmin;
 }
 
 .inbounds .snakecontrol {
@@ -109,7 +109,15 @@
 .cube.snakecube {
   width: 100%;
   height: 100%;
-  transition: transform .15s linear;
+  transition: transform .1s linear;
+}
+
+.sd .cube.snakecube {
+  transition: none;
+}
+
+.sd #snakecube0 {
+  transition: transform .1s linear;
 }
 
 .cube.puzzlecube {
@@ -168,9 +176,11 @@
   left: 0;
 }
 
+.mobile .snaketrail,
 .sd .snaketrail {
   display: none;
 }
+
 
 #snaketrail0 {
   opacity: .11;
