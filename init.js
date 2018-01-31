@@ -28,7 +28,7 @@ cell = null;
 localStorage["totalpuzzles"] = localStorage["totalpuzzles"] || 0;
 totalpuzzles = 0;
 
-snakepos = [[10,10,-1],[10,10,-1],[10,10,-1],[10,10,-1],[10,10,-1],[10,10,-1],[10,10,-1]];
+snakepos = [[10,10,-1],[10,10,-2],[10,10,-3],[10,10,-4],[10,10,-5],[10,10,-6],[10,10,-7]];
 inbounds = [0];
 puzzling = 0;
 snakeangles = [0,0,0,0,0,0,0];
