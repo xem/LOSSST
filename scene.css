@@ -109,7 +109,7 @@
 
 .bridge {
   position: absolute;
-  width: 150vmin;
+  width: 200vmin;
   height: 30vmin;
   background: url("wood.jpg");
   transform-origin: left center;

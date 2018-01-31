@@ -124,7 +124,7 @@ mousemove = (el) => {
     };
   }
   
-  // Collisions with bounds
+  // Collisions with room bounds
   if(
        pos[0] < 0
     || pos[0] >= levels[currentroom].width
@@ -132,6 +132,27 @@ mousemove = (el) => {
     || pos[1] >= levels[currentroom].height
   ){
     collision = "bounds";
+  }
+  
+  // Allow going on bridges
+  for(i in levels[currentroom].bridges){
+    bridge = levels[currentroom].bridges[i];
+    if(bridge.open){
+      if(pos[0] >= bridge.x && pos[1] > bridge.y && pos[1] <= bridge.y + 3){
+        collision = 0;
+        inbounds[0] = 1;
+        lock = 1;
+        scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin) rotateX(30deg)`;
+        interval = setInterval(() => {
+          snakepos.unshift([snakepos[0][0]+1, snakepos[0][1], snakepos[0][2]]);
+          inbounds.unshift(1);
+          movesnake(0);
+        }, 100);
+        setTimeout(()=>{
+          clearInterval(interval)
+        }, snakelength * 100);
+      }
+    }
   }
   
   // Decrement the "going back" counter
@@ -175,7 +196,7 @@ setInterval(() => {
 }, 100);
 
 // Move snake and animate all the elements that move at each snake move
-movesnake = () => {
+movesnake = (movecamera = 1) => {
   
   var i, cell;
   
@@ -254,34 +275,38 @@ movesnake = () => {
     }
   }
   
-  // If the snake moves on X axis, rotate the trees to face the camera
-  if(!mobile && !sd){
-    for(i in levels[currentroom].trees){
-      if(!inbounds[0] && !puzzling){
-        window["treecontent" + i].style.transform = `rotateY(${Math.sin(snakepos[i][0] / 30)}rad)`;
+  L(movecamera);
+  if(movecamera){
+    
+    // If the snake moves on X axis, rotate the trees to face the camera
+    if(!mobile && !sd){
+      for(i in levels[currentroom].trees){
+        if(!inbounds[0] && !puzzling){
+          window["treecontent" + i].style.transform = `rotateY(${Math.sin(snakepos[i][0] / 30)}rad)`;
+        }
       }
     }
-  }
-  
-  // Zoom when inbounds (in a puzzle)
-  if(puzzling && currentpuzzle) {
-    b.classList.add("inbounds");
-    scene.style.transition = "1s";
-    scene.style.transform = "rotateX(10deg) translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin)";
-    if(!mobile && !sd){
-      b.style.backgroundPosition = "center -200vmin";
+    
+    // Zoom when inbounds (in a puzzle)
+    if(puzzling && currentpuzzle) {
+      b.classList.add("inbounds");
+      scene.style.transition = "1s";
+      scene.style.transform = "rotateX(10deg) translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin)";
+      if(!mobile && !sd){
+        b.style.backgroundPosition = "center -200vmin";
+      }
+      checkpuzzle();
     }
-    checkpuzzle();
-  }
-  
-  // Dezoom when out of a puzzle
-  else if(!inbounds[0] || currentpuzzle.solved){
-    b.classList.remove("inbounds");
-    if(!mobile && !sd){
-      b.style.backgroundPosition = "";
+    
+    // Dezoom when out of a puzzle
+    else if(!inbounds[0] || currentpuzzle.solved){
+      b.classList.remove("inbounds");
+      if(!mobile && !sd){
+        b.style.backgroundPosition = "";
+      }
+      setTimeout('scene.style.transition = ""', 1000);
+      scene.style.transform = "rotateX(30deg) translateX(" + (-snakepos[0][0] * 10 + 1) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1) + "vmin) translateZ(40vmin)";
     }
-    setTimeout('scene.style.transition = ""', 1000);
-    scene.style.transform = "rotateX(30deg) translateX(" + (-snakepos[0][0] * 10 + 1) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1) + "vmin) translateZ(40vmin)";
   }
 }
 
@@ -340,8 +365,16 @@ checkpuzzle = () => {
       
       for(i in levels[currentroom].bridges){
         bridge = levels[currentroom].bridges[i];
-        if(totalpuzzles >= bridge.puzzles){
+        if(totalpuzzles >= bridge.puzzles && !bridge.open){
+          lock = 1;
+          scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin) rotateX(30deg)`;
           window["bridge" + i].classList.add("open");
+          bridge.open = 1;
+          localStorage["bridge" + currentroom + "-" + i] = 1;
+          setTimeout(()=>{
+            lock = 0;
+            movesnake();
+          },2500);
         }
       }
     }

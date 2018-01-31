@@ -73,8 +73,11 @@
   
   for(j in levels[currentroom].bridges){
     bridge = levels[currentroom].bridges[j];
+    if(localStorage["bridge" + currentroom + "-" + j]){
+      bridge.open = 1;
+    }
     trees.innerHTML +=
-    `<div id="bridge${j}" class="bridge" style="margin-left:${bridge.x * 10}vmin;margin-top:${bridge.y * 10 + 10}vmin"></div>`;
+    `<div id="bridge${j}" class="bridge ${bridge.open ? "open" : ""}" style="margin-left:${bridge.x * 10}vmin;margin-top:${bridge.y * 10 + 10}vmin"></div>`;
   }
   
   for(j in levels[currentroom].stones){
