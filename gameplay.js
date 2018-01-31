@@ -142,15 +142,29 @@ mousemove = (el) => {
         collision = 0;
         inbounds[0] = 1;
         lock = 1;
-        scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin) rotateX(30deg)`;
+        scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin) translateZ(20vmin) rotateX(10deg)`;
+        angle = snakeangles[0];
+        if(angle % 360 == 180 || angle % 360 == -180){
+          angle += 90;
+        }
+        
+        else if(angle % 360 == 0){
+          angle -= 90;
+        }
+        
         interval = setInterval(() => {
-          snakepos.unshift([snakepos[0][0]+1, snakepos[0][1], snakepos[0][2]]);
+          snakeangles.unshift(angle);
+          snakepos.unshift([snakepos[0][0] + 1, snakepos[0][1], snakepos[0][2]]);
           inbounds.unshift(1);
           movesnake(0);
-        }, 100);
+          lock = 1;
+          animation = 1;
+        }, 200);
         setTimeout(()=>{
-          clearInterval(interval)
-        }, snakelength * 100);
+          clearInterval(interval);
+          lock = 0;
+          animation = 0;
+        }, snakelength * 3 * 200);
       }
     }
   }
@@ -183,9 +197,12 @@ mousemove = (el) => {
   
   // Lock the controls for 150ms (or 300 if we're in a puzzle)
   lock = 1;
-  setTimeout(()=> {
-    lock = 0
-  }, (inbounds[0] && puzzling) ? 300 : 150);
+  
+  if(!animation){
+    setTimeout(()=> {
+      lock = 0
+    }, (inbounds[0] && puzzling) ? 300 : 150);
+  }
 }
 
 // If mouse is down, call mousemove every 50ms to continue current move if possible
@@ -275,7 +292,6 @@ movesnake = (movecamera = 1) => {
     }
   }
   
-  L(movecamera);
   if(movecamera){
     
     // If the snake moves on X axis, rotate the trees to face the camera
@@ -367,12 +383,14 @@ checkpuzzle = () => {
         bridge = levels[currentroom].bridges[i];
         if(totalpuzzles >= bridge.puzzles && !bridge.open){
           lock = 1;
+          animation = 1;
           scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin) rotateX(30deg)`;
           window["bridge" + i].classList.add("open");
           bridge.open = 1;
           localStorage["bridge" + currentroom + "-" + i] = 1;
           setTimeout(()=>{
             lock = 0;
+            animation = 0;
             movesnake();
           },2500);
         }
@@ -380,3 +398,5 @@ checkpuzzle = () => {
     }
   }
 }
+
+setInterval("L(lock)",33);

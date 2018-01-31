@@ -9,7 +9,7 @@
 }
 
 #scene.intro {
-  transition: transform 2s;
+  transition: transform 3s;
 }
 
 .sd #scene {
@@ -122,6 +122,21 @@
 }
 
 .sd .bridge {
+  background: linear-gradient(90deg, #483e06, #685e06) repeat;
+  background-size: 10vmin 100%;
+}
+
+.bridgedepth {
+  position: absolute;
+  width: 100%;
+  height: 6vmin;
+  top: 100%;
+  transform-origin: top center;
+  transform: rotateX(-45deg);
+  background: url("wood.jpg");
+}
+
+.sd .bridgedepth {
   background: linear-gradient(90deg, #483e06, #685e06) repeat;
   background-size: 10vmin 100%;
 }

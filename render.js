@@ -42,7 +42,7 @@
   for(i in levels[currentroom].puzzles){
     puzzle = levels[currentroom].puzzles[i];
     puzzle.index = i;
-    if(localStorage[currentroom + "-" + puzzle.index]){
+    if(+localStorage[currentroom + "-" + puzzle.index]){
       puzzle.solved = 1;
     }
     puzzles.innerHTML +=
@@ -73,11 +73,11 @@
   
   for(j in levels[currentroom].bridges){
     bridge = levels[currentroom].bridges[j];
-    if(localStorage["bridge" + currentroom + "-" + j]){
+    if(+localStorage["bridge" + currentroom + "-" + j]){
       bridge.open = 1;
     }
     trees.innerHTML +=
-    `<div id="bridge${j}" class="bridge ${bridge.open ? "open" : ""}" style="margin-left:${bridge.x * 10}vmin;margin-top:${bridge.y * 10 + 10}vmin"></div>`;
+    `<div id="bridge${j}" class="bridge ${bridge.open ? "open" : ""}" style="margin-left:${bridge.x * 10}vmin;margin-top:${bridge.y * 10 + 10}vmin"><div class="bridgedepth"></div></div>`;
   }
   
   for(j in levels[currentroom].stones){

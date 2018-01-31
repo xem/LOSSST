@@ -1,6 +1,7 @@
 scene.ontouchstart = scene.ontouchmove = e => {
   e.preventDefault();
   e.stopPropagation();
+  if(lock) return;
   mousedown = 1;
   mousemove(cell = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY), 1);
 }
@@ -8,6 +9,7 @@ scene.ontouchstart = scene.ontouchmove = e => {
 scene.onmousedown = e => {
   e.preventDefault();
   e.stopPropagation();
+  if(lock) return;
   mousedown = 1;
   scene.onmousemove(e);
 }
@@ -15,6 +17,7 @@ scene.onmousedown = e => {
 scene.onmouseover = e => {
   e.preventDefault();
   e.stopPropagation();
+  if(lock) return;
   if(mousedown){
     scene.onmousemove(e);
   }
@@ -23,7 +26,8 @@ scene.onmouseover = e => {
 scene.onmousemove = e => {
   e.preventDefault();
   e.stopPropagation();
-  if(mousedown){
+  if(lock) return;
+  if(mousedown && !keydown){
     mousemove(cell = document.elementFromPoint(e.clientX, e.clientY), 1);
   }
 }
@@ -43,6 +47,7 @@ onmousedown = onmousemove = onmouseup = /*oncontextmenu =*/ ontouchstart = ontou
 onkeydown = e => {
   
   mousedown = 1;
+  keydown = 1;
   
   if(e.keyCode == 37){
     cell = control_l;
@@ -59,8 +64,11 @@ onkeydown = e => {
   if(e.keyCode == 40){
     cell = control_b;
   }
+  
+  mousemove(cell);
 }
 
 onkeyup = e => {
   mousedown = 0;
+  keydown = 0;
 }
