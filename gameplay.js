@@ -243,7 +243,7 @@ movesnake = () => {
   // Set the trail after the snake (except if it's going back)
   if(!mobile && !sd){
     if(!back){
-      for(i = 0; i < 3; i++){
+      for(i = 0; i < 4; i++){
         if(snakepos[snakelength + i - 1] && snakepos[snakelength + i - 1][2] == 0){
           window["snaketrail" + i].style.transform = "translateX(" + (snakepos[snakelength + i - 1][0] * 10) + "vmin) translateY(" + (snakepos[snakelength + i - 1][1] * 10) + "vmin)";
         }

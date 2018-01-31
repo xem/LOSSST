@@ -2,6 +2,7 @@
 
   scene.innerHTML =
 `<div id=scenedepth></div>
+<div id=holes></div>
 <div id=bridges></div>
 <div id=puzzles></div>
 <div id=grass></div>
@@ -33,6 +34,11 @@
     snake.innerHTML += `<div id="snaketrail${i}" class="snaketrail"></div>`;
   }
   
+  if(levels[currentroom].hole){
+    hole = levels[currentroom].hole;
+    holes.innerHTML += `<div class="hole" style="margin-left:${hole[0] * 10 - 2}vmin;margin-top:${hole[1] * 10 - 4}vmin"></div>`;
+  }
+  
   for(i in levels[currentroom].puzzles){
     puzzle = levels[currentroom].puzzles[i];
     puzzle.index = i;
@@ -60,7 +66,7 @@
   for(j in levels[currentroom].trees){
     tree = levels[currentroom].trees[j];
     trees.innerHTML +=
-    `<div id="tree${j}" class="tree" style="margin-left:${tree[0] * 10}vmin;margin-bottom:-${tree[1] * 10}vmin"><div id="treecontent${j}" class="treecontent"></div></div>;
+    `<div id="tree${j}" class="tree" style="margin-left:${tree[0] * 10}vmin;margin-bottom:-${tree[1] * 10}vmin"><div id="treecontent${j}" class="treecontent"></div></div>
     <div class="treeshadow" style="margin-left:${tree[0] * 10}vmin;margin-bottom:-${tree[1] * 10}vmin"></div>`;
   }
   
@@ -74,7 +80,7 @@
   for(j in levels[currentroom].stones){
     stone = levels[currentroom].stones[j];
     stones.innerHTML +=
-    `<div class="stone" style="margin-left:${stone[0] * 10}vmin;margin-bottom:-${stone[1] * 10}vmin"></div>;`;
+    `<div class="stone" style="margin-left:${stone[0] * 10}vmin;margin-bottom:-${stone[1] * 10}vmin"></div>`;
   }
   
   scene.style.width = levels[currentroom].width * 10 + 2 + "vmin";
@@ -84,5 +90,6 @@
   
   snakepos[0][2] = 0;
   
-  setTimeout(movesnake, 500);
+  setTimeout(movesnake, 1000);
+  setTimeout("scene.classList.remove('intro')", 2000);
 }

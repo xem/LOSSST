@@ -4,13 +4,26 @@
   border-radius: 5vmin;
   transform: rotateX(30deg) translateX(-100vmin) translateY(-100vmin) translateZ(40vmin);
   transition: transform .2s linear;
-  background: radial-gradient(circle, #000 2vmin, rgba(86, 66, 37, .75) 5vmin, transparent 6vmin) no-repeat -1vmin -2vmin, url(grass.jpg); 
-  background-size: 100%, 70vmin;
+  background: url(grass.jpg); 
+  background-size: 70vmin;
+}
+
+#scene.intro {
+  transition: transform 2s;
 }
 
 .sd #scene {
-  background: radial-gradient(circle, #000 2vmin, rgba(86, 66, 37, .75) 5vmin, #5F9D3F 6vmin, #034301 200vmin) -1vmin -2vmin;
+  background: radial-gradient(#5F9D3F 6vmin, #034301 200vmin) -1vmin -2vmin;
   background-size: auto;
+}
+
+.hole {
+  width: 15vmin;
+  height: 15vmin;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle, #000 2vmin, rgba(86, 66, 37, .75) 5vmin, transparent 6vmin) no-repeat;
 }
 
 #scenedepth {
@@ -34,7 +47,7 @@
   height: 60vmin;
   transform-origin: bottom center;
   transform: translateX(-50%) translateY(5vmin) rotateX(-45deg);
-  position: absolute;
+  position: fixed;
   bottom: 100%;
   left: 0;
   -moz-pointer-events: none;
@@ -50,7 +63,7 @@
   background: url(treeshadow.png) no-repeat;
   opacity: .2;
   background-size: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 100%;
   left: 0;
   -moz-pointer-events: none;
@@ -85,7 +98,7 @@
 }
 
 .stone {
-  position: absolute;
+  position: fixed;
   width: 8vmin;
   height: 6vmin;
   bottom: 100%;

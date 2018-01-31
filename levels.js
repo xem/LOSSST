@@ -5,7 +5,7 @@ levels = [
   
     width: 21,
     height: 21,
-    hole: 1,
+    hole: [10, 10],
     puzzles: [
 
       {
