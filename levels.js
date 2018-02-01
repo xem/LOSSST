@@ -77,7 +77,11 @@ levels = [
         y: 10,
         angle: 0,
         open: 0,
-        puzzles: 4
+        puzzles: 4,
+        to: 1,
+        to_x: 0,
+        to_y: 12,
+        to_z: 0
       }
     ],
     
@@ -87,6 +91,46 @@ levels = [
   },
   
   // Room 1
+  {
+  
+    width: 21,
+    height: 21,
+    hole: false,
+    puzzles: [
 
+      
+
+    ],
+    
+    trees: [
+      [15,15],
+    ],
+    
+    stones: [
+    ],
+    
+    bridges: [
+      {
+        x: 0,
+        y: 10,
+        angle: 180,
+        open: 1,
+        puzzles: 0,
+        to: 0
+      },
+      {
+        x: 21,
+        y: 10,
+        angle: 0,
+        open: 0,
+        puzzles: 4,
+        to: 1
+      }
+    ],
+    
+    
+    
+  
+  },
 
 ];

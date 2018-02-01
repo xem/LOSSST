@@ -137,7 +137,7 @@ mousemove = (el) => {
   // Allow going on bridges
   for(i in levels[currentroom].bridges){
     bridge = levels[currentroom].bridges[i];
-    if(bridge.open){
+    if(bridge.open && bridge.angle == 0){
       if(pos[0] >= bridge.x && pos[1] > bridge.y && pos[1] <= bridge.y + 3){
         collision = 0;
         inbounds[0] = 1;
@@ -152,19 +152,37 @@ mousemove = (el) => {
           angle -= 90;
         }
         
-        interval = setInterval(() => {
+        autopilot = () => {
           snakeangles.unshift(angle);
           snakepos.unshift([snakepos[0][0] + 1, snakepos[0][1], snakepos[0][2]]);
           inbounds.unshift(1);
           movesnake(0);
           lock = 1;
           animation = 1;
-        }, 200);
+        };
+        autopilot();
+        L(inbounds);
+        interval = setInterval(autopilot, 150);
         setTimeout(()=>{
           clearInterval(interval);
           lock = 0;
           animation = 0;
-        }, snakelength * 3 * 200);
+          puzzling = 1;
+          scene.innerHTML = "";
+          currentroom = bridge.to;
+          snakepos = [];
+          snakeangle = [];
+          inbounds = [];
+          for(j = bridge.to_x - snakelength + 2; j < bridge.to_x + 2; j++){
+            snakepos.unshift([j, bridge.to_y, bridge.to_z]);
+            snakeangle.unshift(90);
+            inbounds.unshift(1);
+          }
+          L(snakepos);
+          scene.style.transform = `translateX(${-bridge.to_x}vmin) translateY(${-bridge.to_y}vmin)`;
+          render();
+        }, snakelength * 150);
+        return;
       }
     }
   }
@@ -207,6 +225,7 @@ mousemove = (el) => {
 
 // If mouse is down, call mousemove every 50ms to continue current move if possible
 setInterval(() => {
+  //L("m"+mousedown);
   if(mousedown){
     mousemove(cell);
   }
@@ -272,7 +291,7 @@ movesnake = (movecamera = 1) => {
           window["snakegrass" + i].style.display = "none";
         }
         else {
-          window["snakegrass" + i].style.display = "";
+          setTimeout('window["snakegrass'+i+'"].style.display = ""', 150)
         }
       }
     }
@@ -398,5 +417,3 @@ checkpuzzle = () => {
     }
   }
 }
-
-setInterval("L(lock)",33);

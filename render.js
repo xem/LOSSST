@@ -77,7 +77,7 @@
       bridge.open = 1;
     }
     trees.innerHTML +=
-    `<div id="bridge${j}" class="bridge ${bridge.open ? "open" : ""}" style="margin-left:${bridge.x * 10}vmin;margin-top:${bridge.y * 10 + 10}vmin"><div class="bridgedepth"></div></div>`;
+    `<div id="bridge${j}" class="bridge ${bridge.open ? "open" : ""} angle${bridge.angle}" style="margin-left:${bridge.x * 10}vmin;margin-top:${bridge.y * 10 + 10}vmin;"><div class="bridgedepth"></div></div>`;
   }
   
   for(j in levels[currentroom].stones){

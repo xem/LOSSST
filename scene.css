@@ -9,7 +9,7 @@
 }
 
 #scene.intro {
-  transition: transform 3s;
+  transition: transform 1s;
 }
 
 .sd #scene {
@@ -117,8 +117,24 @@
   transition: transform 2s;
 }
 
+.bridge.angle0 {
+  transform: rotateZ(0) rotateY(90deg) translateZ(-.5vmin);
+}
+
+.bridge.angle180 {
+  transform: rotateZ(180deg) rotateY(90deg) translateZ(-.5vmin);
+}
+
 .bridge.open {
   transform: rotateY(0deg) translateZ(-.5vmin);
+}
+
+.bridge.angle0.open {
+  transform: rotateZ(0) rotateY(0deg) translateZ(-.5vmin);
+}
+
+.bridge.angle180.open {
+  transform: rotateZ(180deg) rotateY(0deg) translateZ(-.5vmin);
 }
 
 .sd .bridge {
@@ -134,6 +150,11 @@
   transform-origin: top center;
   transform: rotateX(-45deg);
   background: url("wood.jpg");
+}
+
+.bridge.angle180 .bridgedepth {
+  top: 0;
+  transform: rotateX(-110deg);
 }
 
 .sd .bridgedepth {
