@@ -7,7 +7,7 @@ Play LOSSST here: http://js13kgames.com/entries/lossst
 
 ---
 
-Current prototype: http://xem.github.io/LOSSST2/index.html
+Current prototype: http://xem.github.io/LOSSST/index.html
 
 Play with mouse on PC / finger on mobile (Android or iOS > 9)
 
