@@ -106,6 +106,29 @@ mousemove = (el) => {
     return;
   }
   
+  // Eat an apple
+  for(i in levels[currentroom].apples){
+    apple = levels[currentroom].apples[i];
+    if(!apple.eaten && pos[0] == apple.x && pos[1] == apple.y){
+      apple.eaten = 1;
+      window["apple" + i].classList.add("eaten");
+      snake.innerHTML +=
+`<div id="snakecubemove${snakelength}" class="snakecubemove">
+  <div class="snakeshadow"></div>
+  <div id="snakegrass${snakelength}" class="snakegrass"></div>
+  <div id="snakecube${snakelength}" class="cube snakecube">
+    <div class="u"></div>
+    <div class="f"></div>
+    <div class="r"></div>
+    <div class="l"></div>
+    <div class="b"></div>
+  </div>
+</div>`;
+      snakelength++;
+    }
+  }
+  
+  
   // Reset collision
   collision = 0;
   
@@ -161,7 +184,6 @@ mousemove = (el) => {
           animation = 1;
         };
         autopilot();
-        L(inbounds);
         interval = setInterval(autopilot, 150);
         setTimeout(()=>{
           clearInterval(interval);
@@ -178,8 +200,8 @@ mousemove = (el) => {
             snakeangle.unshift(90);
             inbounds.unshift(1);
           }
-          L(snakepos);
-          scene.style.transform = `translateX(${-bridge.to_x}vmin) translateY(${-bridge.to_y}vmin)`;
+          scene.style.transform = `translateX(${-bridge.to_x * 10}vmin) translateY(${-bridge.to_y * 10}vmin)`;
+          inbounds[0] = 0;
           render();
         }, snakelength * 150);
         return;
@@ -316,8 +338,9 @@ movesnake = (movecamera = 1) => {
     // If the snake moves on X axis, rotate the trees to face the camera
     if(!mobile && !sd){
       for(i in levels[currentroom].trees){
+        tree = levels[currentroom].trees[i];
         if(!inbounds[0] && !puzzling){
-          window["treecontent" + i].style.transform = `rotateY(${Math.sin(snakepos[i][0] / 30)}rad)`;
+          window["treecontent" + i].style.transform = `rotateY(${Math.sin((snakepos[i][0] - tree[0]) / 30)}rad)`;
         }
       }
     }
@@ -334,7 +357,7 @@ movesnake = (movecamera = 1) => {
     }
     
     // Dezoom when out of a puzzle
-    else if(!inbounds[0] || currentpuzzle.solved){
+    else if(!inbounds[0] || (currentpuzzle && currentpuzzle.solved)){
       b.classList.remove("inbounds");
       if(!mobile && !sd){
         b.style.backgroundPosition = "";
@@ -342,6 +365,12 @@ movesnake = (movecamera = 1) => {
       setTimeout('scene.style.transition = ""', 1000);
       scene.style.transform = "rotateX(30deg) translateX(" + (-snakepos[0][0] * 10 + 1) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1) + "vmin) translateZ(40vmin)";
     }
+  }
+  
+  // Close bridge 0 when we finish entering a room
+  if(!inbounds[snakelength] && bridge0 && bridge0.classList.contains("angle180")){
+    L(bridge0)
+    bridge0.classList.remove("open");
   }
 }
 

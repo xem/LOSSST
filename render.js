@@ -8,6 +8,7 @@
 <div id=grass></div>
 <div id=stones></div>
 <div id=trees></div>
+<div id=apples></div>
 <div id=snake></div>`;
 
   for(i = 0; i < snakelength; i++){
@@ -84,6 +85,12 @@
     stone = levels[currentroom].stones[j];
     stones.innerHTML +=
     `<div class="stone" style="margin-left:${stone[0] * 10}vmin;margin-bottom:-${stone[1] * 10}vmin"></div>`;
+  }
+  
+  for(j in levels[currentroom].apples){
+    apple = levels[currentroom].apples[j];
+    apples.innerHTML +=
+    `<div id="apple${j}" class="apple" style="margin-left:${apple.x * 10}vmin;margin-bottom:-${apple.y * 10}vmin"><div class="applecontent"></div></div>`;
   }
   
   scene.style.width = levels[currentroom].width * 10 + 2 + "vmin";
