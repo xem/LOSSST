@@ -116,7 +116,7 @@ mousemove = (el) => {
 `<div id="snakecubemove${snakelength}" class="snakecubemove">
   <div class="snakeshadow"></div>
   <div id="snakegrass${snakelength}" class="snakegrass"></div>
-  <div id="snakecube${snakelength}" class="cube snakecube bright" style="translateX(${snakepos[snakelength-1][0]+1}vmin) translateY(${snakepos[snakelength-1][1]+1}vmin) translateZ(${snakepos[snakelength-1][2]+.6}vmin)">
+  <div id="snakecube${snakelength}" class="cube snakecube bright" style="translateX(${snakepos[snakelength-1][0]+5}vmin) translateY(${snakepos[snakelength-1][1]+5}vmin) translateZ(${snakepos[snakelength-1][2]+.6}vmin)">
     <div class="u"></div>
     <div class="f"></div>
     <div class="r"></div>
