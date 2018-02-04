@@ -1,13 +1,11 @@
-LOSSST2
+LOSSST
 ==
 
-Native reboot of my JS13kgames-awarded game LOSSST
-
-Play LOSSST here: http://js13kgames.com/entries/lossst
+HD reboot of my JS13kgames-awarded game LOSSST (http://js13kgames.com/entries/lossst)
 
 ---
 
-Current prototype: http://xem.github.io/LOSSST/index.html
+HD reboot demo (wip): http://xem.github.io/LOSSST/index.html
 
 Play with mouse on PC / finger on mobile (Android or iOS > 9)
 
