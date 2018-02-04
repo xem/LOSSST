@@ -1,7 +1,7 @@
 ﻿render = () => {
 
   scene.innerHTML =
-`<div id=scenedepth></div>
+`<div id=scenedepth style="width:${levels[currentroom].width * 10 - 5}vmin; transform: translateY(${levels[currentroom].height * 10}vmin) rotateX(-45deg)"></div>
 <div id=holes></div>
 <div id=bridges></div>
 <div id=puzzles></div>

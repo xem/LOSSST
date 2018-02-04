@@ -112,18 +112,19 @@ mousemove = (el) => {
     if(!apple.eaten && pos[0] == apple.x && pos[1] == apple.y){
       apple.eaten = 1;
       window["apple" + i].classList.add("eaten");
-      snake.innerHTML +=
+      snake.insertAdjacentHTML("beforeEnd",
 `<div id="snakecubemove${snakelength}" class="snakecubemove">
   <div class="snakeshadow"></div>
   <div id="snakegrass${snakelength}" class="snakegrass"></div>
-  <div id="snakecube${snakelength}" class="cube snakecube">
+  <div id="snakecube${snakelength}" class="cube snakecube bright" style="translateX(${snakepos[snakelength-1][0]+1}vmin) translateY(${snakepos[snakelength-1][1]+1}vmin) translateZ(${snakepos[snakelength-1][2]+.6}vmin)">
     <div class="u"></div>
     <div class="f"></div>
     <div class="r"></div>
     <div class="l"></div>
     <div class="b"></div>
   </div>
-</div>`;
+</div>`);
+      setTimeout('window["snakecube"+'+snakelength+'].classList.remove("bright")', 100);
       snakelength++;
     }
   }
@@ -241,7 +242,7 @@ mousemove = (el) => {
   if(!animation){
     setTimeout(()=> {
       lock = 0
-    }, (inbounds[0] && puzzling) ? 300 : 150);
+    }, 130);
   }
 }
 

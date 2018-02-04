@@ -46,8 +46,7 @@
 .snakecontrol {
   width: 50vmin;
   height: 50vmin;
-  xbackground: #0af;
-  xopacity: 0.5;
+  xbackground: #0af7;
   position: fixed;
   xborder: .4vmin solid #000;
   transform: rotateZ(45deg);
@@ -57,22 +56,22 @@
 }
 
 .snakecontrol.front {
-  margin-top: -55vmin;
+  margin-top: -58vmin;
   margin-left: -20vmin;
 }
 
 .snakecontrol.back {
-  margin-top: 15vmin;
+  margin-top: 12vmin;
   margin-left: -20vmin;
 }
 
 .snakecontrol.left {
-  margin-top: -20vmin;
+  margin-top: -23vmin;
   margin-left: -55vmin;
 }
 
 .snakecontrol.right {
-  margin-top: -20vmin;
+  margin-top: -23vmin;
   margin-left: 15vmin;
 }
 
@@ -114,7 +113,21 @@
 .cube.snakecube {
   width: 100%;
   height: 100%;
-  transition: transform .1s linear;
+  transition: transform .1s linear, width .5s, height .5s;
+}
+
+.cube.snakecube.bright {
+  width: 1vmin;
+  height: 1vmin;
+}
+
+
+.cube.snakecube > div {
+  transition: background .5s;
+}
+
+.cube.snakecube.bright > div {
+  background: #fff !important;
 }
 
 .sd .cube.snakecube {

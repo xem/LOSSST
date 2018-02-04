@@ -146,6 +146,7 @@
   transform-origin: left center;
   transform: rotateY(90deg) translateZ(-.5vmin);
   transition: transform 2s;
+  background-size: 90vmin 30vmin;
 }
 
 .bridge.angle0 {
@@ -181,6 +182,7 @@
   transform-origin: top center;
   transform: rotateX(-45deg);
   background: url("wood.jpg");
+  background-size: 90vmin 30vmin;
 }
 
 .bridge.angle180 .bridgedepth {

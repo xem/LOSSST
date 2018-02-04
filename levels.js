@@ -93,8 +93,8 @@ levels = [
   // Room 1
   {
   
-    width: 21,
-    height: 21,
+    width: 41,
+    height: 15,
     hole: false,
     puzzles: [
 
@@ -103,13 +103,13 @@ levels = [
     ],
     
     trees: [
-      [12,10],
+      [14,8],
     ],
     
     apples: [
       {
         x: 10,
-        y: 10,
+        y: 8,
         eaten: 0
       }
     ],
