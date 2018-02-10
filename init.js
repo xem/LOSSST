@@ -46,6 +46,7 @@ if( navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone/i
   b.classList.add("mobile");
 }
 
+/*
 details.onclick = details.ontouchstart = e => {
   sd = 1 - sd;
   b.classList.toggle("sd");
@@ -56,13 +57,19 @@ reset.onclick = reset.ontouchstart = e => {
   localStorage.clear();
   location = location;
 }
+*/
 
 onload = e => {
   render();
 }
 
 bp = 0;
-setInterval(() => {
-  bp += 10;
-  b.style.backgroundPositionX = bp + "px";
-},1000);
+
+if(!mobile){
+  
+  setInterval(() => {
+    bp += 10;
+    b.style.backgroundPositionX = bp + "px";
+  },1000);
+
+};
