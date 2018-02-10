@@ -1,5 +1,6 @@
 inputListeners = function(){
   
+  
   scene.ontouchstart = scene.ontouchmove = e => {
     e.preventDefault();
     e.stopPropagation();
@@ -46,24 +47,30 @@ inputListeners = function(){
     e.preventDefault();
   }
 
+  k_left = k_right = k_up = k_down = 0;
+  
   onkeydown = e => {
     
     mousedown = 1;
     keydown = 1;
     
     if(e.keyCode == 37){
+      k_left = 1;
       cell = control_l;
     }
     
     if(e.keyCode == 38){
+      k_up = 1;
       cell = control_f;
     }
     
     if(e.keyCode == 39){
+      k_right = 1;
       cell = control_r;
     }
     
     if(e.keyCode == 40){
+      k_down = 1;
       cell = control_b;
     }
     
@@ -71,7 +78,42 @@ inputListeners = function(){
   }
 
   onkeyup = e => {
-    mousedown = 0;
-    keydown = 0;
+    if(e.keyCode == 37){
+      k_left = 0;
+      if(cell == control_l){
+        cell = null;
+      }
+    }
+    
+    if(e.keyCode == 38){
+      k_up = 0;
+      if(cell == control_f){
+        cell = null;
+      }
+    }
+    
+    if(e.keyCode == 39){
+      k_right = 0;
+      if(cell == control_r){
+        cell = null;
+      }
+    }
+    
+    if(e.keyCode == 40){
+      k_down = 0;
+      if(cell == control_b){
+        cell = null;
+      }
+    }
+    
+    console.log(cell);
+    if(cell === null){
+        cell = k_left ? control_l : k_up ? control_f : k_right ? control_r : k_down ? control_b : null;
+    }
+
+    if(cell === null){
+      mousedown = 0;
+      keydown = 0;
+    }
   }
 }

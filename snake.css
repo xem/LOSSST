@@ -105,11 +105,6 @@
   width: 30vmin;
 }
 
-#snakecubemove0 {
-  xwidth: 8.5vmin;
-  xheight: 8.5vmin;
-}
-
 .cube.snakecube {
   width: 100%;
   height: 100%;
@@ -120,7 +115,6 @@
   width: 1vmin;
   height: 1vmin;
 }
-
 
 .cube.snakecube > div {
   transition: background .5s;

@@ -126,6 +126,23 @@ mousemove = (el) => {
 </div>`);
       setTimeout('window["snakecube"+'+snakelength+'].classList.remove("bright")', 100);
       snakelength++;
+      
+      for(j in levels[currentroom].bridges){
+        bridge = levels[currentroom].bridges[j];
+        if(!bridge.open && (totalpuzzles >= bridge.puzzles || snakelength >= bridge.snakelength)){
+          lock = 1;
+          animation = 1;
+          scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin) rotateX(30deg)`;
+          window["bridge" + j].classList.add("open");
+          bridge.open = 1;
+          localStorage["bridge" + currentroom + "-" + j] = 1;
+          setTimeout(()=>{
+            lock = 0;
+            animation = 0;
+            movesnake();
+          },2500);
+        }
+      }
     }
   }
   
@@ -148,6 +165,14 @@ mousemove = (el) => {
     };
   }
   
+  // Check collisions with rock cubes 
+  for(i in levels[currentroom].cubes){
+    cube = levels[currentroom].cubes[i];
+    if(pos[0] == cube[0] && pos[1] == cube[1]){
+        collision = "cube";
+    };
+  }
+  
   // Collisions with room bounds
   if(
        pos[0] < 0
@@ -162,7 +187,7 @@ mousemove = (el) => {
   for(i in levels[currentroom].bridges){
     bridge = levels[currentroom].bridges[i];
     if(bridge.open && bridge.angle == 0){
-      if(pos[0] >= bridge.x && pos[1] > bridge.y && pos[1] <= bridge.y + 3){
+      if(pos[0] >= bridge.x+1 && pos[1] > bridge.y && pos[1] <= bridge.y + 2){
         collision = 0;
         inbounds[0] = 1;
         lock = 1;
@@ -242,7 +267,7 @@ mousemove = (el) => {
   if(!animation){
     setTimeout(()=> {
       lock = 0
-    }, 130);
+    }, 180);
   }
 }
 
@@ -303,9 +328,9 @@ movesnake = (movecamera = 1) => {
   for(i = 0; i < snakelength; i++){
     window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin)";
     
-    if((!sd && !mobile) || ((sd || mobile) && i == 0)){
+    //if((!sd && !mobile) || ((sd || mobile) && i == 0)){
       window["snakecube" + i].style.transform = "rotateZ(" + (snakeangles[i]) + "deg)";
-    }
+    //}
     
     if(!mobile){
       if(snakepos[i][2] == 0){
@@ -369,10 +394,10 @@ movesnake = (movecamera = 1) => {
   }
   
   // Close bridge 0 when we finish entering a room
-  /*if(!inbounds[snakelength] && bridge0 && bridge0.classList.contains("angle180")){
+  if(!inbounds[snakelength] && bridge0 && bridge0.classList.contains("angle180")){
     L(bridge0)
     bridge0.classList.remove("open");
-  }*/
+  }
 }
 
 // Clear a puzzle (remove blue and red tiles)
@@ -430,7 +455,7 @@ checkpuzzle = () => {
       
       for(i in levels[currentroom].bridges){
         bridge = levels[currentroom].bridges[i];
-        if(totalpuzzles >= bridge.puzzles && !bridge.open){
+        if(!bridge.open && (totalpuzzles >= bridge.puzzles || snakelength >= bridge.snakelength)){
           lock = 1;
           animation = 1;
           scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin) rotateX(30deg)`;

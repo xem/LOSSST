@@ -1,6 +1,6 @@
 ﻿render = () => {
 
-  perspective.innerHTML = `<div id="scene" style="transform:translateX(-${levels[currentroom].hole[0] * 10 + 5}vmin) translateY(-${levels[currentroom].hole[1] * 10 + 3}vmin) translateZ(100vmin)"></div>`;
+  perspective.innerHTML = `<div id="scene" style="transform:rotateX(0deg) translateX(-${levels[currentroom].hole[0] * 10}vmin) translateY(-${levels[currentroom].hole[1] * 10}vmin) translateZ(60vmin)"></div>`;
   
   scene.innerHTML =
 `<div id=scenedepth style="width:${levels[currentroom].width * 10 - 5}vmin; transform: translateY(${levels[currentroom].height * 10}vmin) rotateX(-45deg)"></div>
@@ -11,6 +11,7 @@
 <div id=stones></div>
 <div id=trees></div>
 <div id=apples></div>
+<div id=cubes></div>
 <div id=snake></div>
 <div id=mask></div>`;
 
@@ -67,6 +68,19 @@
 
   }
   
+  
+  for(i in levels[currentroom].cubes){
+    cube = levels[currentroom].cubes[i];
+    cubes.innerHTML +=
+`<div class="cube rockcube" style="left:${cube[0]*10}vmin;top:${cube[1]*10}vmin">
+  <div class="u"></div>
+  <div class="f"></div>
+  <div class="b"></div>
+  <div class="r"></div>
+  <div class="l"></div>
+</div>`;
+  }
+  
   for(j in levels[currentroom].trees){
     tree = levels[currentroom].trees[j];
     trees.innerHTML +=
@@ -80,7 +94,7 @@
     if(+localStorage["bridge" + currentroom + "-" + j]){
       bridge.open = 1;
     }
-    trees.innerHTML +=
+    bridges.innerHTML +=
     `<div id="bridge${j}" class="bridge ${bridge.open ? "open" : ""} angle${bridge.angle}" style="margin-left:${bridge.x * 10}vmin;margin-top:${bridge.y * 10 + 10}vmin;"><div class="bridgedepth"></div></div>`;
   }
   
@@ -103,8 +117,9 @@
   
   snakepos[0][2] = 0;
   
-  setTimeout(movesnake, 1500);
-  setTimeout("b.classList.remove('intro')", 1000);
+  setTimeout("mask.remove()", 300);
+  setTimeout(movesnake, 500);
+  setTimeout("b.classList.remove('intro')", 2500);
   
   inputListeners();
 }

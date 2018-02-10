@@ -3,9 +3,9 @@ levels = [
   // Room 0
   {
   
-    width: 21,
-    height: 21,
-    hole: [10, 10],
+    width: 36,
+    height: 10,
+    hole: [5, 5],
     /*puzzles: [
 
       {
@@ -63,30 +63,61 @@ levels = [
     */
     
     trees: [
-      [3,15],
+      [10,3],
+      [23,6],
+    ],
+    
+    apples: [
+      {
+        x: 10,
+        y: 4,
+        eaten: 0
+      },
+      {
+        x: 22,
+        y: 7,
+        eaten: 0
+      },
+      {
+        x: 31,
+        y: 5,
+        eaten: 0
+      }
     ],
     
     stones: [
-      [5,10],
-      [11,17],
-      [2,14],
+      [2,9],
+      [11,3],
+      [16,5],
     ],
     
-    /*
+    cubes: [
+      [30, 4],
+      [30, 5],
+      [30, 6],
+      [30, 7],
+      [31, 4],
+      [32, 7],
+      [32, 6],
+      [32, 5],
+      [32, 4],
+    ],
+    
     
     bridges: [
       {
-        x: 21,
-        y: 10,
+        x: 35,
+        y: 4,
         angle: 0,
         open: 0,
         puzzles: 4,
+        snakelength: 6,
         to: 1,
         to_x: 0,
         to_y: 12,
         to_z: 0
       }
-    ],*/
+    ],
     
     
     
@@ -145,3 +176,8 @@ levels = [
   },
 
 ];
+
+for(i = 0; i < 7; i++){
+  levels[0].cubes.push([15,i]);
+  levels[0].cubes.push([18,i+3]);
+}

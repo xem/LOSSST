@@ -26,12 +26,7 @@ body {
 }
 
 body.sd {
-  background: linear-gradient(#0090ff,#fff);
-}
-
-body.intro {
-  background-color: #000;
-  background-image: none;
+  background: linear-gradient(#0090ff, #fff);
 }
 
 #perspective {

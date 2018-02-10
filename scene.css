@@ -6,11 +6,10 @@
   transition: transform .2s linear;
   background: url(images/grass.jpg); 
   background-size: 70vmin;
-  //transform: translateX(-100vmin) translateY(-100vmin) translateZ(40vmin)
 }
 
 .intro #scene {
-  transition: transform 1s;
+  transition: transform 2s;
 }
 
 .sd #scene {
@@ -60,7 +59,7 @@
   width: 42vmin;
   height: 55vmin;
   transform-origin: center bottom;
-  transform: translateX(-50%) scaleX(-1) translateY(0vmin) rotateZ(235deg);
+  transform: translateX(-53%) scaleX(-1) translateY(3vmin) rotateZ(235deg);
   background: url(images/treeshadow.png) no-repeat;
   opacity: .2;
   background-size: 100%;
@@ -143,7 +142,7 @@
   position: absolute;
   width: 200vmin;
   height: 30vmin;
-  background: url(images/"wood.jpg");
+  background: url(images/wood.jpg);
   transform-origin: left center;
   transform: rotateY(90deg) translateZ(-.5vmin);
   transition: transform 2s;
@@ -182,7 +181,7 @@
   top: 100%;
   transform-origin: top center;
   transform: rotateX(-45deg);
-  background: url(images/"wood.jpg");
+  background: url(images/wood.jpg);
   background-size: 90vmin 30vmin;
 }
 
@@ -194,4 +193,23 @@
 .sd .bridgedepth {
   background: linear-gradient(90deg, #483e06, #685e06) repeat;
   background-size: 10vmin 100%;
+}
+
+.rockcube {
+  width: 10vmin;
+  height: 10vmin;
+}
+
+.rockcube div {
+  background: red;
+  background: url(images/terre.jpg); 
+  background-size: 20vmin;
+}
+
+.rockcube .u {
+  background: url(images/grass.jpg); 
+  background-size: 20vmin;
+  width: 11vmin;
+  height: 11vmin;
+  margin-left: -.5vmin
 }

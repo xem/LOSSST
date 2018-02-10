@@ -3,7 +3,7 @@ if(sd){
   b.className = "sd";
 }
 mobile = 0;
-snakelength = 7;
+snakelength = 3;
 snakepos = [];
 snakeangles = [];
 wrap = [];
@@ -30,7 +30,7 @@ cell = null;
 localStorage["totalpuzzles"] = localStorage["totalpuzzles"] || 0;
 totalpuzzles = 0;
 
-snakepos = [[10,10,-1],[10,10,-2],[10,10,-3],[10,10,-4],[10,10,-5],[10,10,-6],[10,10,-7]];
+snakepos = [[5,5,-1],[5,5,-2],[5,5,-3]];
 inbounds = [0];
 puzzling = 0;
 snakeangles = [0,0,0,0,0,0,0];
@@ -52,12 +52,12 @@ details.onclick = details.ontouchstart = e => {
   b.classList.toggle("sd");
   details.innerHTML = sd ? "HD" : "SD";
 }
+*/
 
 reset.onclick = reset.ontouchstart = e => {
   localStorage.clear();
   location = location;
 }
-*/
 
 onload = e => {
   render();
