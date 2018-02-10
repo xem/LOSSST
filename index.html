@@ -11,13 +11,11 @@
 <link rel="stylesheet" href="puzzle.css">
 <link rel="stylesheet" href="scene.css">
 <title>LOSSST</title>
-<body id="b">
+<body id="b" class=intro>
 <button id="details" style=left:0>SD</button>
 <button id="reset" style=left:6vmin>reset</button>
 <button onclick="localStorage['totalpuzzles']=3;localStorage['0-0']=1;localStorage['0-1']=1;localStorage['0-2']=0;localStorage['0-3']=1;localStorage['bridge0-0']=0;location=location" style=left:15vmin>3/4</button>
-<div id="perspective">
-  <div id="scene" class="intro" style="transform: translateX(-100vmin) translateY(-100vmin) translateZ(40vmin)"></div>
-</div>
+<div id="perspective"></div>
 
 <script src="init.js"></script>
 <script src="levels.js"></script>

@@ -6,7 +6,7 @@ levels = [
     width: 21,
     height: 21,
     hole: [10, 10],
-    puzzles: [
+    /*puzzles: [
 
       {
         x: 4,
@@ -60,6 +60,7 @@ levels = [
       },
 
     ],
+    */
     
     trees: [
       [3,15],
@@ -70,6 +71,8 @@ levels = [
       [11,17],
       [2,14],
     ],
+    
+    /*
     
     bridges: [
       {
@@ -83,7 +86,7 @@ levels = [
         to_y: 12,
         to_z: 0
       }
-    ],
+    ],*/
     
     
     

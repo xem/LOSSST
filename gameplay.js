@@ -352,7 +352,7 @@ movesnake = (movecamera = 1) => {
       scene.style.transition = "1s";
       scene.style.transform = "rotateX(10deg) translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin)";
       if(!mobile && !sd){
-        b.style.backgroundPosition = "center -200vmin";
+        b.style.backgroundPositionT = "-200vmin";
       }
       checkpuzzle();
     }
@@ -361,7 +361,7 @@ movesnake = (movecamera = 1) => {
     else if(!inbounds[0] || (currentpuzzle && currentpuzzle.solved)){
       b.classList.remove("inbounds");
       if(!mobile && !sd){
-        b.style.backgroundPosition = "";
+        b.style.backgroundPositionY = "center";
       }
       setTimeout('scene.style.transition = ""', 1000);
       scene.style.transform = "rotateX(30deg) translateX(" + (-snakepos[0][0] * 10 + 1) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1) + "vmin) translateZ(40vmin)";
@@ -369,10 +369,10 @@ movesnake = (movecamera = 1) => {
   }
   
   // Close bridge 0 when we finish entering a room
-  if(!inbounds[snakelength] && bridge0 && bridge0.classList.contains("angle180")){
+  /*if(!inbounds[snakelength] && bridge0 && bridge0.classList.contains("angle180")){
     L(bridge0)
     bridge0.classList.remove("open");
-  }
+  }*/
 }
 
 // Clear a puzzle (remove blue and red tiles)

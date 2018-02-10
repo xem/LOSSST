@@ -4,11 +4,12 @@
   border-radius: 5vmin;
   transform: rotateX(30deg) translateX(-100vmin) translateY(-100vmin) translateZ(40vmin);
   transition: transform .2s linear;
-  background: url(grass.jpg); 
+  background: url(images/grass.jpg); 
   background-size: 70vmin;
+  //transform: translateX(-100vmin) translateY(-100vmin) translateZ(40vmin)
 }
 
-#scene.intro {
+.intro #scene {
   transition: transform 1s;
 }
 
@@ -33,7 +34,7 @@
   width: 207vmin;
   height: 120vmin;
   transform: translateY(210vmin) rotateX(-45deg);
-  background: linear-gradient(transparent 20%, #fff), url(terre.jpg);
+  background: linear-gradient(transparent 20%, #fff), url(images/terre.jpg);
   background-size: 100%, 70vmin;
   transform-origin: top center;
 }
@@ -60,7 +61,7 @@
   height: 55vmin;
   transform-origin: center bottom;
   transform: translateX(-50%) scaleX(-1) translateY(0vmin) rotateZ(235deg);
-  background: url(treeshadow.png) no-repeat;
+  background: url(images/treeshadow.png) no-repeat;
   opacity: .2;
   background-size: 100%;
   position: fixed;
@@ -79,7 +80,7 @@
   width: 50vmin;
   height: 60vmin;
   transform-origin: center bottom;
-  background: url(tree.png) no-repeat;
+  background: url(images/tree.png) no-repeat;
   background-size: 100% 100%;
   position: absolute;
   top: 0;
@@ -103,7 +104,7 @@
   height: 6vmin;
   bottom: 100%;
   left: 0;
-  background: url(stone.png);
+  background: url(images/stone.png);
   background-size: 100%;
 }
 
@@ -132,7 +133,7 @@
 
 .applecontent {
   animation: wobble 2s alternate infinite;
-  background: url(apple.png) no-repeat;
+  background: url(images/apple.png) no-repeat;
   background-size: 100%;
   width: 100%;
   height: 100%;
@@ -142,7 +143,7 @@
   position: absolute;
   width: 200vmin;
   height: 30vmin;
-  background: url("wood.jpg");
+  background: url(images/"wood.jpg");
   transform-origin: left center;
   transform: rotateY(90deg) translateZ(-.5vmin);
   transition: transform 2s;
@@ -181,7 +182,7 @@
   top: 100%;
   transform-origin: top center;
   transform: rotateX(-45deg);
-  background: url("wood.jpg");
+  background: url(images/"wood.jpg");
   background-size: 90vmin 30vmin;
 }
 

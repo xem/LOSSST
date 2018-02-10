@@ -16,7 +16,7 @@ nextlevelwait = 0;
 won = 0;
 goingback = 0;
 back = 0;
-currentroom = 1;
+currentroom = 0;
 currentpuzzle = 0;
 lock = 0;
 animation = 0;
@@ -60,3 +60,9 @@ reset.onclick = reset.ontouchstart = e => {
 onload = e => {
   render();
 }
+
+bp = 0;
+setInterval(() => {
+  bp += 10;
+  b.style.backgroundPositionX = bp + "px";
+},1000);

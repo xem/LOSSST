@@ -1,5 +1,7 @@
 ﻿render = () => {
 
+  perspective.innerHTML = `<div id="scene" style="transform:translateX(-${levels[currentroom].hole[0] * 10 + 5}vmin) translateY(-${levels[currentroom].hole[1] * 10 + 3}vmin) translateZ(100vmin)"></div>`;
+  
   scene.innerHTML =
 `<div id=scenedepth style="width:${levels[currentroom].width * 10 - 5}vmin; transform: translateY(${levels[currentroom].height * 10}vmin) rotateX(-45deg)"></div>
 <div id=holes></div>
@@ -9,7 +11,8 @@
 <div id=stones></div>
 <div id=trees></div>
 <div id=apples></div>
-<div id=snake></div>`;
+<div id=snake></div>
+<div id=mask></div>`;
 
   for(i = 0; i < snakelength; i++){
     snake.innerHTML +=
@@ -96,10 +99,12 @@
   scene.style.width = levels[currentroom].width * 10 + 2 + "vmin";
   scene.style.height = levels[currentroom].height * 10 + 2 + "vmin";
 
-  movesnake();
+  movesnake(0);
   
   snakepos[0][2] = 0;
   
-  setTimeout(movesnake, 1000);
-  setTimeout("scene.classList.remove('intro')", 2000);
+  setTimeout(movesnake, 1500);
+  setTimeout("b.classList.remove('intro')", 1000);
+  
+  inputListeners();
 }
