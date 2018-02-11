@@ -17,7 +17,6 @@ if(
 
 if(sd){
   b.className = "sd";
-  details.innerHTML = "HD";
 }
 
 // Sky scrolling background position
