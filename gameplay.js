@@ -170,7 +170,7 @@ mousemove = (el) => {
           animation = 1;
         };
         autopilot();
-        interval = setInterval(autopilot, 150);
+        interval = setInterval(autopilot, 180);
         
         // Change room
         setTimeout(()=>{
@@ -191,7 +191,7 @@ mousemove = (el) => {
           render();
           puzzling = 0;
           movesnake(0);
-        }, snakelength * 150);
+        }, snakelength * 180);
         
         // Stop autopilot
         setTimeout(() => {
@@ -203,7 +203,7 @@ mousemove = (el) => {
           inbounds = [0,1,1,1,1,1,1,1,1];
           
           movesnake(0);
-        }, snakelength * 150 + 3 * 150);
+        }, snakelength * 180 + 3 * 180);
         return;
       }
     }
