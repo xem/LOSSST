@@ -35,10 +35,7 @@
   transition: background-position .15s linear, opacity .15s linear;
 }
 
-.sd .snakegrass {
-  display: none;
-}
-
+.sd .snakegrass,
 .mobile .snakegrass {
   display: none;
 }
@@ -125,12 +122,13 @@
   background: #fff !important;
 }
 
+.sd .snakecubemove,
 .sd .cube.snakecube {
   transition: none;
 }
 
 .sd #snakecube0 {
-  transition: transform .1s linear;
+  //transition: transform .1s linear;
 }
 
 .cube.puzzlecube {

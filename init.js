@@ -3,7 +3,7 @@ if(sd){
   b.className = "sd";
 }
 mobile = 0;
-snakelength = 3;
+snakelength = 5;
 snakepos = [];
 snakeangles = [];
 wrap = [];
@@ -16,7 +16,7 @@ nextlevelwait = 0;
 won = 0;
 goingback = 0;
 back = 0;
-currentroom = 0;
+currentroom = 1;
 currentpuzzle = 0;
 lock = 0;
 animation = 0;
@@ -30,7 +30,7 @@ cell = null;
 localStorage["totalpuzzles"] = localStorage["totalpuzzles"] || 0;
 totalpuzzles = 0;
 
-snakepos = [[5,5,-1],[5,5,-2],[5,5,-3]];
+snakepos = [[5,5,-1],[5,5,-2],[5,5,-3],[5,5,-3],[5,5,-3]];
 inbounds = [0];
 puzzling = 0;
 snakeangles = [0,0,0,0,0,0,0];
@@ -43,7 +43,9 @@ L = z => {
 
 if( navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)){
   mobile = 1;
-  b.classList.add("mobile");
+  sd = 1;
+  b.classList.add("sd");
+  details.innerHTML = sd ? "HD" : "SD";
 }
 
 

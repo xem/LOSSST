@@ -13,8 +13,8 @@
 }
 
 .sd #scene {
-  background: radial-gradient(#5F9D3F 6vmin, #034301 200vmin) -1vmin -2vmin;
-  background-size: auto;
+  //background: radial-gradient(#5F9D3F 6vmin, #034301 200vmin) -1vmin -2vmin;
+  //background-size: auto;
 }
 
 .hole {
@@ -39,7 +39,7 @@
 }
 
 .sd #scenedepth {
-  background: linear-gradient(#725f1b, #fff);
+  //background: linear-gradient(#725f1b, #fff);
 }
 
 .tree {
@@ -72,7 +72,7 @@
 }
 
 .sd .treeshadow {
-  display: none;
+  //display: none;
 }
 
 .treecontent {
@@ -89,12 +89,12 @@
 }
 
 .sd .treecontent {
-  background: radial-gradient(circle at 50% 30%, #067201, #014500 15vmin, transparent 15vmin) left top, linear-gradient(90deg, transparent 45%, #483e06 45%, #685e06 50%, #483e06 55%, transparent 55%) no-repeat center bottom;
-  background-size: 100%, 100% 50%;
+  //background: radial-gradient(circle at 50% 30%, #067201, #014500 15vmin, transparent 15vmin) left top, linear-gradient(90deg, transparent 45%, #483e06 45%, #685e06 50%, #483e06 55%, transparent 55%) no-repeat center bottom;
+  //background-size: 100%, 100% 50%;
 }
 
 .sd .stone {
-  display: none;
+  //display: none;
 }
 
 .stone {
@@ -186,8 +186,8 @@
 }
 
 .sd .bridge {
-  background: linear-gradient(90deg, #483e06, #685e06) repeat;
-  background-size: 10vmin 100%;
+  //background: linear-gradient(90deg, #483e06, #685e06) repeat;
+  //background-size: 10vmin 100%;
 }
 
 .bridgedepth {
@@ -207,8 +207,8 @@
 }
 
 .sd .bridgedepth {
-  background: linear-gradient(90deg, #483e06, #685e06) repeat;
-  background-size: 10vmin 100%;
+  //background: linear-gradient(90deg, #483e06, #685e06) repeat;
+  //background-size: 10vmin 100%;
 }
 
 .rockcube {

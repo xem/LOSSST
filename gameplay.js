@@ -146,7 +146,7 @@ mousemove = (el) => {
   for(i in levels[currentroom].bridges){
     bridge = levels[currentroom].bridges[i];
     if(bridge.open && bridge.angle == 0){
-      if(pos[0] >= bridge.x+1 && pos[1] > bridge.y && pos[1] <= bridge.y + 3){
+      if(pos[0] >= bridge.x+1 && pos[1] > bridge.y - 1 && pos[1] <= bridge.y + 1){
         collision = 0;
         inbounds[0] = 1;
         lock = 1;
@@ -161,10 +161,10 @@ mousemove = (el) => {
         }
         
         // Autopilot
-        autopilot = () => {
+        autopilot = (bounds = 1) => {
           snakeangles.unshift(angle);
           snakepos.unshift([snakepos[0][0] + 1, snakepos[0][1], snakepos[0][2]]);
-          inbounds.unshift(1);
+          inbounds.unshift(bounds);
           movesnake(0);
           lock = 1;
           animation = 1;
@@ -189,7 +189,8 @@ mousemove = (el) => {
           scene.style.transform = `translateX(${-bridge.to_x * 10}vmin) translateY(${-bridge.to_y * 10}vmin)`;
           inbounds[0] = 0;
           render();
-          movesnake();
+          puzzling = 0;
+          movesnake(0);
         }, snakelength * 150);
         
         // Stop autopilot
@@ -197,8 +198,11 @@ mousemove = (el) => {
           clearInterval(interval);
           lock = 0;
           animation = 0;
+          puzzling = 0;
           scene.style.transition = "";
-          inbounds = [0,0,1,1,1,1,1,1,1];
+          inbounds = [0,1,1,1,1,1,1,1,1];
+          
+          movesnake(0);
         }, snakelength * 150 + 3 * 150);
         return;
       }
@@ -285,8 +289,9 @@ movesnake = (movecamera = 1) => {
   
   // Stay zoomed if one of the first 4 cubes after the head is in the puzzle
   if(
-    (!currentpuzzle || !currentpuzzle.solved)
-    && (inbounds[0] || inbounds.slice(1, 4).includes(1))
+    (currentpuzzle && !currentpuzzle.solved)
+    && (inbounds[0] || inbounds.slice(1, 4).includes(1)
+    && snakepos.length > snakelength + 10)
   ){
     puzzling = 1;
   }
@@ -305,11 +310,11 @@ movesnake = (movecamera = 1) => {
     if(!mobile){
       if(snakepos[i][2] == 0){
         window["snakegrass" + i].style.backgroundPosition = -(snakepos[i][0] * 10 + (snakepos[i][1] * 100)) + "vmin bottom";
-        if(inbounds[i] || puzzling){
-          window["snakegrass" + i].style.opacity = "0";
+        if(inbounds[i] || puzzling || snakepos[i][0] < 0 || snakepos[i][0] >= levels[currentroom].width){
+          window["snakegrass" + i].style.opacity = 0;
         }
         else {
-          setTimeout('window["snakegrass'+i+'"].style.opacity = 1', 150)
+          window["snakegrass"+i].style.opacity = 1;
         }
       }
     }
@@ -346,7 +351,7 @@ movesnake = (movecamera = 1) => {
       for(i in levels[currentroom].trees){
         tree = levels[currentroom].trees[i];
         if(!inbounds[0] && !puzzling){
-          window["treecontent" + i].style.transform = `rotateY(${Math.sin((snakepos[i][0] - tree[0]) / 30)}rad)`;
+          window["treecontent" + i].style.transform = `rotateY(${Math.sin((snakepos[0][0] - tree[0]) / 30)}rad)`;
         }
       }
     }
@@ -414,7 +419,7 @@ movesnake = (movecamera = 1) => {
             lock = 0;
             animation = 0;
             movesnake();
-          },2500);
+          },2000);
           break;
         }
         break;
@@ -493,7 +498,7 @@ checkpuzzle = () => {
             lock = 0;
             animation = 0;
             movesnake();
-          },2500);
+          },2000);
         }
       }
     }
