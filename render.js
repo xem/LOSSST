@@ -36,7 +36,7 @@
   }
   
   for(i = 0; i < 4; i++){
-    snake.innerHTML += `<div id="snaketrail${i}" class="snaketrail"></div>`;
+    snake.innerHTML += `<div id="snaketrail${i}" class="snaketrail" style="display: none"></div>`;
   }
   
   if(levels[currentroom].hole){
@@ -63,7 +63,7 @@
 
     for(j in puzzle.ground){
       window["puzzleground" + i].innerHTML +=
-      `<div id="cell${currentroom}-${i}-${j}" class="cell ${+(puzzle.ground[j]) ? ("black" + (puzzle.solved ? " green" : "")) : "white"}" style="left:${((+j)%puzzle.size) * 10}vmin;top:${~~((+j)/puzzle.size) * 10}vmin"></div>`;
+      `<div id="cell${currentroom}-${i}-${j}" class="cell ${+(puzzle.ground[j]) ? ("black" + (puzzle.solved ? " green" : "")) : (puzzle.solved ? "yellow" : "white")}" style="left:${((+j)%puzzle.size) * 10}vmin;top:${~~((+j)/puzzle.size) * 10}vmin"></div>`;
     }
 
   }
@@ -106,9 +106,11 @@
   
   for(j in levels[currentroom].apples){
     apple = levels[currentroom].apples[j];
-    apples.innerHTML +=
-    `<div id="apple${j}" class="apple" style="margin-left:${apple.x * 10}vmin;margin-bottom:-${apple.y * 10}vmin"><div class="applecontent"></div></div>`+
-    `<div id="appleshadow${j}" class="appleshadow" style="margin-left:${apple.x * 10}vmin;margin-bottom:-${apple.y * 10}vmin"></div>`;
+    if(!apple.eaten){
+      apples.innerHTML +=
+      `<div id="apple${j}" class="apple" style="margin-left:${apple.x * 10}vmin;margin-bottom:-${apple.y * 10}vmin"><div class="applecontent"></div></div>`+
+      `<div id="appleshadow${j}" class="appleshadow" style="margin-left:${apple.x * 10}vmin;margin-bottom:-${apple.y * 10}vmin"></div>`;
+    }
   }
   
   scene.style.width = levels[currentroom].width * 10 + 2 + "vmin";

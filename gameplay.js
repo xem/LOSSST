@@ -186,7 +186,7 @@ mousemove = (el) => {
             snakeangle.unshift(90);
             inbounds.unshift(1);
           }
-          scene.style.transform = `translateX(${-bridge.to_x * 10}vmin) translateY(${-bridge.to_y * 10}vmin)`;
+          scene.style.transform = `translateX(${-bridge.to_x * 10}vmin) translateY(${-bridge.to_y * 10}vmin) rotateX(10deg)`;
           inbounds[0] = 0;
           render();
           puzzling = 0;
@@ -303,11 +303,11 @@ movesnake = (movecamera = 1) => {
   for(i = 0; i < snakelength; i++){
     window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin)";
     
-    //if((!sd && !mobile) || ((sd || mobile) && i == 0)){
+    if(!sd || (sd && i == 0)){
       window["snakecube" + i].style.transform = "rotateZ(" + (snakeangles[i]) + "deg)";
-    //}
+    }
     
-    if(!mobile){
+    if(!sd){
       if(snakepos[i][2] == 0){
         window["snakegrass" + i].style.backgroundPosition = -(snakepos[i][0] * 10 + (snakepos[i][1] * 100)) + "vmin bottom";
         if(inbounds[i] || puzzling || snakepos[i][0] < 0 || snakepos[i][0] >= levels[currentroom].width){
@@ -321,11 +321,12 @@ movesnake = (movecamera = 1) => {
   }
   
   // Set the trail after the snake (except if it's going back)
-  if(!mobile && !sd){
+  if(!sd){
     if(!back){
       for(i = 0; i < 4; i++){
         if(snakepos[snakelength + i - 1] && snakepos[snakelength + i - 1][2] == 0){
           window["snaketrail" + i].style.transform = "translateX(" + (snakepos[snakelength + i - 1][0] * 10) + "vmin) translateY(" + (snakepos[snakelength + i - 1][1] * 10) + "vmin)";
+          window["snaketrail" + i].style.display = "block";
         }
         else {
           window["snaketrail" + i].style.transform = "scale(.01)";
@@ -347,7 +348,7 @@ movesnake = (movecamera = 1) => {
   if(movecamera){
     
     // If the snake moves on X axis, rotate the trees to face the camera
-    if(!mobile && !sd){
+    if(!sd){
       for(i in levels[currentroom].trees){
         tree = levels[currentroom].trees[i];
         if(!inbounds[0] && !puzzling){
@@ -361,7 +362,7 @@ movesnake = (movecamera = 1) => {
       b.classList.add("inbounds");
       scene.style.transition = "1s";
       scene.style.transform = "rotateX(10deg) translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin)";
-      if(!mobile && !sd){
+      if(!sd){
         b.style.backgroundPositionT = "-200vmin";
       }
       checkpuzzle();
@@ -370,7 +371,7 @@ movesnake = (movecamera = 1) => {
     // Dezoom when out of a puzzle
     else if(!inbounds[0] || (currentpuzzle && currentpuzzle.solved)){
       b.classList.remove("inbounds");
-      if(!mobile && !sd){
+      if(!sd){
         b.style.backgroundPositionY = "center";
       }
       setTimeout('scene.style.transition = ""', 1000);
@@ -480,6 +481,9 @@ checkpuzzle = () => {
         cell = window[`cell${currentroom}-${currentpuzzle.index}-${j}`];
         if(cell.classList.contains("black")){
           cell.classList.add("green");
+        }
+        else {
+          cell.classList.add("yellow");
         }
       }
       localStorage[currentroom+"-"+currentpuzzle.index] = 1;

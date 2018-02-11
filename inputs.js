@@ -1,4 +1,5 @@
 scene.ontouchstart = scene.ontouchmove = e => {
+  music.play();
   e.preventDefault();
   e.stopPropagation();
   if(lock) return;

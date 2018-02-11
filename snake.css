@@ -124,7 +124,7 @@
 
 .sd .snakecubemove,
 .sd .cube.snakecube {
-  transition: none;
+  //transition: none;
 }
 
 .sd #snakecube0 {
@@ -156,8 +156,8 @@
 }
 
 .cube.snakecube .f {
-  line-height: 3vmin;
-  background: #da2;
+  //line-height: 3vmin;
+  //background: #da2;
 }
 
 .cube.snakecube .tongue {

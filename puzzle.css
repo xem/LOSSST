@@ -54,6 +54,10 @@
   background: #2d4;
 }
 
+.cell.yellow {
+  background: #faff00;
+}
+
 #wraps {
   position: fixed;
   top: 0;

@@ -12,10 +12,13 @@
 <link rel="stylesheet" href="scene.css">
 <title>LOSSST</title>
 <body id="b" class=intro>
-<audio src=1.mp3 loop></audio>
-<button id="details" style=left:0vmin>SD</button>
-<button id="reset" style=left:6vmin>reset</button>
-<!--button onclick="localStorage['totalpuzzles']=3;localStorage['0-0']=1;localStorage['0-1']=1;localStorage['0-2']=0;localStorage['0-3']=1;localStorage['bridge0-0']=0;location=location" style=left:15vmin>3/4</button-->
+<audio id=music src=1.mp3 loop autoplay></audio>
+<!--button onclick="localStorage.clear()" style=left:0vmin>clear LS</button>
+<button onclick="localStorage.currentroom = 0; localStorage.snakelength = 3; localStorage.totalpuzzles = 0; location = location" style=left:15vmin>0</button>
+<button onclick="localStorage.currentroom = 1; localStorage.snakelength = 5; localStorage.totalpuzzles = 0; location = location" style=left:20vmin>1</button>
+<button onclick="localStorage.currentroom = 2; localStorage.snakelength = 5; localStorage.totalpuzzles = 3; location = location" style=left:25vmin>2</button>
+<button onclick="localStorage.currentroom = 3; localStorage.snakelength = 6; localStorage.totalpuzzles = 6; location = location" style=left:30vmin>3</button>
+<button onclick="localStorage.currentroom = 4; localStorage.snakelength = 7; localStorage.totalpuzzles = 9; location = location" style=left:35vmin>4</button-->
 <div id="perspective">
   <div id="scene" style="transform: rotateX(0deg) translateX(-50vmin) translateY(-50vmin) translateZ(80vmin); width: 362vmin; height: 102vmin;"></div>
 </div>

@@ -1,76 +1,78 @@
+// Initialization
+
+// Room number
+currentroom = +localStorage["currentroom"] || 0;
+localStorage["currentroom"] = currentroom;
+
+// SD / HD (mobile is SD by default)
 sd = 0;
+
+if(
+  navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+){
+  sd = 1;
+}
+
 if(sd){
   b.className = "sd";
+  details.innerHTML = "HD";
 }
-mobile = 0;
-snakelength = 5;
+
+// Sky scrolling background position
+sky = 0;
+if(!sd){
+  setInterval(() => {
+    sky += 10;
+    b.style.backgroundPositionX = sky + "px";
+  }, 1000);
+};
+
+// Cubes in the snake (number, position, angle, inbounds (in a puzzle), ...)
+snakelength = +localStorage["snakelength"] || 3;
+localStorage["snakelength"] = snakelength;
+
+// Cubes positions and angles
 snakepos = [];
+inbounds = [];
 snakeangles = [];
-wrap = [];
+
+for(i = 0; i < snakelength; i++){
+  snakepos.push([5,5,-i - 1]);
+  inbounds.push(0);
+  snakeangles.push(0);
+}
 headangle = 0;
-lastcell = null;
-mousedown = 0;
-keydown = 0;
-grabbed = 0;
-nextlevelwait = 0;
-won = 0;
+
+// Backtracking flag / counter
 goingback = 0;
 back = 0;
-currentroom = 1;
-currentpuzzle = 0;
+
+// Inputs flags
+mousedown = 0;
+keydown = 0;
 lock = 0;
-animation = 0;
-z = 24;
-move_b = 
-move_f = 
-move_l = 
-move_r = 0;
 cell = null;
 
-localStorage["totalpuzzles"] = localStorage["totalpuzzles"] || 0;
-totalpuzzles = 0;
+// Cinematic
+animation = 0;
 
-snakepos = [[5,5,-1],[5,5,-2],[5,5,-3],[5,5,-3],[5,5,-3]];
-inbounds = [0];
+// Puzzle
+won = 0;
+currentpuzzle = 0;
 puzzling = 0;
-snakeangles = [0,0,0,0,0,0,0];
-headangle = 0;
-zoom = 0;
 
+// Load totals from localStorage
+totalpuzzles = +localStorage["totalpuzzles"] || 0;
+localStorage["totalpuzzles"] = totalpuzzles;
+
+// Debug
 L = z => {
   console.log(z);
 }
 
-if( navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)){
-  mobile = 1;
-  sd = 1;
-  b.classList.add("sd");
-  details.innerHTML = sd ? "HD" : "SD";
-}
-
-
-details.onclick = details.ontouchstart = e => {
-  sd = 1 - sd;
-  b.classList.toggle("sd");
-  details.innerHTML = sd ? "HD" : "SD";
-}
-
-reset.onclick = reset.ontouchstart = e => {
-  localStorage.clear();
-  location = location;
-}
-
+// Start
 onload = e => {
   render();
 }
-
-bp = 0;
-
-if(!mobile){
-  
-  setInterval(() => {
-    bp += 10;
-    b.style.backgroundPositionX = bp + "px";
-  },1000);
-
-};
