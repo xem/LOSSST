@@ -3,7 +3,7 @@
   height: 200vmin;
   border-radius: 5vmin;
   transform: rotateX(30deg) translateX(-100vmin) translateY(-100vmin) translateZ(40vmin);
-  transition: transform .2s linear;
+  transition: transform .5s linear;
   background: url(images/grass.jpg); 
   background-size: 70vmin;
 }
@@ -109,8 +109,8 @@
 
 .apple {
   position: fixed;
-  width: 10vmin;
-  height: 13vmin;
+  width: 8vmin;
+  height: 10vmin;
   bottom: 100%;
   left: 0;
   transform: translateY(9vmin) rotateX(-43deg);
@@ -120,8 +120,24 @@
   pointer-events: none;
 }
 
-.apple.eaten {
+.apple.eaten, .appleshadow.eaten {
   display: none;
+}
+
+.appleshadow {
+  position: fixed;
+  width: 8vmin;
+  height: 10vmin;
+  bottom: 100%;
+  left: 0;
+  -moz-pointer-events: none;
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  transform-origin: center bottom;
+  transform: translateX(5%) scaleX(-1) translateY(8vmin) rotateZ(235deg);
+  background: url(images/appleshadow.png) no-repeat;
+  background-size: 100%;
+  opacity: .25;
 }
 
 @keyframes wobble {

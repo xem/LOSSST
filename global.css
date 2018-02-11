@@ -15,7 +15,6 @@
 html, body {
   height: 100%;
   overflow: hidden;
-  background: #000;
 }
 
 body {
@@ -90,9 +89,4 @@ button {
   left: 0;
   display: none;
   transform: translateZ(1vh);
-}
-
-.intro #mask {
-  display: block;
-  background: #000;
 }

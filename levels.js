@@ -3,7 +3,7 @@ levels = [
   // Room 0
   {
   
-    width: 36,
+    width: 38,
     height: 10,
     hole: [5, 5],
     /*puzzles: [
@@ -65,22 +65,23 @@ levels = [
     trees: [
       [10,3],
       [23,6],
+      [31,2],
     ],
     
     apples: [
       {
-        x: 10,
-        y: 4,
+        x: 9,
+        y: 3,
         eaten: 0
       },
       {
-        x: 22,
+        x: 21,
         y: 7,
         eaten: 0
       },
       {
         x: 31,
-        y: 5,
+        y: 4,
         eaten: 0
       }
     ],
@@ -88,33 +89,33 @@ levels = [
     stones: [
       [2,9],
       [11,3],
-      [16,5],
+      [20,5],
+      [34,9],
     ],
     
     cubes: [
+      [30, 3],
       [30, 4],
       [30, 5],
       [30, 6],
-      [30, 7],
-      [31, 4],
-      [32, 7],
-      [32, 6],
-      [32, 5],
+      [32, 3],
       [32, 4],
+      [32, 5],
+      [32, 6],
     ],
     
     
     bridges: [
       {
-        x: 35,
+        x: 37,
         y: 4,
         angle: 0,
         open: 0,
         puzzles: 4,
         snakelength: 6,
         to: 1,
-        to_x: 0,
-        to_y: 12,
+        to_x: -3,
+        to_y: 5,
         to_z: 0
       }
     ],
@@ -127,8 +128,8 @@ levels = [
   // Room 1
   {
   
-    width: 41,
-    height: 15,
+    width: 40,
+    height: 10,
     hole: false,
     puzzles: [
 
@@ -137,13 +138,13 @@ levels = [
     ],
     
     trees: [
-      [14,8],
+      [14,3],
     ],
     
     apples: [
       {
         x: 10,
-        y: 8,
+        y: 4,
         eaten: 0
       }
     ],
@@ -153,20 +154,12 @@ levels = [
     
     bridges: [
       {
-        x: 0,
-        y: 10,
+        x: 1,
+        y: 4,
         angle: 180,
         open: 1,
         puzzles: 0,
         to: 0
-      },
-      {
-        x: 21,
-        y: 10,
-        angle: 0,
-        open: 0,
-        puzzles: 4,
-        to: 1
       }
     ],
     

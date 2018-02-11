@@ -106,47 +106,6 @@ mousemove = (el) => {
     return;
   }
   
-  // Eat an apple
-  for(i in levels[currentroom].apples){
-    apple = levels[currentroom].apples[i];
-    if(!apple.eaten && pos[0] == apple.x && pos[1] == apple.y){
-      apple.eaten = 1;
-      window["apple" + i].classList.add("eaten");
-      snake.insertAdjacentHTML("beforeEnd",
-`<div id="snakecubemove${snakelength}" class="snakecubemove">
-  <div class="snakeshadow"></div>
-  <div id="snakegrass${snakelength}" class="snakegrass"></div>
-  <div id="snakecube${snakelength}" class="cube snakecube bright" style="translateX(${snakepos[snakelength-1][0]+5}vmin) translateY(${snakepos[snakelength-1][1]+5}vmin) translateZ(${snakepos[snakelength-1][2]+.6}vmin)">
-    <div class="u"></div>
-    <div class="f"></div>
-    <div class="r"></div>
-    <div class="l"></div>
-    <div class="b"></div>
-  </div>
-</div>`);
-      setTimeout('window["snakecube"+'+snakelength+'].classList.remove("bright")', 100);
-      snakelength++;
-      
-      for(j in levels[currentroom].bridges){
-        bridge = levels[currentroom].bridges[j];
-        if(!bridge.open && (totalpuzzles >= bridge.puzzles || snakelength >= bridge.snakelength)){
-          lock = 1;
-          animation = 1;
-          scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin) rotateX(30deg)`;
-          window["bridge" + j].classList.add("open");
-          bridge.open = 1;
-          localStorage["bridge" + currentroom + "-" + j] = 1;
-          setTimeout(()=>{
-            lock = 0;
-            animation = 0;
-            movesnake();
-          },2500);
-        }
-      }
-    }
-  }
-  
-  
   // Reset collision
   collision = 0;
   
@@ -187,7 +146,7 @@ mousemove = (el) => {
   for(i in levels[currentroom].bridges){
     bridge = levels[currentroom].bridges[i];
     if(bridge.open && bridge.angle == 0){
-      if(pos[0] >= bridge.x+1 && pos[1] > bridge.y && pos[1] <= bridge.y + 2){
+      if(pos[0] >= bridge.x+1 && pos[1] > bridge.y && pos[1] <= bridge.y + 3){
         collision = 0;
         inbounds[0] = 1;
         lock = 1;
@@ -201,6 +160,7 @@ mousemove = (el) => {
           angle -= 90;
         }
         
+        // Autopilot
         autopilot = () => {
           snakeangles.unshift(angle);
           snakepos.unshift([snakepos[0][0] + 1, snakepos[0][1], snakepos[0][2]]);
@@ -211,17 +171,17 @@ mousemove = (el) => {
         };
         autopilot();
         interval = setInterval(autopilot, 150);
+        
+        // Change room
         setTimeout(()=>{
-          clearInterval(interval);
-          lock = 0;
-          animation = 0;
           puzzling = 1;
           scene.innerHTML = "";
+          scene.style.transition = "0s";
           currentroom = bridge.to;
           snakepos = [];
           snakeangle = [];
           inbounds = [];
-          for(j = bridge.to_x - snakelength + 2; j < bridge.to_x + 2; j++){
+          for(j = bridge.to_x - snakelength + 3; j < bridge.to_x + 3; j++){
             snakepos.unshift([j, bridge.to_y, bridge.to_z]);
             snakeangle.unshift(90);
             inbounds.unshift(1);
@@ -229,7 +189,17 @@ mousemove = (el) => {
           scene.style.transform = `translateX(${-bridge.to_x * 10}vmin) translateY(${-bridge.to_y * 10}vmin)`;
           inbounds[0] = 0;
           render();
+          movesnake();
         }, snakelength * 150);
+        
+        // Stop autopilot
+        setTimeout(() => {
+          clearInterval(interval);
+          lock = 0;
+          animation = 0;
+          scene.style.transition = "";
+          inbounds = [0,0,1,1,1,1,1,1,1];
+        }, snakelength * 150 + 3 * 150);
         return;
       }
     }
@@ -336,10 +306,10 @@ movesnake = (movecamera = 1) => {
       if(snakepos[i][2] == 0){
         window["snakegrass" + i].style.backgroundPosition = -(snakepos[i][0] * 10 + (snakepos[i][1] * 100)) + "vmin bottom";
         if(inbounds[i] || puzzling){
-          window["snakegrass" + i].style.display = "none";
+          window["snakegrass" + i].style.opacity = "0";
         }
         else {
-          setTimeout('window["snakegrass'+i+'"].style.display = ""', 150)
+          setTimeout('window["snakegrass'+i+'"].style.opacity = 1', 150)
         }
       }
     }
@@ -351,6 +321,16 @@ movesnake = (movecamera = 1) => {
       for(i = 0; i < 4; i++){
         if(snakepos[snakelength + i - 1] && snakepos[snakelength + i - 1][2] == 0){
           window["snaketrail" + i].style.transform = "translateX(" + (snakepos[snakelength + i - 1][0] * 10) + "vmin) translateY(" + (snakepos[snakelength + i - 1][1] * 10) + "vmin)";
+        }
+        else {
+          window["snaketrail" + i].style.transform = "scale(.01)";
+        }
+      }
+    }
+    else if(back > 3){
+      for(i = 0; i < 4; i++){
+        if(snakepos[i-1] && snakepos[i-1][2] == 0){
+          window["snaketrail" + i].style.transform = "translateX(" + (snakepos[i-1][0] * 10) + "vmin) translateY(" + (snakepos[i-1][1] * 10) + "vmin) scale(.01)";
         }
         else {
           window["snaketrail" + i].style.transform = "scale(.01)";
@@ -394,10 +374,57 @@ movesnake = (movecamera = 1) => {
   }
   
   // Close bridge 0 when we finish entering a room
-  if(!inbounds[snakelength] && bridge0 && bridge0.classList.contains("angle180")){
-    L(bridge0)
+  if(!lock && !inbounds[snakelength] && bridge0 && bridge0.classList.contains("open") && bridge0.classList.contains("angle180")){
     bridge0.classList.remove("open");
+    bridge0.open = 0;
   }
+  
+  // Eat an apple
+  for(i in levels[currentroom].apples){
+    apple = levels[currentroom].apples[i];
+    if(!apple.eaten && snakepos[0][0] == apple.x && snakepos[0][1] == apple.y){
+      apple.eaten = 1;
+      window["apple" + i].classList.add("eaten");
+      window["appleshadow" + i].classList.add("eaten");
+      snake.insertAdjacentHTML("beforeEnd",
+`<div id="snakecubemove${snakelength}" class="snakecubemove" style="transform:translateX(${snakepos[snakelength][0]*10+.5}vmin) translateY(${snakepos[snakelength][1]*10+.5}vmin) translateZ(${snakepos[snakelength][2]*10+.6}vmin)">
+  <div class="snakeshadow"></div>
+  <div id="snakegrass${snakelength}" class="snakegrass"></div>
+  <div id="snakecube${snakelength}" class="cube snakecube bright">
+    <div class="u"></div>
+    <div class="f"></div>
+    <div class="r"></div>
+    <div class="l"></div>
+    <div class="b"></div>
+  </div>
+</div>`);
+      setTimeout('window["snakecube"+'+snakelength+'].classList.remove("bright")', 100);
+      snakelength++;
+      
+      for(j in levels[currentroom].bridges){
+        bridge = levels[currentroom].bridges[j];
+        if(!bridge.open && (totalpuzzles >= bridge.puzzles || snakelength >= bridge.snakelength)){
+          lock = 1;
+          animation = 1;
+          scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin) rotateX(10deg)`;
+          window["bridge" + j].classList.add("open");
+          bridge.open = 1;
+          localStorage["bridge" + currentroom + "-" + j] = 1;
+          setTimeout(()=>{
+            lock = 0;
+            animation = 0;
+            movesnake();
+          },2500);
+          break;
+        }
+        break;
+      }
+    }
+  }
+  
+  
+  
+  
 }
 
 // Clear a puzzle (remove blue and red tiles)

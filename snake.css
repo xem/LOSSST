@@ -32,7 +32,7 @@
   background: url(images/grassblades.png);
   background-size: 10vmin 6vmin;
   transform: translateX(-1vmin) translateY(6vmin) translateZ(4vmin) rotateX(-70deg);
-  transition: background-position .15s linear;
+  transition: background-position .15s linear, opacity .15s linear;
 }
 
 .sd .snakegrass {
@@ -114,6 +114,7 @@
 .cube.snakecube.bright {
   width: 1vmin;
   height: 1vmin;
+  margin: 5vmin;
 }
 
 .cube.snakecube > div {

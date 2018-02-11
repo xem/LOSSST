@@ -13,11 +13,12 @@
 <title>LOSSST</title>
 <body id="b" class=intro>
 <audio src=1.mp3 loop></audio>
-<button id="reset" style=left:0vmin>reset</button>
-<!--button id="details" style=left:6vmin>SD</button>
-<button onclick="localStorage['totalpuzzles']=3;localStorage['0-0']=1;localStorage['0-1']=1;localStorage['0-2']=0;localStorage['0-3']=1;localStorage['bridge0-0']=0;location=location" style=left:15vmin>3/4</button-->
-
-<div id="perspective"></div>
+<button id="details" style=left:0vmin>SD</button>
+<button id="reset" style=left:6vmin>reset</button>
+<!--button onclick="localStorage['totalpuzzles']=3;localStorage['0-0']=1;localStorage['0-1']=1;localStorage['0-2']=0;localStorage['0-3']=1;localStorage['bridge0-0']=0;location=location" style=left:15vmin>3/4</button-->
+<div id="perspective">
+  <div id="scene" style="transform: rotateX(0deg) translateX(-50vmin) translateY(-50vmin) translateZ(80vmin); width: 362vmin; height: 102vmin;"></div>
+</div>
 
 <script src="init.js"></script>
 <script src="levels.js"></script>

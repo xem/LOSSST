@@ -46,13 +46,12 @@ if( navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone/i
   b.classList.add("mobile");
 }
 
-/*
+
 details.onclick = details.ontouchstart = e => {
   sd = 1 - sd;
   b.classList.toggle("sd");
   details.innerHTML = sd ? "HD" : "SD";
 }
-*/
 
 reset.onclick = reset.ontouchstart = e => {
   localStorage.clear();

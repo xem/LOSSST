@@ -1,6 +1,6 @@
 ﻿render = () => {
 
-  perspective.innerHTML = `<div id="scene" style="transform:rotateX(0deg) translateX(-${levels[currentroom].hole[0] * 10}vmin) translateY(-${levels[currentroom].hole[1] * 10}vmin) translateZ(60vmin)"></div>`;
+  scene.style.transform = `rotateX(0deg) translateX(-${levels[currentroom].hole[0] * 10}vmin) translateY(-${levels[currentroom].hole[1] * 10}vmin) translateZ(80vmin)`;
   
   scene.innerHTML =
 `<div id=scenedepth style="width:${levels[currentroom].width * 10 - 5}vmin; transform: translateY(${levels[currentroom].height * 10}vmin) rotateX(-45deg)"></div>
@@ -107,7 +107,8 @@
   for(j in levels[currentroom].apples){
     apple = levels[currentroom].apples[j];
     apples.innerHTML +=
-    `<div id="apple${j}" class="apple" style="margin-left:${apple.x * 10}vmin;margin-bottom:-${apple.y * 10}vmin"><div class="applecontent"></div></div>`;
+    `<div id="apple${j}" class="apple" style="margin-left:${apple.x * 10}vmin;margin-bottom:-${apple.y * 10}vmin"><div class="applecontent"></div></div>`+
+    `<div id="appleshadow${j}" class="appleshadow" style="margin-left:${apple.x * 10}vmin;margin-bottom:-${apple.y * 10}vmin"></div>`;
   }
   
   scene.style.width = levels[currentroom].width * 10 + 2 + "vmin";
@@ -120,6 +121,4 @@
   setTimeout("mask.remove()", 300);
   setTimeout(movesnake, 500);
   setTimeout("b.classList.remove('intro')", 2500);
-  
-  inputListeners();
 }
