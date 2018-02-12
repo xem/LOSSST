@@ -251,7 +251,7 @@ setInterval(() => {
   if(mousedown){
     mousemove(cell);
   }
-}, 100);
+}, 180);
 
 // Move snake and animate all the elements that move at each snake move
 movesnake = (movecamera = 1) => {

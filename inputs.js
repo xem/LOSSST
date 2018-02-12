@@ -8,6 +8,7 @@ scene.ontouchstart = scene.ontouchmove = e => {
 }
 
 scene.onmousedown = e => {
+  music.play();
   e.preventDefault();
   e.stopPropagation();
   if(lock) return;
