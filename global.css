@@ -90,3 +90,17 @@ button {
   display: none;
   transform: translateZ(1vh);
 }
+
+#play {
+  width: 30vmin;
+  height: 10vmin;
+  backgtound: #fff;
+  border: 1vmin solid red;
+  border-radius: 1vmin;
+  color: blue;
+  text-align: center;
+  font: 6vmin/8vmin arial;
+  top: 50%;
+  left: 50%;
+  margin-left: -15vmin;
+}
