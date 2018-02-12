@@ -17,6 +17,10 @@
   transition: transform .15s linear;
 }
 
+.sd .snakecubemove {
+  transition: transform .1s linear;
+}
+
 .snakeshadow {
   position: fixed;
   width: 100%;

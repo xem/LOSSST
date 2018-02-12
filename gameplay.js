@@ -170,7 +170,7 @@ mousemove = (el) => {
           animation = 1;
         };
         autopilot();
-        interval = setInterval(autopilot, 180);
+        interval = setInterval(autopilot, 200);
         
         // Change room
         setTimeout(()=>{
@@ -191,7 +191,7 @@ mousemove = (el) => {
           render();
           puzzling = 0;
           movesnake(0);
-        }, snakelength * 180);
+        }, snakelength * 200);
         
         // Stop autopilot
         setTimeout(() => {
@@ -203,7 +203,7 @@ mousemove = (el) => {
           inbounds = [0,1,1,1,1,1,1,1,1];
           
           movesnake(0);
-        }, snakelength * 180 + 3 * 180);
+        }, snakelength * 200 + 3 * 200);
         return;
       }
     }
@@ -241,7 +241,7 @@ mousemove = (el) => {
   if(!animation){
     setTimeout(()=> {
       lock = 0
-    }, 180);
+    }, 200);
   }
 }
 
@@ -251,7 +251,7 @@ setInterval(() => {
   if(mousedown){
     mousemove(cell);
   }
-}, 180);
+}, 55);
 
 // Move snake and animate all the elements that move at each snake move
 movesnake = (movecamera = 1) => {
