@@ -42,12 +42,9 @@ b.onmouseover = b.ontouchstart = scene.ontouchend = scene.onmouseup = e => {
 }
 
 // Avoid all default event behaviors
-/*
-onmousedown = onmousemove = onmouseup = oncontextmenu = ontouchstart = ontouchmove = ontouchend = onclick = ondblclick = onscroll = function(e){
-  music.play();
+onmousedown = onmousemove = onmouseup = zoncontextmenu = ontouchstart = ontouchmove = ontouchend = onclick = ondblclick = onscroll = function(e){
   e.preventDefault();
 }
-*/
 
 k_left = k_right = k_up = k_down = 0;
 
