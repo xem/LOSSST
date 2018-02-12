@@ -393,7 +393,7 @@ movesnake = (movecamera = 1) => {
       window["apple" + i].classList.add("eaten");
       window["appleshadow" + i].classList.add("eaten");
       snake.insertAdjacentHTML("beforeEnd",
-`<div id="snakecubemove${snakelength}" class="snakecubemove" style="transform:translateX(${snakepos[snakelength][0]*10+.5}vmin) translateY(${snakepos[snakelength][1]*10+.5}vmin) translateZ(${snakepos[snakelength][2]*10+.6}vmin)">
+`<div id="snakecubemove${snakelength}" class="snakecubemove" style="transform:translateX(${snakepos[snakelength][0]*10+1}vmin) translateY(${snakepos[snakelength][1]*10+1}vmin) translateZ(${snakepos[snakelength][2]*10+.6}vmin)">
   <div class="snakeshadow"></div>
   <div id="snakegrass${snakelength}" class="snakegrass"></div>
   <div id="snakecube${snakelength}" class="cube snakecube bright">

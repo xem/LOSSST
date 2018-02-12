@@ -1,5 +1,10 @@
 ﻿render = () => {
 
+  if(currentroom > 0) {
+    music.src = "2.mp3";
+    music.play();
+  }
+
   scene.style.transform = `rotateX(0deg) translateX(-${levels[currentroom].hole[0] * 10}vmin) translateY(-${levels[currentroom].hole[1] * 10}vmin) translateZ(80vmin)`;
   
   scene.innerHTML =
