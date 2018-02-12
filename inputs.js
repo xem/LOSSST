@@ -1,4 +1,5 @@
 scene.ontouchstart = scene.ontouchmove = e => {
+  music.play();
   e.preventDefault();
   e.stopPropagation();
   if(lock) return;
@@ -41,10 +42,12 @@ b.onmouseover = b.ontouchstart = scene.ontouchend = scene.onmouseup = e => {
 }
 
 // Avoid all default event behaviors
-onmousedown = onmousemove = onmouseup = /*oncontextmenu =*/ ontouchstart = ontouchmove = ontouchend = onclick = ondblclick = onscroll = function(e){
+/*
+onmousedown = onmousemove = onmouseup = oncontextmenu = ontouchstart = ontouchmove = ontouchend = onclick = ondblclick = onscroll = function(e){
   music.play();
   e.preventDefault();
 }
+*/
 
 k_left = k_right = k_up = k_down = 0;
 
