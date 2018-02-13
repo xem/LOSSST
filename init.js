@@ -38,7 +38,7 @@ inbounds = [];
 snakeangles = [];
 
 for(i = 0; i < snakelength; i++){
-  snakepos.push([5,5,-i - 1]);
+  snakepos.push([7,5,-i - 1]);
   inbounds.push(0);
   snakeangles.push(0);
 }

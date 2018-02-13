@@ -3,57 +3,57 @@ levels = [
   // Room 0
   {
   
-    width: 38,
+    width: 40,
     height: 10,
-    hole: [5, 5],
+    hole: [7, 5.1],
     
     trees: [
-      [10,3],
-      [31,2],
+      [15,3],
+      [29,2],
     ],
     
     apples: [
       {
-        x: 9,
+        x: 14,
         y: 4,
         eaten: 0
       },
       {
-        x: 31,
+        x: 29,
         y: 4,
         eaten: 0
       }
     ],
     
-    stones: [
+    /*stones: [
       [2,9],
       [11,3],
       [20,5],
       [34,9],
-    ],
+    ],*/
     
     cubes: [
+      [28, 3],
+      [28, 4],
+      [28, 5],
+      [28, 6],
       [30, 3],
       [30, 4],
       [30, 5],
       [30, 6],
-      [32, 3],
-      [32, 4],
-      [32, 5],
-      [32, 6],
     ],
     
     
     bridges: [
       {
-        x: 37,
+        x: 39,
         y: 5,
         angle: 0,
         open: 0,
         puzzles: 4,
         snakelength: 5,
         to: 1,
-        to_x: -3,
+        to_x: -4,
         to_y: 5,
         to_z: 0
       }
@@ -140,7 +140,7 @@ levels = [
         open: 0,
         puzzles: 3,
         to: 2,
-        to_x: -3,
+        to_x: -4,
         to_y: 5,
         to_z: 0
       }
@@ -230,7 +230,7 @@ levels = [
         open: 0,
         puzzles: 6,
         to: 3,
-        to_x: -3,
+        to_x: -4,
         to_y: 5,
         to_z: 0
       }
@@ -319,7 +319,7 @@ levels = [
         open: 0,
         puzzles: 9,
         to: 4,
-        to_x: -3,
+        to_x: -4,
         to_y: 5,
         to_z: 0
       }

@@ -146,7 +146,8 @@ mousemove = (el) => {
   for(i in levels[currentroom].bridges){
     bridge = levels[currentroom].bridges[i];
     if(bridge.open && bridge.angle == 0){
-      if(pos[0] >= bridge.x+1 && pos[1] > bridge.y - 1 && pos[1] <= bridge.y + 1){
+      if(pos[0] >= bridge.x+1 && pos[1] >= bridge.y - 1 && pos[1] <= bridge.y + 1){
+        offset = bridge.y - pos[1];
         collision = 0;
         inbounds[0] = 1;
         lock = 1;
@@ -182,11 +183,11 @@ mousemove = (el) => {
           snakeangle = [];
           inbounds = [];
           for(j = bridge.to_x - snakelength + 3; j < bridge.to_x + 3; j++){
-            snakepos.unshift([j, bridge.to_y, bridge.to_z]);
+            snakepos.unshift([j, bridge.to_y - offset, bridge.to_z]);
             snakeangle.unshift(90);
             inbounds.unshift(1);
           }
-          scene.style.transform = `translateX(${-bridge.to_x * 10}vmin) translateY(${-bridge.to_y * 10}vmin) rotateX(10deg)`;
+          scene.style.transform = `translateX(${-bridge.to_x * 10}vmin) translateY(${-bridge.to_y * 10}vmin) translateZ(20vmin) rotateX(10deg)`;
           inbounds[0] = 0;
           render();
           puzzling = 0;
