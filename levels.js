@@ -288,12 +288,12 @@ levels = [
     ],
     
     trees: [
-      [5,3],
+      [7,3],
     ],
     
     apples: [
       {
-        x: 4,
+        x: 6,
         y: 4,
         eaten: 0
       }

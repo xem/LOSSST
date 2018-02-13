@@ -23,7 +23,11 @@
 <img src="images/tree.png" width=1>
 <img src="images/treeshadow.png" width=1>
 <img src="images/wood.jpg" width=1>
-<audio id=music src="1.mp3" loop></audio>
+<audio src=0.mp3 preload></audio>
+<audio src=1.mp3 preload></audio>
+<audio src=2.mp3 preload></audio>
+<audio src=3.mp3 preload></audio>
+<audio id=music src="0.mp3" loop></audio>
 <button id=play onclick="music.play();this.remove();render()" ontouchstart="music.play();this.remove();render()">Play</button>
 <button onclick="localStorage.clear();setTimeout('location=location',500)" ontouchstart="localStorage.clear();setTimeout('location=location',500)" style=left:0vmin>reset</button>
 <button onclick="localStorage.currentroom = 0; localStorage.snakelength = 3; localStorage.totalpuzzles = 0; location = location" style=left:15vmin>0</button>

@@ -187,7 +187,9 @@ mousemove = (el) => {
             snakeangle.unshift(90);
             inbounds.unshift(1);
           }
-          scene.style.transform = `translateX(${-bridge.to_x * 10}vmin) translateY(${-bridge.to_y * 10}vmin) translateZ(20vmin) rotateX(10deg)`;
+          scene.style.transform = `rotateX(30deg) translateX(${-(bridge.to_x + 4) * 10 + 1}vmin) translateY(${-(bridge.to_y - offset) * 10 + 1}vmin) translateZ(40vmin)`;
+          
+          
           inbounds[0] = 0;
           render();
           puzzling = 0;
@@ -196,11 +198,12 @@ mousemove = (el) => {
         
         // Stop autopilot
         setTimeout(() => {
+          scene.style.transition = "";
           clearInterval(interval);
           lock = 0;
           animation = 0;
           puzzling = 0;
-          scene.style.transition = "";
+          
           inbounds = [0,1,1,1,1,1,1,1,1];
           
           movesnake(0);
