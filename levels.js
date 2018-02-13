@@ -240,7 +240,7 @@ levels = [
   // Room 3
   {
   
-    width: 40,
+    width: 50,
     height: 10,
     hole: false,
     
@@ -280,9 +280,22 @@ levels = [
         wall: "",
         ground: "00000"
                +"00011"
-               +"00001"
+               +"00000"
                +"00011"
                +"00000",
+      },
+      
+      {
+        x: 40,
+        y: 3,
+        size: 5,
+        wrap: 0,
+        wall: "",
+        ground: "00000"
+               +"00000"
+               +"00000"
+               +"01010"
+               +"01110",
       },
 
     ],
@@ -313,14 +326,14 @@ levels = [
       },
       
       {
-        x: 39,
+        x: 49,
         y: 5,
         angle: 0,
         open: 0,
-        puzzles: 9,
+        puzzles: 10,
         to: 4,
         to_x: -4,
-        to_y: 5,
+        to_y: 10,
         to_z: 0
       }
     ],
@@ -415,13 +428,13 @@ levels = [
     ],
     
     trees: [
-      [5,3],
+      [5,8],
     ],
     
     apples: [
       {
         x: 4,
-        y: 4,
+        y: 9,
         eaten: 0
       }
     ],
@@ -432,7 +445,7 @@ levels = [
     bridges: [
       {
         x: 1,
-        y: 5,
+        y: 10,
         angle: 180,
         open: 1,
         puzzles: 0,

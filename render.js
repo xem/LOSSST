@@ -1,7 +1,7 @@
 ﻿render = () => {
 
   if(currentroom > 0) {
-    music.src = currentroom + ".mp3";
+    music.src = currentroom + ".mp3?v=2";
     music.play();
   }
 

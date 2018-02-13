@@ -113,7 +113,7 @@
   height: 10vmin;
   bottom: 100%;
   left: 0;
-  transform: translateY(9vmin) rotateX(-43deg);
+  transform: translateY(9vmin) rotateX(-30deg);
   transform-origin: bottom center;
   -moz-pointer-events: none;
   -webkit-pointer-events: none;
