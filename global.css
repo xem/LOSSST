@@ -79,6 +79,7 @@ button {
   bottom: 0;
   z-index: 2;
   transform: translateZ(1000px);
+  min-width: 5vmin;
 }
 
 #mask {
@@ -100,4 +101,8 @@ button {
   font: 20vh arial;
   top: 0;
   left: 0;
+}
+
+img {
+  opacity: .01;
 }

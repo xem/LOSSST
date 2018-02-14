@@ -171,7 +171,10 @@ mousemove = (el) => {
           animation = 1;
         };
         autopilot();
-        interval = setInterval(autopilot, 200);
+        interval = setInterval(()=>{
+          autopilot();
+          music.volume = +music.volume - .15;
+        }, 200);
         
         // Change room
         setTimeout(()=>{
@@ -200,6 +203,7 @@ mousemove = (el) => {
         setTimeout(() => {
           scene.style.transition = "";
           clearInterval(interval);
+          music.volume = 1;
           lock = 0;
           animation = 0;
           puzzling = 0;
@@ -399,7 +403,7 @@ movesnake = (movecamera = 1) => {
       snake.insertAdjacentHTML("beforeEnd",
 `<div id="snakecubemove${snakelength}" class="snakecubemove" style="transform:translateX(${snakepos[snakelength][0]*10+1}vmin) translateY(${snakepos[snakelength][1]*10+1}vmin) translateZ(${snakepos[snakelength][2]*10+.6}vmin)">
   <div class="snakeshadow"></div>
-  <div id="snakegrass${snakelength}" class="snakegrass"></div>
+  <div id="snakegrass${snakelength}" class="snakegrass" style="${snakepos[snakelength][0] < 0 ? 'opacity:0' : ''}"></div>
   <div id="snakecube${snakelength}" class="cube snakecube bright">
     <div class="u"></div>
     <div class="f"></div>

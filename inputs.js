@@ -42,7 +42,7 @@ b.onmouseover = b.ontouchstart = scene.ontouchend = scene.onmouseup = e => {
 }
 
 // Avoid all default event behaviors
-onmousedown = onmousemove = onmouseup = zoncontextmenu = ontouchstart = ontouchmove = ontouchend = onclick = ondblclick = onscroll = function(e){
+onmousedown = onmousemove = onmouseup = zoncontextmenu = ontouchstart = ontouchmove = zontouchend = onclick = ondblclick = onscroll = function(e){
   e.preventDefault();
 }
 

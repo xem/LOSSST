@@ -65,6 +65,8 @@ levels = [
   },
   
   // Room 1
+  // Size 5
+  // Puzzles 1-3
   {
   
     width: 40,
@@ -148,6 +150,8 @@ levels = [
   },
   
   // Room 2
+  // Size 6
+  // Puzzles 4-6
   {
   
     width: 40,
@@ -238,6 +242,8 @@ levels = [
   },
   
   // Room 3
+  // Size 7
+  // Puzzles 7-10
   {
   
     width: 50,
@@ -340,6 +346,8 @@ levels = [
   },
   
   // Room 4
+  // Size 8
+  // Puzzles 11-16
   {
   
     width: 40,
@@ -451,15 +459,129 @@ levels = [
         puzzles: 0,
         to: 0
       },
-      
-      
-      /*{
+
+      {
         x: 39,
-        y: 5,
+        y: 10,
         angle: 0,
         open: 0,
-        puzzles: 9,
-        to: 2,
+        puzzles: 16,
+        to: 5,
+        to_x: -3,
+        to_y: 5,
+        to_z: 0
+      }
+    ],
+  },
+  
+  
+  // Room 5
+  // Size 9
+  // Puzzles 17-
+  {
+  
+    width: 12,
+    height: 50,
+    hole: false,
+    
+    puzzles: [
+
+      {
+        x: 3,
+        y: 10,
+        size: 6,
+        wrap: 0,
+        wall: "",
+        ground: "000000"
+               +"001100"
+               +"011110"
+               +"011000"
+               +"001000"
+               +"000000",
+      },
+      
+      {
+        x: 3,
+        y: 20,
+        size: 6,
+        wrap: 0,
+        wall: "",
+        ground: "000000"
+               +"000000"
+               +"001110"
+               +"011110"
+               +"001100"
+               +"000000",
+      },
+      
+      {
+        x: 4,
+        y: 30,
+        size: 3,
+        wrap: 0,
+        wall: "",
+        ground: "111"
+               +"010"
+               +"110",
+      },
+      
+      {
+        x: 4,
+        y: 40,
+        size: 4,
+        wrap: 0,
+        wall: "",
+        ground: "1110"
+               +"1100"
+               +"1000"
+               +"0000",
+      },
+
+    ],
+    
+    trees: [
+      [6,2],
+    ],
+    
+    cubes: [
+      [7, 11],
+      [4, 11],
+      [4, 11],
+      [4, 14],
+      [4, 22],
+      [4, 24],
+      [7, 24],
+      [4, 31],
+    ],
+    
+    apples: [
+      {
+        x: 8,
+        y: 4,
+        eaten: 0
+      }
+    ],
+    
+    stones: [
+    ],
+    
+    bridges: [
+      {
+        x: 1,
+        y: 5,
+        angle: 180,
+        open: 1,
+        puzzles: 0,
+        to: 0
+      },
+
+      /*{
+        x: 39,
+        y: 10,
+        angle: 0,
+        open: 0,
+        puzzles: 16,
+        to: 5,
         to_x: -3,
         to_y: 5,
         to_z: 0

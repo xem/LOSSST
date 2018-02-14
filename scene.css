@@ -227,5 +227,6 @@
   background-size: 20vmin;
   width: 11vmin;
   height: 11vmin;
-  margin-left: -.5vmin
+  transform: rotateY(90deg)translateX(-100%)rotateY(-90deg) translateX(-0.5vmin);
+  filter: brightness(.8);
 }
