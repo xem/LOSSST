@@ -4,7 +4,7 @@
   border-radius: 5vmin;
   transform: rotateX(30deg) translateX(-100vmin) translateY(-100vmin) translateZ(40vmin);
   transition: transform .5s linear;
-  background: url(images/grass.jpg); 
+  background: url(images/grass.png); 
   background-size: 70vmin;
 }
 
@@ -33,7 +33,7 @@
   width: 207vmin;
   height: 120vmin;
   transform: translateY(210vmin) rotateX(-45deg);
-  background: linear-gradient(transparent 20%, #fff), url(images/terre.jpg);
+  background: linear-gradient(transparent 20%, #fff), url(images/terre.png);
   background-size: 100%, 70vmin;
   transform-origin: top center;
 }
@@ -158,7 +158,7 @@
   position: absolute;
   width: 200vmin;
   height: 30vmin;
-  background: url(images/wood.jpg);
+  background: url(images/wood.png);
   transform-origin: left center;
   transform: rotateY(90deg) translateZ(-.5vmin);
   transition: transform 2s;
@@ -197,7 +197,7 @@
   top: 100%;
   transform-origin: top center;
   transform: rotateX(-45deg);
-  background: url(images/wood.jpg);
+  background: url(images/wood.png);
   background-size: 90vmin 30vmin;
 }
 
@@ -218,12 +218,12 @@
 
 .rockcube div {
   background: red;
-  background: url(images/terre.jpg); 
+  background: url(images/terre.png); 
   background-size: 20vmin;
 }
 
 .rockcube .u {
-  background: url(images/grass.jpg); 
+  background: url(images/grass.png); 
   background-size: 20vmin;
   width: 11vmin;
   height: 11vmin;

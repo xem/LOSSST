@@ -18,7 +18,7 @@
 }
 
 .sd .snakecubemove {
-  transition: transform .1s linear;
+  transition: transform .08s linear;
 }
 
 .snakeshadow {
@@ -42,68 +42,6 @@
 .sd .snakegrass,
 .mobile .snakegrass {
   display: none;
-}
-
-.snakecontrol {
-  width: 50vmin;
-  height: 50vmin;
-  xbackground: #0af7;
-  position: fixed;
-  xborder: .4vmin solid #000;
-  transform: rotateZ(45deg);
-  -moz-pointer-events: all;
-  -webkit-pointer-events: all;
-  pointer-events: all;
-}
-
-.snakecontrol.front {
-  margin-top: -58vmin;
-  margin-left: -20vmin;
-}
-
-.snakecontrol.back {
-  margin-top: 12vmin;
-  margin-left: -20vmin;
-}
-
-.snakecontrol.left {
-  margin-top: -23vmin;
-  margin-left: -55vmin;
-}
-
-.snakecontrol.right {
-  margin-top: -23vmin;
-  margin-left: 15vmin;
-}
-
-.inbounds .snakecontrol {
-  width: 10vmin;
-  height: 10vmin;
-  transform: none;
-}
-
-.inbounds .snakecontrol.front {
-  margin-top: -31vmin;
-  margin-left: -1vmin;
-  height: 30vmin;
-}
-
-.inbounds .snakecontrol.back {
-  margin-top: 9vmin;
-  margin-left: -1vmin;
-  height: 30vmin;
-}
-
-.inbounds .snakecontrol.left {
-  margin-top: -1vmin;
-  margin-left: -31vmin;
-  width: 30vmin;
-}
-
-.inbounds .snakecontrol.right {
-  margin-top: -1vmin;
-  margin-left: 9vmin;
-  width: 30vmin;
 }
 
 .cube.snakecube {

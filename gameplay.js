@@ -1,15 +1,15 @@
 ﻿// When the mouse/finger moves over an element
-mousemove = (el) => {
+mousemove = (dir) => {
   
   // Nothing happens is the element doesn't exist or the controls are locked
-  if(!el || lock) return;
+  if(dir === null || lock) return;
     
   // Save current head position and angle
   pos = [snakepos[0][0], snakepos[0][1], snakepos[0][2]];
   angle = snakeangles[0];
   
   // Turn right
-  if(el.id == "control_r"){
+  if(dir == 2){
     
     // Update head x
     pos[0]++;
@@ -32,7 +32,7 @@ mousemove = (el) => {
   }
   
   // Turn left
-  else if(el.id == "control_l"){
+  else if(dir == 0){
     
     // Update head x
     pos[0]--;
@@ -55,7 +55,7 @@ mousemove = (el) => {
   }
   
   // Turn top
-  else if(el.id == "control_f"){
+  else if(dir == 1){
     
     // Update head y
     pos[1]--;
@@ -78,7 +78,7 @@ mousemove = (el) => {
   }
   
   // Turn bottom
-  else if(el.id == "control_b"){
+  else if(dir == 3){
     
     // Update head y
     pos[1]++;
@@ -173,7 +173,12 @@ mousemove = (el) => {
         autopilot();
         interval = setInterval(()=>{
           autopilot();
-          music.volume = +music.volume - .15;
+          if(music.volume > .15){
+            music.volume = +music.volume - .15;
+          }
+          else {
+            music.volume = 0;
+          }
         }, 200);
         
         // Change room
@@ -255,16 +260,21 @@ mousemove = (el) => {
 
 // If mouse is down, call mousemove every 50ms to continue current move if possible
 setInterval(() => {
+  //console.log(px, py);
+  
   //L("m"+mousedown);
   if(mousedown){
-    mousemove(cell);
+    mousemove(dir);
   }
 }, 55);
 
 // Move snake and animate all the elements that move at each snake move
 movesnake = (movecamera = 1) => {
   
+  
+  
   var i, cell;
+  
   
   // Clear current puzzle
   clearpuzzle();
@@ -383,7 +393,7 @@ movesnake = (movecamera = 1) => {
         b.style.backgroundPositionY = "center";
       }
       setTimeout('scene.style.transition = ""', 1000);
-      scene.style.transform = "rotateX(30deg) translateX(" + (-snakepos[0][0] * 10 + 1) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1) + "vmin) translateZ(40vmin)";
+      scene.style.transform = "rotateX(30deg) translateX(" + (-snakepos[0][0] * 10 + 1 - 5) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1 + 10) + "vmin) translateZ(40vmin)";
     }
   }
   

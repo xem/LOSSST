@@ -477,7 +477,7 @@ levels = [
   
   // Room 5
   // Size 9
-  // Puzzles 17-
+  // Puzzles 17-20
   {
   
     width: 12,

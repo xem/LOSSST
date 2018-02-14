@@ -25,10 +25,6 @@
 `<div id="snakecubemove${i}" class="snakecubemove">
   <div class="snakeshadow"></div>
   <div id="snakegrass${i}" class="snakegrass"></div>
-  ${i?'':'<div id="control_f" class="snakecontrol front"></div>'}
-  ${i?'':'<div id="control_b" class="snakecontrol back"></div>'}
-  ${i?'':'<div id="control_l" class="snakecontrol left"></div>'}
-  ${i?'':'<div id="control_r" class="snakecontrol right"></div>'}
   <div id="snakecube${i}" class="cube snakecube">
     ${i?'':'<div class="tongue">Y</div>'}
     ${i?'<div class="u"></div>':'<div class="u eyes"></div>'}

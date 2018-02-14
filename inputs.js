@@ -1,31 +1,106 @@
-scene.ontouchstart = scene.ontouchmove = e => {
+dir = null;
+
+ox = oy = 0;
+px = py = 0;
+dx = dy = 0;
+
+
+controls.ontouchstart = e => {
   music.play();
   e.preventDefault();
   e.stopPropagation();
   if(lock) return;
   mousedown = 1;
-  mousemove(cell = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY), 1);
+  px = e.targetTouches[0].clientX;
+  py = e.targetTouches[0].clientY;
+  
+  if(px < innerWidth * 1/3){
+    dir = 0;
+  }
+  
+  else if(px > innerWidth * 2/3){
+    dir = 2;
+  }
+  
+  else if(py < innerHeight * 1/2){
+    dir = 1;
+  }
+  
+  else if(py > innerHeight * 1/2){
+    dir = 3;
+  }
+  
+  else {
+    dir = null;
+  }
+  
+  mousemove(dir, 1);
 }
 
-scene.onmousedown = e => {
+controls.ontouchmove = e => {
   music.play();
   e.preventDefault();
   e.stopPropagation();
   if(lock) return;
   mousedown = 1;
-  scene.onmousemove(e);
+  px2 = e.targetTouches[0].clientX;
+  py2 = e.targetTouches[0].clientY;
+  
+  dx = px2 - px;
+  dy = py2 - py;
+  
+  // Left
+  if(dx < -20 && Math.abs(dx) > Math.abs(dy)) {
+    dir = 0;
+  }
+  
+  // Right
+  else if(dx > 20 && Math.abs(dx) > Math.abs(dy)) {
+    dir = 2;
+  }
+  
+  // Left
+  else if(dy < -20 && Math.abs(dy) > Math.abs(dx)) {
+    dir = 1;
+  }
+  
+  // Left
+  else if(dy > 20 && Math.abs(dy) > Math.abs(dx)) {
+    dir = 3;
+  }
+  
+  else {
+    dir = null;
+  }
+  
+  if(dir !== null){
+    px = px2;
+    py = py2;
+  }
+  
+  console.log(dx, dy);
+  mousemove(dir, 1);
 }
 
-scene.onmouseover = e => {
+controls.onmousedown = e => {
+  music.play();
+  e.preventDefault();
+  e.stopPropagation();
+  if(lock) return;
+  mousedown = 1;
+  controls.onmousemove(e);
+}
+
+controls.onmouseover = e => {
   e.preventDefault();
   e.stopPropagation();
   if(lock) return;
   if(mousedown){
-    scene.onmousemove(e);
+    controls.onmousemove(e);
   }
 }
 
-scene.onmousemove = e => {
+controls.onmousemove = e => {
   e.preventDefault();
   e.stopPropagation();
   if(lock) return;
@@ -34,11 +109,15 @@ scene.onmousemove = e => {
   }
 }
 
-b.onmouseover = b.ontouchstart = scene.ontouchend = scene.onmouseup = e => {
+b.onmouseover = b.ontouchstart = controls.ontouchend = controls.onmouseup = e => {
   grabbed = 0;
   mousedown = 0;
   cell = null;
   move_b = move_f = move_l = move_r = 0;
+  px = innerWidth / 2;
+  py = innerHeight / 2;
+  //controls.style.left = px  + "px";
+  //controls.style.top = py + "px";
 }
 
 // Avoid all default event behaviors
@@ -55,22 +134,22 @@ onkeydown = e => {
   
   if(e.keyCode == 37 || e.keyCode == 65 ||e.keyCode == 81){
     k_left = 1;
-    cell = control_l;
+    dir = 0;
   }
   
   if(e.keyCode == 38 || e.keyCode == 90 || e.keyCode == 87){
     k_up = 1;
-    cell = control_f;
+    dir = 1;
   }
   
   if(e.keyCode == 39 || e.keyCode == 68){
     k_right = 1;
-    cell = control_r;
+    dir = 2;
   }
   
   if(e.keyCode == 40 || e.keyCode == 83){
     k_down = 1;
-    cell = control_b;
+    dir = 3;
   }
   
   mousemove(cell);
@@ -79,37 +158,37 @@ onkeydown = e => {
 onkeyup = e => {
   if(e.keyCode == 37 || e.keyCode == 65 ||e.keyCode == 81){
     k_left = 0;
-    if(cell == control_l){
-      cell = null;
+    if(dir == 0){
+      dir = null;
     }
   }
   
   if(e.keyCode == 38 || e.keyCode == 90 || e.keyCode == 87){
     k_up = 0;
-    if(cell == control_f){
-      cell = null;
+    if(dir == 1){
+      dir = null;
     }
   }
   
   if(e.keyCode == 39 || e.keyCode == 68){
     k_right = 0;
-    if(cell == control_r){
-      cell = null;
+    if(dir == 2){
+      dir = null;
     }
   }
   
   if(e.keyCode == 40 || e.keyCode == 83){
     k_down = 0;
-    if(cell == control_b){
-      cell = null;
+    if(dir == 3){
+      dir = null;
     }
   }
 
-  if(cell === null){
-      cell = k_left ? control_l : k_up ? control_f : k_right ? control_r : k_down ? control_b : null;
+  if(dir === null){
+      dir = k_left ? 0 : k_up ? 1 : k_right ? 2 : k_down ? 3 : null;
   }
 
-  if(cell === null){
+  if(dir === null){
     mousedown = 0;
     keydown = 0;
   }

@@ -15,20 +15,27 @@
 <img src="images/apple.png" width=1>
 <img src="images/appleshadow.png" width=1>
 <img src="images/eyes.png" width=1>
-<img src="images/grass.jpg" width=1>
+<img src="images/grass.png" width=1>
 <img src="images/grassblades.png" width=1>
 <img src="images/sky.jpg" width=1>
 <img src="images/stone.png" width=1>
-<img src="images/terre.jpg" width=1>
+<img src="images/terre.png" width=1>
 <img src="images/tree.png" width=1>
 <img src="images/treeshadow.png" width=1>
-<img src="images/wood.jpg" width=1>
+<img src="images/wood.png" width=1>
+
 <audio src="0.mp3?v=2" preload></audio>
 <audio src="1.mp3?v=2" preload></audio>
 <audio src="2.mp3?v=2" preload></audio>
 <audio src="3.mp3?v=2" preload></audio>
 <audio src="4.mp3?v=2" preload></audio>
+<audio src="5.mp3?v=2" preload></audio>
+
 <audio id=music src="0.mp3" loop></audio>
+
+<div id=controls>
+</div>
+
 <button id=play onclick="music.play();this.remove();render()" ontouchstart="music.play();this.remove();render()">Play</button>
 <button onclick="localStorage.clear();setTimeout('location=location',500)" style=left:0vmin>reset</button>
 <button onclick="localStorage.currentroom = 0; localStorage.snakelength = 3; localStorage.totalpuzzles = 0; location = location" style=left:15vmin>0</button>
@@ -37,6 +44,8 @@
 <button onclick="localStorage.currentroom = 3; localStorage.snakelength = 6; localStorage.totalpuzzles = 6; location = location" style=left:30vmin>3</button>
 <button onclick="localStorage.currentroom = 4; localStorage.snakelength = 7; localStorage.totalpuzzles = 10; location = location" style=left:35vmin>4</button>
 <button onclick="localStorage.currentroom = 5; localStorage.snakelength = 8; localStorage.totalpuzzles = 16; location = location" style=left:40vmin>5</button>
+
+
 <div id="perspective">
   <div id="scene" style="transform: rotateX(0deg) translateX(-70vmin) translateY(-50vmin) translateZ(80vmin); width: 362vmin; height: 102vmin;"></div>
 </div>

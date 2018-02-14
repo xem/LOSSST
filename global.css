@@ -106,3 +106,89 @@ button {
 img {
   opacity: .01;
 }
+
+#controls {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+/*.snakecontrol {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80vmax;
+  height: 80vmax;
+  //background: #0af4;
+  //border: 2px solid #0afa;
+  transform-origin: top left;
+}
+
+.snakecontrol.front {
+  transform: rotate(-135deg);
+}
+
+.snakecontrol.back {
+  transform: rotate(45deg);
+}
+
+.snakecontrol.left {
+  transform: rotate(135deg);
+}
+
+.snakecontrol.right {
+  transform: rotate(-45deg);
+}*/
+
+/*.snakecontrol.front {
+  margin-top: -58vmin;
+  margin-left: -20vmin;
+}
+
+.snakecontrol.back {
+  margin-top: 12vmin;
+  margin-left: -20vmin;
+}
+
+.snakecontrol.left {
+  margin-top: -23vmin;
+  margin-left: -55vmin;
+}
+
+.snakecontrol.right {
+  margin-top: -23vmin;
+  margin-left: 15vmin;
+}
+
+.inbounds .snakecontrol {
+  width: 10vmin;
+  height: 10vmin;
+  transform: none;
+}
+
+.inbounds .snakecontrol.front {
+  margin-top: -31vmin;
+  margin-left: -1vmin;
+  height: 30vmin;
+}
+
+.inbounds .snakecontrol.back {
+  margin-top: 9vmin;
+  margin-left: -1vmin;
+  height: 30vmin;
+}
+
+.inbounds .snakecontrol.left {
+  margin-top: -1vmin;
+  margin-left: -31vmin;
+  width: 30vmin;
+}
+
+.inbounds .snakecontrol.right {
+  margin-top: -1vmin;
+  margin-left: 9vmin;
+  width: 30vmin;
+}*/
