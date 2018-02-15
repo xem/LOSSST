@@ -82,7 +82,7 @@ controls.ontouchmove = e => {
     py = py2;
   }*/
   
-  //console.log(dx, dy);
+  console.log(dx, dy);
   mousemove(dir, 1);
 }
 
@@ -131,6 +131,7 @@ controls.ontouchend = controls.onmouseup = e => {
   move_b = move_f = move_l = move_r = 0;
   px = innerWidth / 2;
   py = innerHeight / 2;
+  dir = null;
   //controls.style.left = px  + "px";
   //controls.style.top = py + "px";
   
