@@ -114,6 +114,8 @@ img {
   left: 0;
   width: 100vw;
   height: 100vh;
+  background: url(images/stick.png) no-repeat -500px -500px;
+  transition: opacity .2s .2s;
 }
 
 /*.snakecontrol {

@@ -14,6 +14,7 @@ controls.ontouchstart = e => {
   px = e.targetTouches[0].clientX;
   py = e.targetTouches[0].clientY;
   
+  /*
   if(px < innerWidth * 1/3){
     dir = 0;
   }
@@ -32,9 +33,12 @@ controls.ontouchstart = e => {
   
   else {
     dir = null;
-  }
+  }*/
   
-  mousemove(dir, 1);
+  controls.style.backgroundPosition = (px - 128) + "px " + (py - 128) + "px";
+  controls.style.opacity = 1;
+  
+  //mousemove(dir, 1);
 }
 
 controls.ontouchmove = e => {
@@ -50,22 +54,22 @@ controls.ontouchmove = e => {
   dy = py2 - py;
   
   // Left
-  if(dx < -20 && Math.abs(dx) > Math.abs(dy)) {
+  if(dx < -40 && Math.abs(dx) > Math.abs(dy)) {
     dir = 0;
   }
   
   // Right
-  else if(dx > 20 && Math.abs(dx) > Math.abs(dy)) {
+  else if(dx > 40 && Math.abs(dx) > Math.abs(dy)) {
     dir = 2;
   }
   
   // Left
-  else if(dy < -20 && Math.abs(dy) > Math.abs(dx)) {
+  else if(dy < -40 && Math.abs(dy) > Math.abs(dx)) {
     dir = 1;
   }
   
   // Left
-  else if(dy > 20 && Math.abs(dy) > Math.abs(dx)) {
+  else if(dy > 40 && Math.abs(dy) > Math.abs(dx)) {
     dir = 3;
   }
   
@@ -73,12 +77,12 @@ controls.ontouchmove = e => {
     dir = null;
   }
   
-  if(dir !== null){
+  /*if(dir !== null){
     px = px2;
     py = py2;
-  }
+  }*/
   
-  console.log(dx, dy);
+  //console.log(dx, dy);
   mousemove(dir, 1);
 }
 
@@ -109,7 +113,18 @@ controls.onmousemove = e => {
   }
 }
 
-b.onmouseover = b.ontouchstart = controls.ontouchend = controls.onmouseup = e => {
+b.onmouseover = b.ontouchstart = e => {
+  grabbed = 0;
+  mousedown = 0;
+  cell = null;
+  move_b = move_f = move_l = move_r = 0;
+  px = innerWidth / 2;
+  py = innerHeight / 2;
+  //controls.style.left = px  + "px";
+  //controls.style.top = py + "px";;
+}
+
+controls.ontouchend = controls.onmouseup = e => {
   grabbed = 0;
   mousedown = 0;
   cell = null;
@@ -118,6 +133,9 @@ b.onmouseover = b.ontouchstart = controls.ontouchend = controls.onmouseup = e =>
   py = innerHeight / 2;
   //controls.style.left = px  + "px";
   //controls.style.top = py + "px";
+  
+  controls.style.backgroundPosition = "-500px -500px";
+  controls.style.opacity = 0.01;
 }
 
 // Avoid all default event behaviors
