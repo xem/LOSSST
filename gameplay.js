@@ -266,7 +266,7 @@ setInterval(() => {
   if(mousedown){
     mousemove(dir);
   }
-}, 55);
+}, sd ? 100 : 55);
 
 // Move snake and animate all the elements that move at each snake move
 movesnake = (movecamera = 1) => {

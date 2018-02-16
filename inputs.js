@@ -3,7 +3,9 @@ dir = null;
 ox = oy = 0;
 px = py = 0;
 dx = dy = 0;
-
+px = innerWidth - 30 - 128;
+py = innerHeight / 2;
+controls.style.backgroundPosition = (px - 128) + "px " + (py - 128) + "px";
 
 controls.ontouchstart = e => {
   music.play();
@@ -11,34 +13,8 @@ controls.ontouchstart = e => {
   e.stopPropagation();
   if(lock) return;
   mousedown = 1;
-  px = e.targetTouches[0].clientX;
-  py = e.targetTouches[0].clientY;
   
-  /*
-  if(px < innerWidth * 1/3){
-    dir = 0;
-  }
-  
-  else if(px > innerWidth * 2/3){
-    dir = 2;
-  }
-  
-  else if(py < innerHeight * 1/2){
-    dir = 1;
-  }
-  
-  else if(py > innerHeight * 1/2){
-    dir = 3;
-  }
-  
-  else {
-    dir = null;
-  }*/
-  
-  controls.style.backgroundPosition = (px - 128) + "px " + (py - 128) + "px";
-  controls.style.opacity = 1;
-  
-  //mousemove(dir, 1);
+  if(timer > 0) controls.style.opacity = 1;
 }
 
 controls.ontouchmove = e => {
@@ -54,33 +30,28 @@ controls.ontouchmove = e => {
   dy = py2 - py;
   
   // Left
-  if(dx < -40 && Math.abs(dx) > Math.abs(dy)) {
+  if(dx < -20 && Math.abs(dx) > Math.abs(dy)) {
     dir = 0;
   }
   
   // Right
-  else if(dx > 40 && Math.abs(dx) > Math.abs(dy)) {
+  else if(dx > 20 && Math.abs(dx) > Math.abs(dy)) {
     dir = 2;
   }
   
   // Left
-  else if(dy < -40 && Math.abs(dy) > Math.abs(dx)) {
+  else if(dy < -20 && Math.abs(dy) > Math.abs(dx)) {
     dir = 1;
   }
   
   // Left
-  else if(dy > 40 && Math.abs(dy) > Math.abs(dx)) {
+  else if(dy > 20 && Math.abs(dy) > Math.abs(dx)) {
     dir = 3;
   }
   
   else {
     dir = null;
   }
-  
-  /*if(dir !== null){
-    px = px2;
-    py = py2;
-  }*/
   
   console.log(dx, dy);
   mousemove(dir, 1);
@@ -118,10 +89,8 @@ b.onmouseover = b.ontouchstart = e => {
   mousedown = 0;
   cell = null;
   move_b = move_f = move_l = move_r = 0;
-  px = innerWidth / 2;
-  py = innerHeight / 2;
-  //controls.style.left = px  + "px";
-  //controls.style.top = py + "px";;
+  //px = innerWidth / 2;
+  //py = innerHeight / 2;
 }
 
 controls.ontouchend = controls.onmouseup = e => {
@@ -129,14 +98,10 @@ controls.ontouchend = controls.onmouseup = e => {
   mousedown = 0;
   cell = null;
   move_b = move_f = move_l = move_r = 0;
-  px = innerWidth / 2;
-  py = innerHeight / 2;
+  //px = innerWidth / 2;
+  //py = innerHeight / 2;
   dir = null;
-  //controls.style.left = px  + "px";
-  //controls.style.top = py + "px";
-  
-  controls.style.backgroundPosition = "-500px -500px";
-  controls.style.opacity = 0.01;
+  if(timer > 0) controls.style.opacity = 0.5;
 }
 
 // Avoid all default event behaviors

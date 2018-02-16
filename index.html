@@ -36,7 +36,7 @@
 <div id=controls>
 </div>
 
-<button id=play onclick="music.play();this.remove();render()" ontouchstart="music.play();this.remove();render()">Play</button>
+<button id=play onclick="music.play();this.remove();render()" ontouchstart="music.play();this.remove();render();timer++;">Play</button>
 <button onclick="localStorage.clear();setTimeout('location=location',500)" style=left:0vmin>reset</button>
 <button onclick="localStorage.currentroom = 0; localStorage.snakelength = 3; localStorage.totalpuzzles = 0; location = location" style=left:15vmin>0</button>
 <button onclick="localStorage.currentroom = 1; localStorage.snakelength = 5; localStorage.totalpuzzles = 0; location = location" style=left:20vmin>1</button>

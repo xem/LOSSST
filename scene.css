@@ -158,7 +158,7 @@
   position: absolute;
   width: 200vmin;
   height: 30vmin;
-  background: url(images/wood.png);
+  background: url(images/wood.png) brown;
   transform-origin: left center;
   transform: rotateY(90deg) translateZ(-.5vmin);
   transition: transform 2s;
@@ -223,10 +223,10 @@
 }
 
 .rockcube .u {
-  background: url(images/grass.png); 
+  background: url(images/grass.png) green; 
   background-size: 20vmin;
   width: 11vmin;
   height: 11vmin;
-  transform: rotateY(90deg)translateX(-100%)rotateY(-90deg) translateX(-0.5vmin);
+  transform: rotateY(90deg) translateX(-100%) rotateY(-90deg) translateX(-0.5vmin) translateY(0.5vmin);
   filter: brightness(.8);
 }

@@ -1,4 +1,6 @@
 // Initialization
+timer = 0;
+
 
 // Room number
 currentroom = +localStorage["currentroom"] || 0;
