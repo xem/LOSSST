@@ -432,6 +432,7 @@ movesnake = (movecamera = 1) => {
   if(movecamera){
     
     // If the snake moves on X axis, rotate the trees to face the camera
+    i = 0;
     if(!sd){
       for(i in levels[currentroom].trees){
         tree = levels[currentroom].trees[i];
@@ -459,7 +460,7 @@ movesnake = (movecamera = 1) => {
         scene.style.transition = "1s";
         scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y) * 10 + 1 + (currentpuzzle.size / 3) * 10) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin) rotateX(70deg)";
         if(!sd){
-          b.style.backgroundPositionT = "-200vmin";
+          b.style.backgroundPositionY = "-200vmin";
         }
         checkpuzzle();
       }
