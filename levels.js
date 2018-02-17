@@ -371,7 +371,7 @@ levels = [
       },
       
       {
-        x: 20,
+        x: 21,
         y: 3,
         size: 5,
         wrap: 0,
@@ -384,7 +384,7 @@ levels = [
       },
       
       {
-        x: 30,
+        x: 33,
         y: 4,
         size: 3,
         wrap: 0,
@@ -408,7 +408,7 @@ levels = [
       },
       
       {
-        x: 20,
+        x: 21,
         y: 13,
         size: 6,
         wrap: 0,
@@ -422,8 +422,8 @@ levels = [
       },
       
       {
-        x: 30,
-        y: 13,
+        x: 32,
+        y: 10,
         size: 4,
         wrap: 0,
         wall: "",
@@ -450,6 +450,10 @@ levels = [
     stones: [
     ],
     
+    cubes: [
+    
+    ],
+    
     bridges: [
       {
         x: 1,
@@ -462,7 +466,7 @@ levels = [
 
       {
         x: 39,
-        y: 10,
+        y: 15,
         angle: 0,
         open: 0,
         puzzles: 16,
@@ -481,7 +485,7 @@ levels = [
   {
   
     width: 12,
-    height: 50,
+    height: 45,
     hole: false,
     
     puzzles: [
@@ -527,7 +531,7 @@ levels = [
       
       {
         x: 4,
-        y: 40,
+        y: 36,
         size: 4,
         wrap: 0,
         wall: "",
@@ -544,8 +548,11 @@ levels = [
     ],
     
     cubes: [
+      [6, 13],
+      [7, 13],
+      [6, 14],
+      [7, 14],
       [7, 11],
-      [4, 11],
       [4, 11],
       [4, 14],
       [4, 22],
@@ -595,4 +602,9 @@ levels = [
 for(i = 0; i < 7; i++){
   levels[0].cubes.push([17,i]);
   levels[0].cubes.push([20,i+3]);
+}
+
+for(i = 0; i < 15; i++){
+  levels[4].cubes.push([18,i]);
+  levels[4].cubes.push([29,i+5]);
 }

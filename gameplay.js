@@ -308,7 +308,7 @@ movesnake = (movecamera = 1) => {
   // Stay zoomed if one of the first 4 cubes after the head is in the puzzle
   if(
     (currentpuzzle && !currentpuzzle.solved)
-    && (inbounds[0] || inbounds.slice(1, 4).includes(1)
+    && (inbounds[0] || inbounds.slice(1, snakelength).includes(1)
     && snakepos.length > snakelength + 10)
   ){
     puzzling = 1;
@@ -430,7 +430,7 @@ movesnake = (movecamera = 1) => {
         if(!bridge.open && (totalpuzzles >= bridge.puzzles || snakelength >= bridge.snakelength)){
           lock = 1;
           animation = 1;
-          scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin) rotateX(10deg)`;
+          scene.style.transform = `rotateX(30deg) translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin)`;
           window["bridge" + j].classList.add("open");
           bridge.open = 1;
           localStorage["bridge" + currentroom + "-" + j] = 1;
@@ -512,7 +512,7 @@ checkpuzzle = () => {
         if(!bridge.open && (totalpuzzles >= bridge.puzzles || snakelength >= bridge.snakelength)){
           lock = 1;
           animation = 1;
-          scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin) rotateX(30deg)`;
+          scene.style.transform = `rotateX(30deg) translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin)`;
           window["bridge" + i].classList.add("open");
           bridge.open = 1;
           localStorage["bridge" + currentroom + "-" + i] = 1;

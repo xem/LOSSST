@@ -61,7 +61,7 @@
 }
 
 .cube.snakecube.bright > div {
-  background: #fff !important;
+  background: red !important;
 }
 
 .sd .snakecubemove,
