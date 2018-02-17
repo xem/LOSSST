@@ -83,14 +83,14 @@ generate = function(){
 onload = () => { generate(); }
 
 save = function(){
-  h="'";
+  h='"';
   for(i=0;i<gridsize;i++){
     for(j=0;j<gridsize;j++){
       h+=(snakeflat.includes(j*gridsize+i)?"1":"0")
     }
-    h+="\\<br>";
+    h+='"+<br>"';
   }
-  h = h.substr(0,h.length-5)+"'<br><br>";
+  h = h.substr(0,h.length-7)+'"<br><br>';
  
   code.innerHTML += h;
 }

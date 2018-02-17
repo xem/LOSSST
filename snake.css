@@ -36,7 +36,7 @@
   background: url(images/grassblades.png);
   background-size: 10vmin 6vmin;
   transform: translateX(-1vmin) translateY(6vmin) translateZ(4vmin) rotateX(-70deg);
-  transition: background-position .15s linear, opacity .15s linear;
+  transition: background-position .15s linear, opacity .15s .15s linear;
 }
 
 .sd .snakegrass,
@@ -71,19 +71,6 @@
 
 .sd #snakecube0 {
   //transition: transform .1s linear;
-}
-
-.cube.puzzlecube {
-  position: absolute;
-}
-
-.cube.puzzlecube > .d {
-  background: green;
-  position: relative;
-}
-
-.cube.puzzlecube > .d > div {
-  position: absolute;
 }
 
 .cube.snakecube > div {

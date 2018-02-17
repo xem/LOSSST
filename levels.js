@@ -582,6 +582,119 @@ levels = [
         to: 0
       },
 
+      {
+        x: 11,
+        y: 39,
+        angle: 0,
+        open: 0,
+        puzzles: 20,
+        to: 6,
+        to_x: -3,
+        to_y: 5,
+        to_z: 0
+      }
+    ],
+  },
+  
+  // Room 6
+  // Size 10
+  // Puzzles 21-
+  {
+  
+    width: 50,
+    height: 11,
+    hole: false,
+    
+    puzzles: [
+
+      {
+        x: 10,
+        y: 3,
+        size: 6,
+        wrap: 0,
+        wall: "",
+        ground: "000000"+
+                "011100"+
+                "011110"+
+                "001110"+
+                "000000"+
+                "000000",
+      },
+      
+      {
+        x: 20,
+        y: 4,
+        size: 4,
+        wrap: 0,
+        wall: "",
+        ground: "0010"
+               +"1111"
+               +"0111"
+               +"0011",
+      },
+      
+      {
+        x: 28,
+        y: 4,
+        size: 4,
+        wrap: 0,
+        wall: "",
+        ground: "0010"
+               +"0011"
+               +"0110"
+               +"0011",
+      },
+      
+      {
+        x: 38,
+        y: 4,
+        size: 6,
+        wrap: 0,
+        wall: 
+           "000000"
+          +"000000"
+          +"000000"
+          +"111111"
+          +"100001"
+          +"100001",
+        ground: 
+          "",
+      },
+
+    ],
+    
+    trees: [
+      [6,2],
+    ],
+    
+    cubes: [
+      [38, 3],
+      [39, 3],
+      [42, 3],
+      [43, 3],
+    ],
+    
+    apples: [
+      {
+        x: 8,
+        y: 4,
+        eaten: 0
+      }
+    ],
+    
+    stones: [
+    ],
+    
+    bridges: [
+      {
+        x: 1,
+        y: 5,
+        angle: 180,
+        open: 1,
+        puzzles: 0,
+        to: 0
+      },
+
       /*{
         x: 39,
         y: 10,
@@ -607,4 +720,9 @@ for(i = 0; i < 7; i++){
 for(i = 0; i < 15; i++){
   levels[4].cubes.push([18,i]);
   levels[4].cubes.push([29,i+5]);
+}
+
+for(i = 0; i < 11; i++){
+  levels[6].cubes.push([41,i]);
+  levels[6].cubes.push([40,i]);
 }

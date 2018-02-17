@@ -57,14 +57,27 @@
   <div id="puzzleground${i}" class="d"></div>
   <!--div class="f"></div>
   <div class="r"></div>
-  <div class="l"></div>
-  <div class="b"></div-->
+  <div class="l"></div-->
+  <div id="puzzleback${i}" class="b"></div>
   <div class="puzzlegrass"></div>
 </div>`;
 
-    for(j in puzzle.ground){
-      window["puzzleground" + i].innerHTML +=
-      `<div id="cell${currentroom}-${i}-${j}" class="cell ${+(puzzle.ground[j]) ? ("black" + (puzzle.solved ? " green" : "")) : (puzzle.solved ? "yellow" : "white")}" style="left:${((+j)%puzzle.size) * 10}vmin;top:${~~((+j)/puzzle.size) * 10}vmin"></div>`;
+    if(puzzle.ground){
+      for(j in puzzle.ground){
+        window["puzzleground" + i].innerHTML +=
+        `<div id="cell${currentroom}-${i}-${j}" class="cell ${+(puzzle.ground[j]) ? ("black" + (puzzle.solved ? " green" : "")) : (puzzle.solved ? "yellow" : "white")}" style="left:${((+j)%puzzle.size) * 10}vmin;top:${~~((+j)/puzzle.size) * 10}vmin"></div>`;
+      }
+    }
+    
+    else {
+      window["puzzleground" + i].style.filter = "brightness(.85)";
+    }
+    
+    if(puzzle.wall){
+      for(j in puzzle.wall){
+        window["puzzleback" + i].innerHTML +=
+        `<div id="cell${currentroom}-wall-${i}-${j}" class="cell ${+(puzzle.wall[j]) ? ("black" + (puzzle.solved ? " green" : "")) : (puzzle.solved ? "yellow" : "white")}" style="left:${((+j)%puzzle.size) * 10}vmin;top:${~~((+j)/puzzle.size) * 10}vmin"></div>`;
+      }
     }
 
   }

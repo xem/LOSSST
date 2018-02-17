@@ -75,3 +75,21 @@
 .wrap div {
   transform-origin: center center;
 }
+
+.puzzlecube .b {
+  transform: translateY(-197%)rotateX(-90deg);
+  transform-origin: bottom center;
+}
+
+.cube.puzzlecube {
+  position: absolute;
+}
+
+.cube.puzzlecube > .d {
+  background: url(images/grass.png);
+  position: relative;
+}
+
+.cube.puzzlecube > .d > div {
+  position: absolute;
+}
