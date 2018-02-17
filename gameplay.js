@@ -78,7 +78,7 @@ mousemove = (dir) => {
     // Go upward
     if(currentpuzzle && currentpuzzle.wall && pos[0] >= currentpuzzle.x && pos[0] <= currentpuzzle.x + currentpuzzle.size && pos[1] == currentpuzzle.y){
       
-      if(pos[2] < currentpuzzle.size){
+      if(pos[2] < currentpuzzle.size - 1){
         pos[2]++;
         
         // From left
@@ -330,7 +330,7 @@ setInterval(() => {
   if(mousedown){
     mousemove(dir);
   }
-}, sd ? 100 : 55);
+}, 55);
 
 // Move snake and animate all the elements that move at each snake move
 movesnake = (movecamera = 1) => {
@@ -386,7 +386,7 @@ movesnake = (movecamera = 1) => {
     window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin)";
     
     if(!sd || (sd && i == 0)){
-      window["snakecube" + i].style.transform = (snakepos[i][2] > 0 ? "rotateX(-90deg) translateZ(-3vmin) translateY(-7vmin)" : "") + "rotateZ(" + (snakeangles[i]) + "deg)";
+      window["snakecube" + i].style.transform = (!sd && snakepos[i][2] > 0 ? "rotateX(-90deg) translateZ(-3vmin) translateY(-5vmin)" : "") + "rotateZ(" + (snakeangles[i]) + "deg)";
     }
     
     if(!sd){
@@ -394,9 +394,11 @@ movesnake = (movecamera = 1) => {
         window["snakegrass" + i].style.backgroundPosition = -(snakepos[i][0] * 10 + (snakepos[i][1] * 100)) + "vmin bottom";
         if(inbounds[i] || puzzling || snakepos[i][0] < 0 || snakepos[i][0] >= levels[currentroom].width){
           window["snakegrass" + i].style.opacity = 0;
+          window["snakeshadow" + i].style.display = "none";
         }
         else {
           window["snakegrass"+i].style.opacity = 1;
+          window["snakeshadow" + i].style.display = "block";
         }
       }
     }
@@ -450,8 +452,9 @@ movesnake = (movecamera = 1) => {
       checkpuzzle();
     }
     
+    // Vertical puzzle
     else if(puzzling && currentpuzzle && !currentpuzzle.ground && currentpuzzle.wall){
-      if(snakepos[i][1] == currentpuzzle.y){
+      if(snakepos[0][1] == currentpuzzle.y){
         b.classList.add("inbounds");
         scene.style.transition = "1s";
         scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y) * 10 + 1 + (currentpuzzle.size / 3) * 10) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin) rotateX(70deg)";
@@ -496,7 +499,7 @@ movesnake = (movecamera = 1) => {
       window["appleshadow" + i].classList.add("eaten");
       snake.insertAdjacentHTML("beforeEnd",
 `<div id="snakecubemove${snakelength}" class="snakecubemove" style="transform:translateX(${snakepos[snakelength][0]*10+1}vmin) translateY(${snakepos[snakelength][1]*10+1}vmin) translateZ(${snakepos[snakelength][2]*10+.6}vmin)">
-  <div class="snakeshadow"></div>
+  <div id="snakeshadow${snakelength}" class="snakeshadow"></div>
   <div id="snakegrass${snakelength}" class="snakegrass" style="${snakepos[snakelength][0] < 0 ? 'opacity:0' : ''}"></div>
   <div id="snakecube${snakelength}" class="cube snakecube bright">
     <div class="u"></div>
@@ -529,10 +532,6 @@ movesnake = (movecamera = 1) => {
       }
     }
   }
-  
-  
-  
-  
 }
 
 // Clear a puzzle (remove blue and red tiles)

@@ -1,8 +1,11 @@
 ﻿render = () => {
 
   if(currentroom > 0) {
-    music.src = currentroom + ".mp3?v=2";
-    music.play();
+    try {
+      music.src = currentroom + ".mp3?v=2";
+      music.play();
+    }
+    catch(e){}
   }
 
   scene.style.transform = `rotateX(0deg) translateX(-${levels[currentroom].hole[0] * 10}vmin) translateY(-${levels[currentroom].hole[1] * 10}vmin) translateZ(80vmin)`;
@@ -23,7 +26,7 @@
   for(i = 0; i < snakelength; i++){
     snake.innerHTML +=
 `<div id="snakecubemove${i}" class="snakecubemove">
-  <div class="snakeshadow"></div>
+  <div id="snakeshadow${i}" class="snakeshadow"></div>
   <div id="snakegrass${i}" class="snakegrass"></div>
   <div id="snakecube${i}" class="cube snakecube">
     ${i?'':'<div class="tongue">Y</div>'}
