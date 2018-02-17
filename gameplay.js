@@ -325,7 +325,6 @@ mousemove = (dir) => {
 
 // If mouse is down, call mousemove every 50ms to continue current move if possible
 setInterval(() => {
-  //console.log(px, py);
   
   //L("m"+mousedown);
   if(mousedown){

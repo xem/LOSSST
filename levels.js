@@ -598,7 +598,7 @@ levels = [
   
   // Room 6
   // Size 10
-  // Puzzles 21-
+  // Puzzles 21-24
   {
   
     width: 50,
@@ -672,6 +672,118 @@ levels = [
       [39, 3],
       [42, 3],
       [43, 3],
+    ],
+    
+    apples: [
+      {
+        x: 8,
+        y: 4,
+        eaten: 0
+      }
+    ],
+    
+    stones: [
+    ],
+    
+    bridges: [
+      {
+        x: 1,
+        y: 5,
+        angle: 180,
+        open: 1,
+        puzzles: 0,
+        to: 0
+      },
+
+      /*{
+        x: 39,
+        y: 10,
+        angle: 0,
+        open: 0,
+        puzzles: 16,
+        to: 5,
+        to_x: -3,
+        to_y: 5,
+        to_z: 0
+      }*/
+    ],
+  },
+  
+  
+  // Room 7
+  // Size 11
+  // Puzzles 25-
+  {
+  
+    width: 50,
+    height: 11,
+    hole: false,
+    
+    puzzles: [
+
+      {
+        x: 10,
+        y: 4,
+        size: 4,
+        wrap: 0,
+        wall: "",
+        ground: "0111"
+               +"0101"
+               +"1111"
+               +"1100",
+      },
+      
+      
+      
+      {
+        x: 20,
+        y: 3,
+        size: 5,
+        wrap: 0,
+        wall: "",
+        ground: "00000"+
+                "01110"+
+                "01010"+
+                "01110"+
+                "01110",
+      },
+      
+      {
+        x: 30,
+        y: 3,
+        size: 4,
+        wrap: 0,
+        wall: "",
+        ground: "1100"+
+                "1110"+
+                "1111"+
+                "0011",
+      },
+      
+      {
+        x: 40,
+        y: 3,
+        size: 4,
+        wrap: 0,
+        wall: "",
+        ground: "1010"+
+                "1110"+
+                "1100"+
+                "1000",
+      },
+      
+      
+      
+      
+
+    ],
+    
+    trees: [
+      [6,2],
+    ],
+    
+    cubes: [
+
     ],
     
     apples: [

@@ -8,7 +8,11 @@ py = innerHeight / 2;
 controls.style.backgroundPosition = (px - 80) + "px " + (py - 80) + "px";
 
 controls.ontouchstart = e => {
-  music.play();
+  try{
+    music.play();
+  }
+  catch(error){}
+  
   e.preventDefault();
   e.stopPropagation();
   if(lock) return;
@@ -44,8 +48,6 @@ controls.ontouchstart = e => {
   else {
     dir = null;
   }
-  
-  console.log(dx, dy);
   mousemove(dir, 1);
   
   
@@ -88,8 +90,6 @@ controls.ontouchmove = e => {
   else {
     dir = null;
   }
-  
-  console.log(dx, dy);
   mousemove(dir, 1);
 }
 
