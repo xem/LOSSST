@@ -3,18 +3,13 @@
   height: 200vmin;
   border-radius: 5vmin;
   transform: rotateX(30deg) translateX(-100vmin) translateY(-100vmin) translateZ(40vmin);
-  transition: transform .5s linear;
+  transition: transform .5s linear, transform-origin .5s linear;
   background: url(images/grass.png); 
   background-size: 70vmin;
 }
 
 .intro #scene {
   transition: transform 2s;
-}
-
-.sd #scene {
-  //background: radial-gradient(#5F9D3F 6vmin, #034301 200vmin) -1vmin -2vmin;
-  //background-size: auto;
 }
 
 .hole {
@@ -36,10 +31,6 @@
   background: linear-gradient(transparent 20%, #fff), url(images/terre.png);
   background-size: 100%, 70vmin;
   transform-origin: top center;
-}
-
-.sd #scenedepth {
-  //background: linear-gradient(#725f1b, #fff);
 }
 
 .tree {
@@ -71,10 +62,6 @@
   pointer-events: none;
 }
 
-.sd .treeshadow {
-  //display: none;
-}
-
 .treecontent {
   width: 50vmin;
   height: 60vmin;
@@ -88,12 +75,7 @@
   transition: transform .15s linear;
 }
 
-.sd .treecontent {
-  //background: radial-gradient(circle at 50% 30%, #067201, #014500 15vmin, transparent 15vmin) left top, linear-gradient(90deg, transparent 45%, #483e06 45%, #685e06 50%, #483e06 55%, transparent 55%) no-repeat center bottom;
-  //background-size: 100%, 100% 50%;
-}
-
-.sd .stone {
+.mobile .stone {
   //display: none;
 }
 
@@ -185,11 +167,6 @@
   transform: rotateZ(180deg) rotateY(0deg) translateZ(-.5vmin);
 }
 
-.sd .bridge {
-  //background: linear-gradient(90deg, #483e06, #685e06) repeat;
-  //background-size: 10vmin 100%;
-}
-
 .bridgedepth {
   position: absolute;
   width: 100%;
@@ -204,11 +181,6 @@
 .bridge.angle180 .bridgedepth {
   top: 0;
   transform: rotateX(-110deg);
-}
-
-.sd .bridgedepth {
-  //background: linear-gradient(90deg, #483e06, #685e06) repeat;
-  //background-size: 10vmin 100%;
 }
 
 .rockcube {
@@ -227,6 +199,6 @@
   background-size: 20vmin;
   width: 11vmin;
   height: 11vmin;
-  transform: rotateY(90deg) translateX(-100%) rotateY(-90deg) translateX(-0.5vmin) translateY(0.5vmin);
+  transform: rotateY(90deg) translateX(-95%) rotateY(-90deg) translateX(-0.5vmin) translateY(0.5vmin);
   filter: brightness(.8);
 }

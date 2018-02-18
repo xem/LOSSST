@@ -17,8 +17,8 @@
   transition: transform .15s linear;
 }
 
-.sd .snakecubemove {
-  transition: transform .08s linear;
+.mobile .snakecubemove {
+  transition: transform .1s linear;
 }
 
 .snakeshadow {
@@ -39,7 +39,6 @@
   transition: background-position .15s linear, opacity .15s .15s linear;
 }
 
-.sd .snakegrass,
 .mobile .snakegrass {
   display: none;
 }
@@ -64,15 +63,6 @@
   background: red !important;
 }
 
-.sd .snakecubemove,
-.sd .cube.snakecube {
-  //transition: none;
-}
-
-.sd #snakecube0 {
-  //transition: transform .1s linear;
-}
-
 .cube.snakecube > div {
   box-shadow: 0 0 0 .2vmin #000 inset;
   text-align: center;
@@ -85,8 +75,7 @@
 }
 
 .cube.snakecube .f {
-  //line-height: 3vmin;
-  //background: #da2;
+
 }
 
 .cube.snakecube .tongue {
@@ -105,35 +94,4 @@
 .cube.snakecube .u.eyes {
   background: url(images/eyes.png) no-repeat center center #fb3;
   background-size: 75%;
-}
-
-.snaketrail {
-  width: 10vmin;
-  height: 10vmin;
-  background: #000;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
-.mobile .snaketrail,
-.sd .snaketrail {
-  display: none;
-}
-
-
-#snaketrail0 {
-  opacity: .11;
-}
-
-#snaketrail1 {
-  opacity: .1;
-}
-
-#snaketrail2 {
-  opacity: .066;
-}
-
-#snaketrail3 {
-  opacity: .033;
 }

@@ -1,4 +1,6 @@
-﻿render = () => {
+﻿// Render the scene
+
+render = () => {
 
   if(currentroom > 0) {
     try {
@@ -8,7 +10,8 @@
     catch(e){}
   }
 
-  scene.style.transform = `rotateX(0deg) translateX(-${levels[currentroom].hole[0] * 10}vmin) translateY(-${levels[currentroom].hole[1] * 10}vmin) translateZ(80vmin)`;
+  scene.style.transformOrigin = `${levels[currentroom].hole[0] * 10}vmin ${levels[currentroom].hole[1] * 10}vmin`;
+  scene.style.transform = `translateX(-${levels[currentroom].hole[0] * 10}vmin) translateY(-${levels[currentroom].hole[1] * 10}vmin) translateZ(80vmin) rotateX(0deg)`;
   
   scene.innerHTML =
 `<div id=scenedepth style="width:${levels[currentroom].width * 10 - 5}vmin; transform: translateY(${levels[currentroom].height * 10}vmin) rotateX(-45deg)"></div>
@@ -37,10 +40,6 @@
     <div class="b"></div>
   </div>
 </div>`;
-  }
-  
-  for(i = 0; i < 4; i++){
-    snake.innerHTML += `<div id="snaketrail${i}" class="snaketrail" style="display: none"></div>`;
   }
   
   if(levels[currentroom].hole){
@@ -125,8 +124,8 @@
     apple = levels[currentroom].apples[j];
     if(!apple.eaten){
       apples.innerHTML +=
-      `<div id="apple${j}" class="apple" style="margin-left:${apple.x * 10}vmin;margin-bottom:-${apple.y * 10}vmin"><div class="applecontent"></div></div>`+
-      `<div id="appleshadow${j}" class="appleshadow" style="margin-left:${apple.x * 10}vmin;margin-bottom:-${apple.y * 10}vmin"></div>`;
+      `<div id="apple${j}" class="apple ${localStorage["apple_" + currentroom + "_" + j] ? "eaten" : ""}" style="margin-left:${apple.x * 10}vmin;margin-bottom:-${apple.y * 10}vmin"><div class="applecontent"></div></div>`+
+      (localStorage["apple_" + currentroom + "_" + j] ? "" : `<div id="appleshadow${j}" class="appleshadow" style="margin-left:${apple.x * 10}vmin;margin-bottom:-${apple.y * 10}vmin"></div>`);
     }
   }
   
@@ -137,6 +136,8 @@
   
   snakepos[0][2] = 0;
   
+  //b.style.backgroundPosition = sky + "px -80vmin";
+  skyintro = 1;
   setTimeout("mask.remove()", 300);
   setTimeout(movesnake, 500);
   setTimeout("b.classList.remove('intro')", 2500);

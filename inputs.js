@@ -1,13 +1,11 @@
+// Direction
 dir = null;
 
-ox = oy = 0;
+// Pad coordinates
 px = py = 0;
-dx = dy = 0;
-px = innerWidth - 30 - 80;
-py = innerHeight / 2;
-controls.style.backgroundPosition = (px - 80) + "px " + (py - 80) + "px";
 
-controls.ontouchstart = e => {
+// Mobile controls
+controls.ontouchstart = controls.ontouchmove = e => {
   try{
     music.play();
   }
@@ -49,95 +47,14 @@ controls.ontouchstart = e => {
     dir = null;
   }
   mousemove(dir, 1);
-  
-  
-  
-  if(timer > 0) controls.style.opacity = 1;
 }
 
-controls.ontouchmove = e => {
-  music.play();
-  e.preventDefault();
-  e.stopPropagation();
-  if(lock) return;
-  mousedown = 1;
-  px2 = e.targetTouches[0].clientX;
-  py2 = e.targetTouches[0].clientY;
-  
-  dx = px2 - px;
-  dy = py2 - py;
-  
-  // Left
-  if(dx < -30 && Math.abs(dx) > Math.abs(dy)) {
-    dir = 0;
-  }
-  
-  // Right
-  else if(dx > 30 && Math.abs(dx) > Math.abs(dy)) {
-    dir = 2;
-  }
-  
-  // Left
-  else if(dy < -30 && Math.abs(dy) > Math.abs(dx)) {
-    dir = 1;
-  }
-  
-  // Left
-  else if(dy > 30 && Math.abs(dy) > Math.abs(dx)) {
-    dir = 3;
-  }
-  
-  else {
-    dir = null;
-  }
-  mousemove(dir, 1);
-}
-
-controls.onmousedown = e => {
-  music.play();
-  e.preventDefault();
-  e.stopPropagation();
-  if(lock) return;
-  mousedown = 1;
-  controls.onmousemove(e);
-}
-
-controls.onmouseover = e => {
-  e.preventDefault();
-  e.stopPropagation();
-  if(lock) return;
-  if(mousedown){
-    controls.onmousemove(e);
-  }
-}
-
-controls.onmousemove = e => {
-  e.preventDefault();
-  e.stopPropagation();
-  if(lock) return;
-  if(mousedown && !keydown){
-    mousemove(cell = document.elementFromPoint(e.clientX, e.clientY), 1);
-  }
-}
-
-b.onmouseover = b.ontouchstart = e => {
+controls.ontouchend = e => {
   grabbed = 0;
   mousedown = 0;
   cell = null;
   move_b = move_f = move_l = move_r = 0;
-  //px = innerWidth / 2;
-  //py = innerHeight / 2;
-}
-
-controls.ontouchend = controls.onmouseup = e => {
-  grabbed = 0;
-  mousedown = 0;
-  cell = null;
-  move_b = move_f = move_l = move_r = 0;
-  //px = innerWidth / 2;
-  //py = innerHeight / 2;
   dir = null;
-  if(timer > 0) controls.style.opacity = 0.75;
 }
 
 // Avoid all default event behaviors
@@ -145,6 +62,7 @@ onmousedown = onmousemove = onmouseup = zoncontextmenu = ontouchstart = ontouchm
   e.preventDefault();
 }
 
+// Keyboard controls
 k_left = k_right = k_up = k_down = 0;
 
 onkeydown = e => {
@@ -172,7 +90,7 @@ onkeydown = e => {
     dir = 3;
   }
   
-  mousemove(cell);
+  mousemove(dir);
 }
 
 onkeyup = e => {
@@ -213,3 +131,19 @@ onkeyup = e => {
     keydown = 0;
   }
 }
+
+// Mobile controls (pad)
+placecontrols = onresize = onorientationchange = function(e){
+  if(innerWidth > innerHeight){
+    px = innerWidth - 30 - 80;
+    py = innerHeight / 2;
+  }
+  
+  else {
+    px = innerWidth - 30 - 80;
+    py = innerHeight - 30 - 80;
+  }
+  controls.style.backgroundPosition = (px - 80) + "px " + (py - 80) + "px";
+}
+
+placecontrols();

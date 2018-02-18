@@ -669,8 +669,6 @@ levels = [
     
     cubes: [
       [38, 3],
-      [39, 3],
-      [42, 3],
       [43, 3],
     ],
     
@@ -695,27 +693,27 @@ levels = [
         to: 0
       },
 
-      /*{
-        x: 39,
-        y: 10,
+      {
+        x: 49,
+        y: 5,
         angle: 0,
         open: 0,
-        puzzles: 16,
-        to: 5,
+        puzzles: 24,
+        to: 7,
         to_x: -3,
         to_y: 5,
         to_z: 0
-      }*/
+      }
     ],
   },
   
   
   // Room 7
   // Size 11
-  // Puzzles 25-
+  // Puzzles 25-30
   {
   
-    width: 50,
+    width: 60,
     height: 11,
     hole: false,
     
@@ -750,7 +748,7 @@ levels = [
       
       {
         x: 30,
-        y: 3,
+        y: 4,
         size: 4,
         wrap: 0,
         wall: "",
@@ -762,7 +760,7 @@ levels = [
       
       {
         x: 40,
-        y: 3,
+        y: 4,
         size: 4,
         wrap: 0,
         wall: "",
@@ -770,6 +768,19 @@ levels = [
                 "1110"+
                 "1100"+
                 "1000",
+      },
+      
+      
+      {
+        x: 50,
+        y: 5,
+        size: 4,
+        wrap: 0,
+        wall: "0001"+
+              "0111"+
+              "1111"+
+              "1110",
+        ground: "",
       },
       
       
@@ -824,6 +835,12 @@ levels = [
 
 ];
 
+// When we reload the game, place a hole at [7,5] to make the snake go out of the ground 
+if(currentroom != 0){
+  levels[currentroom].hole = [7, 5.1];
+}
+
+// Lines of cubes in certain rooms
 for(i = 0; i < 7; i++){
   levels[0].cubes.push([17,i]);
   levels[0].cubes.push([20,i+3]);

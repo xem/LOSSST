@@ -1,33 +1,32 @@
 // Initialization
-timer = 0;
-
+// ==============
 
 // Room number
 currentroom = +localStorage["currentroom"] || 0;
 localStorage["currentroom"] = currentroom;
 
 // SD / HD (mobile is SD by default)
-sd = 0;
+mobile = 0;
 
 if(
   navigator.userAgent.match(/Android/i)
   || navigator.userAgent.match(/iPhone/i)
   || navigator.userAgent.match(/iPad/i)
 ){
-  sd = 1;
+  mobile = 1;
 }
 
-if(sd){
-  b.className = "sd";
+if(mobile){
+  b.className = "mobile";
 }
 
 // Sky scrolling background position
 sky = 0;
-if(!sd){
+if(!mobile){
   setInterval(() => {
-    sky += 10;
+    sky += 5;
     b.style.backgroundPositionX = sky + "px";
-  }, 1000);
+  }, 500);
 };
 
 // Cubes in the snake (number, position, angle, inbounds (in a puzzle), ...)
@@ -40,10 +39,11 @@ inbounds = [];
 snakeangles = [];
 
 for(i = 0; i < snakelength; i++){
-  snakepos.push([7,5,-i - 1]);
+  snakepos.push([7, 5, -i - 1]);
   inbounds.push(0);
   snakeangles.push(0);
 }
+
 headangle = 0;
 
 // Backtracking flag / counter
@@ -71,9 +71,4 @@ localStorage["totalpuzzles"] = totalpuzzles;
 // Debug
 L = z => {
   console.log(z);
-}
-
-// Start
-onload = e => {
-  //render();
 }
