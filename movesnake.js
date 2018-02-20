@@ -96,7 +96,7 @@ movesnake = (movecamera = 1) => {
       if(snakepos[0][1] == currentpuzzle.y){
         b.classList.add("inbounds");
         scene.style.transition = "1s";
-        scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y) * 10 + 1 + (currentpuzzle.size / 2) * 10 - 10) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin) rotateX(70deg)";
+        scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y) * 10 + 1 + (currentpuzzle.size / 2) * 10 - 20) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin) rotateX(70deg)";
         if(!mobile){
           b.style.backgroundPosition = sky + "px 80vmin";
         }

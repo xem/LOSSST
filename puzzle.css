@@ -77,7 +77,7 @@
 }
 
 .puzzlecube .b {
-  transform: translateY(-197%)rotateX(-90deg);
+  transform: translateY(-200%)rotateX(-90deg);
   transform-origin: bottom center;
 }
 
