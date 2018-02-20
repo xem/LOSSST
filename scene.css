@@ -208,10 +208,5 @@
 }
 
 .rockcube .u {
-  background: url(images/grass.png) green; 
-  background-size: 20vmin;
-  width: 11vmin;
-  height: 11vmin;
-  transform: rotateY(90deg) translateX(-95%) rotateY(-90deg) translateX(-0.5vmin) translateY(0.5vmin);
-  filter: brightness(.8);
+  background: url(images/grass2.png) green; 
 }

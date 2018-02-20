@@ -74,7 +74,7 @@ render = () => {
     }
     
     else {
-      window["puzzleground" + i].style.filter = "brightness(.85)";
+      window["puzzleground" + i].style.backgroundImage = "url(images/grass2.png)";
     }
     
     if(puzzle.wall){
