@@ -29,6 +29,10 @@
   transform: translateX(14%) translateY(14%) translateZ(-.25vh);
 }
 
+.mobile .snakeshadow {
+  display: none;
+}
+
 .snakegrass {
   position: fixed;
   width: 10vmin;
@@ -41,6 +45,7 @@
 
 .mobile .snakegrass {
   display: none;
+  transition: none;
 }
 
 .cube.snakecube {

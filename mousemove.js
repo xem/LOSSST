@@ -1,6 +1,8 @@
 // When the player tries to go in a direction (finger/keyboard)
 mousemove = (dir) => {
   
+  var i, j;
+  
   // Nothing happens is the element doesn't exist or the controls are locked
   if(dir === null || lock) return;
     
@@ -209,7 +211,7 @@ mousemove = (dir) => {
   for(i in levels[currentroom].bridges){
     bridge = levels[currentroom].bridges[i];
     if(bridge.open && bridge.angle == 0){
-      if(pos[0] >= bridge.x+1 && pos[1] >= bridge.y - 1 && pos[1] <= bridge.y + 1){
+      if(pos[0] >= bridge.x + 1 && pos[1] >= bridge.y - 1 && pos[1] <= bridge.y + 1){
         offset = bridge.y - pos[1];
         collision = 0;
         inbounds[0] = 1;

@@ -2,6 +2,8 @@
 
 render = () => {
 
+  var i, j;
+  
   if(currentroom > 0) {
     try {
       music.src = currentroom + ".mp3?v=2";

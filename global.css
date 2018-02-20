@@ -101,7 +101,8 @@ button {
 }
 
 img {
-  opacity: .01;
+  position: fixed;
+  left: -10px;
 }
 
 #controls {
@@ -112,7 +113,6 @@ img {
   width: 100vw;
   height: 100vh;
   background: url(images/stick.png) no-repeat -500px -500px;
-  opacity: .8;
   display: none;
 }
 

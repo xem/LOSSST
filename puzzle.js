@@ -1,5 +1,8 @@
 // Clear a puzzle (remove blue and red tiles)
 clearpuzzle = () => {
+  
+  var j;
+  
   if(currentpuzzle){
     for(j in currentpuzzle.ground){
       window[`cell${currentroom}-${currentpuzzle.index}-${j}`].classList.remove("red","blue");
@@ -14,6 +17,8 @@ clearpuzzle = () => {
 checkpuzzle = () => {
 
   cell = null;
+  
+  var i, j;
   
   // Color cells in red/blue
   if(!currentpuzzle.solved){
@@ -59,7 +64,7 @@ checkpuzzle = () => {
       }
     }
     
-    for(j in currentpuzzle.wall){      
+    for(j in currentpuzzle.wall){
       cell = window[`cell${currentroom}-wall-${currentpuzzle.index}-${j}`];
       if(cell && (cell.classList.contains("red") || (cell.classList.contains("black") && !cell.classList.contains("blue")))){
         solved = 0;
@@ -106,7 +111,7 @@ checkpuzzle = () => {
             lock = 0;
             animation = 0;
             movesnake();
-          },2000);
+          }, 2000);
         }
       }
     }
