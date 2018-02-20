@@ -46,7 +46,12 @@ controls.ontouchstart = controls.ontouchmove = e => {
   else {
     dir = null;
   }
-  mousemove(dir, 1);
+  try {
+    mousemove(dir, 1);
+  }
+  catch(e){
+    b.innerHTML = JSON.stringify(e);
+  }
 }
 
 controls.ontouchend = e => {

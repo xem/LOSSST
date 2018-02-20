@@ -311,8 +311,17 @@ mousemove = (dir) => {
     snakeangles.unshift(angle);
   }
   
+  else if(collision){
+    return;
+  }
+  
   // Do all the move animations
-  movesnake();
+  try{
+    movesnake();
+  }
+  catch(e){
+    b.innerHTML = JSON.stringify(e);
+  }
   
   // Lock the controls for 200ms
   lock = 1;
@@ -327,6 +336,11 @@ mousemove = (dir) => {
 // If mouse is down, call mousemove every 55ms to continue current move if possible
 setInterval(() => {
   if(mousedown){
-    mousemove(dir);
+    try{
+      mousemove(dir);
+    }
+    catch(e){
+      b.innerHTML = JSON.stringify(e);
+    }
   }
 }, 55);

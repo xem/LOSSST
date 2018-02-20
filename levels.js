@@ -989,6 +989,6 @@ for(i = 0; i < 15; i++){
 }
 
 for(i = 0; i < 11; i++){
-  levels[6].cubes.push([41,i]);
+  //levels[6].cubes.push([41,i]);
   //levels[6].cubes.push([40,i]);
 }
