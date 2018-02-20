@@ -46,7 +46,7 @@ movesnake = (movecamera = 1) => {
   
   // Check if each cube is in bounds, if yes, color the cell in blue or red
   for(i = 0; i < snakelength; i++){
-    window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin) " /*+ (snakepos[i][2] > 0 ? "rotateX(-90deg) translateY(-5vmin) translateZ(-5vmin)" : "")*/;
+    window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin) " + (snakepos[i][2] > 0 ? "rotateX(-90deg) translateY(-5vmin) translateZ(-4vmin)" : "");
     
     if(!mobile || (mobile && i == 0)){
       window["snakecube" + i].style.transform = "rotateZ(" + (snakeangles[i]) + "deg)";
