@@ -154,15 +154,15 @@ levels = [
   // Puzzles 4-6
   {
   
-    width: 40,
-    height: 10,
+    width: 10,
+    height: 40,
     hole: false,
     
     puzzles: [
 
       {
-        x: 10,
-        y: 3,
+        x: 2,
+        y: 10,
         size: 6,
         wrap: 0,
         wall: "",
@@ -175,8 +175,8 @@ levels = [
       },
       
       {
-        x: 20,
-        y: 3,
+        x: 2,
+        y: 20,
         size: 5,
         wrap: 0,
         wall: "",
@@ -188,8 +188,8 @@ levels = [
       },
       
       {
-        x: 30,
-        y: 3,
+        x: 2,
+        y: 30,
         size: 5,
         wrap: 0,
         wall: "",
@@ -208,8 +208,8 @@ levels = [
     
     apples: [
       {
-        x: 4,
-        y: 4,
+        x: 3,
+        y: 3,
         eaten: 0
       }
     ],
@@ -228,8 +228,8 @@ levels = [
       },
       
       {
-        x: 39,
-        y: 5,
+        x: 9,
+        y: 35,
         angle: 0,
         open: 0,
         puzzles: 6,
@@ -838,8 +838,8 @@ levels = [
   // Puzzles 30-34
   {
   
-    width: 60,
-    height: 11,
+    width: 30,
+    height: 20,
     hole: false,
     
     puzzles: [
@@ -860,8 +860,8 @@ levels = [
       },
       
       {
-        x: 20,
-        y: 3,
+        x: 3,
+        y: 11,
         size: 6,
         wrap: 0,
         wall: "",
@@ -875,8 +875,8 @@ levels = [
       
       
       {
-        x: 30,
-        y: 3,
+        x: 13,
+        y: 13,
         size: 6,
         wrap: 0,
         wall: "",
@@ -889,8 +889,8 @@ levels = [
       },
 
       {
-        x: 40,
-        y: 2,
+        x: 21,
+        y: 11,
         size: 7,
         wrap: 0,
         wall: "",
@@ -904,8 +904,8 @@ levels = [
       },  
       
       {
-        x: 50,
-        y: 6,
+        x: 22,
+        y: 5,
         size: 4,
         wrap: 0,
         ground: "",
@@ -972,11 +972,6 @@ levels = [
 
 ];
 
-// When we reload the game, place a hole at [7,5] to make the snake go out of the ground 
-if(currentroom != 0){
-  levels[currentroom].hole = [7, 5.1];
-}
-
 // Lines of cubes in certain rooms
 for(i = 0; i < 7; i++){
   levels[0].cubes.push([17,i]);
@@ -989,6 +984,10 @@ for(i = 0; i < 15; i++){
 }
 
 for(i = 0; i < 11; i++){
-  //levels[6].cubes.push([41,i]);
+  levels[6].cubes.push([41,i]);
   //levels[6].cubes.push([40,i]);
+}
+
+for(i = 0; i < 10; i++){
+  levels[8].cubes.push([19,i]);
 }

@@ -199,6 +199,7 @@
 .rockcube {
   width: 10vmin;
   height: 10vmin;
+  background: #000;
 }
 
 .rockcube div {
