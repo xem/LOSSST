@@ -43,7 +43,7 @@ for(i = 0; i < snakelength; i++){
     snakepos.push([7, 5, -i - 1]);
   }
   else {
-    snakepos.push([levels[currentroom].bridges[0].x + 53, levels[currentroom].bridges[0].y, -i - 1]);
+    snakepos.push([levels[currentroom].bridges[0].x + 3, levels[currentroom].bridges[0].y, -i - 1]);
   }
   
   inbounds.push(0);
