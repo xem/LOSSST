@@ -5,6 +5,7 @@ dir = null;
 px = py = 0;
 
 // Mobile controls
+/*
 controls.ontouchstart = controls.ontouchmove = e => {
   try{
     music.play();
@@ -61,14 +62,19 @@ controls.ontouchend = e => {
   move_b = move_f = move_l = move_r = 0;
   dir = null;
 }
+*/
 
 scene.ontouchstart = scene.ontouchmove = e => {
+  if(lock) return;
+  
+  mousedown = 1;
+  
   var cell = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
-  if(cell.dataset && cell.dataset.x){
+  
+  if(cell && cell.dataset && cell.dataset.x){
     var x = cell.dataset.x;
     var y = cell.dataset.y || null;
     var z = cell.dataset.z || null;
-    console.log(x, y, z, snakepos[0]);
       
     if(z === null){
       
@@ -103,10 +109,18 @@ scene.ontouchstart = scene.ontouchmove = e => {
     }
   }
   
-  if(cell.dataset.dir){
-    var dir = cell.dataset.dir;
-    mousemove(+dir);
+  if(cell && cell.dataset && cell.dataset.dir){
+    dir = cell.dataset.dir;
+    mousemove(dir);
   }
+}
+
+scene.ontouchend = e => {
+  grabbed = 0;
+  mousedown = 0;
+  cell = null;
+  move_b = move_f = move_l = move_r = 0;
+  dir = null;
 }
 
 // Avoid all default event behaviors

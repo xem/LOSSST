@@ -66,7 +66,7 @@ render = () => {
   <!--div class="f"></div>
   <div class="r"></div>
   <div class="l"></div-->
-  <div id="puzzleback${i}" class="b"></div>
+  ${puzzle.wall ? '<div id="puzzleback'+i+'" class="b"></div>' : ''}
   <div class="puzzlegrass"></div>
 </div>`;
 

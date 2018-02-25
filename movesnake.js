@@ -17,8 +17,8 @@ movesnake = (movecamera = 1) => {
   for(i in levels[currentroom].puzzles){
     puzzle = levels[currentroom].puzzles[i];
     if(
-      snakepos[0][0] >= puzzle.x && snakepos[0][0] < puzzle.x + puzzle.size
-      && snakepos[0][1] >= puzzle.y && snakepos[0][1] < puzzle.y + puzzle.size
+      snakepos[0][0] >= puzzle.x - 1 && snakepos[0][0] < puzzle.x + puzzle.size + 1
+      && snakepos[0][1] >= puzzle.y - 1 && snakepos[0][1] < puzzle.y + puzzle.size + 1
     ){
       inbounds0 = 1;
       currentpuzzle = puzzle;
@@ -35,8 +35,10 @@ movesnake = (movecamera = 1) => {
   // Stay zoomed if one of the first 4 cubes after the head is in the puzzle
   if(
     (currentpuzzle && !currentpuzzle.solved)
-    && (inbounds[0] || inbounds.slice(1, snakelength).includes(1)
-    && snakepos.length > snakelength + 10)
+    && (
+      inbounds0 // || inbounds.slice(1, snakelength).includes(1)
+      //&& snakepos.length > snakelength + 10
+    )
   ){
     puzzling = 1;
   }
@@ -106,7 +108,8 @@ movesnake = (movecamera = 1) => {
       if(snakepos[0][1] == currentpuzzle.y){
         b.classList.add("inbounds");
         scene.style.transition = "1s";
-        scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y) * 10 + 1 + (currentpuzzle.size / 2) * 10 - 20) + "vmin) translateZ(" + ((currentpuzzle.size) * 10 - 20) + "vmin) rotateX(80deg)";
+        scene.style.transformOrigin = ((currentpuzzle.x + currentpuzzle.size / 2) * 10) + "vmin " + ((currentpuzzle.y) * 10) + "vmin";
+        scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y) * 10 + 1 + (currentpuzzle.size / 2) * 10) + "vmin) translateZ(" + ((currentpuzzle.size) * 10 - 40) + "vmin) rotateX(80deg)";
         if(!mobile){
           b.style.backgroundPosition = sky + "px 80vmin";
         }

@@ -327,7 +327,7 @@ mousemove = (dir) => {
   lock = 1;
   
   if(!animation){
-    setTimeout(()=> {
+    setTimeout(() => {
       lock = 0
     }, 200);
   }

@@ -113,29 +113,63 @@
   pointer-events: none;
 }
 
-.headcontrol {
+.inbounds .headcontrol {
   width: 10vmin;
   height: 10vmin;
-  background: none;
-  position: absolute
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.headcontrol {
+  width: 50vmin;
+  height: 50vmin;
+  transform-origin: 0 0;
+  left: 5vmin;
+  top: 5vmin;
+  position: absolute;
+  xbackground: blue;
+  xborder: 1vmin solid #fff;
+  opacity: .2;
+}
+
+
+.inbounds .headcontrol.left {
+  width: 50vmin;
+  left: -50vmin;
+  transform: none;
 }
 
 .headcontrol.left {
-  width: 50vmin;
-  left: -50vmin;
+  transform: rotate(135deg);
+}
+
+.inbounds .headcontrol.top {
+  height: 50vmin;
+  top: -50vmin;
+  transform: none;
 }
 
 .headcontrol.top {
-  height: 50vmin;
-  top: -50vmin;
+  transform: rotate(-135deg);
+}
+
+.inbounds .headcontrol.right {
+  width: 50vmin;
+  left: 10vmin;
+  transform: none;
 }
 
 .headcontrol.right {
-  width: 50vmin;
-  left: 10vmin;
+  transform: rotate(-45deg);
+}
+
+.inbounds .headcontrol.bottom {
+  height: 50vmin;
+  top: 10vmin;
+  transform: none;
 }
 
 .headcontrol.bottom {
-  height: 50vmin;
-  top: 10vmin;
+  transform: rotate(45deg);
 }
