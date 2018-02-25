@@ -100,3 +100,42 @@
   background: url(images/eyes.png) no-repeat center center #fb3;
   background-size: 75%;
 }
+
+#snakecubemove0 {
+  -moz-pointer-events: all;
+  -webkit-pointer-events: all;
+  pointer-events: all;
+}
+
+#snakecube0 {
+  -moz-pointer-events: none;
+  -webkit-pointer-events: none;
+  pointer-events: none;
+}
+
+.headcontrol {
+  width: 10vmin;
+  height: 10vmin;
+  background: none;
+  position: absolute
+}
+
+.headcontrol.left {
+  width: 50vmin;
+  left: -50vmin;
+}
+
+.headcontrol.top {
+  height: 50vmin;
+  top: -50vmin;
+}
+
+.headcontrol.right {
+  width: 50vmin;
+  left: 10vmin;
+}
+
+.headcontrol.bottom {
+  height: 50vmin;
+  top: 10vmin;
+}

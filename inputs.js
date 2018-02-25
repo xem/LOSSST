@@ -62,6 +62,53 @@ controls.ontouchend = e => {
   dir = null;
 }
 
+scene.ontouchstart = scene.ontouchmove = e => {
+  var cell = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
+  if(cell.dataset && cell.dataset.x){
+    var x = cell.dataset.x;
+    var y = cell.dataset.y || null;
+    var z = cell.dataset.z || null;
+    console.log(x, y, z, snakepos[0]);
+      
+    if(z === null){
+      
+      if(x - snakepos[0][0] < 0 && y - snakepos[0][1] == 0){
+        mousemove(0);
+      }
+      if(x - snakepos[0][0] == 0 && y - snakepos[0][1] < 0){
+        mousemove(1);
+      }
+      if(x - snakepos[0][0] > 0 && y - snakepos[0][1] == 0){
+        mousemove(2);
+      }
+      if(x - snakepos[0][0] == 0 && y - snakepos[0][1] > 0){
+        mousemove(3);
+      }
+    }
+    
+    if(y === null){
+      
+      if(x - snakepos[0][0] < 0 && z - snakepos[0][2] == 0){
+        mousemove(0);
+      }
+      if(x - snakepos[0][0] == 0 && z - snakepos[0][2] < 0){
+        mousemove(3);
+      }
+      if(x - snakepos[0][0] > 0 && z - snakepos[0][2] == 0){
+        mousemove(2);
+      }
+      if(x - snakepos[0][0] == 0 && z - snakepos[0][2] > 0){
+        mousemove(1);
+      }
+    }
+  }
+  
+  if(cell.dataset.dir){
+    var dir = cell.dataset.dir;
+    mousemove(+dir);
+  }
+}
+
 // Avoid all default event behaviors
 onmousedown = onmousemove = onmouseup = zoncontextmenu = ontouchstart = ontouchmove = zontouchend = onclick = ondblclick = onscroll = function(e){
   e.preventDefault();

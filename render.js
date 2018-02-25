@@ -33,6 +33,10 @@ render = () => {
 `<div id="snakecubemove${i}" class="snakecubemove">
   <div id="snakeshadow${i}" class="snakeshadow"></div>
   <div id="snakegrass${i}" class="snakegrass"></div>
+  ${i?'':'<div class="headcontrol left" data-dir=0></div>'}
+  ${i?'':'<div class="headcontrol top" data-dir=1></div>'}
+  ${i?'':'<div class="headcontrol right" data-dir=2></div>'}
+  ${i?'':'<div class="headcontrol bottom" data-dir=3></div>'}
   <div id="snakecube${i}" class="cube snakecube">
     ${i?'':'<div class="tongue">Y</div>'}
     ${i?'<div class="u"></div>':'<div class="u eyes"></div>'}
@@ -69,7 +73,7 @@ render = () => {
     if(puzzle.ground){
       for(j in puzzle.ground){
         window["puzzleground" + i].innerHTML +=
-        `<div id="cell${currentroom}-${i}-${j}" class="cell ${+(puzzle.ground[j]) ? ("black" + (puzzle.solved ? " green" : "")) : (puzzle.solved ? "yellow" : "white")}" style="left:${((+j)%puzzle.size) * 10}vmin;top:${~~((+j)/puzzle.size) * 10}vmin"></div>`;
+        `<div id="cell${currentroom}-${i}-${j}" data-x=${puzzle.x + ((+j) % puzzle.size)} data-y=${puzzle.y + ~~((+j)/puzzle.size)} class="cell ${+(puzzle.ground[j]) ? ("black" + (puzzle.solved ? " green" : "")) : (puzzle.solved ? "yellow" : "white")}" style="left:${((+j)%puzzle.size) * 10}vmin;top:${~~((+j)/puzzle.size) * 10}vmin"></div>`;
       }
     }
     
@@ -80,7 +84,7 @@ render = () => {
     if(puzzle.wall){
       for(j in puzzle.wall){
         window["puzzleback" + i].innerHTML +=
-        `<div id="cell${currentroom}-wall-${i}-${j}" class="cell ${+(puzzle.wall[j]) ? ("black" + (puzzle.solved ? " green" : "")) : (puzzle.solved ? "yellow" : "white")}" style="left:${((+j)%puzzle.size) * 10}vmin;top:${~~((+j)/puzzle.size) * 10}vmin"></div>`;
+        `<div id="cell${currentroom}-wall-${i}-${j}" data-x=${puzzle.x + ((+j) % puzzle.size)} data-z=${puzzle.size - ~~((+j)/puzzle.size) - 1} class="cell ${+(puzzle.wall[j]) ? ("black" + (puzzle.solved ? " green" : "")) : (puzzle.solved ? "yellow" : "white")}" style="left:${((+j)%puzzle.size) * 10}vmin;top:${~~((+j)/puzzle.size) * 10}vmin"></div>`;
       }
     }
 

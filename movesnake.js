@@ -44,6 +44,13 @@ movesnake = (movecamera = 1) => {
     puzzling = 0;
   }
   
+  if(puzzling){
+    controls.style.display = "none";
+  }
+  else {
+    controls.style.display = "";
+  }
+  
   // Check if each cube is in bounds, if yes, color the cell in blue or red
   for(i = 0; i < snakelength; i++){
     window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin) " + ((!mobile || (mobile && i == 0)) && snakepos[i][2] > 0 ? "rotateX(-90deg) translateY(-5vmin) translateZ(-3vmin)" : "");
@@ -99,7 +106,7 @@ movesnake = (movecamera = 1) => {
       if(snakepos[0][1] == currentpuzzle.y){
         b.classList.add("inbounds");
         scene.style.transition = "1s";
-        scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y) * 10 + 1 + (currentpuzzle.size / 2) * 10 - 20) + "vmin) translateZ(" + ((currentpuzzle.size) * 10) + "vmin) rotateX(80deg)";
+        scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y) * 10 + 1 + (currentpuzzle.size / 2) * 10 - 20) + "vmin) translateZ(" + ((currentpuzzle.size) * 10 - 20) + "vmin) rotateX(80deg)";
         if(!mobile){
           b.style.backgroundPosition = sky + "px 80vmin";
         }
