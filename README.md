@@ -28,3 +28,6 @@ Songs:
 - 6: Georges Bizet - L'arlésienne suite No.2. IV: Farandole
 - 7: Vivaldi - Autumn Mvt 3: Allegro
 - 8: Johannes Brahms - Hungarian Dance No. 5 in G Minor, WoO1
+- 9: Ludwig van Beethoven - Für Elise, WoO 59
+- 10: Antonin Dvorak - Serenade for Strings in E Major, Op. 22: II. Tempo di valse"  Eugen Duvier
+- 11: Gabriel Fauré - Pavane, Op.50

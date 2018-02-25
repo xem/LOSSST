@@ -95,23 +95,23 @@ movesnake = (movecamera = 1) => {
     }
     
     // Zoom in a vertical puzzle
-    else if(puzzling && currentpuzzle && !currentpuzzle.ground && currentpuzzle.wall){
-      //if(snakepos[0][1] == currentpuzzle.y){
+    else if(currentpuzzle && !currentpuzzle.ground && currentpuzzle.wall){
+      if(snakepos[0][1] == currentpuzzle.y){
         b.classList.add("inbounds");
         scene.style.transition = "1s";
-        scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y) * 10 + 1 + (currentpuzzle.size / 2) * 10 - 20) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin) rotateX(70deg)";
+        scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y) * 10 + 1 + (currentpuzzle.size / 2) * 10 - 20) + "vmin) translateZ(" + ((currentpuzzle.size) * 10) + "vmin) rotateX(80deg)";
         if(!mobile){
           b.style.backgroundPosition = sky + "px 80vmin";
         }
         checkpuzzle();
-      //}
-      /*else {
+      }
+      else {
         if(!mobile){
           b.style.backgroundPosition = sky + "px center";
         }
         setTimeout(()=>{scene.style.transition = ""}, 1000);
         scene.style.transform = "translateX(" + (-snakepos[0][0] * 10 + 1 - 5) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1 + 10) + "vmin) translateZ(40vmin) rotateX(30deg)";
-      }*/
+      }
       
     }
     
