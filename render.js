@@ -6,7 +6,7 @@ render = () => {
   
   if(currentroom > 0) {
     try {
-      music.src = currentroom + ".mp3?v=2";
+      music.src = currentroom + ".mp3?v=3";
       music.play();
     }
     catch(e){}
