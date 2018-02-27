@@ -22,15 +22,25 @@ movesnake = (movecamera = 1) => {
     ){
       inbounds0 = 1;
       currentpuzzle = puzzle;
+      if(currentpuzzle != latestpuzzle){
+        latestpuzzle = currentpuzzle;
+        movessincelatestpuzzle = 0;
+      }
       if(!puzzle.solved){
         puzzling = 1;
       }
     }
   }
   
-  if(!goingback){
-    inbounds.unshift(inbounds0);
+  if(goingback){
+    movessincelatestpuzzle--;
   }
+  else {
+    inbounds.unshift(inbounds0);
+    movessincelatestpuzzle++;
+  }
+  
+  document.title = movessincelatestpuzzle;
   
   // Stay zoomed if one of the first 4 cubes after the head is in the puzzle
   if(

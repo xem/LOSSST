@@ -69,6 +69,8 @@ animation = 0;
 won = 0;
 currentpuzzle = 0;
 puzzling = 0;
+latestpuzzle = null;
+movessincelatestpuzzle = 0;
 
 // Load totals from localStorage
 totalpuzzles = +localStorage["totalpuzzles"] || 0;

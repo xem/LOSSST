@@ -133,6 +133,20 @@ k_left = k_right = k_up = k_down = 0;
 
 onkeydown = e => {
   
+  if(e.keyCode == 82){
+    if(inbounds[0]){
+      for(var i = 0; i < movessincelatestpuzzle; i++){
+        snakepos.shift();
+        snakeangles.shift();
+        inbounds.shift();
+      }
+      movesnake();
+      movessincelatestpuzzle = 0;
+      latestpuzzle = null;
+      return;
+    }
+  }
+  
   mousedown = 1;
   keydown = 1;
   
@@ -160,6 +174,7 @@ onkeydown = e => {
 }
 
 onkeyup = e => {
+  
   if(e.keyCode == 37 || e.keyCode == 65 ||e.keyCode == 81){
     k_left = 0;
     if(dir == 0){
