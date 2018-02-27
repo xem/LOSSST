@@ -203,11 +203,12 @@
 }
 
 .rockcube div {
-  background: red;
+  background: green;
   background: url(images/terre.png); 
   background-size: 20vmin;
 }
 
 .rockcube .u {
-  background: url(images/grass2.png) green; 
+  background: green;
+  background: url(images/grass2.png); 
 }

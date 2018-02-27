@@ -78,7 +78,7 @@ mousemove = (dir) => {
     
     
     // Vertical puzzle: go upward
-    if(currentpuzzle && currentpuzzle.wall && pos[0] >= currentpuzzle.x && pos[0] <= currentpuzzle.x + currentpuzzle.size && pos[1] == currentpuzzle.y){
+    if(currentpuzzle && currentpuzzle.wall && pos[0] >= currentpuzzle.x && pos[0] <= currentpuzzle.x + currentpuzzle.size - 1 && pos[1] == currentpuzzle.y){
       
       if(pos[2] < currentpuzzle.size - 1){
         pos[2]++;
@@ -128,8 +128,17 @@ mousemove = (dir) => {
   // Go backward
   else if(dir == 3){
     
+    // Walk on a rock cube
+    var onacube = 0;
+    for(i in levels[currentroom].cubes){
+      var cube = levels[currentroom].cubes[i];
+      if(snakepos[0][0] == cube[0] && snakepos[0][1] == cube[1] && snakepos[0][2] == 1){
+        onacube = 1;
+      }
+    }
+    
     // Vertical puzzle: go downward
-    if(currentpuzzle && currentpuzzle.wall && pos[0] >= currentpuzzle.x && pos[0] <= currentpuzzle.x + currentpuzzle.size && pos[1] == currentpuzzle.y && pos[2] > 0){
+    if(!onacube && currentpuzzle && currentpuzzle.wall && pos[0] >= currentpuzzle.x && pos[0] <= currentpuzzle.x + currentpuzzle.size && pos[1] == currentpuzzle.y && pos[2] > 0){
       pos[2]--;
     }
     
