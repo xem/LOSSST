@@ -125,7 +125,7 @@ scene.ontouchend = e => {
 
 // Avoid all default event behaviors
 onmousedown = onmousemove = onmouseup = zoncontextmenu = ontouchstart = ontouchmove = zontouchend = onclick = ondblclick = onscroll = function(e){
-  e.preventDefault();
+  //e.preventDefault();
 }
 
 // Keyboard controls
