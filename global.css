@@ -25,6 +25,10 @@ body {
   transition: background-position .5s linear;
 }
 
+body.mobile {
+  transition: none;
+}
+
 #perspective {
   width: 0;
   height: 0;

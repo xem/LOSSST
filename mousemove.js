@@ -129,7 +129,7 @@ mousemove = (dir) => {
   else if(dir == 3){
     
     // Walk on a rock cube
-    var onacube = 0;
+    onacube = 0;
     for(i in levels[currentroom].cubes){
       var cube = levels[currentroom].cubes[i];
       if(snakepos[0][0] == cube[0] && snakepos[0][1] == cube[1] && snakepos[0][2] == 1){
@@ -329,7 +329,7 @@ mousemove = (dir) => {
     movesnake();
   }
   catch(e){
-    b.innerHTML = JSON.stringify(e);
+   console.log(e);
   }
   
   // Lock the controls for 200ms
@@ -349,7 +349,7 @@ setInterval(() => {
       mousemove(dir);
     }
     catch(e){
-      b.innerHTML = JSON.stringify(e);
+      console.log(e);
     }
   }
 }, 55);

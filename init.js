@@ -71,6 +71,7 @@ currentpuzzle = 0;
 puzzling = 0;
 latestpuzzle = null;
 movessincelatestpuzzle = 0;
+onacube = 0;
 
 // Load totals from localStorage
 totalpuzzles = +localStorage["totalpuzzles"] || 0;

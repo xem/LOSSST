@@ -51,7 +51,7 @@ controls.ontouchstart = controls.ontouchmove = e => {
     mousemove(dir, 1);
   }
   catch(e){
-    b.innerHTML = JSON.stringify(e);
+    console.log(e);
   }
 }
 
@@ -125,7 +125,7 @@ scene.ontouchend = e => {
 
 // Avoid all default event behaviors
 onmousedown = onmousemove = onmouseup = zoncontextmenu = ontouchstart = ontouchmove = zontouchend = onclick = ondblclick = onscroll = function(e){
-  //e.preventDefault();
+  e.preventDefault();
 }
 
 // Keyboard controls
