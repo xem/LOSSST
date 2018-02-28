@@ -8,6 +8,10 @@
   background-size: 70vmin;
 }
 
+.mobile .scene {
+    border-radius: 0;
+}
+
 .intro #scene {
   transition: transform 2s;
 }
@@ -31,6 +35,10 @@
   background: linear-gradient(transparent 20%, #fff), url(images/terre.png);
   background-size: 100%, 70vmin;
   transform-origin: top center;
+}
+
+.mobile #scenedepth {
+  background: url(images/terre.png);
 }
 
 .tree {
@@ -77,6 +85,10 @@
   left: 0;
   pointer-events: none;
   transition: transform .15s linear;
+}
+
+.mobile .treecontent {
+  transition: none;
 }
 
 .mobile .stone {
