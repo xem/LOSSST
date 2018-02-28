@@ -8,8 +8,8 @@
   background-size: 70vmin;
 }
 
-.mobile .scene {
-    border-radius: 0;
+.mobile #scene {
+  border-radius: 0;
 }
 
 .intro #scene {
