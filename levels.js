@@ -1251,10 +1251,10 @@ levels = [
   
   // Room 11
   // Size 17
-  // Puzzles 45-
+  // Puzzles 45-48
   {
   
-    width: 55,
+    width: 65,
     height: 11,
     hole: false,
     
@@ -1315,6 +1315,109 @@ levels = [
               "1111111"+
               "1010101",
       },
+      
+      
+
+    ],
+    
+    trees: [
+      [4,2],
+    ],
+    
+    cubes: [
+
+    ],
+    
+    apples: [
+      {
+        x: 8,
+        y: 4,
+        eaten: 0
+      }
+    ],
+    
+    stones: [
+    ],
+    
+    bridges: [
+      {
+        x: 1,
+        y: 5,
+        angle: 180,
+        open: 1,
+        puzzles: 0,
+        to: 0
+      },
+
+      /*{
+        x: 59,
+        y: 5,
+        angle: 0,
+        open: 0,
+        puzzles: 39,
+        to: 10,
+        to_x: -3,
+        to_y: 5,
+        to_z: 0
+      }*/
+    ],
+  },
+  
+  
+  // Room 12
+  // Size 18
+  // Puzzles 49-
+  {
+  
+    width: 55,
+    height: 11,
+    hole: false,
+    
+    puzzles: [
+
+      
+      {
+        x: 10,
+        y: 3,
+        size: 6,
+        wrap: 0,
+        wall: "",
+        ground: "000000"+
+                "111000"+
+                "101100"+
+                "111111"+
+                "001101"+
+                "000111",
+      },
+     
+      
+      {
+        x: 30,
+        y: 3,
+        size: 5,
+        wrap: 0,
+        ground: "",
+        wall: "00000"+
+              "00010"+
+              "00010"+
+              "01111"+
+              "11001",
+      },
+      
+      
+      {
+        x: 20,
+        y: 3,
+        size: 4,
+        wrap: 0,
+        wall: "",
+        ground: "1001"+
+                "1111"+
+                "1001"+
+                "1011",
+      },
+      
+      
 
     ],
     
@@ -1384,14 +1487,7 @@ for(i = 0; i < 10; i++){
   levels[8].cubes.push([19,i]);
 }
 
-
-/* 18
-
-"000000"+
-"111000"+
-"101100"+
-"111111"+
-"001101"+
-"000111"
-
-*/
+for(i = 3; i < 7; i++){
+  levels[12].cubes.push([32,i]);
+  levels[12].cubes.push([33,i]);
+}

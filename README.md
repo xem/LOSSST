@@ -31,3 +31,6 @@ Songs:
 - 9: Johannes Brahms - Hungarian Dance No. 5 in G Minor, WoO1
 - 10: Ludwig van Beethoven - Für Elise, WoO 59
 - 11: Antonin Dvorak - Serenade for Strings in E Major, Op. 22: II. Tempo di valse"  Eugen Duvier
+- 12: Johann Sebastien Bach - Orchestral Suite No.3 in D Major, BWV 1068
+
+- ?: Symphony No 9 in E Minor, Op. 95, B.187 "from the new world"
