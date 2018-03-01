@@ -129,16 +129,16 @@ mousemove = (dir) => {
   else if(dir == 3){
     
     // Walk on a rock cube
-    onacube = 0;
+    /*onacube = 0;
     for(i in levels[currentroom].cubes){
       var cube = levels[currentroom].cubes[i];
       if(snakepos[0][0] == cube[0] && snakepos[0][1] == cube[1] && snakepos[0][2] == 1){
         onacube = 1;
       }
-    }
+    }*/
     
     // Vertical puzzle: go downward
-    if(!onacube && currentpuzzle && currentpuzzle.wall && pos[0] >= currentpuzzle.x && pos[0] <= currentpuzzle.x + currentpuzzle.size && pos[1] == currentpuzzle.y && pos[2] > 0){
+    if(/*!onacube && */currentpuzzle && currentpuzzle.wall && pos[0] >= currentpuzzle.x && pos[0] <= currentpuzzle.x + currentpuzzle.size && pos[1] == currentpuzzle.y && pos[2] > 0){
       pos[2]--;
     }
     

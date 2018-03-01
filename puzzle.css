@@ -59,13 +59,13 @@
 }
 
 #wraps {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
 }
 
 .wrap {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   background: linear-gradient(45deg, rgba(0,0,0,.5), rgba(255,255,255,.5));

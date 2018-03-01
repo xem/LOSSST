@@ -32,7 +32,7 @@ body.mobile {
 #perspective {
   width: 0;
   height: 0;
-  perspective: 140vmin;
+  perspective: 200vmin;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -43,7 +43,7 @@ body.mobile {
 }
 
 .cube {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
 }
@@ -51,32 +51,37 @@ body.mobile {
 .cube > div {
   width: 100%;
   height: 100%;
-  position: fixed;
+  position: absolute;
 }
 
-.cube .u {
-  transform: rotateY(90deg)translateX(-100%)rotateY(-90deg);
+.cube.snakecube .u {
+  transform: translateZ(8vmin);
 }
 
-.cube .l {
-  transform: rotateX(-90deg)translateY(-50%)translateX(-50%)rotateY(-90deg);
+.cube.snakecube .l {
+  transform: translateX(8vmin) rotateY(-90deg);
+  transform-origin: top left;
 }
 
-.cube .r {
-  transform: rotateX(-90deg)translateY(-50%)translateX(50%)rotateY(90deg);
+.cube.snakecube .r {
+  transform: rotateY(-90deg);
+  transform-origin: top left;
 }
 
-.cube .f {
-  transform: translateY(50%)rotateX(-90deg)translateY(-50%);
+.cube.snakecube .f {
+  transform: translateY(8vmin) translateZ(8vmin) rotateX(-90deg);
+  transform-origin: top left;
 }
 
-.cube .b {
-  transform: translateY(-50%)rotateX(-90deg)translateY(-50%)rotateY(180deg);
+.cube.snakecube .b {
+  transform: translateZ(8vmin) rotateX(-90deg);
+  transform-origin: top left;
 }
+
 
 button {
   font: 3vmin/5vmin arial;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   z-index: 2;
   transform: translateZ(1000px);
@@ -86,7 +91,7 @@ button {
 #mask {
   width: 100%;
   height: 100%;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   display: none;
@@ -105,12 +110,12 @@ button {
 }
 
 img {
-  position: fixed;
+  position: absolute;
   left: -10px;
 }
 
 #controls {
-  position: fixed;
+  position: absolute;
   z-index: 1;
   top: 0;
   left: 0;

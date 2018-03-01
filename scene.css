@@ -19,7 +19,7 @@
 .hole {
   width: 15vmin;
   height: 15vmin;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   background: radial-gradient(circle, #000 2vmin, rgba(86, 66, 37, .75) 5vmin, transparent 6vmin) no-repeat;
@@ -46,7 +46,7 @@
   height: 60vmin;
   transform-origin: bottom center;
   transform: translateX(-50%) translateY(8vmin) rotateX(-45deg);
-  position: fixed;
+  position: absolute;
   bottom: 100%;
   left: 0;
   -moz-pointer-events: none;
@@ -62,7 +62,7 @@
   background: url(images/treeshadow.png) no-repeat;
   opacity: .2;
   background-size: 100%;
-  position: fixed;
+  position: absolute;
   bottom: 100%;
   left: 0;
   -moz-pointer-events: none;
@@ -106,7 +106,7 @@
 }
 
 .apple {
-  position: fixed;
+  position: absolute;
   width: 8vmin;
   height: 10vmin;
   bottom: 100%;
@@ -123,7 +123,7 @@
 }
 
 .appleshadow {
-  position: fixed;
+  position: absolute;
   width: 8vmin;
   height: 10vmin;
   bottom: 100%;
@@ -198,7 +198,7 @@
   height: 6vmin;
   top: 100%;
   transform-origin: top center;
-  transform: rotateX(-45deg);
+  transform: rotateX(-90deg);
   background: url(images/wood.png);
   background-size: 90vmin 30vmin;
 }
@@ -211,16 +211,41 @@
 .rockcube {
   width: 10vmin;
   height: 10vmin;
-  background: #000;
+  background: #387D2B;
 }
 
 .rockcube div {
   background: green;
-  background: url(images/terre.png); 
-  background-size: 20vmin;
+  background: url(images/terre2.png); 
+  background-size: 100%;
 }
 
 .rockcube .u {
   background: green;
-  background: url(images/grass2.png); 
+  background: url(images/grass3.png);
+  background-size: 100%;
+}
+
+.cube.rockcube .u {
+  transform: translateZ(10vmin);
+}
+
+.cube.rockcube .l {
+  transform: translateX(10vmin) rotateY(-90deg);
+  transform-origin: top left;
+}
+
+.cube.rockcube .r {
+  transform: rotateY(-90deg);
+  transform-origin: top left;
+}
+
+.cube.rockcube .f {
+  transform: translateY(10vmin) translateZ(10vmin) rotateX(-90deg);
+  transform-origin: top left;
+}
+
+.cube.rockcube .b {
+  transform: translateZ(10vmin) rotateX(-90deg);
+  transform-origin: top left;
 }
