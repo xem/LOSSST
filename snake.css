@@ -18,7 +18,7 @@
 }
 
 .mobile .snakecubemove {
-  //transition: transform .1s linear;
+  transition: transform .08s linear;
 }
 
 .snakeshadow {

@@ -32,7 +32,7 @@ body.mobile {
 #perspective {
   width: 0;
   height: 0;
-  perspective: 200vmin;
+  perspective: 220vmin;
   position: absolute;
   top: 50%;
   left: 50%;
