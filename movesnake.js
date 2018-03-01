@@ -74,7 +74,7 @@ movesnake = (movecamera = 1) => {
     if(!mobile){
       if(snakepos[i][2] == 0){
         window["snakegrass" + i].style.backgroundPosition = -(snakepos[i][0] * 10 + (snakepos[i][1] * 100)) + "vmin bottom";
-        if(inbounds[i]){
+        if(inbounds[i] || snakepos[i][0] < 1 || snakepos[i][0] > levels[currentroom].width - 1){
           window["snakegrass" + i].style.opacity = 0;
           window["snakeshadow" + i].style.display = "none";
         }

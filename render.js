@@ -16,7 +16,7 @@ render = () => {
   scene.style.transform = `translateX(-${levels[currentroom].hole[0] * 10}vmin) translateY(-${levels[currentroom].hole[1] * 10}vmin) translateZ(80vmin) rotateX(0deg)`;
   
   scene.innerHTML =
-`<div id=scenedepth style="width:${levels[currentroom].width * 10 - 5}vmin; transform: translateY(${levels[currentroom].height * 10}vmin) rotateX(${mobile ? -90 : -45 }deg)"></div>
+`<div id=scenedepth style="width:${levels[currentroom].width * 10 - 5}vmin; transform: translateY(${levels[currentroom].height * 10}vmin) rotateX(-45deg)"></div>
 <div id=holes></div>
 <div id=bridges></div>
 <div id=puzzles></div>

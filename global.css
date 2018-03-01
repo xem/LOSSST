@@ -43,7 +43,7 @@ body.mobile {
 }
 
 .cube {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 }
@@ -51,7 +51,7 @@ body.mobile {
 .cube > div {
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
 }
 
 .cube.snakecube .u {
@@ -81,7 +81,7 @@ body.mobile {
 
 button {
   font: 3vmin/5vmin arial;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   z-index: 2;
   transform: translateZ(1000px);
@@ -91,7 +91,7 @@ button {
 #mask {
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: none;
@@ -110,12 +110,12 @@ button {
 }
 
 img {
-  position: absolute;
+  position: fixed;
   left: -10px;
 }
 
 #controls {
-  position: absolute;
+  position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
