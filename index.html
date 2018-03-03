@@ -29,7 +29,7 @@
 <div id=controls>
 </div>
 
-<button id=play onclick="try{music.play()}catch(e){};this.style.top='-100vh';this.remove();render(),lock=1;setTimeout('lock=0',1500)">Play</button>
+<button id=play onclick="try{music.play()}catch(e){};document.body.insertAdjacentHTML('beforeEnd','<style>button{display:none}');this.style.top='-100vh';this.remove();render(),lock=1;setTimeout('lock=0',1500)">Play</button>
 
 <button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 0; localStorage.snakelength = 3; localStorage.totalpuzzles = 0; location = location',200)" style=left:5vmin>0</button>
 <button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 1; localStorage.snakelength = 5; localStorage.totalpuzzles = 0; location = location',200)" style=left:10vmin>1</button>
@@ -43,9 +43,7 @@
 <button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 9; localStorage.snakelength = 13; localStorage.totalpuzzles = 37; location = location',200)" style=left:50vmin>9</button>
 <button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 10; localStorage.snakelength = 15; localStorage.totalpuzzles = 43; location = location',200)" style=left:55vmin>10</button>
 <button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 11; localStorage.snakelength = 16; localStorage.totalpuzzles = 49; location = location',200)" style=left:60vmin>11</button>
-<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 12; localStorage.snakelength = 17; localStorage.totalpuzzles = 55; location = location',200)" style=left:65vmin>12</button>
-
-<button onclick="location = 'https://twitter.com/LOSSST_game/status/967096234329681921'" style=left:80vmin>PLEASE ANSWER THE POLL!</button>
+<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 12; localStorage.snakelength = 17; localStorage.totalpuzzles = 55; location = location',200)" style=left:65vmin>12 (empty)</button>
 
 
 <div id="perspective">
