@@ -157,7 +157,7 @@ movesnake = (movecamera = 1) => {
   // Eat an apple
   for(i in levels[currentroom].apples){
     apple = levels[currentroom].apples[i];
-    if(!apple.eaten && snakepos[0][0] == apple.x && snakepos[0][1] == apple.y){
+    if(!apple.eaten && !localStorage["apple_" + currentroom + "_" + i] && snakepos[0][0] == apple.x && snakepos[0][1] == apple.y){
       apple.eaten = 1;
       window["apple" + i].classList.add("eaten");
       if(window["appleshadow" + i]){

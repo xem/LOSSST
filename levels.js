@@ -272,10 +272,10 @@ levels = [
         wrap: 0,
         wall: "",
         ground: "00000"
-               +"00010"
-               +"01110"
                +"01100"
-               +"00100",
+               +"11100"
+               +"00110"
+               +"00000",
       },
       
       {
@@ -297,11 +297,11 @@ levels = [
         size: 5,
         wrap: 0,
         wall: "",
-        ground: "00000"
-               +"00000"
-               +"00000"
+        ground: "01110"
                +"01010"
-               +"01110",
+               +"00000"
+               +"00000"
+               +"00000",
       },
 
     ],
@@ -347,7 +347,7 @@ levels = [
   
   // Room 4
   // Size 8
-  // Puzzles 11-16
+  // Puzzles 11-17
   {
   
     width: 40,
@@ -383,6 +383,19 @@ levels = [
                +"00000",
       },
       
+      
+      {
+        x: 1,
+        y: 15,
+        size: 4,
+        wrap: 0,
+        wall: "",
+        ground: "0000"
+               +"1111"
+               +"1011"
+               +"0010",
+      },
+      
       {
         x: 33,
         y: 4,
@@ -395,7 +408,7 @@ levels = [
       },
       
       {
-        x: 10,
+        x: 12,
         y: 13,
         size: 5,
         wrap: 0,
@@ -469,7 +482,7 @@ levels = [
         y: 15,
         angle: 0,
         open: 0,
-        puzzles: 16,
+        puzzles: 17,
         to: 5,
         to_x: -3,
         to_y: 5,
@@ -481,7 +494,7 @@ levels = [
   
   // Room 5
   // Size 9
-  // Puzzles 17-20
+  // Puzzles 18-21
   {
   
     width: 12,
@@ -587,7 +600,7 @@ levels = [
         y: 39,
         angle: 0,
         open: 0,
-        puzzles: 20,
+        puzzles: 21,
         to: 6,
         to_x: -3,
         to_y: 5,
@@ -598,7 +611,7 @@ levels = [
   
   // Room 6
   // Size 10
-  // Puzzles 21-24
+  // Puzzles 22-25
   {
   
     width: 50,
@@ -696,7 +709,7 @@ levels = [
         y: 5,
         angle: 0,
         open: 0,
-        puzzles: 24,
+        puzzles: 25,
         to: 7,
         to_x: -3,
         to_y: 5,
@@ -708,10 +721,10 @@ levels = [
   
   // Room 7
   // Size 11
-  // Puzzles 25-29
+  // Puzzles 26-32
   {
   
-    width: 60,
+    width: 80,
     height: 11,
     hole: false,
     
@@ -734,6 +747,35 @@ levels = [
       {
         x: 20,
         y: 3,
+        size: 6,
+        wrap: 0,
+        wall: "",
+        ground: "000000"+
+                "011110"+
+                "011100"+
+                "011110"+
+                "000000"+
+                "000000",
+      },
+      
+      
+      {
+        x: 30,
+        y: 3,
+        size: 6,
+        wrap: 0,
+        wall: "",
+        ground: "000000"+
+                "011110"+
+                "011110"+
+                "001100"+
+                "001000"+
+                "000000",
+      },
+      
+      {
+        x: 40,
+        y: 3,
         size: 5,
         wrap: 0,
         wall: "",
@@ -745,7 +787,19 @@ levels = [
       },
       
       {
-        x: 30,
+        x: 50,
+        y: 4,
+        size: 4,
+        wrap: 0,
+        wall: "",
+        ground: "1010"+
+                "1110"+
+                "1100"+
+                "1000",
+      },
+      
+      {
+        x: 60,
         y: 4,
         size: 4,
         wrap: 0,
@@ -757,20 +811,7 @@ levels = [
       },
       
       {
-        x: 40,
-        y: 4,
-        size: 4,
-        wrap: 0,
-        wall: "",
-        ground: "1010"+
-                "1110"+
-                "1100"+
-                "1000",
-      },
-      
-      
-      {
-        x: 50,
+        x: 70,
         y: 5,
         size: 4,
         wrap: 0,
@@ -820,11 +861,11 @@ levels = [
       },
 
       {
-        x: 59,
+        x: 79,
         y: 5,
         angle: 0,
         open: 0,
-        puzzles: 29,
+        puzzles: 32,
         to: 8,
         to_x: -3,
         to_y: 5,
@@ -835,7 +876,7 @@ levels = [
   
   // Room 8
   // Size 13
-  // Puzzles 30-34
+  // Puzzles 33-37
   {
   
     width: 30,
@@ -960,7 +1001,7 @@ levels = [
         y: 5,
         angle: 0,
         open: 0,
-        puzzles: 34,
+        puzzles: 37,
         to: 9,
         to_x: -3,
         to_y: 5,
@@ -969,34 +1010,17 @@ levels = [
     ],
   },
   
-  
-  
   // Room 9
   // Size 15
-  // Puzzles 35-39
+  // Puzzles 38-43
   {
   
-    width: 60,
+    width: 70,
     height: 10,
     hole: false,
     
     puzzles: [
 
-      {
-        x: 20,
-        y: 2,
-        size: 7,
-        wrap: 0,
-        wall: "",
-        ground: "0000000"+
-                "0000110"+
-                "0111110"+
-                "0101110"+
-                "0111000"+
-                "0010000"+
-                "0000000",
-      },
-      
       {
         x: 10,
         y: 2,
@@ -1013,6 +1037,21 @@ levels = [
       },
       
       
+      {
+        x: 20,
+        y: 2,
+        size: 7,
+        wrap: 0,
+        wall: "",
+        ground: "0000000"+
+                "0000110"+
+                "0111110"+
+                "0101110"+
+                "0111000"+
+                "0010000"+
+                "0000000",
+      },
+
       {
         x: 30,
         y: 3,
@@ -1034,17 +1073,29 @@ levels = [
         wrap: 0,
         wall: "",
         ground: "1101"+
-                "0111"+
+                "1111"+
                 "0110"+
                 "1110",
-        /*ground: "1100"+
-                "0111"+
-                "1110"+
-                "0111",*/
-      },  
+      },
+
+
+      {
+        x: 50,
+        y: 2,
+        size: 7,
+        wrap: 0,
+        wall: "",
+        ground: "0000000"+
+                "0001110"+
+                "0001110"+
+                "0011110"+
+                "0011100"+
+                "0111000"+
+                "0011000",
+      },
       
       {
-        x:50,
+        x: 65,
         y: 3,
         size: 3,
         wrap: 0,
@@ -1064,6 +1115,12 @@ levels = [
     ],
     
     cubes: [
+      [13, 5],
+      [22, 5],
+      [40, 5],
+      [42, 3],
+      [43, 5],
+      [43, 6],
 
     ],
     
@@ -1095,11 +1152,11 @@ levels = [
       },
 
       {
-        x: 59,
+        x: 69,
         y: 5,
         angle: 0,
         open: 0,
-        puzzles: 39,
+        puzzles: 43,
         to: 10,
         to_x: -3,
         to_y: 5,
@@ -1107,15 +1164,11 @@ levels = [
       }
     ],
   },
-  
-  
-  
-  
-  
+
   
   // Room 10
   // Size 16
-  // Puzzles 40-45
+  // Puzzles 44-49
   {
   
     width: 10,
@@ -1240,7 +1293,7 @@ levels = [
         y: 65,
         angle: 0,
         open: 0,
-        puzzles: 44,
+        puzzles: 49,
         to: 11,
         to_x: -3,
         to_y: 5,
@@ -1251,7 +1304,7 @@ levels = [
   
   // Room 11
   // Size 17
-  // Puzzles 45-49
+  // Puzzles 50-55
   {
   
     width: 70,
@@ -1350,7 +1403,7 @@ levels = [
     ],
     
     cubes: [
-
+      [13, 6],
     ],
     
     apples: [
@@ -1374,24 +1427,24 @@ levels = [
         to: 0
       },
 
-      /*{
-        x: 59,
+      {
+        x: 69,
         y: 5,
         angle: 0,
         open: 0,
-        puzzles: 39,
-        to: 10,
+        puzzles: 55,
+        to: 12,
         to_x: -3,
         to_y: 5,
         to_z: 0
-      }*/
+      }
     ],
   },
   
   
   // Room 12
-  // Size 18
-  // Puzzles 49-
+  // Size 20
+  // Puzzles 56-
   {
   
     width: 55,
@@ -1421,7 +1474,19 @@ levels = [
         x: 8,
         y: 4,
         eaten: 0
-      }
+      },
+      
+      {
+        x: 9,
+        y: 6,
+        eaten: 0
+      },
+      
+      {
+        x: 5,
+        y: 5,
+        eaten: 0
+      },
     ],
     
     stones: [
