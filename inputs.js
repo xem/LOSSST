@@ -124,7 +124,7 @@ scene.ontouchend = e => {
 }
 
 // Avoid all default event behaviors
-onmousedown = onmousemove = onmouseup = zoncontextmenu = ontouchstart = ontouchmove = zontouchend = onclick = ondblclick = onscroll = function(e){
+onmousedown = onmousemove = onmouseup = zoncontextmenu = ontouchstart = ontouchmove = onclick = ondblclick = onscroll = onkeypress = function(e){
   e.preventDefault();
 }
 
@@ -132,6 +132,8 @@ onmousedown = onmousemove = onmouseup = zoncontextmenu = ontouchstart = ontouchm
 k_left = k_right = k_up = k_down = 0;
 
 onkeydown = e => {
+  
+  if(e.keyCode != 116 && e.keyCode != 82) e.preventDefault();
   
   if(e.keyCode == 82){
     if(inbounds[0]){
@@ -174,6 +176,8 @@ onkeydown = e => {
 }
 
 onkeyup = e => {
+  
+  if(e.keyCode != 116 && e.keyCode != 82) e.preventDefault();
   
   if(e.keyCode == 37 || e.keyCode == 65 ||e.keyCode == 81){
     k_left = 0;

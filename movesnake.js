@@ -106,20 +106,33 @@ movesnake = (movecamera = 1) => {
     if(puzzling && currentpuzzle && currentpuzzle.ground && !currentpuzzle.wall){
       b.classList.add("inbounds");
       if(!mobile) scene.style.transition = "1s";
-      scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .6) * 10) + "vmin) rotateX(10deg)";
+      scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .6 - 2) * 10) + "vmin) rotateX(10deg)";
       if(!mobile){
         b.style.backgroundPosition = sky + "px -80vmin";
       }
       checkpuzzle();
     }
     
+    // See behind a vertical puzzle
+    else if (currentpuzzle && !currentpuzzle.ground && currentpuzzle.wall && snakepos[0][1] == currentpuzzle.y - 1){
+      scene.style.transform = "translateX(" + (-snakepos[0][0] * 10 + 1 - 5) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1 + 10) + "vmin) translateZ(10vmin) rotateX(8deg)";
+    }
+
     // Zoom in a vertical puzzle
     else if(currentpuzzle && !currentpuzzle.ground && currentpuzzle.wall){
       if(snakepos[0][1] == currentpuzzle.y){
         b.classList.add("inbounds");
         if(!mobile) scene.style.transition = "1s";
-        scene.style.transformOrigin = ((currentpuzzle.x + currentpuzzle.size / 2) * 10) + "vmin " + ((currentpuzzle.y) * 10) + "vmin";
-        scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y) * 10 + 1 + (currentpuzzle.size / 2) * 10) + "vmin) translateZ(" + ((currentpuzzle.size) * 10 - 40) + "vmin) rotateX(80deg)";
+        
+        if(snakepos[0][2] > 0){
+          scene.style.transformOrigin = ((currentpuzzle.x + currentpuzzle.size / 2) * 10) + "vmin " + ((currentpuzzle.y) * 10) + "vmin";
+          scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y) * 10 + 1 + (currentpuzzle.size / 2) * 10) + "vmin) translateZ(" + ((currentpuzzle.size - 4) * 10) + "vmin) rotateX(80deg)";
+        }
+
+        else {
+          scene.style.transform = "translateX(" + (-snakepos[0][0] * 10 + 1 - 5) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1 + 10) + "vmin) translateZ(10vmin) rotateX(30deg)";
+        }
+
         if(!mobile){
           b.style.backgroundPosition = sky + "px 80vmin";
         }
@@ -130,7 +143,7 @@ movesnake = (movecamera = 1) => {
           b.style.backgroundPosition = sky + "px center";
         }
         if(!mobile) setTimeout(()=>{scene.style.transition = ""}, 1000);
-        scene.style.transform = "translateX(" + (-snakepos[0][0] * 10 + 1 - 5) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1 + 10) + "vmin) translateZ(40vmin) rotateX(30deg)";
+        scene.style.transform = "translateX(" + (-snakepos[0][0] * 10 + 1 - 5) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1 + 10) + "vmin) translateZ(10vmin) rotateX(30deg)";
       }
       
     }
@@ -143,7 +156,7 @@ movesnake = (movecamera = 1) => {
       }
       if(!mobile) setTimeout(()=>{scene.style.transition = ""}, 1000);
       scene.style.transformOrigin = (snakepos[0][0] * 10) + "vmin " + (snakepos[0][1] * 10 + 1) + "vmin";
-      scene.style.transform = "translateX(" + (-snakepos[0][0] * 10 + 1 - 5) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1) + "vmin) translateZ(40vmin) rotateX(30deg)";
+      scene.style.transform = "translateX(" + (-snakepos[0][0] * 10 + 1 - 5) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1) + "vmin) translateZ(10vmin) rotateX(30deg)";
     }
   }
   

@@ -83,7 +83,7 @@ if(currentroom != 0){
   levels[currentroom].hole = [levels[currentroom].bridges[0].x + 3, levels[currentroom].bridges[0].y + .1];
 }
 
-scene.style.transform = `rotateX(0deg) translateX(-${levels[currentroom].hole[0] * 10}vmin) translateY(-${levels[currentroom].hole[1] * 10}vmin) translateZ(80vmin)`;
+scene.style.transform = `rotateX(0deg) translateX(-${levels[currentroom].hole[0] * 10}vmin) translateY(-${levels[currentroom].hole[1] * 10}vmin) translateZ(10vmin)`;
 
 // Debug
 L = z => {

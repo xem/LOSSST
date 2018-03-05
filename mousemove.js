@@ -1,3 +1,14 @@
+mobile = 0;
+
+if(
+  navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+){
+  mobile = 1;
+}
+
+
 // When the player tries to go in a direction (finger/keyboard)
 mousemove = (dir) => {
   
@@ -226,7 +237,7 @@ mousemove = (dir) => {
         inbounds[0] = 1;
         lock = 1;
         scene.style.transformOrigin = `${bridge.x * 10}vmin ${bridge.y * 10}vmin`;
-        scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 10}vmin) translateZ(30vmin) rotateX(10deg)`;
+        scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 10}vmin) translateZ(10vmin) rotateX(10deg)`;
         angle = snakeangles[0];
         if(angle % 360 == 180 || angle % 360 == -180){
           angle += 90;
@@ -274,7 +285,7 @@ mousemove = (dir) => {
             inbounds.unshift(1);
           }
           scene.style.transformOrigin = `${(bridge.to_x + 4) * 10 + 1}vmin ${(bridge.to_y - offset) * 10 + 1}vmin`;
-          scene.style.transform = `translateX(${-(bridge.to_x + 4) * 10 + 1}vmin) translateY(${-(bridge.to_y - offset) * 10 + 1}vmin) translateZ(40vmin) rotateX(30deg)`;
+          console.log(scene.style.transform = `translateX(${-(bridge.to_x + 4) * 10 - 4}vmin) translateY(${-(bridge.to_y - offset) * 10 + 1}vmin) translateZ(10vmin) rotateX(30deg)`);
 
           inbounds[0] = 0;
           render();
@@ -338,11 +349,12 @@ mousemove = (dir) => {
   if(!animation){
     setTimeout(() => {
       lock = 0
-    }, 200);
+    }, mobile ? 250 : 200);
   }
 }
 
 // If mouse is down, call mousemove every 55ms to continue current move if possible
+
 setInterval(() => {
   if(mousedown && (!puzzling || !mobile)){
     try{
@@ -352,4 +364,4 @@ setInterval(() => {
       console.log(e);
     }
   }
-}, 55);
+}, mobile ? 155 : 55);

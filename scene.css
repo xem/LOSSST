@@ -2,7 +2,7 @@
   width: 210vmin;
   height: 200vmin;
   border-radius: 5vmin;
-  transform: rotateX(30deg) translateX(-100vmin) translateY(-100vmin) translateZ(40vmin);
+  transform: rotateX(30deg) translateX(-100vmin) translateY(-100vmin) translateZ(10vmin);
   transition: transform .5s linear, transform-origin .5s linear;
   background: url(images/grass.png); 
   background-size: 70vmin;
