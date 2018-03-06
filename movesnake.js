@@ -195,7 +195,7 @@ movesnake = (movecamera = 1) => {
       
       for(j in levels[currentroom].bridges){
         bridge = levels[currentroom].bridges[j];
-        if(!bridge.open && (totalpuzzles >= bridge.puzzles || snakelength >= bridge.snakelength)){
+        if(!bridge.open && totalpuzzles >= bridge.puzzles){
           lock = 1;
           animation = 1;
           scene.style.transformOrigin = `${bridge.x * 10}vmin ${bridge.y * 10}vmin`;

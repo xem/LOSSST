@@ -133,7 +133,7 @@ k_left = k_right = k_up = k_down = 0;
 
 onkeydown = e => {
   
-  if(e.keyCode != 116 && e.keyCode != 82) e.preventDefault();
+  if(e.keyCode != 123 && e.keyCode != 116 && e.keyCode != 82) e.preventDefault();
   
   if(e.keyCode == 82){
     if(inbounds[0]){
@@ -177,7 +177,7 @@ onkeydown = e => {
 
 onkeyup = e => {
   
-  if(e.keyCode != 116 && e.keyCode != 82) e.preventDefault();
+  if(e.keyCode != 123 && e.keyCode != 116 && e.keyCode != 82) e.preventDefault();
   
   if(e.keyCode == 37 || e.keyCode == 65 ||e.keyCode == 81){
     k_left = 0;
