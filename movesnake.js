@@ -115,7 +115,20 @@ movesnake = (movecamera = 1) => {
     
     // See behind a vertical puzzle
     else if (currentpuzzle && !currentpuzzle.ground && currentpuzzle.wall && snakepos[0][1] == currentpuzzle.y - 1){
-      scene.style.transform = "translateX(" + (-snakepos[0][0] * 10 + 1 - 5) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1 + 10) + "vmin) translateZ(10vmin) rotateX(8deg)";
+      if(snakepos[0][2] == 0){
+        scene.style.transform = "translateX(" + (-snakepos[0][0] * 10 + 1 - 5) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1 + 10) + "vmin) translateZ(10vmin) rotateX(8deg)";
+      }
+    }
+
+    // Zoom in a horizontal + vertical puzzle
+    else if(currentpuzzle && currentpuzzle.ground && currentpuzzle.wall){
+      b.classList.add("inbounds");
+      scene.style.transformOrigin = ((currentpuzzle.x + currentpuzzle.size / 2) * 10) + "vmin " + ((currentpuzzle.y) * 10) + "vmin";
+      scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2 - 2.5) * 10) + "vmin) translateZ(" + ((currentpuzzle.size * .6 - 2) * 10) + "vmin) rotateX(45deg)";
+      if(!mobile){
+        b.style.backgroundPosition = sky + "px -80vmin";
+      }
+      checkpuzzle();
     }
 
     // Zoom in a vertical puzzle

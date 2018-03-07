@@ -55,7 +55,14 @@
 }
 
 .cell.yellow {
-  background: #faff00;
+  background: #8fa;
+}
+
+.cell.holecell {
+  border-radius: 25%;
+  transform: scale(1.2);
+  background: purple;
+  z-index: 2;
 }
 
 #wraps {
@@ -78,6 +85,11 @@
 
 .puzzlecube .b {
   transform: translateY(-200%)rotateX(-90deg);
+  transform-origin: bottom center;
+}
+
+.puzzlecube .bb {
+  transform: translateY(-201%)rotateX(-90deg);
   transform-origin: bottom center;
 }
 

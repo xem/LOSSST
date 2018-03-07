@@ -20,7 +20,7 @@ checkpuzzle = () => {
   
   var i, j;
   
-  // Color cells in red/blue
+  // Color cells in red/blue/none
   if(!currentpuzzle.solved){
     for(i = 0; i < snakelength; i++){
       if(snakepos[i][0] >= currentpuzzle.x && snakepos[i][0] < currentpuzzle.x + currentpuzzle.size){
@@ -31,20 +31,47 @@ checkpuzzle = () => {
             if(cell.classList.contains("black")){
               cell.classList.add("blue");
             }
-            else {
+            else if(cell.classList.contains("white")){
               cell.classList.add("red");
+            }
+
+            // Teleport from ground to wall
+            else if(i == 0) {
+              targetx = targetz = 0;
+              for(j = 0; j < currentpuzzle.size; j++){
+                for(k = 0; k < currentpuzzle.size; k++){
+                  if(currentpuzzle.wall[j * currentpuzzle.size + k] == 2){
+                    targetx = currentpuzzle.x + k;
+                    targetz = currentpuzzle.size - j - 1;
+                  }
+                }
+              }
+              
+              snakepos.unshift([targetx, currentpuzzle.y, targetz]);  
+              snakeangles.unshift(snakeangles[0]);  
+              inbounds.unshift(inbounds[0]);
+              console.log(snakepos[0]);
+              movesnake();
             }
           }
         }
         
-        if(currentpuzzle.wall && !currentpuzzle.ground && snakepos[i][1] == currentpuzzle.y){
+        if(currentpuzzle.wall && snakepos[i][1] == currentpuzzle.y){
           cell = window[`cell${currentroom}-wall-${currentpuzzle.index}-${(currentpuzzle.size - snakepos[i][2] - 1) * currentpuzzle.size + (snakepos[i][0] - currentpuzzle.x)}`];
           if(cell){
             if(cell.classList.contains("black")){
               cell.classList.add("blue");
             }
-            else {
+            else if(cell.classList.contains("white")){
               cell.classList.add("red");
+            }
+
+            // Teleport from wall to ground
+            else {
+              /*snakepos.unshift([snakepos[0][0], snakepos[0][1] - 1, snakepos[0][2]]);  
+              snakeangles.unshift(snakeangles[0]);  
+              inbounds.unshift(inbounds[0]);
+              movesnake();*/
             }
           }
         }
