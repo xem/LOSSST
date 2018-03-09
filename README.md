@@ -34,3 +34,10 @@ Songs:
 - 12: Johann Sebastien Bach - Orchestral Suite No.3 in D Major, BWV 1068
 
 - ?: Symphony No 9 in E Minor, Op. 95, B.187 "from the new world"
+
+LICENSE:
+
+All rights reserved!
+
+https://tldrlegal.com/license/all-rights-served
+
