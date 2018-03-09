@@ -1,13 +1,14 @@
-﻿<body>
+﻿<body style=line-height:1.5em>
 
-<br>
 <div id=visual></div>
 
 <br>
 
-wrap <input type=checkbox id=w> -
+1 teleporter <input type=checkbox id=t> -
+wrap <input type=checkbox id=w> - 
 grid <input id=g value=5 size=1> -
-snake <input id=s value=5 size=1> -
+snake <input id=s value=5 size=1>
+<br>
 <button onclick=generate()>generate</button>
 <button onclick=save()>save</button>
 
@@ -30,6 +31,9 @@ generate = function(){
 
   // Valid puzzle
   ok=0;
+  
+  // Teleport index
+  teleport = t.checked ? (~~(Math.random() * (snakesize - 2)))+1 : -1;
 
   // Generate randomly as long as not ok
   while(!ok){
@@ -41,16 +45,25 @@ generate = function(){
     ok=1;
     for(i=1;i<snakesize;i++){
       
-      // List neighbours (with wrap)
-      if(w.checked){
-        neighbours = [[x>0?x-1:gridsize-1,y],[x,y>0?y-1:gridsize-1],[x<gridsize-1?x+1:0,y],[x,y<gridsize-1?y+1:0]];
-      }
-      else {
-        neighbours = [[x-1,y],[x,y-1],[x+1,y],[x,y+1]];
+      // Teleport
+      if(teleport == i){
+        neighbour = [Math.random() * gridsize | 0, Math.random() * gridsize | 0];
       }
       
-      // Pick one
-      neighbour = neighbours[Math.random() * 4 | 0];
+      // Pick a neighbour
+      else {
+        
+        // List neighbours (with wrap)
+        if(w.checked){
+          neighbours = [[x>0?x-1:gridsize-1,y],[x,y>0?y-1:gridsize-1],[x<gridsize-1?x+1:0,y],[x,y<gridsize-1?y+1:0]];
+        }
+        else {
+          neighbours = [[x-1,y],[x,y-1],[x+1,y],[x,y+1]];
+        }
+      
+        // Pick one
+        neighbour = neighbours[Math.random() * 4 | 0];
+      }
       
       // out of bounds
       if(neighbour[0] < 0 || neighbour[0] >= gridsize || neighbour[1] < 0 || neighbour[1] >= gridsize) { ok = 0; break; }
@@ -73,7 +86,22 @@ generate = function(){
   h="";
   for(i=0;i<gridsize;i++){
     for(j=0;j<gridsize;j++){
-      h+="<div style='float:left;width:3ch;height:3ch;color:#fff;text-align:center;line-height:3ch;background:#"+(snakeflat.includes(j*gridsize+i)?"000":"fff")+";border:1px solid #000'>"+(snakeflat.indexOf(j*gridsize+i) > -1 ? snakeflat.indexOf(j*gridsize+i) + 1 : '')+"</div>"
+      h+="<div style='float:left;width:3ch;height:3ch;color:#fff;text-align:center;line-height:3ch;background:#"
+      +
+      (
+        (
+          snakeflat.indexOf(j*gridsize+i) == teleport-1
+          || snakeflat.indexOf(j*gridsize+i) == teleport
+        )
+        ? "f0f" 
+        :
+        (
+          snakeflat.includes(j*gridsize+i)
+          ?"000"
+          :"fff"
+        )
+      )
+      +";border:1px solid #000'>"+(snakeflat.indexOf(j*gridsize+i) > -1 ? snakeflat.indexOf(j*gridsize+i) + 1 : '')+"</div>"
     }
     h+="<br style=clear:both>";
   }
