@@ -1,0 +1,76 @@
+﻿<!doctype html>
+<meta charset=utf-8>
+<meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="snake.css">
+<link rel="stylesheet" href="puzzle.css">
+<link rel="stylesheet" href="scene.css">
+<style>
+
+#scene{
+  background: url(images/sand.jpg) !important;
+}
+.treecontent {
+  background-image: url(images/cactus.png) !important;
+}
+.snakegrass, .puzzlegrass {
+  display: none;
+}
+.applecontent {
+  background-image: url(images/fig.png) !important;
+  width: 150%;
+  height: 150%;
+}
+</style>
+<title>LOSSST</title>
+<body id="b" class=intro>
+<img src="images/apple.png" width=1>
+<img src="images/appleshadow.png" width=1>
+<img src="images/eyes.png" width=1>
+<img src="images/grass.png" width=1>
+<img src="images/grassblades.png" width=1>
+<img src="images/sky.jpg" width=1>
+<img src="images/stone.png" width=1>
+<img src="images/terre.png" width=1>
+<img src="images/tree.png" width=1>
+<img src="images/treeshadow.png" width=1>
+<img src="images/wood.png" width=1>
+
+<audio id=music src="0.mp3" loop></audio>
+
+<div id=controls>
+</div>
+
+<button id=play onclick="try{music.play()}catch(e){};document.body.insertAdjacentHTML('beforeEnd','<style>button{display:none}');this.style.top='-100vh';this.remove();render(),lock=1;setTimeout('lock=0',1500)">Play</button>
+
+<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 0; localStorage.snakelength = 3; localStorage.totalpuzzles = 0; location = location',200)" style=left:5vmin>0</button>
+<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 1; localStorage.snakelength = 5; localStorage.totalpuzzles = 3; location = location',200)" style=left:10vmin>1</button>
+<<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 2; localStorage.snakelength = 6; localStorage.totalpuzzles = 6; location = location',200)" style=left:15vmin>2</button>
+<!--button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 3; localStorage.snakelength = 7; localStorage.totalpuzzles = 10; location = location',200)" style=left:20vmin>3</button>
+<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 4; localStorage.snakelength = 8; localStorage.totalpuzzles = 17; location = location',200)" style=left:25vmin>4</button>
+<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 5; localStorage.snakelength = 9; localStorage.totalpuzzles = 21; location = location',200)" style=left:30vmin>5</button>
+<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 6; localStorage.snakelength = 10; localStorage.totalpuzzles = 25; location = location',200)" style=left:35vmin>6</button>
+<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 7; localStorage.snakelength = 11; localStorage.totalpuzzles = 32; location = location',200)" style=left:40vmin>7</button>
+<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 8; localStorage.snakelength = 13; localStorage.totalpuzzles = 37; location = location',200)" style=left:45vmin>8</button>
+<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 9; localStorage.snakelength = 15; localStorage.totalpuzzles = 43; location = location',200)" style=left:50vmin>9</button>
+<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 10; localStorage.snakelength = 16; localStorage.totalpuzzles = 49; location = location',200)" style=left:55vmin>10</button>
+<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 11; localStorage.snakelength = 17; localStorage.totalpuzzles = 55; location = location',200)" style=left:60vmin>11</button-->
+
+
+<div id="perspective">
+  <div id="scene"></div>
+</div>
+
+<script src="levels2.js"></script>
+<script src="inputs.js"></script>
+<script src="render.js"></script>
+<script src="mousemove.js"></script>
+<script src="movesnake.js"></script>
+<script src="puzzle.js"></script>
+<script src="init.js"></script>
+</body>

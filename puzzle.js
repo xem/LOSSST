@@ -37,21 +37,56 @@ checkpuzzle = () => {
 
             // Teleport from ground to wall
             else if(i == 0) {
-              targetx = targetz = 0;
-              for(j = 0; j < currentpuzzle.size; j++){
-                for(k = 0; k < currentpuzzle.size; k++){
-                  if(currentpuzzle.wall[j * currentpuzzle.size + k] == 2){
-                    targetx = currentpuzzle.x + k;
-                    targetz = currentpuzzle.size - j - 1;
+              if(currentpuzzle.wall){
+                
+                targetx = targetz = 0;
+                for(j = 0; j < currentpuzzle.size; j++){
+                  for(k = 0; k < currentpuzzle.size; k++){
+                    if(currentpuzzle.wall[j * currentpuzzle.size + k] == 2){
+                      targetx = currentpuzzle.x + k;
+                      targetz = currentpuzzle.size - j - 1;
+                    }
                   }
                 }
+                
+                snakepos.unshift([targetx, currentpuzzle.y, targetz]);  
+                snakeangles.unshift(snakeangles[0]);  
+                inbounds.unshift(inbounds[0]);
+                console.log(snakepos[0]);
+                movesnake();
               }
-              
-              snakepos.unshift([targetx, currentpuzzle.y, targetz]);  
-              snakeangles.unshift(snakeangles[0]);  
-              inbounds.unshift(inbounds[0]);
-              console.log(snakepos[0]);
-              movesnake();
+              else {
+                targetx = targety = 0;
+                console.log(currentpuzzle.ground[(snakepos[1][1] - currentpuzzle.y) * currentpuzzle.size + (snakepos[1][0] - currentpuzzle.x)]);
+                if(currentpuzzle.ground[(snakepos[1][1] - currentpuzzle.y) * currentpuzzle.size + (snakepos[1][0] - currentpuzzle.x)] != 2){
+                  
+                  for(j = 0; j < currentpuzzle.size; j++){
+                    for(k = 0; k < currentpuzzle.size; k++){
+                      
+                      
+                      
+                      if(
+                        (currentpuzzle.x + k != snakepos[0][0] || currentpuzzle.y + j != snakepos[0][1])
+                        && currentpuzzle.ground[j * currentpuzzle.size + k] == 2
+                      ){
+                        console.log(snakepos[0], j, k, currentpuzzle.ground[j * currentpuzzle.size + k]);
+                        targetx = currentpuzzle.x + k;
+                        targety = currentpuzzle.y + j;
+                        console.log(targetx, targety);
+                      }
+                    }
+                  }
+                  
+                  if(targetx || targety){
+                  
+                    snakepos.unshift([targetx, targety, 0]);  
+                    snakeangles.unshift(snakeangles[0]);  
+                    inbounds.unshift(inbounds[0]);
+                  }
+                  
+                  movesnake();
+                }
+              }
             }
           }
         }

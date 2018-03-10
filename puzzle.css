@@ -55,14 +55,11 @@
 }
 
 .cell.yellow {
-  background: #8fa;
+  background: #fff354;
 }
 
 .cell.holecell {
-  border-radius: 25%;
-  transform: scale(1.2);
-  background: purple;
-  z-index: 2;
+  background: radial-gradient(pink,purple);
 }
 
 #wraps {

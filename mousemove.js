@@ -37,14 +37,19 @@ mousemove = (dir) => {
       
       // Update angle
       
-      // Angle from top
+      // From top
       if(angle % 360 == 180 || angle % 360 == -180){
         angle += 90;
       }
       
-      // Angle from bottom
+      // From bottom
       else if(angle % 360 == 0){
         angle -= 90;
+      }
+      
+      // From left
+      if(angle % 360 == 90 || angle % 360 == -270){
+        angle += 180;
       }
       
       // Save the current move
@@ -78,6 +83,11 @@ mousemove = (dir) => {
         angle += 90;
       }
       
+      // From right
+      else if(angle % 360 == -90 || angle % 360 == 270){
+        angle -= 180;
+      }
+      
       // Save the current move
       move_l = 1;
       move_b = move_f = move_r = 0;
@@ -104,6 +114,11 @@ mousemove = (dir) => {
           angle -= 90;
         }
       
+      }
+      
+      // From bottom
+      else if(angle % 360 == 0){
+        angle += 180;
       }
       
       // Bounds
@@ -169,6 +184,11 @@ mousemove = (dir) => {
     // From left
     else if(angle % 360 == 90 || angle % 360 == -270){
       angle -= 90;
+    }
+    
+    // From top
+    else if(angle % 360 == 180 || angle % 360 == -180){
+      angle += 180;
     }
     
     // Save the current move
