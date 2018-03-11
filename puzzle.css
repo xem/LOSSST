@@ -9,7 +9,7 @@
   height: 6vmin;
   background: url(images/grassblades.png);
   background-size: 10vmin 5vmin;
-  transform: translateY(-2.5vmin) translateZ(0vmin) rotateX(-45deg);
+  transform: translateY(-2.5vmin) translateZ(.1vmin) rotateX(-45deg);
   -moz-pointer-events: none;
   -webkit-pointer-events: none;
   pointer-events: none;

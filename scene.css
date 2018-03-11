@@ -212,6 +212,7 @@
   width: 10vmin;
   height: 10vmin;
   background: #387D2B;
+  transform: translateZ(.5vmin);
 }
 
 .rockcube div {

@@ -90,8 +90,13 @@ generate = function(){
       +
       (
         (
+          t.checked 
+          &&
+          (
           snakeflat.indexOf(j*gridsize+i) == teleport-1
-          || snakeflat.indexOf(j*gridsize+i) == teleport
+          ||
+          snakeflat.indexOf(j*gridsize+i) == teleport
+          )
         )
         ? "f0f" 
         :

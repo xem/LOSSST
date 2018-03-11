@@ -80,7 +80,7 @@ checkpuzzle = () => {
                   if(targetx || targety){
                   
                     snakepos.unshift([targetx, targety, 0]);  
-                    snakeangles.unshift(snakeangles[0]);  
+                    snakeangles.unshift(0);  
                     inbounds.unshift(inbounds[0]);
                   }
                   
