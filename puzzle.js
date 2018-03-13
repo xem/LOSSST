@@ -139,7 +139,7 @@ checkpuzzle = () => {
     }
   
     // Color in green, save
-    if(solved){
+    if(solved && !localStorage[currentroom+"-"+currentpuzzle.index]){
       currentpuzzle.solved = 1;
       for(j in currentpuzzle.ground){
         cell = window[`cell${currentroom}-${currentpuzzle.index}-${j}`];
