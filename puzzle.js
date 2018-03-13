@@ -28,7 +28,7 @@ checkpuzzle = () => {
         if(currentpuzzle.ground){
           cell = window[`cell${currentroom}-${currentpuzzle.index}-${(snakepos[i][1] - currentpuzzle.y) * currentpuzzle.size + (snakepos[i][0] - currentpuzzle.x)}`];
           if(cell){
-            if(cell.classList.contains("black")){
+            if(cell.classList.contains("black") || cell.classList.contains("purple")){
               cell.classList.add("blue");
             }
             else if(cell.classList.contains("white")){
@@ -36,7 +36,8 @@ checkpuzzle = () => {
             }
 
             // Teleport from ground to wall
-            else if(i == 0) {
+            if(cell.classList.contains("purple") && i == 0) {
+              cell.classList.add("blue");
               if(currentpuzzle.wall){
                 
                 targetx = targetz = 0;
@@ -55,7 +56,10 @@ checkpuzzle = () => {
                 console.log(snakepos[0]);
                 movesnake();
               }
+              
+              // Teleport from ground to ground
               else {
+                cell.classList.add("blue");
                 targetx = targety = 0;
                 console.log(currentpuzzle.ground[(snakepos[1][1] - currentpuzzle.y) * currentpuzzle.size + (snakepos[1][0] - currentpuzzle.x)]);
                 if(currentpuzzle.ground[(snakepos[1][1] - currentpuzzle.y) * currentpuzzle.size + (snakepos[1][0] - currentpuzzle.x)] != 2){
@@ -120,7 +124,7 @@ checkpuzzle = () => {
   if(currentpuzzle){
     for(j in currentpuzzle.ground){
       cell = window[`cell${currentroom}-${currentpuzzle.index}-${j}`];
-      if(cell && (cell.classList.contains("red") || (cell.classList.contains("black") && !cell.classList.contains("blue")))){
+      if(cell && (cell.classList.contains("red") || ((cell.classList.contains("black") || cell.classList.contains("purple")) && !cell.classList.contains("blue")))){
         solved = 0;
         break;
       }
@@ -128,7 +132,7 @@ checkpuzzle = () => {
     
     for(j in currentpuzzle.wall){
       cell = window[`cell${currentroom}-wall-${currentpuzzle.index}-${j}`];
-      if(cell && (cell.classList.contains("red") || (cell.classList.contains("black") && !cell.classList.contains("blue")))){
+      if(cell && (cell.classList.contains("red") || ((cell.classList.contains("black") || cell.classList.contains("purple")) && !cell.classList.contains("blue")))){
         solved = 0;
         break;
       }

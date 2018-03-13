@@ -116,10 +116,7 @@ mousemove = (dir) => {
       
       }
       
-      // From bottom
-      else if(angle % 360 == 0){
-        angle += 180;
-      }
+
       
       // Bounds
       else {
@@ -143,6 +140,11 @@ mousemove = (dir) => {
       // From right
       else if(angle % 360 == -90 || angle % 360 == 270){
         angle -= 90;
+      }
+      
+      // From bottom
+      else if(angle % 360 == 0){
+        angle = 180;
       }
       
       // Save the current move
