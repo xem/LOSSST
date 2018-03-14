@@ -23,6 +23,7 @@
   top: 0;
   left: 0;
   background: radial-gradient(circle, #000 2vmin, rgba(86, 66, 37, .75) 5vmin, transparent 6vmin) no-repeat;
+  transform: translateZ(.2vmin);
 }
 
 #scenedepth {
@@ -58,7 +59,7 @@
   width: 42vmin;
   height: 55vmin;
   transform-origin: center bottom;
-  transform: translateX(-53%) scaleX(-1) translateY(3vmin) rotateZ(235deg);
+  transform: translateX(-53%) scaleX(-1) translateY(3vmin) translateZ(.2vmin) rotateZ(235deg);
   background: url(images/treeshadow.png) no-repeat;
   opacity: .2;
   background-size: 100%;

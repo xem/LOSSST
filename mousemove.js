@@ -376,7 +376,7 @@ mousemove = (dir) => {
 }
 
 // If mouse is down, call mousemove every 55ms to continue current move if possible
-
+mousedown = 0;
 setInterval(() => {
   if(mousedown && (!puzzling || !mobile)){
     try{

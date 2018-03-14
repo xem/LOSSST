@@ -40,6 +40,7 @@ body.mobile {
 
 #perspective * {
   transform-style: preserve-3d;
+  z-index: 1;
 }
 
 .cube {
