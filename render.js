@@ -60,7 +60,7 @@ render = () => {
       puzzle.solved = 1;
     }
     puzzles.innerHTML +=
-`<div id="puzzle${currentroom}-${i}" class="cube puzzlecube" style="width:${puzzle.size*10}vmin;height:${puzzle.size*10}vmin;left:${puzzle.x*10}vmin;top:${puzzle.y*10}vmin">
+`<div id="puzzle${currentroom}-${i}" class="cube puzzlecube" style="width:${puzzle.size*10}vmin;height:${puzzle.size*10}vmin;left:${puzzle.x*10*Math.min(innerWidth,innerHeight)/100}px;top:${puzzle.y*10*Math.min(innerWidth,innerHeight)/100}px">
   <!--div class="u"></div-->
   <div id="puzzleground${i}" class="d"></div>
   <!--div class="f"></div>
