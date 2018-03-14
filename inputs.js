@@ -124,7 +124,7 @@ scene.ontouchend = e => {
 }
 
 // Avoid all default event behaviors
-onmousedown = onmousemove = onmouseup = ontouchmove = onclick = ondblclick = onscroll = onkeypress = function(e){
+onmousedown = onmousemove = onmouseup = ontouchmove = onclick = ondblclick = onscroll = onkeypress = ondblclick = function(e){
   e.preventDefault();
 }
 
