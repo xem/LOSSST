@@ -59,7 +59,7 @@
   width: 42vmin;
   height: 55vmin;
   transform-origin: center bottom;
-  transform: translateX(-53%) scaleX(-1) translateY(3vmin) translateZ(.2vmin) rotateZ(235deg);
+  transform: translateX(-53%) scaleX(-1) translateY(3vmin) translateZ(.3vmin) rotateZ(235deg);
   background: url(images/treeshadow.png) no-repeat;
   opacity: .2;
   background-size: 100%;
