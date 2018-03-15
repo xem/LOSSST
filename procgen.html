@@ -4,7 +4,8 @@
 
 <br>
 
-1 teleporter <input type=checkbox id=t> -
+teleporter: 1 <input type=checkbox id=t onclick="if(!checked)t2.checked=false">
+2 <input type=checkbox id=t2 onclick="if(checked)t.checked=true"> -
 wrap <input type=checkbox id=w> - 
 grid <input id=g value=5 size=1> -
 snake <input id=s value=5 size=1>
@@ -30,11 +31,22 @@ generate = function(){
   if(snakesize > gridsize ** 2) return;
 
   // Valid puzzle
-  ok=0;
+  ok = 0;
   
-  // Teleport index
-  teleport = t.checked ? (~~(Math.random() * (snakesize - 2)))+1 : -1;
+  // Teleporters index
+  teleport = (t.checked||t2.checked) ? (~~(Math.random() * (snakesize - 2))) + 1 : -1;
+  
+  teleport2 = teleport;
+  
+  if(t2.checked){
+    
+    do {
+      teleport2 = (~~(Math.random() * (snakesize - 2))) + 1;
+    }
+    while(teleport2 == teleport || teleport2 == teleport + 1);
+  }
 
+  
   // Generate randomly as long as not ok
   while(!ok){
   
@@ -47,6 +59,11 @@ generate = function(){
       
       // Teleport
       if(teleport == i){
+        neighbour = [Math.random() * gridsize | 0, Math.random() * gridsize | 0];
+      }
+      
+      // Teleport 2
+      else if(teleport2 == i){
         neighbour = [Math.random() * gridsize | 0, Math.random() * gridsize | 0];
       }
       
@@ -89,6 +106,7 @@ generate = function(){
       h+="<div style='float:left;width:3ch;height:3ch;color:#fff;text-align:center;line-height:3ch;background:#"
       +
       (
+        // Teleporter 1
         (
           t.checked 
           &&
@@ -99,7 +117,23 @@ generate = function(){
           )
         )
         ? "f0f" 
+        
         :
+        
+        // Teleporter 2
+        (
+          t2.checked 
+          &&
+          (
+          snakeflat.indexOf(j*gridsize+i) == teleport2-1
+          ||
+          snakeflat.indexOf(j*gridsize+i) == teleport2
+          )
+        )
+        ? "0ff" 
+        :
+        
+        // Normal
         (
           snakeflat.includes(j*gridsize+i)
           ?"000"
