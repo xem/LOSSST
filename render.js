@@ -61,11 +61,7 @@ render = () => {
     }
     puzzles.innerHTML +=
 `<div id="puzzle${currentroom}-${i}" class="cube puzzlecube" style="width:${puzzle.size*10}vmin;height:${puzzle.size*10}vmin;left:${puzzle.x*10}vmin;top:${puzzle.y*10}vmin">
-  <!--div class="u"></div-->
   <div id="puzzleground${i}" class="d"></div>
-  <!--div class="f"></div>
-  <div class="r"></div>
-  <div class="l"></div-->
   ${puzzle.wall ? '<div id="puzzleback'+i+'" class="b"></div>' : ''}
   ${puzzle.wall2 ? '<div id="puzzlebackback'+i+'" class="bb"></div>' : ''}
   <div class="puzzlegrass"></div>
@@ -73,13 +69,18 @@ render = () => {
 
     if(puzzle.ground){
       for(j in puzzle.ground){
-        window["puzzleground" + i].innerHTML +=
-        `<div id="cell${currentroom}-${i}-${j}" data-x=${puzzle.x + ((+j) % puzzle.size)} data-y=${puzzle.y + ~~((+j)/puzzle.size)} class="cell ${+(puzzle.ground[j])>1 ? "purple" : +(puzzle.ground[j]) ? ("black" + (puzzle.solved ? " green" : "")) : (puzzle.solved ? "yellow" : "white")}" style="left:${((+j)%puzzle.size) * 10}vmin;top:${~~((+j)/puzzle.size) * 10}vmin"></div>`;
+          window["puzzleground" + i].innerHTML +=
+          `<div id="cell${currentroom}-${i}-${j}" data-x=${puzzle.x + ((+j) % puzzle.size)} data-y=${puzzle.y + ~~((+j)/puzzle.size)} class="cell ${+(puzzle.ground[j])>1 ? "purple" : +(puzzle.ground[j]) ? ("black" + (puzzle.solved ? " green" : "")) : (puzzle.solved ? "yellow" : "white")}" style="left:${((+j)%puzzle.size) * 10}vmin;top:${~~((+j)/puzzle.size) * 10}vmin"></div>`;
       }
     }
     
-    else {
+    else if(!puzzle.depth) {
       window["puzzleground" + i].style.backgroundImage = "url(images/grass2.png)";
+    }
+    
+    else {
+       window["puzzleground" + i].style.background = 'url("images/grass.png") 0 10vmin repeat-x, url("images/grass2.png") 0 0 repeat-x';
+       document.querySelector(`#puzzle${currentroom}-${i} .puzzlegrass`).style.opacity = "0";
     }
     
     if(puzzle.wall){

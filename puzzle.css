@@ -80,13 +80,9 @@
 }
 
 .puzzlecube .b {
-  transform: translateY(-200%)rotateX(-90deg);
+  transform: translateY(-199%)rotateX(-90deg);
   transform-origin: bottom center;
-}
-
-.puzzlecube .bb {
-  transform: translateY(-201%)rotateX(-90deg);
-  transform-origin: bottom center;
+  background: #000;
 }
 
 .cube.puzzlecube {

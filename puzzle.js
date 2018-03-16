@@ -95,7 +95,7 @@ checkpuzzle = () => {
           }
         }
         
-        if(currentpuzzle.wall && snakepos[i][1] >= currentpuzzle.y && snakepos[i][1] < currentpuzzle.y + currentpuzzle.size){
+        if(currentpuzzle.wall && snakepos[i][1] >= currentpuzzle.y - 1 && snakepos[i][1] < currentpuzzle.y + currentpuzzle.size && (!currentpuzzle.depth || (currentpuzzle.depth && (currentpuzzle.y == snakepos[i][1] || currentpuzzle.y - 1 == snakepos[i][1])))){
           cell = window[`cell${currentroom}-wall-${currentpuzzle.index}-${(currentpuzzle.size - snakepos[i][2] - 1) * currentpuzzle.size + (snakepos[i][0] - currentpuzzle.x)}`];
           if(cell){
             if(cell.classList.contains("black")){

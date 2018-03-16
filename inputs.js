@@ -234,5 +234,5 @@ placecontrols = onresize = onorientationchange = function(e){
 placecontrols();
 
 onresize = function(){
- location = location; 
+ //location = location; 
 }
