@@ -1576,6 +1576,45 @@ levels = [
       }
     ],
   },
+  
+  
+  // Room 12
+  // Size 20
+  // Boss
+  {
+  
+    width: 15,
+    height: 15,
+    hole: false,
+    
+    puzzles: [
+
+    ],
+    
+    trees: [
+    ],
+    
+    cubes: [
+    ],
+    
+    apples: [
+      
+    ],
+    
+    stones: [
+    ],
+    
+    bridges: [
+      {
+        x: 1,
+        y: 5,
+        angle: 180,
+        open: 1,
+        puzzles: 0,
+        to: 0
+      },
+    ],
+  },
  
 
 ];

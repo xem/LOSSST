@@ -113,9 +113,12 @@ scene.ontouchstart = scene.ontouchmove = e => {
     dir = cell.dataset.dir;
     mousemove(dir);
   }
+  
+  e.preventDefault();
 }
 
 scene.ontouchend = e => {
+  preventZoom(e);
   grabbed = 0;
   mousedown = 0;
   cell = null;
@@ -124,7 +127,7 @@ scene.ontouchend = e => {
 }
 
 // Avoid all default event behaviors
-onmousedown = onmousemove = onmouseup = ontouchmove = onclick = ondblclick = onscroll = onkeypress = ondblclick = function(e){
+onmousedown = onmousemove = onmouseup = ontouchmove = onclick = ondblclick = onscroll = onkeypress = function(e){
   e.preventDefault();
 }
 
@@ -235,4 +238,17 @@ placecontrols();
 
 onresize = function(){
  //location = location; 
+}
+
+function preventZoom(e) {
+  /*var t2 = e.timeStamp;
+  var t1 = e.currentTarget.dataset.lastTouch || t2;
+  var dt = t2 - t1;
+  var fingers = e.touches.length;
+  e.currentTarget.dataset.lastTouch = t2;
+
+  if (!dt || dt > 500 || fingers > 1) return; // not double-tap
+
+  e.preventDefault();
+  e.target.click();*/
 }
