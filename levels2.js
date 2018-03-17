@@ -408,7 +408,7 @@ levels = [
       
       {
         x: 4,
-        y: 10,
+        y: 5,
         size: 4,
         wrap: 0,
         wall: "",
