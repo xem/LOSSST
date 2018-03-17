@@ -6,7 +6,7 @@ render = () => {
   
   if(currentroom > 0) {
     try {
-      music.src = currentroom + ".mp3?v=3";
+      music.src = currentroom + ".mp3?v=4";
       music.play();
     }
     catch(e){}
@@ -80,6 +80,7 @@ render = () => {
     
     else {
        window["puzzleground" + i].style.background = 'url("images/grass.png") 0 10vmin repeat-x, url("images/grass2.png") 0 0 repeat-x';
+       window["puzzleground" + i].style.backgroundSize = '70vmin, 70vmin';
        document.querySelector(`#puzzle${currentroom}-${i} .puzzlegrass`).style.opacity = "0";
     }
     

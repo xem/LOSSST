@@ -22,16 +22,14 @@ Songs:
 - 0: Edvard Grieg - Peer Gynt Suite No. 1, Op. 46 - I. Morning Mood
 - 1: Tchaikovski - The Nutcracker: Suite no. 1: Dance of the Mirlitons
 - 2: Wolfgang Amadeus Mozart - Sonata No. 11 in A Major for Piano. K.331-III (Rondo) - Alla Turca  Allegretto
-- 3: Jacques Offenbach - Five Overtures - I. Orpheus In The Underworld
-- 4: Wolfgang Amadeus Mozart - Serenade in G, K.525, "Eine Kleine Nachtmisik" Allegro
-- 5: Gabriel Fauré - Pavane, Op.50
-- 6: Edvard Grieg - Peer Gynt Suite No. 1, Op. 46 - IV. In the Hall Of The Mountain King
-- 7: Georges Bizet - L'arlésienne suite No.2. IV: Farandole
-- 8: Vivaldi - Autumn Mvt 3: Allegro
-- 9: Johannes Brahms - Hungarian Dance No. 5 in G Minor, WoO1
-- 10: Ludwig van Beethoven - Für Elise, WoO 59
-- 11: Antonin Dvorak - Serenade for Strings in E Major, Op. 22: II. Tempo di valse"  Eugen Duvier
-- 12: Johann Sebastien Bach - Orchestral Suite No.3 in D Major, BWV 1068
+- 3: Wolfgang Amadeus Mozart - Serenade in G, K.525, "Eine Kleine Nachtmisik" Allegro
+- 4: Jacques Offenbach - Five Overtures - I. Orpheus In The Underworld
+- 5: Edvard Grieg - Peer Gynt Suite No. 1, Op. 46 - IV. In the Hall Of The Mountain King
+- 6: Georges Bizet - L'arlésienne suite No.2. IV: Farandole
+- 7: Johannes Brahms - Hungarian Dance No. 5 in G Minor, WoO1
+- 8: Ludwig van Beethoven - Für Elise, WoO 59
+- 9: Antonin Dvorak - Serenade for Strings in E Major, Op. 22: II. Tempo di valse"  Eugen Duvier
+- 10: Johann Sebastien Bach - Orchestral Suite No.3 in D Major, BWV 1068
 
 - ?: Symphony No 9 in E Minor, Op. 95, B.187 "from the new world"
 

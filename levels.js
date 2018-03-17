@@ -1315,7 +1315,7 @@ levels = [
      
       {
         x: 40,
-        y: 5,
+        y: 4,
         size: 7,
         depth: 1,
         wrap: 0,
@@ -1406,7 +1406,7 @@ levels = [
   // Puzzles 56-60
   {
   
-    width: 75,
+    width: 60,
     height: 11,
     hole: false,
     
@@ -1538,14 +1538,14 @@ levels = [
       },
       
       {
-        x: 9,
-        y: 3,
+        x: 7,
+        y: 6,
         eaten: 0
       },
       
       {
         x: 5,
-        y: 2,
+        y: 7,
         eaten: 0
       },
     ],
@@ -1563,17 +1563,17 @@ levels = [
         to: 0
       },
 
-      /*{
+      {
         x: 59,
         y: 5,
         angle: 0,
         open: 0,
-        puzzles: 39,
+        puzzles: 60,
         to: 10,
         to_x: -3,
         to_y: 5,
         to_z: 0
-      }*/
+      }
     ],
   },
  
