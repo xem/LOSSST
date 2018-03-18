@@ -6,6 +6,9 @@ movesnake = (movecamera = 1) => {
   // Clear current puzzle
   clearpuzzle();
   
+  
+  // CURRENT PUZZLE & STATUS
+  
   // Reset current puzzle, puzzling flags
   if(!puzzling){
     currentpuzzle = null;
@@ -32,6 +35,8 @@ movesnake = (movecamera = 1) => {
     }
   }
   
+  // DISTANCE FROM RESET POINT
+  
   if(goingback){
     movessincelatestpuzzle--;
   }
@@ -40,32 +45,19 @@ movesnake = (movecamera = 1) => {
     movessincelatestpuzzle++;
   }
   
-  document.title = movessincelatestpuzzle;
+  // PUZZLING
   
-  // Stay zoomed if one of the first 4 cubes after the head is in the puzzle
-  if(
-    (currentpuzzle && !currentpuzzle.solved)
-    && (
-      inbounds0 // || inbounds.slice(1, snakelength).includes(1)
-      //&& snakepos.length > snakelength + 10
-    )
-  ){
+  // Stay zoomed if cube 0 is inbounds (puzzle + 1-square margin)
+  if(currentpuzzle && !currentpuzzle.solved && inbounds0){
     puzzling = 1;
   }
   else {
     puzzling = 0;
   }
   
-  if(puzzling){
-    controls.style.display = "none";
-  }
-  else {
-    controls.style.display = "";
-  }
-  
-  // Check if each cube is in bounds, if yes, color the cell in blue or red
+  // MOVE CUBE, GRASS, SHADOW
   for(i = 0; i < snakelength; i++){
-    window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin) " + (/*(!mobile || (mobile && i == 0)) &&*/ snakepos[i][2] > 0 /* && onacube == 0 */ ? "rotateX(-90deg) translateY(-5vmin) translateZ(-3vmin)" : "");
+    window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin) " + (snakepos[i][2] > 0 ? "rotateX(-90deg) translateY(-5vmin) translateZ(-3vmin)" : "");
     
     if(!mobile || (mobile && i == 0)){
       window["snakecube" + i].style.transform = "rotateZ(" + (snakeangles[i]) + "deg)";
@@ -99,6 +91,8 @@ movesnake = (movecamera = 1) => {
       }
     }
   }
+  
+  // MOVE CAMERA
   
   if(movecamera){
     

@@ -44,17 +44,18 @@
 <button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 10; localStorage.snakelength = 16; localStorage.totalpuzzles = 49; location = location',200)" style=left:55vmin>10</button>
 <button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 11; localStorage.snakelength = 17; localStorage.totalpuzzles = 55; location = location',200)" style=left:60vmin>11</button>
 <button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 12; localStorage.snakelength = 20; localStorage.totalpuzzles = 60; location = location',200)" style=left:65vmin>boss</button>
-
+<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 0; localStorage.snakelength = 3; localStorage.totalpuzzles = 0; location = `index2.html`',200)" style=left:75vmin>world 2</button>
 
 <div id="perspective">
   <div id="scene"></div>
 </div>
 
+<script src="init.js"></script>
 <script src="levels.js"></script>
 <script src="inputs.js"></script>
 <script src="render.js"></script>
 <script src="mousemove.js"></script>
 <script src="movesnake.js"></script>
 <script src="puzzle.js"></script>
-<script src="init.js"></script>
+<script src="start.js"></script>
 </body>

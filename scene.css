@@ -112,7 +112,7 @@
   height: 10vmin;
   bottom: 100%;
   left: 0;
-  transform: translateY(9vmin) rotateX(-30deg);
+  transform: translateY(9vmin) translateZ(1vmin) rotateX(-30deg);
   transform-origin: bottom center;
   -moz-pointer-events: none;
   -webkit-pointer-events: none;
@@ -133,7 +133,7 @@
   -webkit-pointer-events: none;
   pointer-events: none;
   transform-origin: center bottom;
-  transform: translateX(5%) scaleX(-1) translateY(8vmin) rotateZ(235deg);
+  transform: translateX(5%) scaleX(-1) translateY(8vmin) translateZ(.3vmin) rotateZ(235deg);
   background: url(images/appleshadow.png) no-repeat;
   background-size: 100%;
   opacity: .25;
@@ -248,6 +248,51 @@
 }
 
 .cube.rockcube .b {
+  transform: translateZ(10vmin) rotateX(-90deg);
+  transform-origin: top left;
+}
+
+
+
+
+
+
+.bosscube {
+  width: 10vmin;
+  height: 10vmin;
+  background: green;
+}
+
+.bosscube div {
+  background: green;
+  background-size: 100%;
+  border: .5vmin solid #000;
+}
+
+.bosscube .u {
+  background-size: 100%;
+}
+
+.cube.bosscube .u {
+  transform: translateZ(10vmin);
+}
+
+.cube.bosscube .l {
+  transform: translateX(10vmin) rotateY(-90deg);
+  transform-origin: top left;
+}
+
+.cube.bosscube .r {
+  transform: rotateY(-90deg);
+  transform-origin: top left;
+}
+
+.cube.bosscube .f {
+  transform: translateY(10vmin) translateZ(10vmin) rotateX(-90deg);
+  transform-origin: top left;
+}
+
+.cube.bosscube .b {
   transform: translateZ(10vmin) rotateX(-90deg);
   transform-origin: top left;
 }

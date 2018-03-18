@@ -5,65 +5,6 @@ dir = null;
 px = py = 0;
 
 // Mobile controls
-/*
-controls.ontouchstart = controls.ontouchmove = e => {
-  try{
-    music.play();
-  }
-  catch(error){}
-  
-  e.preventDefault();
-  e.stopPropagation();
-  if(lock) return;
-  mousedown = 1;
-  
-  
-  px2 = e.targetTouches[0].clientX;
-  py2 = e.targetTouches[0].clientY;
-  
-  dx = px2 - px;
-  dy = py2 - py;
-  
-  // Left
-  if(dx < -30 && Math.abs(dx) > Math.abs(dy)) {
-    dir = 0;
-  }
-  
-  // Right
-  else if(dx > 30 && Math.abs(dx) > Math.abs(dy)) {
-    dir = 2;
-  }
-  
-  // Left
-  else if(dy < -30 && Math.abs(dy) > Math.abs(dx)) {
-    dir = 1;
-  }
-  
-  // Left
-  else if(dy > 30 && Math.abs(dy) > Math.abs(dx)) {
-    dir = 3;
-  }
-  
-  else {
-    dir = null;
-  }
-  try {
-    mousemove(dir, 1);
-  }
-  catch(e){
-    console.log(e);
-  }
-}
-
-controls.ontouchend = e => {
-  grabbed = 0;
-  mousedown = 0;
-  cell = null;
-  move_b = move_f = move_l = move_r = 0;
-  dir = null;
-}
-*/
-
 scene.ontouchstart = scene.ontouchmove = e => {
   if(lock) return;
   
@@ -118,17 +59,11 @@ scene.ontouchstart = scene.ontouchmove = e => {
 }
 
 scene.ontouchend = e => {
-  preventZoom(e);
   grabbed = 0;
   mousedown = 0;
   cell = null;
   move_b = move_f = move_l = move_r = 0;
   dir = null;
-}
-
-// Avoid all default event behaviors
-onmousedown = onmousemove = onmouseup = ontouchmove = onclick = ondblclick = onscroll = onkeypress = function(e){
-  e.preventDefault();
 }
 
 // Keyboard controls
@@ -220,35 +155,7 @@ onkeyup = e => {
   }
 }
 
-// Mobile controls (pad)
-placecontrols = onresize = onorientationchange = function(e){
-  if(innerWidth > innerHeight){
-    px = innerWidth - 30 - 80;
-    py = innerHeight / 2;
-  }
-  
-  else {
-    px = innerWidth - 30 - 80;
-    py = innerHeight - 30 - 80;
-  }
-  controls.style.backgroundPosition = (px - 80) + "px " + (py - 80) + "px";
-}
-
-placecontrols();
-
-onresize = function(){
- //location = location; 
-}
-
-function preventZoom(e) {
-  /*var t2 = e.timeStamp;
-  var t1 = e.currentTarget.dataset.lastTouch || t2;
-  var dt = t2 - t1;
-  var fingers = e.touches.length;
-  e.currentTarget.dataset.lastTouch = t2;
-
-  if (!dt || dt > 500 || fingers > 1) return; // not double-tap
-
+// Avoid all default event behaviors
+onmousedown = onmousemove = onmouseup = ontouchmove = onclick = ondblclick = onscroll = onkeypress = function(e){
   e.preventDefault();
-  e.target.click();*/
 }

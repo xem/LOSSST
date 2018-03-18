@@ -1,14 +1,3 @@
-mobile = 0;
-
-if(
-  navigator.userAgent.match(/Android/i)
-  || navigator.userAgent.match(/iPhone/i)
-  || navigator.userAgent.match(/iPad/i)
-){
-  mobile = 1;
-}
-
-
 // When the player tries to go in a direction (finger/keyboard)
 mousemove = (dir) => {
   
@@ -21,7 +10,9 @@ mousemove = (dir) => {
   pos = [snakepos[0][0], snakepos[0][1], snakepos[0][2]];
   angle = snakeangles[0];
   
-  // Go to the right
+  // CONTROLS
+  
+  // Go right
   if(dir == 2){
     
     // Vertical puzzles bounds
@@ -94,9 +85,8 @@ mousemove = (dir) => {
     }
   }
   
-  // Go forward
+  // Go forward / upward
   else if(dir == 1){
-    
     
     // Vertical puzzle: go upward
     if(currentpuzzle && currentpuzzle.wall && pos[0] >= currentpuzzle.x && pos[0] <= currentpuzzle.x + currentpuzzle.size - 1 && pos[1] == currentpuzzle.y){
@@ -115,16 +105,14 @@ mousemove = (dir) => {
         }
       
       }
-      
 
-      
       // Bounds
       else {
         return;
       }
     }
 
-    // Go forward
+    // Flat puzzle: go forward
     else {
 
       // Update head y
@@ -153,23 +141,15 @@ mousemove = (dir) => {
     }
   }
   
-  // Go backward
+  // Go backward / downward
   else if(dir == 3){
-    
-    // Walk on a rock cube
-    /*onacube = 0;
-    for(i in levels[currentroom].cubes){
-      var cube = levels[currentroom].cubes[i];
-      if(snakepos[0][0] == cube[0] && snakepos[0][1] == cube[1] && snakepos[0][2] == 1){
-        onacube = 1;
-      }
-    }*/
     
     // Vertical puzzle: go downward
     if(/*!onacube && */currentpuzzle && currentpuzzle.wall && pos[0] >= currentpuzzle.x && pos[0] <= currentpuzzle.x + currentpuzzle.size && pos[1] == currentpuzzle.y && pos[2] > 0){
       pos[2]--;
     }
     
+    // Flat puzzle: go backward 
     else{
       
       // Update head y
@@ -196,7 +176,6 @@ mousemove = (dir) => {
     // Save the current move
     move_b = 1;
     move_f = move_l = move_r = 0;
-
   }
   
   // If no control is pressed, cancel all moves
@@ -204,6 +183,8 @@ mousemove = (dir) => {
     move_b = move_f = move_l = move_r = 0;
     return;
   }
+  
+  // COLLISIONS
   
   // Reset collision flag
   collision = 0;
@@ -233,7 +214,7 @@ mousemove = (dir) => {
   
   // Collisions with room bounds
   if(
-       pos[0] < 0
+    pos[0] < 0
     || pos[0] >= levels[currentroom].width
     || pos[1] < 0
     || pos[1] >= levels[currentroom].height
@@ -357,6 +338,8 @@ mousemove = (dir) => {
     return;
   }
   
+  // MOVE
+  
   // Do all the move animations
   try{
     movesnake();
@@ -364,6 +347,8 @@ mousemove = (dir) => {
   catch(e){
    console.log(e);
   }
+  
+  // LOCK
   
   // Lock the controls for 200ms
   lock = 1;
@@ -375,7 +360,7 @@ mousemove = (dir) => {
   }
 }
 
-// If mouse is down, call mousemove every 55ms to continue current move if possible
+// If mouse / finger is held down, call mousemove every 55ms / 155ms to continue current move if possible
 mousedown = 0;
 setInterval(() => {
   if(mousedown && (!puzzling || !mobile)){

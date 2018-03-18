@@ -26,6 +26,7 @@ render = () => {
 <div id=apples></div>
 <div id=cubes></div>
 <div id=snake></div>
+<div id=boss></div>
 <div id=mask></div>`;
 
   for(i = 0; i < snakelength; i++){
@@ -92,6 +93,29 @@ render = () => {
     }
   }
   
+  if(levels[currentroom].boss){
+    for(i = 0; i < 5; i++){
+      for(j = 0; j < 6; j++){
+        for(k = 0; k < 6; k++){
+          console.log(levels[currentroom].boss[i]);
+          
+          if(+levels[currentroom].boss[i][k * 6 + j]){
+            boss.innerHTML +=
+            `<div class="cube bosscube" style="left:0;top:0;transform:translateX(${(5+j)*10}vmin)translateY(${(5+k)*10}vmin)translateZ(${(6-i)*10}vmin)">
+              <div class="u"></div>
+              <div class="f"></div>
+              <div class="r"></div>
+              <div class="l"></div>
+              <div class="d"></div>
+            </div>`;
+          }
+        }
+      }
+    }
+    boss.style.transform = `translateZ(1000vmin)`;
+  }
+  
+  
   
   for(i in levels[currentroom].cubes){
     cube = levels[currentroom].cubes[i];
@@ -141,11 +165,51 @@ render = () => {
 
   movesnake(0);
   
+  // BOSS CINEMATIC
+  b.style.backgroundImage = "url(images/space.jpg)";
+  perspective.style.perspective = "130vmin";
+  if(levels[currentroom].boss){
+    setTimeout(function(){
+      b.style.transition = "2s";
+      scene.style.transition = "2s";
+      b.style.backgroundPositionY = "200vmin";
+      scene.style.transform = `translateX(-74vmin) translateY(-18vmin) translateZ(126vmin) rotateX(170deg)`;
+    }, 1000);
+    
+    setTimeout(function(){
+      b.style.transition = "2s";
+      scene.style.transition = "2s";
+      b.style.backgroundPositionY = "0vmin";
+      scene.style.transform = "translateX(-83vmin) translateY(-34vmin) translateZ(27vmin) rotateX(91deg)";
+    }, 4500);
+    
+    setTimeout(function(){
+      boss.style.transition = "4s";
+      boss.style.transform = `translateY(0vmin)`;
+      boss.style.transformOrigin = `80vmin 80vmin`;
+    }, 2000);
+    
+    setTimeout(function(){
+      boss.style.transition = ".5s";
+      boss.style.transform = `rotateZ(-45deg)`;
+    }, 6000);
+    
+    setTimeout(function(){
+      boss.style.transition = ".5s";
+      boss.style.transform = `rotateZ(45deg)`;
+    }, 7000);
+    
+    setTimeout(function(){
+      boss.style.transition = ".5s";
+      boss.style.transform = `rotateZ(0)`;
+    }, 8000);
+  }
+  
   snakepos[0][2] = 0;
   
   //b.style.backgroundPosition = sky + "px -80vmin";
   skyintro = 1;
-  setTimeout("mask.remove()", 300);
   setTimeout(movesnake, 500);
+  setTimeout("mask.remove()", 300);
   setTimeout("b.classList.remove('intro')", 2500);
 }

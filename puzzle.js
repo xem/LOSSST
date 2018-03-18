@@ -14,16 +14,18 @@ clearpuzzle = () => {
 }
 
 // Check if a puzzle is solved
+// Also, teleport
 checkpuzzle = () => {
 
   cell = null;
   
   var i, j;
   
-  // Color cells in red/blue/none
   if(!currentpuzzle.solved){
     for(i = 0; i < snakelength; i++){
       if(snakepos[i][0] >= currentpuzzle.x && snakepos[i][0] < currentpuzzle.x + currentpuzzle.size){
+        
+        // TELEPORT
         
         if(currentpuzzle.ground){
           cell = window[`cell${currentroom}-${currentpuzzle.index}-${(snakepos[i][1] - currentpuzzle.y) * currentpuzzle.size + (snakepos[i][0] - currentpuzzle.x)}`];
@@ -114,10 +116,11 @@ checkpuzzle = () => {
             }
           }
         }
-        
       }
     }
   }
+  
+  // CHECK
   
   // Check solution
   solved = 1;
