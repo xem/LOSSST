@@ -166,43 +166,45 @@ render = () => {
   movesnake(0);
   
   // BOSS CINEMATIC
-  b.style.backgroundImage = "url(images/space.jpg)";
-  perspective.style.perspective = "130vmin";
-  if(levels[currentroom].boss){
-    setTimeout(function(){
-      b.style.transition = "2s";
-      scene.style.transition = "2s";
-      b.style.backgroundPositionY = "200vmin";
-      scene.style.transform = `translateX(-74vmin) translateY(-18vmin) translateZ(126vmin) rotateX(170deg)`;
-    }, 1000);
-    
-    setTimeout(function(){
-      b.style.transition = "2s";
-      scene.style.transition = "2s";
-      b.style.backgroundPositionY = "0vmin";
-      scene.style.transform = "translateX(-83vmin) translateY(-34vmin) translateZ(27vmin) rotateX(91deg)";
-    }, 4500);
-    
-    setTimeout(function(){
-      boss.style.transition = "4s";
-      boss.style.transform = `translateY(0vmin)`;
-      boss.style.transformOrigin = `80vmin 80vmin`;
-    }, 2000);
-    
-    setTimeout(function(){
-      boss.style.transition = ".5s";
-      boss.style.transform = `rotateZ(-45deg)`;
-    }, 6000);
-    
-    setTimeout(function(){
-      boss.style.transition = ".5s";
-      boss.style.transform = `rotateZ(45deg)`;
-    }, 7000);
-    
-    setTimeout(function(){
-      boss.style.transition = ".5s";
-      boss.style.transform = `rotateZ(0)`;
-    }, 8000);
+  if(currentroom == 12){
+    b.style.backgroundImage = "url(images/space.jpg)";
+    perspective.style.perspective = "130vmin";
+    if(levels[currentroom].boss){
+      setTimeout(function(){
+        b.style.transition = "2s";
+        scene.style.transition = "2s";
+        b.style.backgroundPositionY = "200vmin";
+        scene.style.transform = `translateX(-74vmin) translateY(-18vmin) translateZ(126vmin) rotateX(170deg)`;
+      }, 1000);
+      
+      setTimeout(function(){
+        b.style.transition = "2s";
+        scene.style.transition = "2s";
+        b.style.backgroundPositionY = "0vmin";
+        scene.style.transform = "translateX(-83vmin) translateY(-34vmin) translateZ(27vmin) rotateX(91deg)";
+      }, 4500);
+      
+      setTimeout(function(){
+        boss.style.transition = "4s";
+        boss.style.transform = `translateY(0vmin)`;
+        boss.style.transformOrigin = `80vmin 80vmin`;
+      }, 2000);
+      
+      setTimeout(function(){
+        boss.style.transition = ".5s";
+        boss.style.transform = `rotateZ(-45deg)`;
+      }, 6000);
+      
+      setTimeout(function(){
+        boss.style.transition = ".5s";
+        boss.style.transform = `rotateZ(45deg)`;
+      }, 7000);
+      
+      setTimeout(function(){
+        boss.style.transition = ".5s";
+        boss.style.transform = `rotateZ(0)`;
+      }, 8000);
+    }
   }
   
   snakepos[0][2] = 0;
