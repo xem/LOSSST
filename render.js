@@ -27,6 +27,7 @@ render = () => {
 <div id=cubes></div>
 <div id=snake></div>
 <div id=boss></div>
+<div id=bossground style="display:none"></div>
 <div id=mask></div>`;
 
   for(i = 0; i < snakelength; i++){
@@ -97,11 +98,10 @@ render = () => {
     for(i = 0; i < 5; i++){
       for(j = 0; j < 6; j++){
         for(k = 0; k < 6; k++){
-          console.log(levels[currentroom].boss[i]);
           
           if(+levels[currentroom].boss[i][k * 6 + j]){
             boss.innerHTML +=
-            `<div class="cube bosscube" style="left:0;top:0;transform:translateX(${(5+j)*10}vmin)translateY(${(5+k)*10}vmin)translateZ(${(6-i)*10}vmin)">
+            `<div class="cube bosscube" style="left:0;top:0;transform:translateX(${(5+j)*10}vmin)translateY(${(2+k)*10}vmin)translateZ(${(6-i)*10}vmin)">
               <div class="u"></div>
               <div class="f"></div>
               <div class="r"></div>
@@ -114,6 +114,21 @@ render = () => {
     }
     boss.style.transform = `translateZ(1000vmin)`;
   }
+  
+  if(levels[currentroom].bossground){
+    for(j = 0; j < 6; j++){
+      for(k = 0; k < 6; k++){
+        
+        if(+levels[currentroom].bossground[k * 6 + j]){
+          bossground.innerHTML +=
+          `<div class="bossshadow" style="left:0;top:0;transform:translateX(${(5+j)*10}vmin)translateY(${(2+k)*10}vmin)translateZ(.3vmin)"></div>`;
+        }
+      }
+    }
+    boss.style.transform = `translateZ(1000vmin)`;
+  }
+  
+  
   
   
   
@@ -167,43 +182,65 @@ render = () => {
   
   // BOSS CINEMATIC
   if(currentroom == 12){
+    b.classList.add("boss");
     b.style.backgroundImage = "url(images/space.jpg)";
     perspective.style.perspective = "130vmin";
     if(levels[currentroom].boss){
       setTimeout(function(){
+        lock = 1;
         b.style.transition = "2s";
         scene.style.transition = "2s";
-        b.style.backgroundPositionY = "200vmin";
+        b.style.backgroundPositionY = "250vmin";
         scene.style.transform = `translateX(-74vmin) translateY(-18vmin) translateZ(126vmin) rotateX(170deg)`;
       }, 1000);
       
       setTimeout(function(){
         b.style.transition = "2s";
+        bossground.style.transition = "2s";
         scene.style.transition = "2s";
-        b.style.backgroundPositionY = "0vmin";
+        b.style.backgroundPositionY = "100vmin";
+        bossground.style.display = "";
         scene.style.transform = "translateX(-83vmin) translateY(-34vmin) translateZ(27vmin) rotateX(91deg)";
-      }, 4500);
+      }, 4100);
       
       setTimeout(function(){
         boss.style.transition = "4s";
-        boss.style.transform = `translateY(0vmin)`;
-        boss.style.transformOrigin = `80vmin 80vmin`;
+        boss.style.transform = `translateZ(0vmin)`;
+        boss.style.transformOrigin = `80vmin 50vmin`;
+        bossground.style.transformOrigin = `80vmin 50vmin`;
       }, 2000);
       
       setTimeout(function(){
         boss.style.transition = ".5s";
+        bossground.style.transition = ".5s";
         boss.style.transform = `rotateZ(-45deg)`;
+        bossground.style.transform = `rotateZ(-45deg)`;
       }, 6000);
       
       setTimeout(function(){
         boss.style.transition = ".5s";
         boss.style.transform = `rotateZ(45deg)`;
+        bossground.style.transform = `rotateZ(45deg)`;
       }, 7000);
       
       setTimeout(function(){
         boss.style.transition = ".5s";
         boss.style.transform = `rotateZ(0)`;
+        bossground.style.transform = `rotateZ(0)`;
       }, 8000);
+      
+      setTimeout(function(){
+        boss.style.transition = ".5s";
+        boss.style.transform = `translateZ(100vmin)`;
+        b.style.backgroundPositionY = "0vmin";
+        movesnake();
+        lock = 0;
+        var t = -Math.PI / 4;
+        circle = setInterval(function(){
+          t += Math.PI / 32;
+          bossground.style.transform = `translateX(${(Math.round(3 * Math.cos(t)))*10}vmin) translateY(${(Math.round(2 + 3 * Math.sin(t)))*10}vmin) translateZ(.3vmin)`;
+        },750);
+      }, 9000);
     }
   }
   

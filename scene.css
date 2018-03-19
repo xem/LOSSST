@@ -296,3 +296,14 @@
   transform: translateZ(10vmin) rotateX(-90deg);
   transform-origin: top left;
 }
+
+.bossshadow {
+  position: fixed;
+  width: 10vmin;
+  height: 10vmin;
+  background: rgba(0,0,0,.5);
+}
+
+.boss .snakegrass {
+  display: none;
+}
