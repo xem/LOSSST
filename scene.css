@@ -38,6 +38,16 @@
   transform-origin: top center;
 }
 
+#scenewall {
+  position: fixed;
+  left: 3vmin;
+  top: 0;
+  background: linear-gradient(rgba(255,255,255,.3), rgba(255,255,255,.3)), url(images/terre.png);
+  background-size: 100%, 70vmin;
+  transform-origin: top center;
+  transition: transform 5s;
+}
+
 .mobile #scenedepth {
   background: url(images/terre.png);
 }
@@ -306,4 +316,13 @@
 
 .boss .snakegrass {
   display: none;
+}
+
+#bosswall {
+  width: 60vmin;
+  height: 60vmin;
+  xbackground: red;
+  transform-origin: center bottom;
+  transform: translateY(-60vmin) rotateX(-90deg);
+  transition: transform 1s;
 }

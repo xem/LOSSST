@@ -44,8 +44,10 @@ back = 0;
 // Inputs flags
 mousedown = 0;
 keydown = 0;
+animation = 0;
 lock = 0;
 cell = null;
+scenewallvisible = 0;
 
 // Cinematic
 animation = 0;

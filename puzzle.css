@@ -41,7 +41,7 @@
   background-size: 100%;
 }
 
-.cell.blue {
+.cell.blue, .bossshadow.blue {
   background: #2af;
 }
 

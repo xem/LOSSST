@@ -17,6 +17,7 @@ render = () => {
   
   scene.innerHTML =
 `<div id=scenedepth style="width:${levels[currentroom].width * 10 - 5}vmin; transform: translateY(${levels[currentroom].height * 10}vmin) rotateX(-45deg)"></div>
+<div id=scenewall style="width:${levels[currentroom].width * 10 - 5}vmin; transform: translateZ(-100vmin) rotateX(90deg)"></div>
 <div id=holes></div>
 <div id=bridges></div>
 <div id=puzzles></div>
@@ -28,7 +29,12 @@ render = () => {
 <div id=snake></div>
 <div id=boss></div>
 <div id=bossground style="display:none"></div>
+<div id=bosswall style="display:none;transform:translateX(40vmin) translateY(-60vmin) rotateX(-90deg)"></div>
 <div id=mask></div>`;
+
+  if(levels[currentroom].boss){
+    scenewall.style.height = "100vmin";
+  }
 
   for(i = 0; i < snakelength; i++){
     snake.innerHTML +=
@@ -121,7 +127,7 @@ render = () => {
         
         if(+levels[currentroom].bossground[k * 6 + j]){
           bossground.innerHTML +=
-          `<div class="bossshadow" style="left:0;top:0;transform:translateX(${(5+j)*10}vmin)translateY(${(2+k)*10}vmin)translateZ(.3vmin)"></div>`;
+          `<div id="bossgroundcell_${j}_${k}" class="bossshadow" style="left:0;top:0;transform:translateX(${(5+j)*10}vmin)translateY(${(2+k)*10}vmin)translateZ(.3vmin)"></div>`;
         }
       }
     }
@@ -138,6 +144,7 @@ render = () => {
 `<div class="cube rockcube" style="left:${cube[0]*10}vmin;top:${cube[1]*10}vmin">
   <div class="u"></div>
   <div class="f"></div>
+  <div class="b"></div>
   <div class="r"></div>
   <div class="l"></div>
 </div>`;
@@ -182,6 +189,9 @@ render = () => {
   
   // BOSS CINEMATIC
   if(currentroom == 12){
+    animation = 1;
+    var noblue = 1;
+    var circle;
     b.classList.add("boss");
     b.style.backgroundImage = "url(images/space.jpg)";
     perspective.style.perspective = "130vmin";
@@ -199,13 +209,14 @@ render = () => {
         bossground.style.transition = "2s";
         scene.style.transition = "2s";
         b.style.backgroundPositionY = "100vmin";
+        bossground.style.transform = `translateY(-10vmin)`;
         bossground.style.display = "";
         scene.style.transform = "translateX(-83vmin) translateY(-34vmin) translateZ(27vmin) rotateX(91deg)";
       }, 4100);
       
       setTimeout(function(){
         boss.style.transition = "4s";
-        boss.style.transform = `translateZ(0vmin)`;
+        boss.style.transform = `translateY(-10vmin) translateZ(0vmin)`;
         boss.style.transformOrigin = `80vmin 50vmin`;
         bossground.style.transformOrigin = `80vmin 50vmin`;
       }, 2000);
@@ -213,34 +224,251 @@ render = () => {
       setTimeout(function(){
         boss.style.transition = ".5s";
         bossground.style.transition = ".5s";
-        boss.style.transform = `rotateZ(-45deg)`;
-        bossground.style.transform = `rotateZ(-45deg)`;
+        boss.style.transform = `translateY(-10vmin) rotateZ(-45deg)`;
+        bossground.style.transform = `translateY(-10vmin) rotateZ(-45deg)`;
       }, 6000);
       
       setTimeout(function(){
         boss.style.transition = ".5s";
-        boss.style.transform = `rotateZ(45deg)`;
-        bossground.style.transform = `rotateZ(45deg)`;
+        boss.style.transform = `translateY(-10vmin) rotateZ(45deg)`;
+        bossground.style.transform = `translateY(-10vmin) rotateZ(45deg)`;
+        animation = 0;
       }, 7000);
       
       setTimeout(function(){
         boss.style.transition = ".5s";
-        boss.style.transform = `rotateZ(0)`;
-        bossground.style.transform = `rotateZ(0)`;
+        boss.style.transform = `translateY(-10vmin) rotateZ(0)`;
+        bossground.style.transform = `translateY(-10vmin) rotateZ(0)`;
+        noblue = 0;
       }, 8000);
+      
+      var quarterturn = 0;
       
       setTimeout(function(){
         boss.style.transition = ".5s";
-        boss.style.transform = `translateZ(100vmin)`;
+        boss.style.transform = `translateY(-10vmin) translateZ(190vmin)`;
         b.style.backgroundPositionY = "0vmin";
         movesnake();
         lock = 0;
-        var t = -Math.PI / 4;
+        var t = -Math.PI / 2;
         circle = setInterval(function(){
-          t += Math.PI / 32;
+          t += Math.PI / 2;
+          quarterturn++;
           bossground.style.transform = `translateX(${(Math.round(3 * Math.cos(t)))*10}vmin) translateY(${(Math.round(2 + 3 * Math.sin(t)))*10}vmin) translateZ(.3vmin)`;
-        },750);
+          noblue = 1;
+          setTimeout(function(){
+            noblue = 0;
+          }, 200);
+        },2000);
       }, 9000);
+      
+      colorshadow = setInterval(function(){
+        for(var i = 0; i < 6; i++){
+          for(var j = 0; j < 6; j++){
+            if(window["bossgroundcell_" + (i) + "_" + (j)]){
+              window["bossgroundcell_" + (i) + "_" + (j)].classList.remove("blue");
+            }
+          }
+        }
+        
+        if(!noblue){
+          var bluecells = 0;
+          for(var i = 0; i < snakelength; i++){
+
+            if(snakepos[i][2] == 0){
+
+              if(quarterturn % 4 == 0){
+                if(window["bossgroundcell_" + (snakepos[i][0] - 5) + "_" + (snakepos[i][1] - 1)]){
+                  window["bossgroundcell_" + (snakepos[i][0] - 5) + "_" + (snakepos[i][1] - 1)].classList.add("blue");
+                  bluecells++;
+                }
+              }
+              
+              else if(quarterturn % 4 == 1){
+                if(window["bossgroundcell_" + (snakepos[i][0] - 8) + "_" + (snakepos[i][1] - 4)]){
+                  window["bossgroundcell_" + (snakepos[i][0] - 8) + "_" + (snakepos[i][1] - 4)].classList.add("blue");
+                  bluecells++;
+                }
+              }
+              
+              else if(quarterturn % 4 == 2){
+                if(window["bossgroundcell_" + (snakepos[i][0] - 5) + "_" + (snakepos[i][1] - 7)]){
+                  window["bossgroundcell_" + (snakepos[i][0] - 5) + "_" + (snakepos[i][1] - 7)].classList.add("blue");
+                  bluecells++;
+                }
+              }
+              
+              else if(quarterturn % 4 == 3){
+                if(window["bossgroundcell_" + (snakepos[i][0] - 2) + "_" + (snakepos[i][1] - 4)]){
+                  window["bossgroundcell_" + (snakepos[i][0] - 2) + "_" + (snakepos[i][1] - 4)].classList.add("blue");
+                    bluecells++;
+                }
+              }
+            }
+          }
+
+          // Win
+          if(bluecells == snakelength){
+            animation = 1;
+            clearInterval(circle);
+            clearInterval(colorshadow);
+            setTimeout(function(){
+              for(i = 0; i < snakelength; i++){
+                snakepos.unshift([8, 4, i]);
+                window["snakecubemove" + i].style.transition = "1s";
+              }
+              movesnake(0);
+              snakecube0.style.transform = "rotateZ(-180deg)";
+              scene.style.transition = "1s";
+              scene.style.transform = `translateX(-74vmin) translateY(161vmin) translateZ(47vmin) rotateX(112deg)`;
+              scene.style.transformOrigin = `80vmin 41vmin`;
+            },300);
+            
+            setTimeout(function(){
+              bossground.style.display = "none";
+              boss.style.transition = "transform .8s";
+              boss.style.transformOrigin = "82vmin 50vmin 170vmin";
+              boss.style.transform = "rotateX(-106deg) translateY(-50vmin) translateZ(170vmin)";
+            },1000);
+            
+            setTimeout(function(){
+              boss.style.transition = "1s";
+              boss.style.transformOrigin = "82vmin 50vmin 0";
+              boss.style.transform = "translateY(50vmin) translateZ(10vmin)";
+
+
+              levels[currentroom].apples = [
+                {
+                  x: 11,
+                  y: 4,
+                  eaten: 0
+                },
+                
+                {
+                  x: 4,
+                  y: 5,
+                  eaten: 0
+                },
+              ];
+
+              for(j in levels[currentroom].apples){
+                apple = levels[currentroom].apples[j];
+                if(!apple.eaten){
+                  apples.innerHTML +=
+                  `<div id="apple${j}" class="apple ${localStorage["apple_" + currentroom + "_" + j] ? "eaten" : ""}" style="margin-left:${apple.x * 10}vmin;margin-bottom:-${apple.y * 10}vmin"><div class="applecontent"></div></div>`+
+                  (localStorage["apple_" + currentroom + "_" + j] ? "" : `<div id="appleshadow${j}" class="appleshadow" style="margin-left:${apple.x * 10}vmin;margin-bottom:-${apple.y * 10}vmin"></div>`);
+                }
+              }
+
+            },1800);
+            
+            setTimeout(function(){
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakeangles.unshift(0);
+              snakepos.shift();
+              snakepos.shift();
+              snakepos.shift();
+              snakepos.shift();
+              snakepos.shift();
+              snakepos.shift();
+              snakepos.shift();
+              snakepos.shift();
+              snakepos.shift();
+              snakepos.shift();
+              snakepos.unshift([8,5,10]);
+              snakepos.unshift([8,5,9]);
+              snakepos.unshift([8,5,8]);
+              snakepos.unshift([8,5,7]);
+              snakepos.unshift([8,5,6]);
+              snakepos.unshift([8,5,5]);
+              snakepos.unshift([8,5,4]);
+              snakepos.unshift([8,5,3]);
+              snakepos.unshift([8,5,2]);
+              snakepos.unshift([8,5,1]);
+              snakepos.unshift([8,5,0]);
+              snakepos.unshift([8,6,0]);
+              snakepos.unshift([8,7,0]);
+              movesnake(0);
+              scene.style.transform = "translateX(-74vmin) translateY(-52vmin) translateZ(-153vmin) rotateX(44deg)";
+
+            },2000);
+
+            setTimeout(function(){
+              
+              for(i = 0; i < snakelength; i++){
+                window["snakecubemove" + i].style.transition = "";
+              }
+              
+              boss.style.transform = "translateY(120vmin) translateZ(30vmin)";
+              scenewall.style.transform = "rotateX(90deg)";
+              scenewallvisible = 1;
+
+              if(levels[currentroom].bosswall){
+                for(j = 0; j < 6; j++){
+                  for(k = 0; k < 6; k++){
+                    
+                    if(+levels[currentroom].bosswall[k * 6 + j]){
+                      bosswall.innerHTML +=
+                      `<div id="bosswallcell_${j}_${k}" class="bossshadow" style="left:0;top:0;transform:translateX(${(j)*10}vmin)translateY(${(k)*10}vmin)translateZ(.3vmin)"></div>`;
+                    }
+                  }
+                }
+              }
+              bosswall.style.display = '';
+
+
+              var verticalbossposition = 0;
+
+              setTimeout(function(){
+                verticalbossposition = 0;
+                boss.style.transformOrigin = "82vmin 50vmin 0";
+                boss.style.transform = `translateX(${verticalbossposition ? '50vmin' : '-50vmin'}) translateY(120vmin) translateZ(30vmin)`;
+                bosswall.style.transform = `translateX(${verticalbossposition ? '70vmin' : '20vmin'}) translateY(-60vmin) rotateX(-90deg)`;
+              },1000);
+
+              setTimeout(function(){
+                verticalbossposition = 1;
+                boss.style.transformOrigin = "82vmin 50vmin 0";
+                boss.style.transform = `translateX(${verticalbossposition ? '50vmin' : '-50vmin'}) translateY(120vmin) translateZ(30vmin)`;
+                bosswall.style.transform = `translateX(${verticalbossposition ? '70vmin' : '20vmin'}) translateY(-60vmin) rotateX(-90deg)`;
+              },3000);
+
+              setInterval(function(){
+                verticalbossposition = 1 - verticalbossposition;
+                boss.style.transformOrigin = "82vmin 50vmin 0";
+                boss.style.transform = `translateX(${verticalbossposition ? '50vmin' : '-50vmin'}) translateY(120vmin) translateZ(30vmin)`;
+                bosswall.style.transform = `translateX(${verticalbossposition ? '70vmin' : '20vmin'}) translateY(-60vmin) rotateX(-90deg)`;
+              }, 5000);
+
+              
+            },3000);
+
+            setTimeout(function(){
+              
+              movesnake();
+              animation = 0;
+
+
+              
+            },7000);
+          }
+        }
+      },100);
     }
   }
   

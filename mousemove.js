@@ -4,7 +4,7 @@ mousemove = (dir) => {
   var i, j;
   
   // Nothing happens is the element doesn't exist or the controls are locked
-  if(dir === null || lock) return;
+  if(dir === null || lock || animation) return;
     
   // Save current head position and angle
   pos = [snakepos[0][0], snakepos[0][1], snakepos[0][2]];
@@ -88,10 +88,39 @@ mousemove = (dir) => {
   // Go forward / upward
   else if(dir == 1){
     
-    // Vertical puzzle: go upward
-    if(currentpuzzle && currentpuzzle.wall && pos[0] >= currentpuzzle.x && pos[0] <= currentpuzzle.x + currentpuzzle.size - 1 && pos[1] == currentpuzzle.y){
+    // Vertical puzzle / wall: go upward
+    if(
+      currentpuzzle && currentpuzzle.wall && pos[0] >= currentpuzzle.x && pos[0] <= currentpuzzle.x + currentpuzzle.size - 1 && pos[1] == currentpuzzle.y
+    ){
       
       if(pos[2] < currentpuzzle.size - 1){
+        pos[2]++;
+        
+        // From left
+        if(angle % 360 == 90 || angle % 360 == -270){
+          angle += 90;
+        }
+        
+        // From right
+        else if(angle % 360 == -90 || angle % 360 == 270){
+          angle -= 90;
+        }
+      
+      }
+
+      // Bounds
+      else {
+        return;
+      }
+    }
+
+
+    // Scene wall: go upwards
+    if(
+      scenewallvisible == 1 && pos[1] == 0
+    ){
+      
+      if(pos[2] < 10){
         pos[2]++;
         
         // From left
@@ -146,6 +175,11 @@ mousemove = (dir) => {
     
     // Vertical puzzle: go downward
     if(/*!onacube && */currentpuzzle && currentpuzzle.wall && pos[0] >= currentpuzzle.x && pos[0] <= currentpuzzle.x + currentpuzzle.size && pos[1] == currentpuzzle.y && pos[2] > 0){
+      pos[2]--;
+    }
+    
+    // Scene wall
+    if(scenewallvisible && pos[2] > 0){
       pos[2]--;
     }
     

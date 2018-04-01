@@ -6,7 +6,8 @@ px = py = 0;
 
 // Mobile controls
 scene.ontouchstart = scene.ontouchmove = e => {
-  if(lock) return;
+  console.log(animation);
+  if(lock || animation) return;
   
   mousedown = 1;
   
@@ -70,6 +71,9 @@ scene.ontouchend = e => {
 k_left = k_right = k_up = k_down = 0;
 
 onkeydown = e => {
+  
+  console.log(animation);
+  if(animation) return;
   
   if(e.keyCode != 123 && e.keyCode != 116 && e.keyCode != 82) e.preventDefault();
   

@@ -96,8 +96,13 @@ movesnake = (movecamera = 1) => {
   
   if(movecamera){
     
+    // Zoom on scene wall
+    if(scenewallvisible && snakepos[0][2] > 0){
+      scene.style.transform = "translateX(-76vmin) translateY(28vmin) translateZ(10vmin) rotateX(63deg)";
+    }
+    
     // Zoom in a flat puzzle
-    if(puzzling && currentpuzzle && currentpuzzle.ground && !currentpuzzle.wall){
+    else if(puzzling && currentpuzzle && currentpuzzle.ground && !currentpuzzle.wall){
       b.classList.add("inbounds");
       if(!mobile) scene.style.transition = "1s";
       scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateZ(" + ((currentpuzzle.size * .6 - 2) * 10) + "vmin) rotateX(10deg)";
@@ -119,7 +124,16 @@ movesnake = (movecamera = 1) => {
     else if(currentpuzzle && currentpuzzle.ground && currentpuzzle.wall){
       b.classList.add("inbounds");
       scene.style.transformOrigin = ((currentpuzzle.x + currentpuzzle.size / 2) * 10) + "vmin " + ((currentpuzzle.y) * 10) + "vmin";
-      scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2 - 3) * 10) + "vmin) translateZ(" + ((currentpuzzle.size - 7) * 10) + "vmin) rotateX(45deg)";
+      
+      // Ground side
+      if(snakepos[0][2] > 0){
+        scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2 - 4) * 10) + "vmin) translateZ(" + ((currentpuzzle.size - 5) * 10) + "vmin) rotateX(60deg)";
+      }
+
+      // Wall side
+      else {
+        scene.style.transform = "translateX(" + (-(currentpuzzle.x + currentpuzzle.size / 2) * 10 + 1) + "vmin) translateY(" + (-(currentpuzzle.y + currentpuzzle.size / 2 - 2) * 10) + "vmin) translateZ(" + ((currentpuzzle.size - 5) * 10) + "vmin) rotateX(30deg)";
+      }
       if(!mobile){
         b.style.backgroundPosition = sky + "px -80vmin";
       }
