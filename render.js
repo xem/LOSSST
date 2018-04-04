@@ -196,6 +196,8 @@ render = () => {
     b.style.backgroundImage = "url(images/space.jpg)";
     perspective.style.perspective = "130vmin";
     if(levels[currentroom].boss){
+      
+      // Look up
       setTimeout(function(){
         lock = 1;
         b.style.transition = "2s";
@@ -205,6 +207,14 @@ render = () => {
       }, 1000);
       
       setTimeout(function(){
+        boss.style.transition = "4s";
+        boss.style.transform = `translateY(-10vmin) translateZ(0vmin)`;
+        boss.style.transformOrigin = `80vmin 50vmin`;
+        bossground.style.transformOrigin = `80vmin 50vmin`;
+      }, 2000);
+
+      // Boss lands
+      setTimeout(function(){
         b.style.transition = "2s";
         bossground.style.transition = "2s";
         scene.style.transition = "2s";
@@ -212,15 +222,9 @@ render = () => {
         bossground.style.transform = `translateY(-10vmin)`;
         bossground.style.display = "";
         scene.style.transform = "translateX(-83vmin) translateY(-34vmin) translateZ(27vmin) rotateX(91deg)";
-      }, 4100);
+      }, 4100);      
       
-      setTimeout(function(){
-        boss.style.transition = "4s";
-        boss.style.transform = `translateY(-10vmin) translateZ(0vmin)`;
-        boss.style.transformOrigin = `80vmin 50vmin`;
-        bossground.style.transformOrigin = `80vmin 50vmin`;
-      }, 2000);
-      
+      // Boss looks around
       setTimeout(function(){
         boss.style.transition = ".5s";
         bossground.style.transition = ".5s";
@@ -242,6 +246,7 @@ render = () => {
         noblue = 0;
       }, 8000);
       
+      // Boss rotates
       var quarterturn = 0;
       
       setTimeout(function(){
@@ -262,6 +267,7 @@ render = () => {
         },2000);
       }, 9000);
       
+      // Color snake positions over boss shadow in blue
       colorshadow = setInterval(function(){
         for(var i = 0; i < 6; i++){
           for(var j = 0; j < 6; j++){
@@ -273,6 +279,8 @@ render = () => {
         
         if(!noblue){
           var bluecells = 0;
+          
+          // For each position
           for(var i = 0; i < snakelength; i++){
 
             if(snakepos[i][2] == 0){
@@ -312,6 +320,8 @@ render = () => {
             animation = 1;
             clearInterval(circle);
             clearInterval(colorshadow);
+            
+            // Jump
             setTimeout(function(){
               for(i = 0; i < snakelength; i++){
                 snakepos.unshift([8, 4, i]);
@@ -324,6 +334,7 @@ render = () => {
               scene.style.transformOrigin = `80vmin 41vmin`;
             },300);
             
+            // Hit
             setTimeout(function(){
               bossground.style.display = "none";
               boss.style.transition = "transform .8s";
@@ -331,6 +342,8 @@ render = () => {
               boss.style.transform = "rotateX(-106deg) translateY(-50vmin) translateZ(170vmin)";
             },1000);
             
+            
+            // Fall + apples
             setTimeout(function(){
               boss.style.transition = "1s";
               boss.style.transformOrigin = "82vmin 50vmin 0";
@@ -362,6 +375,7 @@ render = () => {
 
             },1800);
             
+            // Get down
             setTimeout(function(){
               snakeangles.unshift(0);
               snakeangles.unshift(0);
@@ -408,6 +422,7 @@ render = () => {
 
             },2000);
 
+            // Wall appears, boss moves
             setTimeout(function(){
               
               for(i = 0; i < snakelength; i++){
@@ -431,7 +446,6 @@ render = () => {
               }
               bosswall.style.display = '';
 
-
               var verticalbossposition = 0;
 
               setTimeout(function(){
@@ -448,21 +462,68 @@ render = () => {
                 bosswall.style.transform = `translateX(${verticalbossposition ? '70vmin' : '20vmin'}) translateY(-60vmin) rotateX(-90deg)`;
               },3000);
 
-              setInterval(function(){
+              circle = setInterval(function(){
                 verticalbossposition = 1 - verticalbossposition;
+                console.log(verticalbossposition);
                 boss.style.transformOrigin = "82vmin 50vmin 0";
                 boss.style.transform = `translateX(${verticalbossposition ? '50vmin' : '-50vmin'}) translateY(120vmin) translateZ(30vmin)`;
                 bosswall.style.transform = `translateX(${verticalbossposition ? '70vmin' : '20vmin'}) translateY(-60vmin) rotateX(-90deg)`;
-              }, 5000);
+              }, 3000);
+              
+              
+              
+              // Color snake positions over boss shadow in blue
+              colorshadow = setInterval(function(){
+                for(var i = 0; i < 6; i++){
+                  for(var j = 0; j < 6; j++){
+                    if(window["bosswallcell_" + (i) + "_" + (j)]){
+                      window["bosswallcell_" + (i) + "_" + (j)].classList.remove("blue");
+                    }
+                  }
+                }
+                
+                if(!noblue){
+                  var bluecells = 0;
+                  
+                  // For each position
+                  for(var i = 0; i < snakelength; i++){
+
+                    if(snakepos[i][1] == 0){
+
+                      if(verticalbossposition == 0){
+                        if(window["bosswallcell_" + (snakepos[i][0] - 2) + "_" + (5 - snakepos[i][2])]){
+                          window["bosswallcell_" + (snakepos[i][0] - 2) + "_" + (5 - snakepos[i][2])].classList.add("blue");
+                          bluecells++;
+                        }
+                      }
+                      
+                      else if(verticalbossposition == 1){
+                        if(window["bosswallcell_" + (snakepos[i][0] - 7) + "_" + (5 - snakepos[i][2])]){
+                          window["bosswallcell_" + (snakepos[i][0] - 7) + "_" + (5 - snakepos[i][2])].classList.add("blue");
+                          bluecells++;
+                        }
+                      }
+                    }
+                  }
+                  
+                  // Win
+                  if(bluecells == snakelength){
+                    animation = 1;
+                    clearInterval(circle);
+                    clearInterval(colorshadow);
+                  }
+                }
+              }, 100);
+              
 
               
             },3000);
 
+            // Play!
             setTimeout(function(){
               
               movesnake();
               animation = 0;
-
 
               
             },7000);
