@@ -1,16 +1,14 @@
 ﻿// Render the scene
 
 render = () => {
-
+  
   var i, j;
   
-  if(currentroom > 0) {
-    try {
-      music.src = currentroom + ".mp3?v=4";
-      music.play();
-    }
-    catch(e){}
+  try {
+    music.src = currentroom + ".mp3?v=4";
+    music.play();
   }
+  catch(e){}
 
   scene.style.transformOrigin = `${levels[currentroom].hole[0] * 10}vmin ${levels[currentroom].hole[1] * 10}vmin`;
   scene.style.transform = `translateX(-${levels[currentroom].hole[0] * 10}vmin) translateY(-${levels[currentroom].hole[1] * 10}vmin) translateZ(-50vmin) rotateX(0deg)`;
@@ -538,6 +536,6 @@ render = () => {
   //b.style.backgroundPosition = sky + "px -80vmin";
   skyintro = 1;
   setTimeout(movesnake, 500);
-  setTimeout("mask.remove()", 300);
+  //setTimeout("mask.remove()", 300);
   setTimeout("b.classList.remove('intro')", 2500);
 }

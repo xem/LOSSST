@@ -1,3 +1,5 @@
+start = function(){
+  
 // Initial position
 for(i = 0; i < snakelength; i++){
   if(currentroom == 0){
@@ -17,3 +19,5 @@ if(currentroom != 0){
 }
 
 scene.style.transform = `rotateX(0deg) translateX(-${levels[currentroom].hole[0] * 10}vmin) translateY(-${levels[currentroom].hole[1] * 10}vmin) translateZ(10vmin)`;
+
+}

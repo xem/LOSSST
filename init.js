@@ -1,10 +1,6 @@
 // Initialization
 // ==============
 
-// Room number
-currentroom = +localStorage["currentroom"] || 0;
-localStorage["currentroom"] = currentroom;
-
 // SD / HD (mobile is SD by default)
 mobile = 0;
 
@@ -19,6 +15,12 @@ if(
 if(mobile){
   b.className = "mobile";
 }
+
+init = function(){
+  
+// Room number
+currentroom = +localStorage["currentroom"] || 0;
+localStorage["currentroom"] = currentroom;
 
 // Sky scrolling background position
 sky = 0;
@@ -67,4 +69,6 @@ localStorage["totalpuzzles"] = totalpuzzles;
 // Debug
 L = z => {
   console.log(z);
+}
+
 }

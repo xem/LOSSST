@@ -1,0 +1,18 @@
+#menu {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  position: fixed;
+  top: -50vh;
+  left: -50vw;
+  color: #fff;
+  text-shadow: -1px -1px 0 #777, -2px -2px 0 #777, -3px -3px 0 #777; 
+}
+
+#menu h1 {
+  font: 20vh/40vh arial;
+}
+
+#menu span {
+  font: 10vh/17vh arial;
+}
