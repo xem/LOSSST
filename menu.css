@@ -10,9 +10,15 @@
 }
 
 #menu h1 {
-  font: 20vh/40vh arial;
+  font: 20vmin/40vmin arial;
 }
 
 #menu span {
-  font: 10vh/17vh arial;
+  font: 10vmin/17vmin arial;
+}
+
+@media (orientation: portrait) {
+  #menu {
+    padding-top: 40vmin;
+  }
 }
