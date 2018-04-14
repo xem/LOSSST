@@ -6,7 +6,9 @@
   top: -50vh;
   left: -50vw;
   color: #fff;
-  text-shadow: -1px -1px 0 #777, -2px -2px 0 #777, -3px -3px 0 #777; 
+  text-shadow: -1px -1px 0 #777, -2px -2px 0 #777, -3px -3px 0 #777;
+  text-align: center;
+  overflow: auto;
 }
 
 #menu h1 {
@@ -17,8 +19,29 @@
   font: 10vmin/17vmin arial;
 }
 
+#menu button {
+  display: inline-block;
+  vertical-align: top;
+  width: 15vw;
+  height: 10vw;
+  line-height: 8vw;
+  border: 1vw solid #fff;
+  color: #fff;
+  font-size: 4vw;
+  textt-align: center;
+  margin: 2vw;
+  background: #222;
+}
+
+
 @media (orientation: portrait) {
   #menu {
-    padding-top: 40vmin;
+    padding-top: 20vh;
+  }
+  
+  #menu button {
+    width: 15vh;
+    height: 10vh;
+    font-size: 4vh;
   }
 }

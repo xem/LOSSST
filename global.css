@@ -80,14 +80,14 @@ body.mobile {
 }
 
 
-button {
+/*button {
   font: 3vmin/5vmin arial;
   position: fixed;
   bottom: 0;
   z-index: 2;
   transform: translateZ(1000px);
   min-width: 5vmin;
-}
+}*/
 
 #mask {
   width: 100%;
