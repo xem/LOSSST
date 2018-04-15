@@ -129,3 +129,21 @@ img {
 .mobile #controls {
   //display: block;
 }
+
+#egg { 
+  position: fixed;
+}
+
+#egg div {
+  width: 30vmin;
+  height: 25vmin;
+  background: url(images/egg_0.png) no-repeat 0 0;
+  background-size: auto 100%;
+  transform: rotateX(-45deg);
+  transform-origin: bottom center;
+}
+
+#egg.open div {
+  background: url(images/egg_1.png) no-repeat 0 0;
+  background-size: auto 100%;
+}

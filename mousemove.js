@@ -264,6 +264,11 @@ mousemove = (dir) => {
     };
   }
   
+  // Collision with egg
+  if(currentroom == 12 && pos[1] == 6 && pos[0] >= 7 && pos[0] <= 9){
+    collision = "egg";
+  }
+  
   // Allow going on bridges
   for(i in levels[currentroom].bridges){
     bridge = levels[currentroom].bridges[i];

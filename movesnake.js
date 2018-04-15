@@ -96,9 +96,9 @@ movesnake = (movecamera = 1) => {
   
   if(movecamera){
     
-    // Zoom on scene wall
+    // Zoom on scene wall (boss fight)
     if(scenewallvisible && snakepos[0][2] > 0){
-      scene.style.transform = "translateX(-76vmin) translateY(28vmin) translateZ(10vmin) rotateX(63deg)";
+      scene.style.transform = "translateX(-76vmin) translateY(28vmin) translateZ(-30vmin) rotateX(63deg)";
     }
     
     // Zoom in a flat puzzle

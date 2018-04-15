@@ -26,6 +26,7 @@ render = () => {
 <div id=cubes></div>
 <div id=snake></div>
 <div id=boss></div>
+<div id=egg></div>
 <div id=bossground style="display:none"></div>
 <div id=bosswall style="display:none;transform:translateX(40vmin) translateY(-60vmin) rotateX(-90deg)"></div>
 <div id=mask></div>`;
@@ -187,6 +188,11 @@ render = () => {
   
   // BOSS CINEMATIC
   if(currentroom == 12){
+    
+    egg.innerHTML = "<div></div>";
+    egg.style.transform = "translateX(72vmin) translateY(50vmin)";
+    
+    
     animation = 1;
     var noblue = 1;
     var circle;
@@ -219,7 +225,7 @@ render = () => {
         b.style.backgroundPositionY = "100vmin";
         bossground.style.transform = `translateY(-10vmin)`;
         bossground.style.display = "";
-        scene.style.transform = "translateX(-83vmin) translateY(-34vmin) translateZ(27vmin) rotateX(91deg)";
+        scene.style.transform = "translateX(-83vmin) translateY(-39vmin) translateZ(27vmin) rotateX(86deg)";
       }, 4100);      
       
       // Boss looks around
@@ -402,19 +408,36 @@ render = () => {
               snakepos.shift();
               snakepos.shift();
               snakepos.shift();
-              snakepos.unshift([8,5,10]);
-              snakepos.unshift([8,5,9]);
-              snakepos.unshift([8,5,8]);
-              snakepos.unshift([8,5,7]);
-              snakepos.unshift([8,5,6]);
-              snakepos.unshift([8,5,5]);
-              snakepos.unshift([8,5,4]);
-              snakepos.unshift([8,5,3]);
-              snakepos.unshift([8,5,2]);
-              snakepos.unshift([8,5,1]);
-              snakepos.unshift([8,5,0]);
-              snakepos.unshift([8,6,0]);
-              snakepos.unshift([8,7,0]);
+              snakepos.shift();
+              snakepos.shift();
+              snakepos.shift();
+              snakepos.shift();
+              snakepos.shift();
+              snakepos.shift();
+              snakepos.shift();
+              snakepos.unshift([5,5,20]);
+              snakepos.unshift([5,5,19]);
+              snakepos.unshift([5,5,18]);
+              snakepos.unshift([5,5,17]);
+              snakepos.unshift([5,5,16]);
+              snakepos.unshift([5,5,15]);
+              snakepos.unshift([5,5,14]);
+              snakepos.unshift([5,5,13]);
+              snakepos.unshift([5,5,12]);
+              snakepos.unshift([5,5,11]);
+              snakepos.unshift([5,5,10]);
+              snakepos.unshift([5,5,9]);
+              snakepos.unshift([5,5,8]);
+              snakepos.unshift([5,5,7]);
+              snakepos.unshift([5,5,6]);
+              snakepos.unshift([5,5,5]);
+              snakepos.unshift([5,5,4]);
+              snakepos.unshift([5,5,3]);
+              snakepos.unshift([5,5,2]);
+              snakepos.unshift([5,5,1]);
+              snakepos.unshift([5,5,0]);
+              snakepos.unshift([5,6,0]);
+              snakepos.unshift([5,7,0]);
               movesnake(0);
               scene.style.transform = "translateX(-74vmin) translateY(-52vmin) translateZ(-153vmin) rotateX(44deg)";
 
@@ -453,20 +476,19 @@ render = () => {
                 bosswall.style.transform = `translateX(${verticalbossposition ? '70vmin' : '20vmin'}) translateY(-60vmin) rotateX(-90deg)`;
               },1000);
 
-              setTimeout(function(){
+             /* setTimeout(function(){
                 verticalbossposition = 1;
                 boss.style.transformOrigin = "82vmin 50vmin 0";
                 boss.style.transform = `translateX(${verticalbossposition ? '50vmin' : '-50vmin'}) translateY(120vmin) translateZ(30vmin)`;
                 bosswall.style.transform = `translateX(${verticalbossposition ? '70vmin' : '20vmin'}) translateY(-60vmin) rotateX(-90deg)`;
-              },3000);
+              },3000);*/
 
               circle = setInterval(function(){
                 verticalbossposition = 1 - verticalbossposition;
-                console.log(verticalbossposition);
                 boss.style.transformOrigin = "82vmin 50vmin 0";
                 boss.style.transform = `translateX(${verticalbossposition ? '50vmin' : '-50vmin'}) translateY(120vmin) translateZ(30vmin)`;
                 bosswall.style.transform = `translateX(${verticalbossposition ? '70vmin' : '20vmin'}) translateY(-60vmin) rotateX(-90deg)`;
-              }, 3000);
+              }, 2000);
               
               
               
@@ -506,12 +528,59 @@ render = () => {
                   
                   // Win
                   if(bluecells == snakelength){
+                    
+                    
                     animation = 1;
                     clearInterval(circle);
                     clearInterval(colorshadow);
+                    
+                    console.log("win");
+                    
+                    for(i = 0; i < snakelength; i++){
+                      snakepos.unshift([snakepos[0][0], i, snakepos[0][2]]);
+                      window["snakecubemove" + i].style.transition = "1s";
+                    }
+                    movesnake(0);
+                    scene.style.transition = "1s";
+                    scene.style.transform = `translateX(-74vmin) translateY(-86vmin) translateZ(-86vmin) rotateX(30deg)`;
+                    scene.style.transformOrigin = `70vmin 11vmin`;
+                    
+                    setTimeout(function(){
+                      
+                      for(i = 0; i < snakelength; i++){
+                        snakepos[i][2] =  0;
+                        snakepos[i][0] =  5;
+                        snakepos[i][1] =  -i + 7;
+                        window["snakecubemove" + i].style.transition = "1s";
+                      }
+                      movesnake(0);
+                      
+                      scene.style.transformOrigin = "-70vmin 150vmin";
+                      scene.style.transform = "translateX(-73vmin) translateY(-101vmin) translateZ(-200vmin) rotateX(30deg)";
+                      boss.style.transform = `translateX(50vmin) translateY(120vmin) translateZ(500vmin)`;
+                      egg.innerHTML = "<div></div>";
+                      egg.className = "open";
+                      
+                    }, 1000);
+                    
+                    
+                    
+                    
+                    setTimeout(function(){
+                      scene.style.transform = `translateX(-73vmin) translateY(-101vmin) translateZ(52vmin) rotateX(19deg)`;
+                      boss.style.display = "none";
+                      bosswall.style.display = "none";
+                      snakecube0.style.transform = "rotateZ(0)";
+                    }, 2000);
+                    
+                    setTimeout(function(){
+                      snakecube0.style.transform = "rotateZ(-90deg)";
+                    }, 3000);
+                    
+                    
                   }
                 }
-              }, 100);
+              }, 300);
               
 
               
