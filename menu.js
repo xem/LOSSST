@@ -54,6 +54,6 @@ button_choose.onclick = function(){
 <button onclick="start_room(10,16,49)">1-11</button>
 <button onclick="start_room(11,17,55)">1-12</button>
 <button onclick="start_room(12,20,60)">BOSS</button>
-<!--button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 0; localStorage.snakelength = 3; localStorage.totalpuzzles = 0; location = 0',200)">world 2</button-->
-  `;
+<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 0; localStorage.snakelength = 3; localStorage.totalpuzzles = 0; location = \`index2.html\`',200)">world 2</button-->
+`;
 }
