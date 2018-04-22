@@ -116,7 +116,7 @@ mousemove = (dir) => {
 
 
     // Scene wall: go upwards
-    if(
+    else if(
       scenewallvisible == 1 && pos[1] == 0
     ){
       
@@ -179,7 +179,7 @@ mousemove = (dir) => {
     }
     
     // Scene wall
-    if(scenewallvisible && pos[2] > 0){
+    else if(scenewallvisible && pos[2] > 0){
       pos[2]--;
     }
     
@@ -265,7 +265,13 @@ mousemove = (dir) => {
   }
   
   // Collision with egg
-  if(currentroom == 12 && pos[1] == 6 && pos[0] >= 7 && pos[0] <= 9){
+  if(currentroom == 12 && 
+    (
+      (snakelength > 19 && pos[1] == 6 && pos[0] >= 7 && pos[0] <= 9)
+      ||
+      (snakelength < 4 && pos[1] == 6 && ((pos[0] >= 6 && pos[0] <= 8) || (pos[0] >= 10 && pos[0] <= 11)))
+    )
+  ){
     collision = "egg";
   }
   

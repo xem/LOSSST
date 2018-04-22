@@ -1,13 +1,14 @@
-levels = [
+// World 2
 
-  // Room 0
-  // Size 3,4,5
-  // Puzzles 1-3
+// Room 0 (13)
+// Size 3,4,5
+// Puzzles 1-3
+levels.push(
   {
   
     width: 50,
     height: 10,
-    hole: [7, 5.1],
+    hole: false,
 
 
     puzzles: [
@@ -75,23 +76,35 @@ levels = [
     
     bridges: [
       {
+        x: 1,
+        y: 5,
+        angle: 180,
+        open: 1,
+        puzzles: 0,
+        to: 0
+      },
+      
+      {
         x: 49,
         y: 5,
         angle: 0,
         open: 0,
-        puzzles: 3,
-        to: 1,
+        puzzles: 63,
+        to: 14,
         to_x: -4,
         to_y: 5,
         to_z: 0
       }
     ],
   
-  },
+  }
+);
   
-  // Room 1
-  // Size 6
-  // Puzzles 4-6
+  
+// Room 1 (14)
+// Size 6
+// Puzzles 4-6
+levels.push(
   {
   
     width: 10,
@@ -169,20 +182,21 @@ levels = [
         y: 35,
         angle: 0,
         open: 0,
-        puzzles: 6,
-        to: 2,
+        puzzles: 66,
+        to: 15,
         to_x: -4,
         to_y: 5,
         to_z: 0
       }
     ],
-  },
+  }
+);
 
-  // Room 2
-  // Size 7
-  // Puzzles 7-10
+// Room 2 (15)
+// Size 7
+// Puzzles 7-10
+levels.push(
   {
-  
     width: 50,
     height: 10,
     hole: false,
@@ -273,20 +287,20 @@ levels = [
         y: 5,
         angle: 0,
         open: 0,
-        puzzles: 10,
-        to: 3,
+        puzzles: 70,
+        to: 16,
         to_x: -4,
-        to_y: 10,
+        to_y: 5,
         to_z: 0
       }
     ],
-  },
-  
-  
-  
-  // Room 3
-  // Size 8
-  // Puzzles 11-13
+  }
+),
+
+// Room 3 (16)
+// Size 8
+// Puzzles 11-13
+levels.push(
   {
   
     width: 40,
@@ -385,15 +399,16 @@ levels = [
         y: 5,
         angle: 0,
         open: 0,
-        puzzles: 13,
-        to: 4,
+        puzzles: 73,
+        to: 17,
         to_x: -3,
         to_y: 5,
         to_z: 0
       }
     ],
-  },
-  
+  }
+);
+/*  
   // Room 4
   // Size 9
   // Puzzles 14-
@@ -1431,6 +1446,3 @@ levels = [
       },
     ],
   },*/
- 
-
-];

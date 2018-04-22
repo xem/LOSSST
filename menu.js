@@ -27,14 +27,15 @@ button_newgame.onclick = function(){
 start_room = function(currentroom, snakelength, totalpuzzles){
   localStorage.clear();
   setTimeout(function(){
-    localStorage.currentroom = currentroom;
-    localStorage.snakelength = snakelength;
-    localStorage.totalpuzzles = totalpuzzles;
+    window.currentroom = localStorage.currentroom = currentroom;
+    window.snakelength = localStorage.snakelength = snakelength;
+    window.totalpuzzles = localStorage.totalpuzzles = totalpuzzles;
     init();
     menu.remove();
     start();
     render();
     lock = 1;
+    setTimeout("lock = 0", 1500);
   },200);
 }
 
@@ -54,6 +55,10 @@ button_choose.onclick = function(){
 <button onclick="start_room(10,16,49)">1-11</button>
 <button onclick="start_room(11,17,55)">1-12</button>
 <button onclick="start_room(12,20,60)">BOSS</button>
-<button onclick="localStorage.clear(); setTimeout('localStorage.currentroom = 0; localStorage.snakelength = 3; localStorage.totalpuzzles = 0; location = \`index2.html\`',200)">world 2</button-->
+
+<button onclick="start_room(13,3,60)">2-1</button>
+<button onclick="start_room(14,5,63)">2-2</button>
+<button onclick="start_room(15,6,66)">2-3</button>
+<button onclick="start_room(16,7,69)">2-4</button>
 `;
 }

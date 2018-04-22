@@ -135,7 +135,7 @@ img {
 }
 
 #egg div {
-  width: 30vmin;
+  width: 40vmin;
   height: 25vmin;
   background: url(images/egg_0.png) no-repeat 0 0;
   background-size: auto 100%;
@@ -144,6 +144,8 @@ img {
 }
 
 #egg.open div {
+  width: 60vmin;
   background: url(images/egg_1.png) no-repeat 0 0;
   background-size: auto 100%;
+  margin-left: -30px;
 }

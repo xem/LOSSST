@@ -7,7 +7,7 @@
   -moz-pointer-events: none;
   -webkit-pointer-events: none;
   pointer-events: none;
-  background: #b80;
+  xbackground: #b80;
 }
 
 .snakecubemove {
@@ -184,4 +184,18 @@
 
 .headcontrol.bottom {
   transform: rotate(45deg);
+}
+
+
+.cube.snakecube.green > div {
+  background-color: #1b8e36
+}
+
+.cube.snakecube.green .u,
+.cube.snakecube.green .u.eyes {
+  background-color: #3caf57
+}
+
+.cube.snakecube.green .tongue {
+  background: none;
 }

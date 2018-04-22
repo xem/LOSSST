@@ -1693,6 +1693,18 @@ levels = [
         puzzles: 0,
         to: 0
       },
+      
+      {
+        x: 14,
+        y: 8,
+        open: 0,
+        angle: 0,
+        puzzles: 70,
+        to: 13,
+        to_x: -3,
+        to_y: 8,
+        to_z: 0
+      },
     ],
   },
  

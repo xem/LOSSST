@@ -1,0 +1,40 @@
+.world2 #scene{
+  background: url(images/sand.jpg) !important;
+}
+
+.world2 .treecontent {
+  background-image: url(images/cactus.png) !important;
+}
+
+.world2 .treeshadow {
+  background-image: url(images/cactusshadow.png) !important;
+  transform: translateX(-88%) scaleX(-1.5) translateY(-3vmin) translateZ(.3vmin) rotateZ(235deg);
+}
+
+.world2 .snakegrass, .puzzlegrass {
+  display: none;
+}
+
+.world2 .applecontent {
+  background-image: url(images/fig.png) !important;
+  width: 150%;
+  height: 150%;
+}
+
+.world2 .appleshadow {
+  background-image: url(images/figshadow.png) !important;
+  transform: translateX(-65%) scaleX(-1.5) translateY(5vmin) translateZ(.3vmin) rotateZ(235deg);
+}
+
+.world2 .cube.snakecube > div {
+  background-color: #1b8e36
+}
+
+.world2 .cube.snakecube .u,
+.world2 .cube.snakecube .u.eyes {
+  background-color: #3caf57
+}
+
+.world2 .cube.snakecube .tongue {
+  background: none
+}

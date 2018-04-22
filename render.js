@@ -2,6 +2,11 @@
 
 render = () => {
   
+  // World
+  b.classList.remove("world1");
+  b.classList.remove("world2");
+  b.classList.add(currentroom <= 12 ? "world1" : "world2");
+  
   var i, j;
   
   try {
@@ -533,9 +538,7 @@ render = () => {
                     animation = 1;
                     clearInterval(circle);
                     clearInterval(colorshadow);
-                    
-                    console.log("win");
-                    
+
                     for(i = 0; i < snakelength; i++){
                       snakepos.unshift([snakepos[0][0], i, snakepos[0][2]]);
                       window["snakecubemove" + i].style.transition = "1s";
@@ -544,6 +547,8 @@ render = () => {
                     scene.style.transition = "1s";
                     scene.style.transform = `translateX(-74vmin) translateY(-86vmin) translateZ(-86vmin) rotateX(30deg)`;
                     scene.style.transformOrigin = `70vmin 11vmin`;
+                    
+                    // Final hit, boss leaves
                     
                     setTimeout(function(){
                       
@@ -561,23 +566,83 @@ render = () => {
                       egg.innerHTML = "<div></div>";
                       egg.className = "open";
                       
+                      snakecube0.id = "oldcube0";
+                    
+                      // Disable yellow snake
+                      for(i = 0; i < 22; i++){
+                        window["snakecubemove" + i].id = "";
+                        if(window["snakecube" + i]) window["snakecube" + i].id = "";
+                        window["snakeshadow" + i].id = "";
+                        window["snakegrass" + i].id = "";
+                        levels[currentroom].cubes.push(snakepos[i]);
+                      }
+                      
+                      // Make it solid
+                      
+                      // Draw green snake
+                      snakelength = 3;
+                      snakepos = [[9, 7, 0], [9, 6, 0], [9, 5, 0]];
+                      snakeangles = [0,0,0];
+                      for(i = 0; i < snakelength; i++){
+                        snake.innerHTML +=
+                        `<div id="snakecubemove${i}" class="snakecubemove">
+                          <div id="snakeshadow${i}" class="snakeshadow"></div>
+                          <div id="snakegrass${i}" class="snakegrass"></div>
+                          ${i?'':'<div class="headcontrol left" data-dir=0></div>'}
+                          ${i?'':'<div class="headcontrol top" data-dir=1></div>'}
+                          ${i?'':'<div class="headcontrol right" data-dir=2></div>'}
+                          ${i?'':'<div class="headcontrol bottom" data-dir=3></div>'}
+                          <div id="snakecube${i}" class="cube snakecube green">
+                            ${i?'':'<div class="tongue">Y</div>'}
+                            ${i?'<div class="u"></div>':'<div class="u eyes"></div>'}
+                            ${i?'<div class="f"></div>':'<div class="f mouth">‿</div>'}
+                            <div class="r"></div>
+                            <div class="l"></div>
+                            <div class="b"></div>
+                          </div>
+                        </div>`;
+                        }
+                        
+                        movesnake(0);
+                      
                     }, 1000);
                     
                     
                     
                     
+                    // Snake moves and they look at each other
                     setTimeout(function(){
-                      scene.style.transform = `translateX(-73vmin) translateY(-101vmin) translateZ(52vmin) rotateX(19deg)`;
+                      scene.style.transform = `translateX(-73vmin) translateY(-98vmin) translateZ(130vmin) rotateX(61deg)`;
                       boss.style.display = "none";
+                      boss.innerHTML = "";
                       bosswall.style.display = "none";
-                      snakecube0.style.transform = "rotateZ(0)";
+                      oldcube0.style.transform = "rotateZ(0)";
                     }, 2000);
                     
                     setTimeout(function(){
-                      snakecube0.style.transform = "rotateZ(-90deg)";
+                      oldcube0.style.transform = "rotateZ(-90deg)";
+                      snakecube0.style.transform = "rotateZ(90deg)";
                     }, 3000);
                     
+                    // Open bridge, let green snake move
+                    setTimeout(function(){
+                      
+                      bridge = levels[currentroom].bridges[1];
+                     
+                      window["bridge1"].classList.add("open");
+                      bridge.open = 1;
+                      localStorage["bridge" + currentroom + "-" + 1] = 1;
+                      
+                    }, 3500);
                     
+                    // Open bridge, let green snake move
+                    setTimeout(function(){
+                      
+                      animation = 0;
+                      movesnake();
+                      snakecube0.style.transform = "rotateZ(0deg)";
+                      
+                    }, 4000);
                   }
                 }
               }, 300);
