@@ -408,10 +408,11 @@ levels.push(
     ],
   }
 );
-/*  
-  // Room 4
-  // Size 9
-  // Puzzles 14-
+
+// Room 4 (17)
+// Size 9
+// Puzzles 14-16
+levels.push(
   {
   
     width: 12,
@@ -423,7 +424,7 @@ levels.push(
       
       {
         x: 4,
-        y: 5,
+        y: 10,
         size: 4,
         wrap: 0,
         wall: "",
@@ -480,14 +481,15 @@ levels.push(
         y: 39,
         angle: 0,
         open: 0,
-        puzzles: 21,
-        to: 5,
+        puzzles: 76,
+        to: 18,
         to_x: -3,
         to_y: 5,
         to_z: 0
       }
     ],
-  },
+  }
+);
   
   /*
   // Room 5

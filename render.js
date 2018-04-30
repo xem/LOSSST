@@ -10,8 +10,15 @@ render = () => {
   var i, j;
   
   try {
-    music.src = currentroom + ".mp3?v=4";
-    music.play();
+    
+    var mp3 = currentroom;
+    if(currentroom > 13){
+      mp3 = 13;
+    }
+    if(!music.src.includes("13.mp3")){
+      music.src = mp3 + ".mp3?v=4";
+      music.play();
+    }
   }
   catch(e){}
 

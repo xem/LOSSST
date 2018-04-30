@@ -309,11 +309,13 @@ mousemove = (dir) => {
         
         interval = setInterval(()=>{
           autopilot();
-          if(music.volume > .15){
-            music.volume = +music.volume - .15;
-          }
-          else {
-            music.volume = 0;
+          if(!music.src.includes("13.mp3")){
+            if(music.volume > .15){
+              music.volume = +music.volume - .15;
+            }
+            else{
+              music.volume = 0;
+            }
           }
         }, 200);
         

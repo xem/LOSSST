@@ -48,7 +48,7 @@ button_choose.onclick = function(){
 <button onclick="start_room(3, 7, 10)">1-4</button>
 <button onclick="start_room(4, 8, 17)">1-5</button>
 <button onclick="start_room(5, 9, 21)">1-6</button>
-<button onclick="start_room(6, 10 25)">1-7</button>
+<button onclick="start_room(6, 10,25)">1-7</button>
 <button onclick="start_room(7, 11,32)">1-8</button>
 <button onclick="start_room(8, 13,37)">1-9</button>
 <button onclick="start_room(9, 15,43)">1-10</button>
@@ -60,5 +60,6 @@ button_choose.onclick = function(){
 <button onclick="start_room(14,5,63)">2-2</button>
 <button onclick="start_room(15,6,66)">2-3</button>
 <button onclick="start_room(16,7,69)">2-4</button>
+<button onclick="start_room(17,8,73)">2-5</button>
 `;
 }

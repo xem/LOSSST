@@ -920,6 +920,7 @@ levels = [
         y: 5,
         size: 4,
         wrap: 0,
+        depth: 1,
         ground: "",
         wall:   "0110"+
                 "1111"+
@@ -1027,6 +1028,7 @@ levels = [
         x: 30,
         y: 3,
         size: 5,
+        depth: 1,
         wrap: 0,
         ground: "",
         wall:
@@ -1304,6 +1306,7 @@ levels = [
         y: 3,
         size: 6,
         wrap: 0,
+        depth: 1,
         ground: "",
         wall: "111101"+
               "101101"+
@@ -1360,6 +1363,7 @@ levels = [
         y: 3,
         size: 5,
         wrap: 0,
+        depth: 1,
         ground: "",
         wall: "00000"+
               "00000"+
