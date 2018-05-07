@@ -329,13 +329,17 @@ mousemove = (dir) => {
           snakepos = [];
           snakeangle = [];
           inbounds = [];
-          for(j = bridge.to_x - snakelength + 3; j < bridge.to_x + 3; j++){
+          for(j = bridge.to_x - snakelength; j < bridge.to_x + 3; j++){
             snakepos.unshift([j, bridge.to_y - offset, bridge.to_z]);
             snakeangle.unshift(90);
             inbounds.unshift(1);
           }
+          
+          console.log(snakepos);
+          
+          
           scene.style.transformOrigin = `${(bridge.to_x + 4) * 10 + 1}vmin ${(bridge.to_y - offset) * 10 + 1}vmin`;
-          console.log(scene.style.transform = `translateX(${-(bridge.to_x + 4) * 10 - 4}vmin) translateY(${-(bridge.to_y - offset) * 10 + 1}vmin) translateZ(10vmin) rotateX(30deg)`);
+          //console.log(scene.style.transform = `translateX(${-(bridge.to_x + 4) * 10 - 4}vmin) translateY(${-(bridge.to_y - offset) * 10 + 1}vmin) translateZ(10vmin) rotateX(30deg)`);
 
           inbounds[0] = 0;
           render();

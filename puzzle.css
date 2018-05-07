@@ -58,8 +58,30 @@
 }
 
 .cell.purple {
-  background: radial-gradient(pink,purple);
+  background: radial-gradient(pink, purple);
 }
+
+.cell.tan {
+  background: radial-gradient(tan, #7a6311);
+}
+
+.cell.purple.blue {
+  background: radial-gradient(#2af, purple);
+}
+
+.cell.tan.blue {
+  background: radial-gradient(#2af, #7a6311);
+}
+
+.cell.purple.green {
+  background: radial-gradient(#2d4, purple);
+}
+
+.cell.tan.green {
+  background: radial-gradient(#2d4, #7a6311);
+}
+
+
 
 #wraps {
   position: fixed;
@@ -97,4 +119,12 @@
 
 .cube.puzzlecube > .d > div {
   position: fixed;
+}
+
+.puzzlecube .reset {
+  transform: translateX(-12vmin) translateY(5vmin) translateZ(10vmin) rotateX(-45deg);
+  width: 10vmin;
+  height: 10vmin;
+  font-size: 8vmin;
+  transition: opacity .5s;
 }

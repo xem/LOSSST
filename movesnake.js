@@ -6,7 +6,6 @@ movesnake = (movecamera = 1) => {
   // Clear current puzzle
   clearpuzzle();
   
-  
   // CURRENT PUZZLE & STATUS
   
   // Reset current puzzle, puzzling flags
@@ -57,10 +56,44 @@ movesnake = (movecamera = 1) => {
   
   // MOVE CUBE, GRASS, SHADOW
   for(i = 0; i < snakelength; i++){
-    window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin) " + (snakepos[i][2] > 0 ? "rotateX(-90deg) translateY(-5vmin) translateZ(-3vmin)" : "");
     
-    if(!mobile || (mobile && i == 0)){
-      window["snakecube" + i].style.transform = "rotateZ(" + (snakeangles[i]) + "deg)";
+    
+    // TELEPORT
+    //if(i == 0){
+    //  console.log(3, snakepos[i][0] - snakepos[i+1][0], snakepos[i][1] - snakepos[i+1][1], snakepos[i][2] - snakepos[i+1][2]);
+    //}
+    
+    if(snakepos[i+1] && Math.hypot(snakepos[i][0] - snakepos[i+1][0], snakepos[i][1] - snakepos[i+1][1], snakepos[i][2] - snakepos[i+1][2]) > 1){
+      console.log("teleport");
+      window["snakecubemove" + i].style.transition = "0s";
+      window["snakecube" + i].style.transition = ".2s";
+      
+      setTimeout(`
+        window["snakecube${i}"].style.transform = "rotateZ(" + (snakeangles[${i}]) + "deg) scale(.3) scaleZ(.3)";
+      `, 10);
+
+      setTimeout(`
+        window["snakecubemove${i}"].style.transform = "translateX(" + (snakepos[${i}][0] * 10 + 1) + "vmin) translateY(" + (snakepos[${i}][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[${i}][2] * 10 + .5) + "vmin) " + (snakepos[${i}][2] > 0 ? "rotateX(-90deg) translateY(-5vmin) translateZ(-3vmin)" : "");
+      `, 180);
+      
+      setTimeout(`
+        window["snakecubemove${i}"].style.transition = "";
+        window["snakecube${i}"].style.transition = "";
+        window["snakecube${i}"].style.transform = "rotateZ(" + (snakeangles[${i}]) + "deg)";
+      `, 250);
+      
+    }
+    
+    // NORMAL MOVE
+    else {
+      
+      window["snakecubemove" + i].style.transform = "translateX(" + (snakepos[i][0] * 10 + 1) + "vmin) translateY(" + (snakepos[i][1] * 10 + 1) + "vmin) translateZ(" + (snakepos[i][2] * 10 + .5) + "vmin) " + (snakepos[i][2] > 0 ? "rotateX(-90deg) translateY(-5vmin) translateZ(-3vmin)" : "");
+    
+      // ROTATE
+      if(!mobile || (mobile && i == 0)){
+        window["snakecube" + i].style.transform = "rotateZ(" + (snakeangles[i]) + "deg)";
+      }
+    
     }
     
     if(!mobile){
@@ -236,6 +269,33 @@ movesnake = (movecamera = 1) => {
         }
         break;
       }
+    }
+  }
+  
+  // HINT
+  if(levels[currentroom].hint){
+    hint = levels[currentroom].hint;
+    var dist = Math.hypot(snakepos[0][0] - hint[0], snakepos[0][0] - hint[1]);
+    if(currentroom != 0 && dist < 10){
+      if(hint0) hint0.style.opacity = 1;
+    }
+    if(dist > 10){
+      if(hint0) hint0.style.opacity = 0;
+    }
+  }
+  
+  // RESET
+  if(currentpuzzle){
+    for(i = 0; i < levels[currentroom].puzzles.length; i++){
+      var puzzle = levels[currentroom].puzzles[i];
+      if(snakepos[0][0] >= puzzle.x && snakepos[0][0] < puzzle.x + puzzle.size && snakepos[0][1] >= puzzle.y && snakepos[0][1] < puzzle.y + puzzle.size){
+        window["puzzlereset" + currentroom + "-" + i].style.opacity = 1;
+      }
+    }
+  }
+  else {
+    for(i = 0; i < levels[currentroom].puzzles.length; i++){
+      window["puzzlereset" + currentroom + "-" + i].style.opacity = 0;
     }
   }
 }

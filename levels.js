@@ -7,6 +7,13 @@ levels = [
   
     width: 60,
     height: 10,
+    hint: [
+      6, // x 
+      2, // y
+      "images/arrows.png", // desktop
+      "", // mobile
+    ],
+    
     hole: [7, 5.1],
 
 

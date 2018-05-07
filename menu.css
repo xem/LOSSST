@@ -3,20 +3,33 @@
   height: 100vh;
   background: #000;
   position: fixed;
-  top: -50vh;
-  left: -50vw;
   color: #fff;
-  text-shadow: -1px -1px 0 #777, -2px -2px 0 #777, -3px -3px 0 #777;
+  text-shadow: -1px -1px 3px #777, -2px -2px 3px #777, -3px -3px 3px #777;
   text-align: center;
   overflow: auto;
+  z-index: 3;
+  perspective: 26vmin;
+}
+
+.menuinner {
+  transform-origin: center center;
+  transform: translateY(24vh) rotateX(-11deg);
+}
+
+.menuinner_levels {
+  padding: 50px 0 0;
 }
 
 #menu h1 {
-  font: 20vmin/40vmin arial;
+  font: 20vmin/25vmin arial;
 }
 
 #menu span {
   font: 10vmin/17vmin arial;
+}
+
+#menu span:hover{
+  color: #9bf;
 }
 
 #menu button {
@@ -33,11 +46,17 @@
   background: #222;
 }
 
+#menu a {
+  text-shadow: none;
+}
+
+
+#menu button:hover {
+  color: #9bf;
+  border-color: #9bf;
+}
 
 @media (orientation: portrait) {
-  #menu {
-    padding-top: 20vh;
-  }
   
   #menu button {
     width: 15vh;

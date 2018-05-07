@@ -223,7 +223,7 @@
   width: 10vmin;
   height: 10vmin;
   background: #387D2B;
-  transform: translateZ(.5vmin);
+  transform: translateZ(.5vmin) scale(1.1) scaleZ(1.1);
 }
 
 .rockcube div {
@@ -243,7 +243,7 @@
 }
 
 .cube.rockcube .l {
-  transform: translateX(10vmin) rotateY(-90deg);
+  transform: translateX(10vmin) translateY(10vmin) translateZ(10vmin) rotateX(-90deg) rotateY(90deg);
   transform-origin: top left;
 }
 

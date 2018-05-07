@@ -21,98 +21,143 @@ checkpuzzle = () => {
   
   var i, j;
   
+  
+  
+  // TELEPORT 1
+  if(currentpuzzle.teleporter.length == 2){
+  
+    // Check if head is on one of the teleporters and that the second cube isn't on the other one
+    if(
+    
+      (
+           snakepos[0][0] == currentpuzzle.x + currentpuzzle.teleporter[0][0]
+        && snakepos[0][1] == currentpuzzle.y + currentpuzzle.teleporter[0][1]
+        && snakepos[0][2] == currentpuzzle.teleporter[0][2]
+        && !(
+             snakepos[1][0] == currentpuzzle.x + currentpuzzle.teleporter[1][0]
+          && snakepos[1][1] == currentpuzzle.y + currentpuzzle.teleporter[1][1]
+          && snakepos[1][2] == currentpuzzle.teleporter[1][2]
+        )
+      )
+      
+    ){
+      snakepos.unshift([currentpuzzle.x + currentpuzzle.teleporter[1][0], currentpuzzle.y + currentpuzzle.teleporter[1][1], currentpuzzle.teleporter[1][2]]);  
+      snakeangles.unshift(snakeangles[0]);
+      inbounds.unshift(inbounds[0]);
+      movesnake();
+    }
+      
+    else if(
+      (
+           snakepos[0][0] == currentpuzzle.x + currentpuzzle.teleporter[1][0]
+        && snakepos[0][1] == currentpuzzle.y + currentpuzzle.teleporter[1][1]
+        && snakepos[0][2] == currentpuzzle.teleporter[1][2]
+        && !(
+             snakepos[1][0] == currentpuzzle.x + currentpuzzle.teleporter[0][0]
+          && snakepos[1][1] == currentpuzzle.y + currentpuzzle.teleporter[0][1]
+          && snakepos[1][2] == currentpuzzle.teleporter[0][2]
+        )
+      )
+    ){
+      snakepos.unshift([currentpuzzle.x + currentpuzzle.teleporter[0][0], currentpuzzle.y + currentpuzzle.teleporter[0][1], currentpuzzle.teleporter[0][2]]);  
+      snakeangles.unshift(snakeangles[0]);  
+      inbounds.unshift(inbounds[0]);
+      movesnake();
+    }
+    
+  }
+  
+  
+  
+  // TELEPORT 2
+  if(currentpuzzle.teleporter2.length == 2){
+  
+    // Check if head is on one of the teleporter2s and that the second cube isn't on the other one
+    if(
+    
+      (
+           snakepos[0][0] == currentpuzzle.x + currentpuzzle.teleporter2[0][0]
+        && snakepos[0][1] == currentpuzzle.y + currentpuzzle.teleporter2[0][1]
+        && snakepos[0][2] == currentpuzzle.teleporter2[0][2]
+        && !(
+             snakepos[1][0] == currentpuzzle.x + currentpuzzle.teleporter2[1][0]
+          && snakepos[1][1] == currentpuzzle.y + currentpuzzle.teleporter2[1][1]
+          && snakepos[1][2] == currentpuzzle.teleporter2[1][2]
+        )
+      )
+      
+    ){
+      snakepos.unshift([currentpuzzle.x + currentpuzzle.teleporter2[1][0], currentpuzzle.y + currentpuzzle.teleporter2[1][1], currentpuzzle.teleporter2[1][2]]);  
+      snakeangles.unshift(snakeangles[0]); 
+      inbounds.unshift(inbounds[0]);
+      movesnake();
+    }
+      
+    else if(
+      (
+           snakepos[0][0] == currentpuzzle.x + currentpuzzle.teleporter2[1][0]
+        && snakepos[0][1] == currentpuzzle.y + currentpuzzle.teleporter2[1][1]
+        && snakepos[0][2] == currentpuzzle.teleporter2[1][2]
+        && !(
+             snakepos[1][0] == currentpuzzle.x + currentpuzzle.teleporter2[0][0]
+          && snakepos[1][1] == currentpuzzle.y + currentpuzzle.teleporter2[0][1]
+          && snakepos[1][2] == currentpuzzle.teleporter2[0][2]
+        )
+      )
+    ){
+      snakepos.unshift([currentpuzzle.x + currentpuzzle.teleporter2[0][0], currentpuzzle.y + currentpuzzle.teleporter2[0][1], currentpuzzle.teleporter2[0][2]]);  
+      snakeangles.unshift(snakeangles[0]); 
+      inbounds.unshift(inbounds[0]);
+      movesnake();
+    }
+    
+  }
+        
+        
+  // CHECK PUZZLE (blue/red stuff)
   if(!currentpuzzle.solved){
     for(i = 0; i < snakelength; i++){
-      if(snakepos[i][0] >= currentpuzzle.x && snakepos[i][0] < currentpuzzle.x + currentpuzzle.size){
+      
+      if(
+        (snakepos[i][0] >= currentpuzzle.x && snakepos[i][0] < currentpuzzle.x + currentpuzzle.size)
+        &&
+        (
+          (currentpuzzle.depth == 1 && snakepos[i][1] >= currentpuzzle.y && snakepos[i][1] < currentpuzzle.y + 1)
+          ||
+          ((currentpuzzle.depth != 1 || currentpuzzle.ground) && snakepos[i][1] >= currentpuzzle.y && snakepos[i][1] < currentpuzzle.y + currentpuzzle.size)
+        )
+      ){
         
-        // TELEPORT
-        
+        // Ground
         if(currentpuzzle.ground){
           cell = window[`cell${currentroom}-${currentpuzzle.index}-${(snakepos[i][1] - currentpuzzle.y) * currentpuzzle.size + (snakepos[i][0] - currentpuzzle.x)}`];
           if(cell){
-            if(cell.classList.contains("black") || cell.classList.contains("purple")){
+            if(cell.classList.contains("black") || cell.classList.contains("purple") || cell.classList.contains("tan")){
               cell.classList.add("blue");
             }
             else if(cell.classList.contains("white")){
               cell.classList.add("red");
             }
 
-            // Teleport from ground to wall
-            if(cell.classList.contains("purple") && i == 0) {
+            if((cell.classList.contains("purple") || cell.classList.contains("tan")) && i == 0) {
               cell.classList.add("blue");
-              if(currentpuzzle.wall){
-                
-                targetx = targetz = 0;
-                for(j = 0; j < currentpuzzle.size; j++){
-                  for(k = 0; k < currentpuzzle.size; k++){
-                    if(currentpuzzle.wall[j * currentpuzzle.size + k] == 2){
-                      targetx = currentpuzzle.x + k;
-                      targetz = currentpuzzle.size - j - 1;
-                    }
-                  }
-                }
-                
-                snakepos.unshift([targetx, currentpuzzle.y, targetz]);  
-                snakeangles.unshift(snakeangles[0]);  
-                inbounds.unshift(inbounds[0]);
-                console.log(snakepos[0]);
-                movesnake();
-              }
-              
-              // Teleport from ground to ground
-              else {
-                cell.classList.add("blue");
-                targetx = targety = 0;
-                console.log(currentpuzzle.ground[(snakepos[1][1] - currentpuzzle.y) * currentpuzzle.size + (snakepos[1][0] - currentpuzzle.x)]);
-                if(currentpuzzle.ground[(snakepos[1][1] - currentpuzzle.y) * currentpuzzle.size + (snakepos[1][0] - currentpuzzle.x)] != 2){
-                  
-                  for(j = 0; j < currentpuzzle.size; j++){
-                    for(k = 0; k < currentpuzzle.size; k++){
-                      
-                      
-                      
-                      if(
-                        (currentpuzzle.x + k != snakepos[0][0] || currentpuzzle.y + j != snakepos[0][1])
-                        && currentpuzzle.ground[j * currentpuzzle.size + k] == 2
-                      ){
-                        console.log(snakepos[0], j, k, currentpuzzle.ground[j * currentpuzzle.size + k]);
-                        targetx = currentpuzzle.x + k;
-                        targety = currentpuzzle.y + j;
-                        console.log(targetx, targety);
-                      }
-                    }
-                  }
-                  
-                  if(targetx || targety){
-                  
-                    snakepos.unshift([targetx, targety, 0]);  
-                    snakeangles.unshift(0);  
-                    inbounds.unshift(inbounds[0]);
-                  }
-                  
-                  movesnake();
-                }
-              }
             }
           }
         }
         
-        if(currentpuzzle.wall && snakepos[i][1] >= currentpuzzle.y - 1 && snakepos[i][1] < currentpuzzle.y + currentpuzzle.size && (!currentpuzzle.depth || (currentpuzzle.depth && (currentpuzzle.y == snakepos[i][1] || currentpuzzle.y - 1 == snakepos[i][1])))){
+        // wall
+        if(currentpuzzle.wall){
           cell = window[`cell${currentroom}-wall-${currentpuzzle.index}-${(currentpuzzle.size - snakepos[i][2] - 1) * currentpuzzle.size + (snakepos[i][0] - currentpuzzle.x)}`];
           if(cell){
-            if(cell.classList.contains("black")){
+            if(cell.classList.contains("black") || cell.classList.contains("purple") || cell.classList.contains("tan")){
               cell.classList.add("blue");
             }
             else if(cell.classList.contains("white")){
               cell.classList.add("red");
             }
 
-            // Teleport from wall to ground
-            else {
-              /*snakepos.unshift([snakepos[0][0], snakepos[0][1] - 1, snakepos[0][2]]);  
-              snakeangles.unshift(snakeangles[0]);  
-              inbounds.unshift(inbounds[0]);
-              movesnake();*/
+            if((cell.classList.contains("purple") || cell.classList.contains("tan")) && i == 0) {
+              cell.classList.add("blue");
             }
           }
         }
@@ -123,11 +168,13 @@ checkpuzzle = () => {
   // CHECK
   
   // Check solution
+  console.log("===");
   solved = 1;
   if(currentpuzzle){
     for(j in currentpuzzle.ground){
       cell = window[`cell${currentroom}-${currentpuzzle.index}-${j}`];
-      if(cell && (cell.classList.contains("red") || ((cell.classList.contains("black") || cell.classList.contains("purple")) && !cell.classList.contains("blue")))){
+      if(cell && (cell.classList.contains("red") || ((cell.classList.contains("black") || cell.classList.contains("purple") || cell.classList.contains("tan")) && !cell.classList.contains("blue")))){
+        console.log(j);
         solved = 0;
         break;
       }
@@ -135,7 +182,7 @@ checkpuzzle = () => {
     
     for(j in currentpuzzle.wall){
       cell = window[`cell${currentroom}-wall-${currentpuzzle.index}-${j}`];
-      if(cell && (cell.classList.contains("red") || ((cell.classList.contains("black") || cell.classList.contains("purple")) && !cell.classList.contains("blue")))){
+      if(cell && (cell.classList.contains("red") || ((cell.classList.contains("black") || cell.classList.contains("purple") || cell.classList.contains("tan")) && !cell.classList.contains("blue")))){
         solved = 0;
         break;
       }
@@ -146,7 +193,7 @@ checkpuzzle = () => {
       currentpuzzle.solved = 1;
       for(j in currentpuzzle.ground){
         cell = window[`cell${currentroom}-${currentpuzzle.index}-${j}`];
-        if(cell.classList.contains("black")){
+        if(cell.classList.contains("black") || cell.classList.contains("purple") || cell.classList.contains("tan")){
           cell.classList.add("green");
         }
         else {
@@ -156,7 +203,7 @@ checkpuzzle = () => {
       
       for(j in currentpuzzle.wall){
         cell = window[`cell${currentroom}-wall-${currentpuzzle.index}-${j}`];
-        if(cell.classList.contains("black")){
+        if(cell.classList.contains("black") || cell.classList.contains("purple") || cell.classList.contains("tan")){
           cell.classList.add("green");
         }
         else {

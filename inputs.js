@@ -6,7 +6,6 @@ px = py = 0;
 
 // Mobile controls
 scene.ontouchstart = scene.ontouchmove = e => {
-  console.log(animation);
   if(lock || animation) return;
   
   mousedown = 1;
@@ -69,26 +68,17 @@ scene.ontouchend = e => {
 
 // Keyboard controls
 k_left = k_right = k_up = k_down = 0;
+animation = 0;
 
 onkeydown = e => {
-  
-  console.log(animation);
+
   if(animation) return;
   
   if(e.keyCode != 123 && e.keyCode != 116 && e.keyCode != 82) e.preventDefault();
   
+  // Reset = R
   if(e.keyCode == 82){
-    if(inbounds[0]){
-      for(var i = 0; i < movessincelatestpuzzle; i++){
-        snakepos.shift();
-        snakeangles.shift();
-        inbounds.shift();
-      }
-      movesnake();
-      movessincelatestpuzzle = 0;
-      latestpuzzle = null;
-      return;
-    }
+    reset_puzzle();
   }
   
   mousedown = 1;
@@ -115,6 +105,25 @@ onkeydown = e => {
   }
   
   mousemove(dir);
+}
+
+reset_puzzle = e => {
+  if(inbounds[0]){
+    for(var i = 0; i < movessincelatestpuzzle; i++){
+      snakepos.shift();
+      snakeangles.shift();
+      inbounds.shift();
+    }
+    movesnake();
+    movessincelatestpuzzle = 0;
+    latestpuzzle = null;
+    
+    for(var i = 0; i < levels[currentroom].puzzles.length; i++){
+      window["puzzlereset" + currentroom + "-" + i].style.opacity = 0;
+    }
+  
+    return;
+  }
 }
 
 onkeyup = e => {
@@ -160,6 +169,6 @@ onkeyup = e => {
 }
 
 // Avoid all default event behaviors
-onmousedown = onmousemove = onmouseup = ontouchmove = onclick = ondblclick = onscroll = onkeypress = function(e){
+onmousedown = onmousemove = onmouseup = ontouchmove = ondblclick = onscroll = onkeypress = function(e){
   e.preventDefault();
 }

@@ -19,4 +19,6 @@ start = function(){
   }
 
   scene.style.transform = `rotateX(0deg) translateX(-${levels[currentroom].hole[0] * 10}vmin) translateY(-${levels[currentroom].hole[1] * 10}vmin) translateZ(10vmin)`;
+  
+  setTimeout("if(window.hint0)hint0.classList.add('started')", 2000);
 }

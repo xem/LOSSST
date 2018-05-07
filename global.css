@@ -10,6 +10,7 @@
   user-select: none;
   cursor: pointer;
   touch-action: manipulation;
+  backface-visibility: hidden;
 }
 
 html, body {
@@ -60,7 +61,7 @@ body.mobile {
 }
 
 .cube.snakecube .l {
-  transform: translateX(8vmin) rotateY(-90deg);
+  transform: translateX(8vmin) translateY(8vmin) translateZ(8vmin) rotateX(-90deg) rotateY(90deg);
   transform-origin: top left;
 }
 
@@ -75,7 +76,7 @@ body.mobile {
 }
 
 .cube.snakecube .b {
-  transform: translateZ(8vmin) rotateX(-90deg);
+  transform: translateZ(8vmin) rotateX(90deg) translateY(-8vmin);
   transform-origin: top left;
 }
 
@@ -148,4 +149,48 @@ img {
   background: url(images/egg_1.png) no-repeat 0 0;
   background-size: auto 100%;
   margin-left: -30px;
+}
+
+#quit {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  font-size: 40px;
+  z-index: 2;
+  font-weight: bold;
+  -webkit-text-stroke: 1px #FFF;
+  text-stroke: 1px #FFF;
+  text-decoration: none;
+  color: #000;
+  font-family: arial;
+}
+
+#quit span {
+  display: none;
+}
+
+#quit:hover span {
+  display: inline-block;
+  position: fixed;
+  top: 45px;
+  right: 10px;
+  z-index: 2;
+  font-size: 25px;
+  color: #fff;
+  -webkit-text-stroke: 1px #000;
+  text-stroke: 1px #000;
+}
+
+.hint {
+  position: fixed;
+  width: 30vmin;
+  height: 30vmin;
+  transform-origin: center bottom;
+  transform: translateZ(8vmin) rotateX(-45deg);
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.hint.started {
+  opacity: 1;
 }

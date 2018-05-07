@@ -42,6 +42,11 @@ start_room = function(currentroom, snakelength, totalpuzzles){
 
 button_choose.onclick = function(){
   menu.innerHTML = `
+
+<div class="menuinner_levels">
+
+<a id=quit href=".">x</a>
+
 <button onclick="start_room(0,3,0)">1-1</button>
 <button onclick="start_room(1, 5, 3)">1-2</button>
 <button onclick="start_room(2, 6, 6)">1-3</button>
@@ -61,5 +66,8 @@ button_choose.onclick = function(){
 <button onclick="start_room(15,6,66)">2-3</button>
 <button onclick="start_room(16,7,69)">2-4</button>
 <button onclick="start_room(17,8,73)">2-5</button>
+<button onclick="start_room(18,9,77)">2-6</button>
+
+</div>
 `;
 }
