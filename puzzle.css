@@ -23,7 +23,7 @@
   width: 10vmin;
   height: 10vmin;
   position: absolute;
-  border: .4vmin solid #000;
+  border: .4vmin solid #333;
 }
 
 .cell.grass {
