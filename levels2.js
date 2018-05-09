@@ -115,7 +115,7 @@ levels.push(
 
       {
         x: 3,
-        y: 10,
+        y: 20,
         size: 5,
         wrap: 0,
         wall: "",
@@ -128,7 +128,7 @@ levels.push(
       
       {
         x: 3,
-        y: 20,
+        y: 30,
         size: 4,
         wrap: 0,
         wall: "",
@@ -140,7 +140,7 @@ levels.push(
       
       {
         x: 3,
-        y: 30,
+        y: 10,
         size: 4,
         wrap: 0,
         wall: "",
@@ -446,6 +446,7 @@ levels.push(
         x: 4,
         y: 40,
         wrap: 0,
+        depth: 1,
         size: 3,
         wall:   "020"+
                 "121"+
@@ -500,7 +501,7 @@ levels.push(
 
       {
         x: 11,
-        y: 39,
+        y: 49,
         angle: 0,
         open: 0,
         puzzles: 78,
@@ -519,9 +520,9 @@ levels.push(
   
   // Room 5 (18)
   // Size 10
-  // Puzzles 19-22 (79-82)
+  // Puzzles 19-23 (79-83)
   
-    width: 50,
+    width: 60,
     height: 11,
     hole: false,
     
@@ -560,7 +561,7 @@ levels.push(
         y: 4,
         wrap: 0,
         size: 4,
-        wall:   "",
+        wall: "",
                 
         ground: "0312"+
                 "0123"+
@@ -583,46 +584,20 @@ levels.push(
         ground: "",
       },
       
-      /*{
-        x: 20,
-        y: 4,
-        size: 4,
-        wrap: 0,
-        wall: "",
-        ground: "0010"
-               +"1111"
-               +"0111"
-               +"0011",
-      },
-      
       {
-        x: 28,
+        x: 50,
         y: 4,
-        size: 4,
         wrap: 0,
-        wall: "",
-        ground: "0010"
-               +"0011"
-               +"0110"
-               +"0011",
+        size: 3,
+        wall:   "130"+
+                "212"+
+                "111",
+                
+        ground: "111"+
+                "110"+
+                "300",
       },
-      
-      {
-        x: 38,
-        y: 4,
-        size: 6,
-        wrap: 0,
-        wall: 
-           "000000"
-          +"000000"
-          +"000000"
-          +"111111"
-          +"100001"
-          +"100001",
-        ground: 
-          "",
-      },*/
-
+     
     ],
     
     trees: [
@@ -655,12 +630,12 @@ levels.push(
       },
 
       {
-        x: 49,
+        x: 59,
         y: 5,
         angle: 0,
         open: 0,
-        puzzles: 82,
-        to: 6,
+        puzzles: 83,
+        to: 19,
         to_x: -3,
         to_y: 5,
         to_z: 0
@@ -669,163 +644,165 @@ levels.push(
   }
 );
 
-/*
+levels.push(
+{
   
-  
-  // Room 6
+  // Room 6 (19)
   // Size 11
-  // Puzzles 26-32
-  {
+  // Puzzles 24-28 (84-88)
   
-    width: 80,
-    height: 11,
-    hole: false,
-    
-    puzzles: [
+  width: 80,
+  height: 11,
+  hole: false,
+  
+  puzzles: [
 
-      {
-        x: 10,
-        y: 4,
-        size: 4,
-        wrap: 0,
-        wall: "",
-        ground: "0111"
-               +"0101"
-               +"1111"
-               +"1100",
-      },
-      
-      
-      
-      {
-        x: 20,
-        y: 3,
-        size: 6,
-        wrap: 0,
-        wall: "",
-        ground: "000000"+
-                "011110"+
-                "011100"+
-                "011110"+
-                "000000"+
-                "000000",
-      },
-      
-      
-      {
-        x: 30,
-        y: 3,
-        size: 6,
-        wrap: 0,
-        wall: "",
-        ground: "000000"+
-                "011110"+
-                "011110"+
-                "001100"+
-                "001000"+
-                "000000",
-      },
-      
-      {
-        x: 40,
-        y: 3,
-        size: 5,
-        wrap: 0,
-        wall: "",
-        ground: "00000"+
-                "01110"+
-                "01010"+
-                "01110"+
-                "01110",
-      },
-      
-      {
-        x: 50,
-        y: 4,
-        size: 4,
-        wrap: 0,
-        wall: "",
-        ground: "1010"+
-                "1110"+
-                "1100"+
-                "1000",
-      },
-      
-      {
-        x: 60,
-        y: 4,
-        size: 4,
-        wrap: 0,
-        wall: "",
-        ground: "1100"+
-                "1110"+
-                "1111"+
-                "0011",
-      },
-      
-      {
-        x: 70,
-        y: 5,
-        size: 4,
-        wrap: 0,
-        wall: "0001"+
-              "0111"+
+    {
+      x: 20,
+      y: 5,
+      size: 4,
+      depth: 1,
+      wrap: 0,
+      wall: "2011"+
+            "1032"+
+            "3110"+
+            "1100",
+      ground: "",
+    },
+    
+    
+    
+    {
+      x: 10,
+      y: 5,
+      size: 4,
+      depth: 1,
+      wrap: 0,
+      wall: "0000"+
+            "0100"+
+            "1120"+
+            "2111",
+      ground: "",
+    },
+    
+    /*
+    
+    {
+      x: 30,
+      y: 3,
+      size: 6,
+      wrap: 0,
+      wall: "",
+      ground: "000000"+
+              "011110"+
+              "011110"+
+              "001100"+
+              "001000"+
+              "000000",
+    },
+    
+    {
+      x: 40,
+      y: 3,
+      size: 5,
+      wrap: 0,
+      wall: "",
+      ground: "00000"+
+              "01110"+
+              "01010"+
+              "01110"+
+              "01110",
+    },
+    
+    {
+      x: 50,
+      y: 4,
+      size: 4,
+      wrap: 0,
+      wall: "",
+      ground: "1010"+
+              "1110"+
+              "1100"+
+              "1000",
+    },
+    
+    {
+      x: 60,
+      y: 4,
+      size: 4,
+      wrap: 0,
+      wall: "",
+      ground: "1100"+
+              "1110"+
               "1111"+
-              "1110",
-              
-
+              "0011",
+    },
+    
+    {
+      x: 70,
+      y: 5,
+      size: 4,
+      wrap: 0,
+      wall: "0001"+
+            "0111"+
+            "1111"+
+            "1110",
             
-        ground: "",
-      },
-      
-      
-      
-      
 
-    ],
+          
+      ground: "",
+    },*/
     
-    trees: [
-      [6,2],
-    ],
     
-    cubes: [
+    
+    
 
-    ],
-    
-    apples: [
-      {
-        x: 8,
-        y: 4,
-        eaten: 0
-      }
-    ],
-    
-    stones: [
-    ],
-    
-    bridges: [
-      {
-        x: 1,
-        y: 5,
-        angle: 180,
-        open: 1,
-        puzzles: 0,
-        to: 0
-      },
+  ],
+  
+  trees: [
+    [6,3],
+  ],
+  
+  cubes: [
+    //[21, 3, 0]
+  ],
+  
+  apples: [
+    {
+      x: 8,
+      y: 8,
+      eaten: 0
+    }
+  ],
+  
+  stones: [
+  ],
+  
+  bridges: [
+    {
+      x: 1,
+      y: 5,
+      angle: 180,
+      open: 1,
+      puzzles: 0,
+      to: 0
+    },
 
-      {
-        x: 79,
-        y: 5,
-        angle: 0,
-        open: 0,
-        puzzles: 32,
-        to: 7,
-        to_x: -3,
-        to_y: 5,
-        to_z: 0
-      }
-    ],
-  },
+    {
+      x: 79,
+      y: 5,
+      angle: 0,
+      open: 0,
+      puzzles: 88,
+      to: 7,
+      to_x: -3,
+      to_y: 5,
+      to_z: 0
+    }
+  ],
+});
+
+/*
   
   // Room 7
   // Size 13
