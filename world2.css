@@ -1,5 +1,6 @@
 .world2 #scene{
   background: url(images/sand.jpg) !important;
+  background-size: 300vmin !important;
 }
 
 .world2 .treecontent {
@@ -37,4 +38,9 @@
 
 .world2 .cube.snakecube .tongue {
   background: none
+}
+
+.world2 .rockcube .u {
+  background: url(images/sand2.jpg) !important;
+  background-size: 20vmin !important;
 }
