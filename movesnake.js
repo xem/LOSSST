@@ -63,7 +63,7 @@ movesnake = (movecamera = 1) => {
     //  console.log(3, snakepos[i][0] - snakepos[i+1][0], snakepos[i][1] - snakepos[i+1][1], snakepos[i][2] - snakepos[i+1][2]);
     //}
     
-    if(snakepos[i+1] && Math.hypot(snakepos[i][0] - snakepos[i+1][0], snakepos[i][1] - snakepos[i+1][1], snakepos[i][2] - snakepos[i+1][2]) > 1){
+    if(currentroom != 12 && snakepos[i+1] && Math.hypot(snakepos[i][0] - snakepos[i+1][0], snakepos[i][1] - snakepos[i+1][1], snakepos[i][2] - snakepos[i+1][2]) > 1){
       console.log("teleport");
       window["snakecubemove" + i].style.transition = "0s";
       window["snakecube" + i].style.transition = ".2s";
@@ -115,12 +115,12 @@ movesnake = (movecamera = 1) => {
   }
   
   // If the snake moves on X axis, rotate the trees to face the camera
-  i = 0;
+  var l = 0;
   if(!mobile){
-    for(i in levels[currentroom].trees){
-      tree = levels[currentroom].trees[i];
+    for(l in levels[currentroom].trees){
+      tree = levels[currentroom].trees[l];
       if(!inbounds[0] && !puzzling){
-        window["treecontent" + i].style.transform = `rotateY(${Math.sin((snakepos[0][0] - tree[0]) / 30)}rad)`;
+        window["treecontent" + l].style.transform = `rotateY(${Math.sin((snakepos[0][0] - tree[0]) / 30)}rad)`;
       }
     }
   }
@@ -225,15 +225,15 @@ movesnake = (movecamera = 1) => {
   }
   
   // Eat an apple
-  for(i in levels[currentroom].apples){
-    apple = levels[currentroom].apples[i];
+  for(var l in levels[currentroom].apples){
+    apple = levels[currentroom].apples[l];
     if(!apple.eaten && !localStorage["apple_" + currentroom + "_" + i] && snakepos[0][0] == apple.x && snakepos[0][1] == apple.y){
       apple.eaten = 1;
-      window["apple" + i].classList.add("eaten");
-      if(window["appleshadow" + i]){
-        window["appleshadow" + i].classList.add("eaten");
+      window["apple" + l].classList.add("eaten");
+      if(window["appleshadow" + l]){
+        window["appleshadow" + l].classList.add("eaten");
       }
-      localStorage["apple_" + currentroom + "_" + i] = 1;
+      localStorage["apple_" + currentroom + "_" + l] = 1;
       snake.insertAdjacentHTML("beforeEnd",
 `<div id="snakecubemove${snakelength}" class="snakecubemove" style="transform:translateX(${snakepos[snakelength][0]*10+1}vmin) translateY(${snakepos[snakelength][1]*10+1}vmin) translateZ(${snakepos[snakelength][2]*10+.6}vmin)">
   <div id="snakeshadow${snakelength}" class="snakeshadow"></div>
@@ -286,16 +286,16 @@ movesnake = (movecamera = 1) => {
   
   // RESET
   if(currentpuzzle){
-    for(i = 0; i < levels[currentroom].puzzles.length; i++){
-      var puzzle = levels[currentroom].puzzles[i];
+    for(var l = 0; l < levels[currentroom].puzzles.length; l++){
+      var puzzle = levels[currentroom].puzzles[l];
       if(snakepos[0][0] >= puzzle.x && snakepos[0][0] < puzzle.x + puzzle.size && snakepos[0][1] >= puzzle.y && snakepos[0][1] < puzzle.y + puzzle.size){
-        window["puzzlereset" + currentroom + "-" + i].style.opacity = 1;
+        window["puzzlereset" + currentroom + "-" + l].style.opacity = 1;
       }
     }
   }
   else {
-    for(i = 0; i < levels[currentroom].puzzles.length; i++){
-      window["puzzlereset" + currentroom + "-" + i].style.opacity = 0;
+    for(var l = 0; l < levels[currentroom].puzzles.length; l++){
+      window["puzzlereset" + currentroom + "-" + l].style.opacity = 0;
     }
   }
 }

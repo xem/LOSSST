@@ -1713,7 +1713,7 @@ levels = [
         puzzles: 70,
         to: 13,
         to_x: -3,
-        to_y: 8,
+        to_y: 5,
         to_z: 0
       },
     ],

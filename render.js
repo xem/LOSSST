@@ -29,7 +29,7 @@ render = () => {
   // Containers
   scene.innerHTML =
 `<div id=scenedepth style="width:${levels[currentroom].width * 10 - 5}vmin; transform: translateY(${levels[currentroom].height * 10}vmin) rotateX(-45deg)"></div>
-<div id=scenewall style="width:${levels[currentroom].width * 10 - 5}vmin; transform: translateZ(-100vmin) rotateX(90deg)"></div>
+<div id=scenewall style="width:${levels[currentroom].width * 10 - 5}vmin; transform: rotateX(-90deg)"></div>
 <div id=hints></div>
 <div id=holes></div>
 <div id=bridges></div>
@@ -268,18 +268,18 @@ render = () => {
     
     egg.innerHTML = "<div></div>";
     egg.style.transform = "translateX(72vmin) translateY(50vmin)";
-    
+    snakelength = 20;
     
     animation = 1;
     var noblue = 1;
     var circle;
     b.classList.add("boss");
-    b.style.backgroundImage = "url(images/space.jpg)";
     perspective.style.perspective = "130vmin";
     if(levels[currentroom].boss){
       
       // Look up
       setTimeout(function(){
+        b.style.backgroundImage = "url(images/space.jpg)";
         lock = 1;
         b.style.transition = "2s";
         scene.style.transition = "2s";
@@ -528,7 +528,7 @@ render = () => {
               }
               
               boss.style.transform = "translateY(120vmin) translateZ(30vmin)";
-              scenewall.style.transform = "rotateX(90deg)";
+              scenewall.style.transform = "translateZ(100vmin) rotateX(-90deg)";
               scenewallvisible = 1;
 
               if(levels[currentroom].bosswall){
@@ -653,7 +653,7 @@ render = () => {
                       
                       // Draw green snake
                       snakelength = 3;
-                      snakepos = [[9, 7, 0], [9, 6, 0], [9, 5, 0]];
+                      snakepos = [[9, 7, 0], [9, 6, 0], [9, 5, 0], [9, 5, -1], [9, 5, -2], [9, 5, -3], [9, 5, -4]];
                       snakeangles = [0,0,0];
                       for(i = 0; i < snakelength; i++){
                         snake.innerHTML +=
@@ -713,6 +713,7 @@ render = () => {
                       animation = 0;
                       movesnake();
                       snakecube0.style.transform = "rotateZ(0deg)";
+                      b.style.backgroundImage = "url(images/sky.jpg)";
                       
                     }, 4000);
                   }

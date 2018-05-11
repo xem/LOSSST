@@ -42,7 +42,7 @@
   position: fixed;
   left: 3vmin;
   top: 0;
-  background: linear-gradient(rgba(255,255,255,.3), rgba(255,255,255,.3)), url(images/terre.png);
+  background: linear-gradient(rgba(255,255,255,.1), rgba(255,255,255,.1)), url(images/terre.png);
   background-size: 100%, 70vmin;
   transform-origin: top center;
   transition: transform 5s;
@@ -216,7 +216,7 @@
 
 .bridge.angle180 .bridgedepth {
   top: 0;
-  transform: rotateX(-110deg);
+  transform: translateZ(-7vmin) rotateX(80deg)
 }
 
 .rockcube {
@@ -287,8 +287,12 @@
   transform: translateZ(10vmin);
 }
 
+.cube.bosscube .d {
+  transform: rotateX(180deg);
+}
+
 .cube.bosscube .l {
-  transform: translateX(10vmin) rotateY(-90deg);
+  transform: translateX(10vmin) translateY(10vmin) translateZ(10vmin) rotateX(-90deg) rotateY(90deg);
   transform-origin: top left;
 }
 
