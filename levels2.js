@@ -526,7 +526,7 @@ levels.push(
     puzzles: [
 
       {
-        x: 10,
+        x: 20,
         y: 5,
         wrap: 0,
         depth: 1,
@@ -539,7 +539,7 @@ levels.push(
       },
       
       {
-        x: 20,
+        x: 30,
         y: 4,
         wrap: 0,
         size: 3,
@@ -554,7 +554,7 @@ levels.push(
       
       
       {
-        x: 30,
+        x: 10,
         y: 4,
         wrap: 0,
         size: 4,
@@ -740,7 +740,7 @@ levels.push(
       angle: 0,
       open: 0,
       puzzles: 87,
-      to: 7,
+      to: 20,
       to_x: -3,
       to_y: 5,
       to_z: 0
@@ -751,7 +751,7 @@ levels.push(
 
 // Room 2-8 (20)
 // Size 12
-// Puzzles 28- (88- )
+// Puzzles 28-32 (88-92)
 levels.push(
 {
   width: 30,
@@ -781,6 +781,7 @@ levels.push(
       wall: "111"+
             "213"+
             "111",
+            
       ground: "131"+
               "111"+
               "121",
@@ -799,31 +800,33 @@ levels.push(
               "3111",
     },
 
-    /*
     {
-      x: 21,
+      x: 22,
       y: 11,
-      size: 5,
+      size: 6,
       wrap: 0,
       wall: "",
-      ground: "01200"+
-              "01031"+
-              "01121"+
-              "01301"+
-              "01000",
+      ground: "000000"+
+              "000131"+
+              "000321"+
+              "000201"+
+              "000111"+
+              "000000",
     },  
     
     {
       x: 22,
       y: 5,
-      size: 4,
+      size: 5,
+      depth: 1,
       wrap: 0,
       ground: "",
-      wall:   "0110"+
-              "1111"+
-              "1111"+
-              "1110",
-    },*/
+      wall:   "00000"+
+              "00210"+
+              "13110"+
+              "11112"+
+              "00031",
+    },
 
   ],
   
@@ -832,7 +835,15 @@ levels.push(
   ],
   
   cubes: [
-
+    [27, 5, 0],
+    [27, 6, 0],
+    [27, 7, 0],
+    [26, 7, 0],
+    [25, 7, 0],
+    [24, 7, 0],
+    [24, 6, 0],
+    [24, 5, 0],
+    [23, 5, 0],
   ],
   
   apples: [
@@ -867,8 +878,8 @@ levels.push(
       y: 5,
       angle: 0,
       open: 0,
-      puzzles: 37,
-      to: 8,
+      puzzles: 92,
+      to: 21,
       to_x: -3,
       to_y: 5,
       to_z: 0
@@ -1007,7 +1018,7 @@ for(i = 0; i < 10; i++){
         angle: 0,
         open: 0,
         puzzles: 37,
-        to: 8,
+        to: 22,
         to_x: -3,
         to_y: 5,
         to_z: 0
@@ -1162,7 +1173,7 @@ for(i = 0; i < 10; i++){
         angle: 0,
         open: 0,
         puzzles: 43,
-        to: 9,
+        to: 23,
         to_x: -3,
         to_y: 5,
         to_z: 0
@@ -1299,7 +1310,7 @@ for(i = 0; i < 10; i++){
         angle: 0,
         open: 0,
         puzzles: 49,
-        to: 10,
+        to: 24,
         to_x: -3,
         to_y: 5,
         to_z: 0
@@ -1438,7 +1449,7 @@ for(i = 0; i < 10; i++){
         angle: 0,
         open: 0,
         puzzles: 55,
-        to: 11,
+        to: 25,
         to_x: -3,
         to_y: 5,
         to_z: 0
