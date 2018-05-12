@@ -278,93 +278,96 @@ mousemove = (dir) => {
   // Allow going on bridges
   for(i in levels[currentroom].bridges){
     bridge = levels[currentroom].bridges[i];
-    if(bridge.open && bridge.angle == 0){
-      if(pos[0] >= bridge.x + 1 && pos[1] >= bridge.y - 1 && pos[1] <= bridge.y + 1){
-        offset = bridge.y - pos[1];
-        collision = 0;
-        inbounds[0] = 1;
-        lock = 1;
-        scene.style.transformOrigin = `${bridge.x * 10}vmin ${bridge.y * 10}vmin`;
-        scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 10}vmin) translateZ(10vmin) rotateX(10deg)`;
-        angle = snakeangles[0];
-        if(angle % 360 == 180 || angle % 360 == -180){
-          angle += 90;
-        }
-        
-        else if(angle % 360 == 0){
-          angle -= 90;
-        }
-        
-        // Autopilot
-        autopilot = (bounds = 1) => {
-          snakeangles.unshift(angle);
-          snakepos.unshift([snakepos[0][0] + 1, snakepos[0][1], snakepos[0][2]]);
-          inbounds.unshift(bounds);
-          movesnake(0);
+    if(bridge){
+      
+      if(bridge.open && bridge.angle == 0){
+        if(pos[0] >= bridge.x + 1 && pos[1] >= bridge.y - 1 && pos[1] <= bridge.y + 1){
+          offset = bridge.y - pos[1];
+          collision = 0;
+          inbounds[0] = 1;
           lock = 1;
-          animation = 1;
-        };
-        
-        autopilot();
-        
-        interval = setInterval(()=>{
+          scene.style.transformOrigin = `${bridge.x * 10}vmin ${bridge.y * 10}vmin`;
+          scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 10}vmin) translateZ(10vmin) rotateX(10deg)`;
+          angle = snakeangles[0];
+          if(angle % 360 == 180 || angle % 360 == -180){
+            angle += 90;
+          }
+          
+          else if(angle % 360 == 0){
+            angle -= 90;
+          }
+          
+          // Autopilot
+          autopilot = (bounds = 1) => {
+            snakeangles.unshift(angle);
+            snakepos.unshift([snakepos[0][0] + 1, snakepos[0][1], snakepos[0][2]]);
+            inbounds.unshift(bounds);
+            movesnake(0);
+            lock = 1;
+            animation = 1;
+          };
+          
           autopilot();
-          if(!music.src.includes("13.mp3")){
-            if(music.volume > .15){
-              music.volume = +music.volume - .15;
+          
+          interval = setInterval(()=>{
+            autopilot();
+            if(!music.src.includes("13.mp3")){
+              if(music.volume > .15){
+                music.volume = +music.volume - .15;
+              }
+              else{
+                music.volume = 0;
+              }
             }
-            else{
-              music.volume = 0;
+          }, 200);
+          
+          // Change room
+          setTimeout(() => {
+            puzzling = 1;
+            scene.innerHTML = "";
+            scene.style.transition = "0s";
+            currentroom = bridge.to;
+            localStorage.currentroom = currentroom;
+            snakepos = [];
+            snakeangle = [];
+            inbounds = [];
+            for(j = bridge.to_x - snakelength; j < bridge.to_x + 3; j++){
+              snakepos.unshift([j, bridge.to_y - offset, bridge.to_z]);
+              snakeangle.unshift(90);
+              inbounds.unshift(1);
             }
-          }
-        }, 200);
-        
-        // Change room
-        setTimeout(() => {
-          puzzling = 1;
-          scene.innerHTML = "";
-          scene.style.transition = "0s";
-          currentroom = bridge.to;
-          localStorage.currentroom = currentroom;
-          snakepos = [];
-          snakeangle = [];
-          inbounds = [];
-          for(j = bridge.to_x - snakelength; j < bridge.to_x + 3; j++){
-            snakepos.unshift([j, bridge.to_y - offset, bridge.to_z]);
-            snakeangle.unshift(90);
-            inbounds.unshift(1);
-          }
-          
-          console.log(snakepos);
-          
-          
-          scene.style.transformOrigin = `${(bridge.to_x + 4) * 10 + 1}vmin ${(bridge.to_y - offset) * 10 + 1}vmin`;
-          //console.log(scene.style.transform = `translateX(${-(bridge.to_x + 4) * 10 - 4}vmin) translateY(${-(bridge.to_y - offset) * 10 + 1}vmin) translateZ(10vmin) rotateX(30deg)`);
+            
+            console.log(snakepos);
+            
+            
+            scene.style.transformOrigin = `${(bridge.to_x + 4) * 10 + 1}vmin ${(bridge.to_y - offset) * 10 + 1}vmin`;
+            //console.log(scene.style.transform = `translateX(${-(bridge.to_x + 4) * 10 - 4}vmin) translateY(${-(bridge.to_y - offset) * 10 + 1}vmin) translateZ(10vmin) rotateX(30deg)`);
 
-          inbounds[0] = 0;
-          render();
-          puzzling = 0;
-          movesnake(0);
-        }, snakelength * 200);
-        
-        // Stop autopilot in the next room
-        setTimeout(() => {
-          scene.style.transition = "";
-          clearInterval(interval);
-          music.volume = 1;
-          lock = 0;
-          animation = 0;
-          puzzling = 0;
+            inbounds[0] = 0;
+            render();
+            puzzling = 0;
+            movesnake(0);
+          }, snakelength * 200);
           
-          inbounds = [];
-          for(j = 0; j < snakelength; j++){
-            inbounds.push(0);
-          }
+          // Stop autopilot in the next room
+          setTimeout(() => {
+            scene.style.transition = "";
+            clearInterval(interval);
+            music.volume = 1;
+            lock = 0;
+            animation = 0;
+            puzzling = 0;
+            
+            inbounds = [];
+            for(j = 0; j < snakelength; j++){
+              inbounds.push(0);
+            }
+            
+            movesnake(0);
+          }, snakelength * 200 + 3 * 200);
           
-          movesnake(0);
-        }, snakelength * 200 + 3 * 200);
-        
-        return;
+          return;
+        }
       }
     }
   }

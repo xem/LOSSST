@@ -98,6 +98,8 @@ levels = [
     
     
     bridges: [
+      null,
+      
       {
         x: 59,
         y: 5,

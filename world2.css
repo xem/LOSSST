@@ -12,8 +12,16 @@
   transform: translateX(-88%) scaleX(-1.5) translateY(-3vmin) translateZ(.3vmin) rotateZ(235deg);
 }
 
-.world2 .snakegrass, .puzzlegrass {
-  display: none;
+.world2 .snakegrass {
+  background-image: url(images/sandtrace.png) !important;
+  background-size: 10vmin 9vmin !important;
+  background-position-y: 5.5vmin !important;
+}
+
+.puzzlegrass {
+  background-image: url(images/sandtrace.png) !important;
+  background-size: 20vmin 9vmin !important;
+  background-position-y: 4vmin !important;
 }
 
 .world2 .applecontent {

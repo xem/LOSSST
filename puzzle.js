@@ -189,7 +189,8 @@ checkpuzzle = () => {
     }
   
     // Color in green, save
-    if(solved && !localStorage[currentroom+"-"+currentpuzzle.index]){
+    if(solved && !localStorage[currentroom + "-"+currentpuzzle.index]){
+      
       currentpuzzle.solved = 1;
       for(j in currentpuzzle.ground){
         cell = window[`cell${currentroom}-${currentpuzzle.index}-${j}`];
@@ -211,24 +212,31 @@ checkpuzzle = () => {
         }
       }
       
-      localStorage[currentroom+"-"+currentpuzzle.index] = 1;
+      localStorage[currentroom + "-" + currentpuzzle.index] = 1;
       localStorage["totalpuzzles"] = totalpuzzles = +localStorage["totalpuzzles"] + 1;
       
-      for(i in levels[currentroom].bridges){
-        bridge = levels[currentroom].bridges[i];
-        if(!bridge.open && (totalpuzzles >= bridge.puzzles || snakelength >= bridge.snakelength)){
-          lock = 1;
-          animation = 1;
-          scene.style.transform = `rotateX(30deg) translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin)`;
-          window["bridge" + i].classList.add("open");
-          bridge.open = 1;
-          localStorage["bridge" + currentroom + "-" + i] = 1;
-          setTimeout(()=>{
-            lock = 0;
-            animation = 0;
-            movesnake();
-          }, 2000);
+      // Bridge
+      exitopen = 1;
+      bridge = levels[currentroom].bridges[1];
+      for(i in levels[currentroom].puzzles){
+        puzzle = levels[currentroom].puzzles[i];
+        if(!puzzle.solved){
+          exitopen = 0;
         }
+      }
+      if(exitopen){
+        lock = 1;
+        animation = 1;
+        bridge = levels[currentroom].bridges[1];
+        scene.style.transform = `rotateX(30deg) translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin)`;
+        window["bridge" + 1].classList.add("open");
+        bridge.open = 1;
+        localStorage["bridge" + currentroom + "-" + 1] = 1;
+        setTimeout(() => {
+          lock = 0;
+          animation = 0;
+          movesnake();
+        }, 2000);
       }
     }
   }

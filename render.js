@@ -50,6 +50,7 @@ render = () => {
   if(levels[currentroom].boss){
     scenewall.style.height = "100vmin";
   }
+  scenewallvisible = 0;
 
   // Snake
   for(i = 0; i < snakelength; i++){
@@ -232,11 +233,13 @@ render = () => {
   // Bridges
   for(j in levels[currentroom].bridges){
     bridge = levels[currentroom].bridges[j];
-    if(+localStorage["bridge" + currentroom + "-" + j]){
-      bridge.open = 1;
+    if(bridge) {
+      if(+localStorage["bridge" + currentroom + "-" + j]){
+        bridge.open = 1;
+      }
+      bridges.innerHTML +=
+      `<div id="bridge${j}" class="bridge ${bridge.open ? "open" : ""} angle${bridge.angle}" style="margin-left:${bridge.x * 10}vmin;margin-top:${bridge.y * 10 - 10}vmin;"><div class="bridgedepth"></div></div>`;
     }
-    bridges.innerHTML +=
-    `<div id="bridge${j}" class="bridge ${bridge.open ? "open" : ""} angle${bridge.angle}" style="margin-left:${bridge.x * 10}vmin;margin-top:${bridge.y * 10 - 10}vmin;"><div class="bridgedepth"></div></div>`;
   }
   
   // Stones

@@ -218,10 +218,12 @@ movesnake = (movecamera = 1) => {
   }
   
   // Close bridge 0 when we finish entering a room
-  if(!lock && snakepos[snakelength - 1][0] > 0 && bridge0 && bridge0.classList.contains("open") && bridge0.classList.contains("angle180")){
-    bridge0.classList.remove("open");
-    bridge0.open = 0;
-    setTimeout("bridge0.innerHTML=''", 2000);
+  if(window["bridge0"]){
+    if(!lock && snakepos[snakelength - 1][0] > 0 && bridge0 && bridge0.classList.contains("open") && bridge0.classList.contains("angle180")){
+      bridge0.classList.remove("open");
+      bridge0.open = 0;
+      setTimeout("bridge0.innerHTML=''", 2000);
+    }
   }
   
   // Eat an apple
@@ -252,22 +254,25 @@ movesnake = (movecamera = 1) => {
       
       for(j in levels[currentroom].bridges){
         bridge = levels[currentroom].bridges[j];
-        if(!bridge.open && totalpuzzles >= bridge.puzzles){
-          lock = 1;
-          animation = 1;
-          scene.style.transformOrigin = `${bridge.x * 10}vmin ${bridge.y * 10}vmin`;
-          scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin) rotateX(30deg)`;
-          window["bridge" + j].classList.add("open");
-          bridge.open = 1;
-          localStorage["bridge" + currentroom + "-" + j] = 1;
-          setTimeout(() => {
-            lock = 0;
-            animation = 0;
-            movesnake();
-          }, 2000);
+        if(bridge){
+          
+          if(!bridge.open && totalpuzzles >= bridge.puzzles){
+            lock = 1;
+            animation = 1;
+            scene.style.transformOrigin = `${bridge.x * 10}vmin ${bridge.y * 10}vmin`;
+            scene.style.transform = `translateX(${-bridge.x * 10}vmin) translateY(${-bridge.y * 10 - 30}vmin) rotateX(30deg)`;
+            window["bridge" + j].classList.add("open");
+            bridge.open = 1;
+            localStorage["bridge" + currentroom + "-" + j] = 1;
+            setTimeout(() => {
+              lock = 0;
+              animation = 0;
+              movesnake();
+            }, 2000);
+            break;
+          }
           break;
         }
-        break;
       }
     }
   }
