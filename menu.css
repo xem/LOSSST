@@ -6,7 +6,8 @@
   color: #fff;
   text-shadow: -1px -1px 3px #777, -2px -2px 3px #777, -3px -3px 3px #777;
   text-align: center;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   z-index: 3;
   perspective: 26vmin;
 }
