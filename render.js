@@ -56,7 +56,7 @@ render = () => {
   for(i = 0; i < snakelength; i++){
     snake.innerHTML +=
 `<div id="snakecubemove${i}" class="snakecubemove">
-  <div id="snakeshadow${i}" class="snakeshadow"></div>
+  <!--div id="snakeshadow${i}" class="snakeshadow"></div-->
   <div id="snakegrass${i}" class="snakegrass"></div>
   ${i?'':'<div class="headcontrol left" data-dir=0></div>'}
   ${i?'':'<div class="headcontrol top" data-dir=1></div>'}
@@ -88,7 +88,7 @@ render = () => {
   // Puzzles
   for(i in levels[currentroom].puzzles){
     puzzle = levels[currentroom].puzzles[i];
-    puzzle.index = i;
+    puzzle.index = +i;
     if(+localStorage[currentroom + "-" + puzzle.index]){
       puzzle.solved = 1;
     }
@@ -647,7 +647,7 @@ render = () => {
                       for(i = 0; i < 22; i++){
                         window["snakecubemove" + i].id = "";
                         if(window["snakecube" + i]) window["snakecube" + i].id = "";
-                        window["snakeshadow" + i].id = "";
+                        //window["snakeshadow" + i].id = "";
                         window["snakegrass" + i].id = "";
                         levels[currentroom].cubes.push(snakepos[i]);
                       }
@@ -661,7 +661,7 @@ render = () => {
                       for(i = 0; i < snakelength; i++){
                         snake.innerHTML +=
                         `<div id="snakecubemove${i}" class="snakecubemove">
-                          <div id="snakeshadow${i}" class="snakeshadow"></div>
+                          <!--div id="snakeshadow${i}" class="snakeshadow"></div-->
                           <div id="snakegrass${i}" class="snakegrass"></div>
                           ${i?'':'<div class="headcontrol left" data-dir=0></div>'}
                           ${i?'':'<div class="headcontrol top" data-dir=1></div>'}

@@ -99,17 +99,17 @@ movesnake = (movecamera = 1) => {
     if(!mobile){
       if(snakepos[i][2] == 0){
         window["snakegrass" + i].style.backgroundPosition = -(snakepos[i][0] * 10 + (snakepos[i][1] * 100)) + "vmin bottom";
-        if(inbounds[i] || snakepos[i][0] < 1 || snakepos[i][0] > levels[currentroom].width - 1){
+        if(inbounds[i] || snakepos[i][0] < 0 || snakepos[i][0] > levels[currentroom].width - 1){
           window["snakegrass" + i].style.opacity = 0;
-          window["snakeshadow" + i].style.display = "none";
+          //window["snakeshadow" + i].style.display = "none";
         }
         else {
           window["snakegrass" + i].style.opacity = 1;
-          window["snakeshadow" + i].style.display = "block";
+          //window["snakeshadow" + i].style.display = "block";
         }
       }
       else {
-        window["snakeshadow" + i].style.display = "none";
+        //window["snakeshadow" + i].style.display = "none";
       }
     }
   }
@@ -229,7 +229,7 @@ movesnake = (movecamera = 1) => {
   // Eat an apple
   for(var l in levels[currentroom].apples){
     apple = levels[currentroom].apples[l];
-    if(!apple.eaten && !localStorage["apple_" + currentroom + "_" + i] && snakepos[0][0] == apple.x && snakepos[0][1] == apple.y){
+    if(!apple.eaten && !localStorage["apple_" + currentroom + "_" + l] && snakepos[0][0] == apple.x && snakepos[0][1] == apple.y){
       apple.eaten = 1;
       window["apple" + l].classList.add("eaten");
       if(window["appleshadow" + l]){
@@ -238,7 +238,7 @@ movesnake = (movecamera = 1) => {
       localStorage["apple_" + currentroom + "_" + l] = 1;
       snake.insertAdjacentHTML("beforeEnd",
 `<div id="snakecubemove${snakelength}" class="snakecubemove" style="transform:translateX(${snakepos[snakelength][0]*10+1}vmin) translateY(${snakepos[snakelength][1]*10+1}vmin) translateZ(${snakepos[snakelength][2]*10+.6}vmin)">
-  <div id="snakeshadow${snakelength}" class="snakeshadow"></div>
+  <!--div id="snakeshadow${snakelength}" class="snakeshadow"></div-->
   <div id="snakegrass${snakelength}" class="snakegrass" style="${snakepos[snakelength][0] < 0 ? 'opacity:0' : ''}"></div>
   <div id="snakecube${snakelength}" class="cube snakecube bright">
     <div class="u"></div>
@@ -290,16 +290,13 @@ movesnake = (movecamera = 1) => {
   }
   
   // RESET
-  if(currentpuzzle){
-    for(var l = 0; l < levels[currentroom].puzzles.length; l++){
-      var puzzle = levels[currentroom].puzzles[l];
-      if(snakepos[0][0] >= puzzle.x && snakepos[0][0] < puzzle.x + puzzle.size && snakepos[0][1] >= puzzle.y && snakepos[0][1] < puzzle.y + puzzle.size){
-        window["puzzlereset" + currentroom + "-" + l].style.opacity = 1;
-      }
+  for(var l = 0; l < levels[currentroom].puzzles.length; l++){
+  
+    if(currentpuzzle && currentpuzzle.index == l){
+      window["puzzlereset" + currentroom + "-" + l].style.opacity = 1;
     }
-  }
-  else {
-    for(var l = 0; l < levels[currentroom].puzzles.length; l++){
+    
+    else {
       window["puzzlereset" + currentroom + "-" + l].style.opacity = 0;
     }
   }
