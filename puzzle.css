@@ -81,26 +81,6 @@
   background: radial-gradient(#2d4, #7a6311);
 }
 
-
-
-#wraps {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
-.wrap {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: linear-gradient(45deg, rgba(0,0,0,.5), rgba(255,255,255,.5));
-  border: .5vmin solid #000;
-}
-
-.wrap div {
-  transform-origin: center center;
-}
-
 .puzzlecube .b {
   transform: translateY(-199%)rotateX(-90deg);
   transform-origin: bottom center;
@@ -122,9 +102,13 @@
 }
 
 .puzzlecube .reset {
-  transform: translateX(-12vmin) translateY(5vmin) translateZ(10vmin) rotateX(-45deg);
+  transform: translateX(-12vmin) translateY(5vmin) translateZ(13vmin) rotateX(-45deg);
   width: 10vmin;
   height: 10vmin;
   font-size: 8vmin;
   transition: opacity .5s;
+}
+
+.puzzlecube.wrap {
+  box-shadow: 0 0 10vmin 2vmin #308ce8
 }

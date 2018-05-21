@@ -1,0 +1,57 @@
+/* World 3 */
+
+.world3 #scene{
+  background: url(images/snow.jpg) !important;
+  background-size: 200vmin !important;
+}
+
+.world3 .treecontent {
+  background-image: url(images/sapin.png) !important;
+}
+
+.world3 .treeshadow {
+  background-image: url(images/sapinshadow.png) !important;
+  transform: translateX(-40%) scaleX(-1.5) translateY(7vmin) translateZ(.3vmin) rotateZ(235deg);
+  height: 65vmin;
+}
+
+.world3 .snakegrass {
+  background-image: url(images/snowtrace.png) !important;
+  background-size: 10vmin 9vmin !important;
+  background-position-y: 5.5vmin !important;
+}
+
+.world3 .puzzlegrass {
+  background-image: none !important;
+  background-size: 20vmin 9vmin !important;
+  background-position-y: 4vmin !important;
+}
+
+.world3 .applecontent {
+  background-image: url(images/marroon.png) !important;
+  width: 150%;
+  height: 150%;
+}
+
+.world3 .appleshadow {
+  background-image: url(images/marroonshadow.png) !important;
+  transform: translateX(-65%) scaleX(-1.5) translateY(5vmin) translateZ(.3vmin) rotateZ(235deg);
+}
+
+.world3 .cube.snakecube > div {
+  background-color: #bc0000;
+}
+
+.world3 .cube.snakecube .u,
+.world3 .cube.snakecube .u.eyes {
+  background-color: #dd0000;
+}
+
+.world3 .cube.snakecube .tongue {
+  background: none
+}
+
+.world3 .rockcube .u {
+  background: url(images/snow2.jpg) !important;
+  background-size: 20vmin !important;
+}

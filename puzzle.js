@@ -168,13 +168,11 @@ checkpuzzle = () => {
   // CHECK
   
   // Check solution
-  console.log("===");
   solved = 1;
   if(currentpuzzle){
     for(j in currentpuzzle.ground){
       cell = window[`cell${currentroom}-${currentpuzzle.index}-${j}`];
       if(cell && (cell.classList.contains("red") || ((cell.classList.contains("black") || cell.classList.contains("purple") || cell.classList.contains("tan")) && !cell.classList.contains("blue")))){
-        console.log(j);
         solved = 0;
         break;
       }
@@ -235,7 +233,7 @@ checkpuzzle = () => {
         setTimeout(() => {
           lock = 0;
           animation = 0;
-          movesnake();
+          movesnake(1,0);
         }, 2000);
       }
     }

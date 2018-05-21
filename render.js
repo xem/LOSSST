@@ -5,14 +5,15 @@ render = () => {
   // World
   b.classList.remove("world1");
   b.classList.remove("world2");
-  b.classList.add(currentroom <= 12 ? "world1" : "world2");
+  b.classList.remove("world3");
+  b.classList.add(currentroom <= 12 ? "world1" : currentroom <= 20 ? "world2" : "world3");
   
   var i, j;
   
   try {
     
     var mp3 = currentroom;
-    if(currentroom > 13){
+    if(currentroom > 13 && currentroom <= 20){
       mp3 = 13;
     }
     if(!music.src.includes("13.mp3")){
@@ -93,11 +94,10 @@ render = () => {
       puzzle.solved = 1;
     }
     puzzles.innerHTML +=
-`<div id="puzzle${currentroom}-${i}" class="cube puzzlecube" style="width:${puzzle.size*10}vmin;height:${puzzle.size*10}vmin;left:${puzzle.x*10}vmin;top:${puzzle.y*10}vmin">
+`<div id="puzzle${currentroom}-${i}" class="cube puzzlecube ${puzzle.wrap ? "wrap" : ""}" style="width:${puzzle.size*10}vmin;height:${puzzle.size*10}vmin;left:${puzzle.x*10}vmin;top:${puzzle.y*10}vmin">
   <div id="puzzlereset${currentroom}-${i}" class="reset" onclick="reset_puzzle()">🔄</div>
   <div id="puzzleground${i}" class="d"></div>
   ${puzzle.wall ? '<div id="puzzleback'+i+'" class="b"></div>' : ''}
-  ${puzzle.wall2 ? '<div id="puzzlebackback'+i+'" class="bb"></div>' : ''}
   <div class="puzzlegrass"></div>
 </div>`;
 

@@ -1,6 +1,6 @@
 levels = [
 
-  // Room 0
+  // Room 1-1
   // Size 3,4,5
   // Puzzles 1-3
   {
@@ -115,7 +115,7 @@ levels = [
   
   },
   
-  // Room 1
+  // Room 1-1-2
   // Size 6
   // Puzzles 4-6
   {
@@ -207,7 +207,7 @@ levels = [
     ],
   },
   
-  // Room 2
+  // Room 1-3
   // Size 7
   // Puzzles 7-10
   {
@@ -311,7 +311,7 @@ levels = [
     ],
   },
   
-  // Room 3
+  // Room 1-4
   // Size 8
   // Puzzles 11-16
   {
@@ -458,7 +458,7 @@ levels = [
   },
   
   
-  // Room 4
+  // Room 1-5
   // Size 9
   // Puzzles 17-21
   {
@@ -588,7 +588,7 @@ levels = [
     ],
   },
   
-  // Room 5
+  // Room 1-6
   // Size 10
   // Puzzles 22-25
   {
@@ -699,7 +699,7 @@ levels = [
   },
   
   
-  // Room 6
+  // Room 1-7
   // Size 11
   // Puzzles 26-32
   {
@@ -854,7 +854,7 @@ levels = [
     ],
   },
   
-  // Room 7
+  // Room 1-8
   // Size 13
   // Puzzles 33-37
   {
@@ -991,7 +991,7 @@ levels = [
     ],
   },
   
-  // Room 8
+  // Room 1-9
   // Size 15
   // Puzzles 38-43
   {
@@ -1148,7 +1148,7 @@ levels = [
   },
 
   
-  // Room 9
+  // Room 1-10
   // Size 16
   // Puzzles 44-49
   {
@@ -1284,7 +1284,7 @@ levels = [
     ],
   },
   
-  // Room 10
+  // Room 1-11
   // Size 17
   // Puzzles 50-55
   {
@@ -1427,7 +1427,7 @@ levels = [
   },
   
   
-  // Room 11
+  // Room 1-12
   // Size 20
   // Puzzles 56-60
   {
@@ -1611,7 +1611,7 @@ levels = [
   },
   
   
-  // Room 12
+  // Room 1-13
   // Size 20
   // Boss
   {

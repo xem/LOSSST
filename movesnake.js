@@ -1,5 +1,5 @@
 ﻿// Move snake and animate all the elements that move at each snake move
-movesnake = (movecamera = 1) => {
+movesnake = (movecamera = 1, movesnake = 1) => {
   
   var i;
   
@@ -36,12 +36,16 @@ movesnake = (movecamera = 1) => {
   
   // DISTANCE FROM RESET POINT
   
-  if(goingback){
-    movessincelatestpuzzle--;
-  }
-  else {
-    inbounds.unshift(inbounds0);
-    movessincelatestpuzzle++;
+  if(movesnake){
+    if(goingback){
+      movessincelatestpuzzle--;
+    }
+    else {
+      inbounds.unshift(inbounds0);
+      movessincelatestpuzzle++;
+    }
+  
+    document.title = movessincelatestpuzzle;
   }
   
   // PUZZLING
@@ -64,7 +68,6 @@ movesnake = (movecamera = 1) => {
     //}
     
     if(currentroom != 12 && snakepos[i+1] && Math.hypot(snakepos[i][0] - snakepos[i+1][0], snakepos[i][1] - snakepos[i+1][1], snakepos[i][2] - snakepos[i+1][2]) > 1){
-      console.log("teleport");
       window["snakecubemove" + i].style.transition = "0s";
       window["snakecube" + i].style.transition = ".2s";
       
@@ -214,6 +217,7 @@ movesnake = (movecamera = 1) => {
       if(!mobile) setTimeout(()=>{scene.style.transition = ""}, 1000);
       scene.style.transformOrigin = (snakepos[0][0] * 10) + "vmin " + (snakepos[0][1] * 10 + 1) + "vmin";
       scene.style.transform = "translateX(" + (-snakepos[0][0] * 10 + 1 - 5) + "vmin) translateY(" + (-snakepos[0][1] * 10 + 1) + "vmin) translateZ(10vmin) rotateX(30deg)";
+      if(inbounds[1] && (currentpuzzle && !currentpuzzle.solved)) checkpuzzle();
     }
   }
   
@@ -267,7 +271,7 @@ movesnake = (movecamera = 1) => {
             setTimeout(() => {
               lock = 0;
               animation = 0;
-              movesnake();
+              movesnake(1,0);
             }, 2000);
             break;
           }

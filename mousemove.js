@@ -174,7 +174,7 @@ mousemove = (dir) => {
   else if(dir == 3){
     
     // Vertical puzzle: go downward
-    if(/*!onacube && */currentpuzzle && currentpuzzle.wall && pos[0] >= currentpuzzle.x && pos[0] <= currentpuzzle.x + currentpuzzle.size && pos[1] == currentpuzzle.y && pos[2] > 0){
+    if(currentpuzzle && currentpuzzle.wall && pos[0] >= currentpuzzle.x && pos[0] <= currentpuzzle.x + currentpuzzle.size && pos[1] == currentpuzzle.y && pos[2] > 0){
       pos[2]--;
     }
     
@@ -222,6 +222,58 @@ mousemove = (dir) => {
   
   // Reset collision flag
   collision = 0;
+  
+    // Wrap 2D
+    if(currentpuzzle && currentpuzzle.wrap && !currentpuzzle.solved){
+      
+      var newx = pos[0];
+      var newy = pos[1];
+      
+      // Left
+      if(
+         newx == currentpuzzle.x - 1 && snakepos[0][0] == currentpuzzle.x
+         && snakepos[0][1] >= currentpuzzle.y && snakepos[0][1] < currentpuzzle.y + currentpuzzle.size
+      ){
+        newx = currentpuzzle.x + currentpuzzle.size - 1;
+      }
+      
+      // Right
+      else if(
+         newx == currentpuzzle.x + currentpuzzle.size && snakepos[0][0] == currentpuzzle.x + currentpuzzle.size - 1
+         && snakepos[0][1] >= currentpuzzle.y && snakepos[0][1] < currentpuzzle.y + currentpuzzle.size
+      ){
+        newx = currentpuzzle.x;
+      }
+      
+      // Up 
+      else if(
+        newy == currentpuzzle.y - 1 && snakepos[0][1] == currentpuzzle.y
+        && snakepos[0][0] >= currentpuzzle.x && snakepos[0][0] < currentpuzzle.x + currentpuzzle.size
+      ){
+        newy = currentpuzzle.y + currentpuzzle.size - 1;
+      }
+      
+      // Down
+      else if(
+        newy == currentpuzzle.y + currentpuzzle.size && snakepos[0][1] == currentpuzzle.y + currentpuzzle.size - 1
+        && snakepos[0][0] >= currentpuzzle.x && snakepos[0][0] < currentpuzzle.x + currentpuzzle.size
+      ){
+        newy = currentpuzzle.y;
+      }
+      
+      var ok = 1;
+      for(var cube = 2; cube < snakelength - 1; cube++){
+        if(snakepos[cube][0] == newx && snakepos[cube][1] == newy){
+          ok = 0;
+          collision = "wrap";
+        }
+      }
+      if(ok && (newx != snakepos[0][0] || newy != snakepos[0][1])){
+        pos[0] = newx;
+        pos[1] = newy;
+        movesnake(1,0);
+      }
+    }
   
   // Check collisions with the snake itself
   for(i = 0; i < snakelength - 1; i++){
@@ -336,12 +388,8 @@ mousemove = (dir) => {
               snakeangle.unshift(90);
               inbounds.unshift(1);
             }
-            
-            console.log(snakepos);
-            
-            
+
             scene.style.transformOrigin = `${(bridge.to_x + 4) * 10 + 1}vmin ${(bridge.to_y - offset) * 10 + 1}vmin`;
-            //console.log(scene.style.transform = `translateX(${-(bridge.to_x + 4) * 10 - 4}vmin) translateY(${-(bridge.to_y - offset) * 10 + 1}vmin) translateZ(10vmin) rotateX(30deg)`);
 
             inbounds[0] = 0;
             render();
