@@ -250,7 +250,12 @@ mousemove = (dir) => {
         newy == currentpuzzle.y - 1 && snakepos[0][1] == currentpuzzle.y
         && snakepos[0][0] >= currentpuzzle.x && snakepos[0][0] < currentpuzzle.x + currentpuzzle.size
       ){
-        newy = currentpuzzle.y + currentpuzzle.size - 1;
+        if(currentpuzzle.wall){
+          collision = "wall";
+        }
+        else {
+          newy = currentpuzzle.y + currentpuzzle.size - 1;
+        }
       }
       
       // Down
@@ -258,12 +263,17 @@ mousemove = (dir) => {
         newy == currentpuzzle.y + currentpuzzle.size && snakepos[0][1] == currentpuzzle.y + currentpuzzle.size - 1
         && snakepos[0][0] >= currentpuzzle.x && snakepos[0][0] < currentpuzzle.x + currentpuzzle.size
       ){
-        newy = currentpuzzle.y;
+        if(currentpuzzle.wall){
+          collision = "wall";
+        }
+        else {
+          newy = currentpuzzle.y;
+        }
       }
       
       var ok = 1;
       for(var cube = 2; cube < snakelength - 1; cube++){
-        if(snakepos[cube][0] == newx && snakepos[cube][1] == newy){
+        if(snakepos[cube][0] == newx && snakepos[cube][1] == newy && snakepos[cube][2] == 1){
           ok = 0;
           collision = "wrap";
         }

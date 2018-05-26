@@ -77,8 +77,8 @@ button_choose.onclick = function(){
 <button onclick="start_room(21,3,90)">3-1</button>
 <button onclick="start_room(22,4,90)">3-2</button>
 <button onclick="start_room(23,5,90)">3-3</button>
-<!--button onclick="start_room(24,6,90)">3-4</button>
-<button onclick="start_room(25,7,90)">3-5</button-->
+<button onclick="start_room(24,6,90)">3-4</button>
+<!--button onclick="start_room(25,7,90)">3-5</button-->
 
 </div>
 `;

@@ -275,6 +275,9 @@ levels.push(
       [7,3],
     ],
     
+    cubes: [
+    ],
+    
     apples: [
       {
         x: 6,
@@ -314,7 +317,165 @@ levels.push(
 // Room 3-4
 // Size 5
 levels.push(
+  {
   
+    width: 40,
+    height: 20,
+    hole: false,
+    
+    puzzles: [
+
+      {
+        x: 11,
+        y: 4,
+        size: 4,
+        wrap: 1,
+        wall: "",
+        ground: "1101"+
+                "1100"+
+                "1011"+
+                "0111",
+      },
+      
+      {
+        x: 33,
+        y: 4,
+        size: 4,
+        wrap: 1,
+        wall: "",
+        ground: "1111"+
+                "0101"+
+                "1011"+
+                "1010",
+      },
+      
+      
+      {
+        x: 22,
+        y: 13,
+        size: 4,
+        wrap: 1,
+        wall: "",
+        ground: "1010"+
+                "1101"+
+                "1111"+
+                "1010",
+      },
+      
+      {
+        x: 34,
+        y: 13,
+        size: 3,
+        wrap: 1,
+        wall: "100"
+             +"101"
+             +"111",
+             
+        ground: "111"
+               +"111"
+               +"101",
+      },
+      
+      {
+        x: 8,
+        y: 13,
+        size: 4,
+        wrap: 1,
+        wall: "",
+        ground: "0001"+
+                "0111"+
+                "1011"+
+                "1111",
+      },
+      
+      {
+        x: 21,
+        y: 3,
+        size: 4,
+        wrap: 1,
+        wall: "",
+        ground: "1010"+
+                "1111"+
+                "0110"+
+                "1011",
+      },
+      
+      /*{
+        x: 32,
+        y: 13,
+        size: 4,
+        wrap: 0,
+        wall: "",
+        ground: "0001"
+               +"0011"
+               +"0001"
+               +"0001",
+      },*/
+
+    ],
+    
+    trees: [
+      [5,5],
+    ],
+    
+    apples: [
+      {
+        x: 7,
+        y: 9,
+        eaten: 0
+      },
+      {
+        x: 6,
+        y: 6,
+        eaten: 0
+      },
+      {
+        x: 3,
+        y: 6,
+        eaten: 0
+      },
+      {
+        x: 4,
+        y: 8,
+        eaten: 0
+      },
+      {
+        x: 5,
+        y: 7,
+        eaten: 0
+      },
+    ],
+    
+    stones: [
+    ],
+    
+    cubes: [
+    
+    ],
+    
+    bridges: [
+      {
+        x: 1,
+        y: 10,
+        angle: 180,
+        open: 1,
+        puzzles: 0,
+        to: 0
+      },
+
+      {
+        x: 39,
+        y: 15,
+        angle: 0,
+        open: 0,
+        puzzles: 16,
+        to: 4,
+        to_x: -3,
+        to_y: 5,
+        to_z: 0
+      }
+    ],
+  },
 );
 
 // Room 3-5
@@ -341,4 +502,9 @@ levels.push(
 // Lines of cubes in certain rooms
 for(i = 1; i < 11; i++){
   levels[21].cubes.push([23,i]);
+}
+
+for(i = 0; i < 15; i++){
+  levels[24].cubes.push([18,i]);
+  levels[24].cubes.push([29,i+5]);
 }

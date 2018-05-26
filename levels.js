@@ -115,7 +115,7 @@ levels = [
   
   },
   
-  // Room 1-1-2
+  // Room 1-2
   // Size 6
   // Puzzles 4-6
   {
