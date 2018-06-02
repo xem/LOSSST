@@ -273,7 +273,7 @@ mousemove = (dir) => {
       
       var ok = 1;
       for(var cube = 2; cube < snakelength - 1; cube++){
-        if(snakepos[cube][0] == newx && snakepos[cube][1] == newy && snakepos[cube][2] == 1){
+        if(snakepos[cube][0] == newx && snakepos[cube][1] == newy && snakepos[cube][2] == pos[2]){
           ok = 0;
           collision = "wrap";
         }
