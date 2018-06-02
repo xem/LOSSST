@@ -42,12 +42,12 @@ World 2
 World 3
 
 - 21: Antonio Vivaldi - Concerto No. 4 in F minor, Op. 8, RV 297, 'L'inverno' (Winter) - Allegro non molto
-- Ludwig Von Beethoven - Symphony no 5 in C Minor, Op 67 allegro con brio
-- Johann Strauss - Le beau Danube bleu
-- Johann Sebastian Bach - Orchestral Suite No 2 in B Minor 
+- 22: Johann Strauss - Le beau Danube bleu
+- 23: Johann Sebastian Bach - Orchestral Suite No 2 in B Minor "badinerie"
+- 25: Ludwig Von Beethoven - Symphony no 5 in C Minor, Op 67 allegro con brio
+- 24: Georges Bizet - L'Arlésienne suite no 2 IV. Farandole
 - Johann Strauss - Tritsch-tratsch polka
 - Edward Elgar - Pomp & Circumstance March no 1
-- Georges Bizet - L'Arlésienne
 - Richard Wagner - Die Walküre WWV 86B
 - Tchaikovski - Op 49, 1812 Overture 
 
