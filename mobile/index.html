@@ -1,0 +1,172 @@
+﻿<canvas width=900 height=800 style="border:1px solid" id=a></canvas>
+<script>
+
+w=a.width/2;
+h=a.height/2;
+perspective = 400;
+camx = 0;
+camy = 0;
+camz = -200;
+camYaw = 0;
+camPitch = -.2;
+camRoll = 0;
+
+snake = [
+  [4,3,0],
+  [4,2,0],
+  [3,2,0],
+  [2,2,0],
+  [1,2,0],
+  [1,3,0],
+  [1,4,0],
+  [1,4,-1],
+];
+
+c = a.getContext("2d");
+map = [
+  "000000",
+  "010000",
+  "011000",
+  "001100",
+  "000110",
+  "000000",
+];
+
+mousedown = 0;
+
+onmousedown = e => mousedown = 1;
+onmouseup = e => mousedown = 0;
+onmousemove = e => { 
+  if(mousedown){
+    camPitch += e.movementY / 100;
+    if(camPitch > 0) camPitch = 0;
+    if(camPitch < -.7) camPitch = -.7;
+    
+    /*if(e.pageY > h) camRoll -= e.movementX / 100;
+    if(e.pageY <= h) camRoll += e.movementX / 100;
+    if(camRoll > .2) camRoll = .2;
+    if(camRoll < -.2) camRoll = -.2;*/
+  }
+};
+
+onkeydown = e => {
+  if(e.keyCode == 40){}
+}
+
+var rotate = (a, b, angle) => [
+  Math.cos(angle) * a - Math.sin(angle) * b,
+  Math.sin(angle) * a + Math.cos(angle) * b
+];
+
+var project = (x, y, z) => {
+  var X,Y;
+  
+  [x,z] = rotate(x,z,camYaw);
+  [x,y] = rotate(x,y,camRoll);
+  [y,z] = rotate(y,z,camPitch);
+  
+  x -= camx;
+  y -= camy;
+  z -= camz;
+  
+  X = w + x / z * perspective;
+  Y = h + y / z * perspective;
+  
+  return [X,Y,z]
+}
+
+var drawTile = (x, y, z, value) => {
+  x-=3;
+  y-=3;
+  c.beginPath();
+  c.moveTo(...project(x*30, y*30, z));
+  c.lineTo(...project(x*30+30, y*30, z));
+  c.lineTo(...project(x*30+30, y*30+30, z));
+  c.lineTo(...project(x*30, y*30+30, z));
+  c.lineTo(...project(x*30, y*30, z));
+  c.fillStyle = value == 1 ? "#000" : "#fff";
+  c.strokeStyle = "#000";
+  c.lineWidth = 1;
+  c.fill();
+  c.stroke();
+}
+
+var drawApple = (x, y, z) => {
+  x-=3;
+  y-=3;
+  c.beginPath();
+  [X,Y,Z] = project(x*30+5, y*30+15, z);
+  realSize = 25;
+  size = realSize / Z * perspective;
+  c.font = size + "px arial";
+  c.fillText("🍏",X-10, Y-5);
+}
+
+var drawSnake = () => {
+  c.strokeStyle = "orange";
+  c.fillStyle = "orange";
+  c.shadowColor = "#000";
+  c.shadowBlur = 5;
+  [x,y,z] = snake[0];
+  x-=3;
+  y-=3;
+  
+  [X,Y,Z] = project(x*30+15,y*30+15,z*30-15);
+  realSize = 10;
+  size = realSize / Z * perspective;
+  c.arc(X,Y,size,0,7);
+  c.fill();
+  
+  
+
+  c.moveTo(X,Y);
+
+  c.lineWidth = 35;
+  c.lineCap = "round";
+  c.lineJoin = "round";
+  for(i in snake){
+    [x,y,z] = snake[i];
+    x-=3;
+    y-=3;
+    [X,Y,Z] = project(x*30+15,y*30+15,z*30-5);
+    c.lineTo(X,Y);
+  }
+  c.stroke();
+
+  c.shadowBlur = 0;
+  [x,y,z] = snake[0];
+  x-=3;
+  y-=3;
+  [X,Y,Z] = project(x*30+7,y*30+20,z*30-15);
+  realSize = 20;
+  size = realSize / Z * perspective;
+  c.font = size + "px arial";
+  c.fillText("👀",X-12, Y);
+  c.fillStyle = "red";
+  c.fillText("⅄",X, Y+50);
+
+  
+}
+
+draw = () => {
+    
+    c.shadowBlur = 0;
+    c.fillStyle = "#6a7";
+    c.fillRect(0,0,999,999);
+    for(i in map){
+      for(j in map[i]){
+        drawTile(j, i, 0, map[i][j]);
+      }
+    }
+    
+    drawApple(1, 1, 0);
+    drawSnake();
+    drawApple(2, 3, 0);
+    
+}
+ 
+setInterval( draw, 16);
+
+draw();
+
+</script>
